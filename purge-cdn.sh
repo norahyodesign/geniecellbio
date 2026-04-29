@@ -7,14 +7,13 @@ BRANCH="main"
 BASE_URL="https://purge.jsdelivr.net/gh/${REPO}@${BRANCH}"
 
 FILES=(
+  "index.html"
   "01_menu.html"
   "02_hero.html"
   "03_about.html"
   "04_services.html"
-  "05_pipeline.html"
   "06_contact.html"
   "07_footer.html"
-  "index.html"
 )
 
 echo ""
