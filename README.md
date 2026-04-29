@@ -11,6 +11,7 @@
 ├── test-cdn.html       # CDN 로드 테스트 페이지
 ├── iweb_template.html  # 아임웹에 삽입할 코드 블록
 ├── serve.sh            # 로컬 서버 실행 스크립트
+├── purge-cdn.sh        # jsDelivr CDN 캐시 퍼지 스크립트
 │
 ├── 01_menu.html        # 메뉴 섹션
 ├── 02_hero.html        # 히어로 섹션
@@ -51,9 +52,9 @@ GitHub push 없이 즉시 반영됩니다.
 2. jsDelivr 캐시 퍼지 (선택사항, 아래 참고)
 3. `test-cdn.html` 접속 → 오른쪽 하단 상태 패널에서 각 섹션 로드 확인
 
-> **주의:** CDN은 최대 24시간 캐시됩니다. 즉시 반영이 필요하면 아래 URL로 캐시를 퍼지하세요.
-> ```
-> https://purge.jsdelivr.net/gh/norahyodesign/geniecellbio@main/파일명.html
+> **주의:** CDN은 최대 24시간 캐시됩니다. 즉시 반영이 필요하면 아래 스크립트로 캐시를 퍼지하세요.
+> ```bash
+> ./purge-cdn.sh
 > ```
 
 ---
@@ -72,5 +73,5 @@ GitHub push 없이 즉시 반영됩니다.
 ## 배포 플로우
 
 ```
-코드 수정 → 로컬 테스트(index.html) → GitHub push → CDN 테스트(test-cdn.html) → 아임웹 확인
+코드 수정 → 로컬 테스트(index.html) → GitHub push → CDN 퍼지(purge-cdn.sh) → CDN 테스트(test-cdn.html) → 아임웹 확인
 ```
