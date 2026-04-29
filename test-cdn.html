@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>[CDN 테스트] 지니셀바이오</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #050a14; }
-    iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: none; }
     #cdn-status {
       position: fixed; bottom: 16px; right: 16px; z-index: 9999;
       background: rgba(0,0,0,0.82); color: #fff; font-size: 12px; font-family: monospace;
@@ -29,24 +26,29 @@
   </div>
 
   <script>
-    var CDN = 'https://cdn.jsdelivr.net/gh/norahyodesign/geniecellbio@main/index.html';
+    var CDN_BASE = 'https://cdn.jsdelivr.net/gh/norahyodesign/geniecellbio@main/';
+    var CDN = CDN_BASE + 'index.html';
     document.getElementById('cdn-url').textContent = CDN;
 
-    // CDN 접근 가능 여부 먼저 확인
+    // CDN에서 index.html을 fetch한 뒤 현재 문서에 직접 주입
+    // (iframe 대신 inject 방식 → scroll-snap / dvh / video autoplay 모두 로컬과 동일 동작)
     fetch(CDN)
       .then(function(res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.text();
       })
-      .then(function() {
+      .then(function(html) {
         document.getElementById('s-index').className = 'ok';
         document.getElementById('s-index').textContent = '✅ index.html 로드 성공';
 
-        // CDN URL을 iframe으로 직접 렌더링 (상대 경로 자산도 CDN 기준 처리)
-        var iframe = document.createElement('iframe');
-        iframe.src = CDN;
-        iframe.allow = 'autoplay; fullscreen';
-        document.body.appendChild(iframe);
+        // 영상 등 상대 경로 자산을 CDN 절대경로로 치환
+        html = html.replace(/(src=["'])(?!http|\/\/)(.*?mp4|.*?webm|.*?jpg|.*?png|.*?gif|.*?svg)(["'])/g,
+          function(m, pre, path, post) { return pre + CDN_BASE + path + post; });
+
+        // 현재 문서 전체를 CDN 콘텐츠로 교체
+        document.open();
+        document.write(html);
+        document.close();
       })
       .catch(function(err) {
         document.getElementById('s-index').className = 'err';
