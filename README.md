@@ -8,8 +8,6 @@
 
 ```
 ├── index.html               # 메인 사이트 (단일 HTML, 4섹션 scroll-snap)
-├── 1080001154-preview.mp4   # S1 히어로 배경 영상 (mp4)
-├── hero-bg.webm             # S1 히어로 배경 영상 (webm 폴백)
 │
 ├── test-cdn.html            # CDN 로드 테스트 페이지
 ├── iweb_template.html       # 아임웹에 삽입할 코드 블록 (CDN 방식)
