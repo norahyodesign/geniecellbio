@@ -12,6 +12,7 @@
 ├── iweb_template.html  # 아임웹에 삽입할 코드 블록
 ├── serve.sh            # 로컬 서버 실행 스크립트
 ├── purge-cdn.sh        # jsDelivr CDN 캐시 퍼지 스크립트
+├── AGENTS.md           # AI 에이전트 공통 지침 (파일 추가/삭제 시 체크리스트)
 │
 ├── 01_menu.html        # 메뉴 섹션
 ├── 02_hero.html        # 히어로 섹션
@@ -75,3 +76,10 @@ GitHub push 없이 즉시 반영됩니다.
 ```
 코드 수정 → 로컬 테스트(index.html) → GitHub push → CDN 퍼지(purge-cdn.sh) → CDN 테스트(test-cdn.html) → 아임웹 확인
 ```
+
+---
+
+## AI 에이전트 사용
+
+Claude, GitHub Copilot 등 AI 도구로 작업할 때는 [`AGENTS.md`](AGENTS.md)를 참조하세요.  
+섹션 파일 추가/삭제 시 업데이트해야 하는 5곳의 체크리스트와 CDN 정보가 담겨 있습니다.
