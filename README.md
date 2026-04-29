@@ -7,21 +7,27 @@
 ## 파일 구조
 
 ```
-├── index.html          # 로컬 테스트용 메인 페이지
-├── test-cdn.html       # CDN 로드 테스트 페이지
-├── iweb_template.html  # 아임웹에 삽입할 코드 블록
-├── serve.sh            # 로컬 서버 실행 스크립트
-├── purge-cdn.sh        # jsDelivr CDN 캐시 퍼지 스크립트
-├── AGENTS.md           # AI 에이전트 공통 지침 (파일 추가/삭제 시 체크리스트)
+├── index.html               # 메인 사이트 (단일 HTML, 4섹션 scroll-snap)
+├── 1080001154-preview.mp4   # S1 히어로 배경 영상 (mp4)
+├── hero-bg.webm             # S1 히어로 배경 영상 (webm 폴백)
 │
-├── 01_menu.html        # 메뉴 섹션
-├── 02_hero.html        # 히어로 섹션
-├── 03_about.html       # 회사소개 섹션
-├── 04_services.html    # 서비스 섹션
-├── 05_pipeline.html    # 파이프라인 섹션
-├── 06_contact.html     # 문의하기 섹션
-└── 07_footer.html      # 푸터 섹션
+├── test-cdn.html            # CDN 로드 테스트 페이지
+├── iweb_template.html       # 아임웹에 삽입할 코드 블록 (CDN 방식)
+├── serve.sh                 # 로컬 서버 실행 스크립트
+├── purge-cdn.sh             # jsDelivr CDN 캐시 퍼지 스크립트
+├── AGENTS.md                # AI 에이전트 공통 지침
+│
+│   [CDN 섹션 파일 — iWeb 연동용]
+├── 01_menu.html             # 메뉴 섹션
+├── 02_hero.html             # 히어로 섹션
+├── 03_about.html            # 회사소개 섹션
+├── 04_services.html         # 서비스 섹션
+├── 06_contact.html          # 문의하기 섹션
+└── 07_footer.html           # 푸터 섹션
 ```
+
+> `index.html`은 섹션 파일을 불러오지 않는 **독립형 단일 페이지**입니다.  
+> CDN 섹션 파일(`01_menu.html` 등)은 아임웹 연동(`iweb_template.html`)에서만 사용됩니다.
 
 ---
 
