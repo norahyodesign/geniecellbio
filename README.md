@@ -7,25 +7,17 @@
 ## 파일 구조
 
 ```
-├── index.html               # 메인 사이트 (단일 HTML, 4섹션 scroll-snap)
+├── index.html          # 메인 사이트 (단일 HTML, 4섹션 scroll-snap 완전 내장)
 │
-├── test-cdn.html            # CDN 로드 테스트 페이지
-├── iweb_template.html       # 아임웹에 삽입할 코드 블록 (CDN 방식)
-├── serve.sh                 # 로컬 서버 실행 스크립트
-├── purge-cdn.sh             # jsDelivr CDN 캐시 퍼지 스크립트
-├── AGENTS.md                # AI 에이전트 공통 지침
-│
-│   [CDN 섹션 파일 — iWeb 연동용]
-├── 01_menu.html             # 메뉴 섹션
-├── 02_hero.html             # 히어로 섹션
-├── 03_about.html            # 회사소개 섹션
-├── 04_services.html         # 서비스 섹션
-├── 06_contact.html          # 문의하기 섹션
-└── 07_footer.html           # 푸터 섹션
+├── test-cdn.html       # CDN 로드 테스트 페이지
+├── iweb_template.html  # 아임웹에 삽입할 코드 (CDN iframe 방식)
+├── serve.sh            # 로컬 서버 실행 스크립트
+├── purge-cdn.sh        # jsDelivr CDN 캐시 퍼지 스크립트
+└── AGENTS.md           # AI 에이전트 공통 지침
 ```
 
-> `index.html`은 섹션 파일을 불러오지 않는 **독립형 단일 페이지**입니다.  
-> CDN 섹션 파일(`01_menu.html` 등)은 아임웹 연동(`iweb_template.html`)에서만 사용됩니다.
+> 모든 섹션(S1~S4)은 `index.html` 안에 완전히 내장되어 있습니다.  
+> 아임웹은 `iweb_template.html`의 iframe 코드로 CDN의 `index.html`을 그대로 삽입합니다.
 
 ---
 
@@ -67,11 +59,11 @@ GitHub push 없이 즉시 반영됩니다.
 ## 아임웹 적용 방법
 
 1. 아임웹 편집기에서 **HTML 코드 블록** 추가
-2. `iweb_template.html`의 각 섹션 코드를 복사해서 붙여넣기
+2. `iweb_template.html` 전체를 복사해서 붙여넣기
 3. 저장 후 미리보기로 확인
 
-> 데이터는 jsDelivr CDN(`cdn.jsdelivr.net`)에서 불러옵니다.  
-> GitHub 리포지토리에 파일이 push되어 있어야 정상 로드됩니다.
+> jsDelivr CDN의 `index.html`을 iframe으로 임베드합니다.  
+> GitHub에 push된 내용이 CDN을 통해 아임웹에 반영됩니다.
 
 ---
 
@@ -86,4 +78,4 @@ GitHub push 없이 즉시 반영됩니다.
 ## AI 에이전트 사용
 
 Claude, GitHub Copilot 등 AI 도구로 작업할 때는 [`AGENTS.md`](AGENTS.md)를 참조하세요.  
-섹션 파일 추가/삭제 시 업데이트해야 하는 5곳의 체크리스트와 CDN 정보가 담겨 있습니다.
+아키텍처 개요, 섹션 구조, CDN 정보가 담겨 있습니다.
