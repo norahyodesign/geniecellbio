@@ -45,6 +45,7 @@
         // CDN URL을 iframe으로 직접 렌더링 (상대 경로 자산도 CDN 기준 처리)
         var iframe = document.createElement('iframe');
         iframe.src = CDN;
+        iframe.allow = 'autoplay; fullscreen';
         document.body.appendChild(iframe);
       })
       .catch(function(err) {
