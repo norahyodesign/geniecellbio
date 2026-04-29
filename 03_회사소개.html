@@ -1,0 +1,216 @@
+<!--  지니셀바이오 — 03. 회사소개  -->
+<div id="gcb-about">
+<style>
+#gcb-about *{margin:0;padding:0;box-sizing:border-box}
+#gcb-about{
+  --navy:#0E2040;--accent:#2E7CF6;--accent2:#5BB8F6;--accent-light:#E8F1FE;
+  --white:#fff;--gray-bg:#F5F5F7;
+  --text:#1d1d1f;--text2:#6e6e73;--text3:#86868b;--border:#e8e8ed;--radius:20px;
+  --font:'DM Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace;
+  --max-w:1080px;
+  background:var(--white);font-family:var(--font);color:var(--text);
+  -webkit-font-smoothing:antialiased;padding:120px 0 0;
+}
+#gcb-about .ac{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+
+/* ── 인트로 ── */
+#gcb-about .at{text-align:center;margin-bottom:80px}
+#gcb-about .ao{
+  display:inline-block;
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-light);padding:6px 16px;border-radius:20px;margin-bottom:24px;
+}
+#gcb-about .ah{
+  font-size:clamp(36px,4.5vw,52px);font-weight:700;line-height:1.2;letter-spacing:-0.04em;margin-bottom:24px;
+}
+#gcb-about .ah span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#gcb-about .ap{font-size:18px;font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:var(--text2);max-width:580px;margin:0 auto}
+
+/* ── 프로세스: 다크 풀와이드 ── */
+#gcb-about .pw{
+  background:var(--navy);
+  padding:100px 0 120px;
+  width:100vw;margin-left:calc(-50vw + 50%);
+  position:relative;overflow:hidden;
+}
+/* 배경 조명 */
+#gcb-about .pw::before{
+  content:'';position:absolute;top:-240px;right:-160px;
+  width:640px;height:640px;
+  background:radial-gradient(circle,rgba(46,124,246,0.14) 0%,transparent 68%);
+  pointer-events:none;
+}
+#gcb-about .pw::after{
+  content:'';position:absolute;bottom:-200px;left:-160px;
+  width:540px;height:540px;
+  background:radial-gradient(circle,rgba(91,184,246,0.08) 0%,transparent 68%);
+  pointer-events:none;
+}
+#gcb-about .pw .ac{position:relative;z-index:1}
+
+#gcb-about .pwh{text-align:center;margin-bottom:64px}
+#gcb-about .pwo{
+  display:inline-block;
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent2);border:1px solid rgba(91,184,246,0.3);padding:6px 16px;border-radius:20px;margin-bottom:20px;
+}
+#gcb-about .pwh h3{
+  font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-0.035em;line-height:1.22;
+  color:white;margin-bottom:12px;
+}
+#gcb-about .pwh p{font-size:16px;line-height:1.65;color:rgba(255,255,255,0.4)}
+
+/* 4스텝 그리드 */
+#gcb-about .ps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  max-width:var(--max-w);margin:0 auto;
+}
+
+#gcb-about .psi{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius);padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94),box-shadow .4s,background .3s;
+  cursor:default;
+}
+#gcb-about .psi:hover{
+  background:rgba(255,255,255,0.09);
+  transform:translateY(-10px);
+  box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 48px rgba(46,124,246,0.18);
+}
+/* 하이라이트 라인 */
+#gcb-about .psi::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+#gcb-about .psi:hover::before{transform:scaleX(1)}
+
+/* 대형 워터마크 숫자 */
+#gcb-about .psi-bg{
+  position:absolute;top:-10px;right:8px;
+  font:700 100px/1 var(--mono);color:white;opacity:.04;
+  letter-spacing:-0.05em;pointer-events:none;
+  transition:opacity .4s;
+}
+#gcb-about .psi:hover .psi-bg{opacity:.08}
+
+/* 아이콘 */
+#gcb-about .psd{
+  width:52px;height:52px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+  box-shadow:0 8px 24px rgba(46,124,246,0.4);
+  transition:transform .3s,box-shadow .3s;
+}
+#gcb-about .psi:hover .psd{transform:scale(1.1);box-shadow:0 12px 32px rgba(46,124,246,0.55)}
+#gcb-about .psd svg{width:24px;height:24px;color:white}
+
+/* 라벨 */
+#gcb-about .psn{
+  font:600 11px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent2);margin-bottom:12px;
+}
+#gcb-about .pst{
+  font-size:18px;font-weight:700;letter-spacing:-0.025em;line-height:1.3;
+  color:white;margin-bottom:10px;
+}
+#gcb-about .psp{
+  font-size:13px;line-height:1.65;
+  color:rgba(255,255,255,0.42);
+}
+
+/* 애니메이션 */
+#gcb-about.gcb-anim .psi{opacity:0;transform:translateY(32px)}
+#gcb-about.gcb-anim .psi.vis{
+  opacity:1;transform:translateY(0);
+  transition:opacity .65s ease,transform .65s cubic-bezier(.25,.46,.45,.94);
+}
+#gcb-about.gcb-anim .psi:nth-child(2).vis{transition-delay:.1s}
+#gcb-about.gcb-anim .psi:nth-child(3).vis{transition-delay:.2s}
+#gcb-about.gcb-anim .psi:nth-child(4).vis{transition-delay:.3s}
+
+@media(max-width:1024px){
+  #gcb-about .ps{grid-template-columns:repeat(2,1fr);gap:16px}
+}
+@media(max-width:768px){
+  #gcb-about{padding:88px 0 0}
+  #gcb-about .ac{padding:0 20px}
+  #gcb-about .pw{padding:80px 20px 100px}
+  #gcb-about .at{margin-bottom:64px}
+  #gcb-about .ap{font-size:17px}
+}
+@media(max-width:480px){
+  #gcb-about{padding:64px 0 0}
+  #gcb-about .ps{grid-template-columns:1fr}
+}
+</style>
+
+<div class="ac">
+  <div class="at">
+    <div class="ao">About GenicellBio</div>
+    <h2 class="ah">첨단바이오의약품 개발의<br><span>처음부터 끝까지</span></h2>
+    <p class="ap">복잡한 규제와 공정 리스크, 혼자 고민하지 마십시오. 검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여, 귀사의 소중한 시간과 비용을 성공으로 치환해 드립니다.</p>
+  </div>
+</div>
+
+<div class="pw">
+  <div class="ac">
+    <div class="pwh">
+      <div class="pwo">Development Process</div>
+      <h3>개발 단계별 지원 프로세스</h3>
+      <p>연구 시작부터 시장 진입까지, 모든 단계에 함께합니다</p>
+    </div>
+    <div class="ps" id="gcb-steps">
+      <div class="psi">
+        <div class="psi-bg">01</div>
+        <div class="psd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m0-10.14l2.83 2.83m4.48 4.48l2.83 2.83"/></svg></div>
+        <div class="psn">Phase 01</div>
+        <div class="pst">기초 연구 지원</div>
+        <div class="psp">R&D 단계 원료세포 공급 및 기초 데이터 확보</div>
+      </div>
+      <div class="psi">
+        <div class="psi-bg">02</div>
+        <div class="psd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"/></svg></div>
+        <div class="psn">Phase 02</div>
+        <div class="pst">공정 개발 · Scale-up</div>
+        <div class="psp">Lab-scale → GMP 수준 상업 생산 최적화</div>
+      </div>
+      <div class="psi">
+        <div class="psi-bg">03</div>
+        <div class="psd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
+        <div class="psn">Phase 03</div>
+        <div class="pst">품질시험 · 밸리데이션</div>
+        <div class="psp">식약처 제출 기준 QC 시험 및 시험법 밸리데이션</div>
+      </div>
+      <div class="psi">
+        <div class="psi-bg">04</div>
+        <div class="psd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg></div>
+        <div class="psn">Phase 04</div>
+        <div class="pst">인허가 · 시장 진입</div>
+        <div class="psp">IND 컨설팅 및 식약처 대관업무 대행</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('gcb-about');
+  if(!root)return;
+  root.classList.add('gcb-anim');
+  function obs(sel){
+    var els=root.querySelectorAll(sel);if(!els.length)return;
+    try{
+      var o=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target)}})},{threshold:0.1});
+      els.forEach(function(el){o.observe(el)});
+    }catch(err){els.forEach(function(el){el.classList.add('vis')})}
+  }
+  obs('.psi');
+})();
+</script>
+</div>

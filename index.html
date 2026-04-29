@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>지니셀바이오 | 첨단바이오의약품 CDMO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="sections"></div>
+
+  <script>
+    const files = ['01_메뉴','02_히어로','03_회사소개','04_서비스','06_문의하기','07_푸터'];
+    const container = document.getElementById('sections');
+
+    // innerHTML로 주입된 <script>는 실행되지 않으므로 직접 재실행
+    function execScripts(root) {
+      root.querySelectorAll('script').forEach(function(old) {
+        const s = document.createElement('script');
+        if (old.src) s.src = old.src;
+        else s.textContent = old.textContent;
+        old.parentNode.replaceChild(s, old);
+      });
+    }
+
+    Promise.all(files.map(f => fetch(f).then(r => r.text())))
+      .then(htmls => {
+        container.innerHTML = htmls.join('\n');
+        execScripts(container);
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>

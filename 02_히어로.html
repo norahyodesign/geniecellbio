@@ -1,0 +1,336 @@
+<!--  지니셀바이오 — 02. 히어로  -->
+<div id="gcb-hero">
+<style>
+#gcb-hero *{margin:0;padding:0;box-sizing:border-box}
+#gcb-hero{
+  --navy:#0E2040;--accent:#2E7CF6;--accent2:#5BB8F6;--accent-light:#E8F1FE;
+  --white:#fff;--gray-bg:#F5F5F7;--text:#1d1d1f;--text2:#6e6e73;--text3:#86868b;
+  --font:'DM Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace;
+  --max-w:1080px;
+  background:var(--white);font-family:var(--font);color:var(--text);
+  -webkit-font-smoothing:antialiased;overflow:hidden;
+}
+#gcb-hero .hc{max-width:var(--max-w);margin:0 auto;padding:0 32px}
+#gcb-hero .ht{text-align:center;padding:128px 0 60px}
+#gcb-hero .h1{
+  font-size:clamp(40px,5.5vw,64px);font-weight:700;line-height:1.18;letter-spacing:-0.045em;
+  margin-bottom:28px;animation:gcbUp .9s cubic-bezier(.25,.46,.45,.94) .1s both;
+}
+#gcb-hero .h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#gcb-hero .hsub{
+  font-size:19px;font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:var(--text2);
+  max-width:520px;margin:0 auto 40px;animation:gcbUp .9s cubic-bezier(.25,.46,.45,.94) .3s both;
+}
+#gcb-hero .hcta{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  animation:gcbUp .9s cubic-bezier(.25,.46,.45,.94) .5s both;
+}
+#gcb-hero .hb{
+  display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:50px;
+  font-family:var(--font);font-size:15px;font-weight:600;letter-spacing:-0.01em;
+  text-decoration:none;cursor:pointer;transition:all .25s;
+}
+#gcb-hero .hbp{background:var(--accent);color:var(--white);border:none;box-shadow:0 4px 20px rgba(46,124,246,0.35)}
+#gcb-hero .hbp:hover{background:#1a6ae0;transform:translateY(-2px);box-shadow:0 8px 28px rgba(46,124,246,0.45)}
+#gcb-hero .hbp svg{width:14px;height:14px;transition:transform .2s}
+#gcb-hero .hbp:hover svg{transform:translateX(3px)}
+#gcb-hero .hbs{background:transparent;color:var(--text2);border:1.5px solid #e8e8ed}
+#gcb-hero .hbs:hover{border-color:var(--accent);color:var(--accent)}
+#gcb-hero .hv{
+  max-width:900px;margin:0 auto;background:var(--gray-bg);border-radius:24px;
+  overflow:hidden;position:relative;aspect-ratio:16/9;
+  animation:gcbScale 1.2s cubic-bezier(.25,.46,.45,.94) .6s both;
+  box-shadow:0 32px 80px rgba(0,0,0,0.08);
+}
+#gcb-hero .hv canvas{display:block;width:100%;height:100%;position:absolute;inset:0}
+#gcb-hero .hv-fallback{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:13px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;
+}
+#gcb-hero .hbot{height:80px}
+@keyframes gcbUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gcbScale{from{opacity:0;transform:scale(0.96) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@media(max-width:768px){
+  #gcb-hero .ht{padding:88px 0 44px}
+  #gcb-hero .hcta{flex-direction:column;align-items:center}
+  #gcb-hero .hb{width:260px;justify-content:center}
+  #gcb-hero .hv{border-radius:16px}
+  #gcb-hero .hbot{height:56px}
+}
+@media(max-width:480px){
+  #gcb-hero .ht{padding:72px 0 36px}
+  #gcb-hero .hbot{height:40px}
+}
+</style>
+
+<div class="hc">
+  <div class="ht">
+    <h1 class="h1">당신의 연구가<br>멈추지 않도록,<br><span>전문성이 길을 엽니다.</span></h1>
+    <p class="hsub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여, 귀사의 시간과 비용을 성공으로 치환합니다.</p>
+    <div class="hcta">
+      <a href="/contact" class="hb hbp">서비스 문의하기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="/services" class="hb hbs">서비스 알아보기 →</a>
+    </div>
+  </div>
+  <div class="hv">
+    <canvas id="gcb-dna-canvas"></canvas>
+    <div class="hv-fallback" id="gcb-hv-fb">Advanced Biopharmaceutical CDMO</div>
+  </div>
+  <div class="hbot"></div>
+</div>
+
+<script>
+(function(){
+  var canvas = document.getElementById('gcb-dna-canvas');
+  var fb = document.getElementById('gcb-hv-fb');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  if (!ctx) { if(fb) fb.style.display='flex'; return; }
+
+  var W, H, dpr, T = 0, rafId;
+  var netNodes = [], particles = [];
+
+  function resize() {
+    var cont = canvas.parentElement;
+    W = cont.clientWidth;
+    H = cont.clientHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    initNodes();
+    initParticles();
+  }
+
+  function initNodes() {
+    netNodes = [];
+    var nx = W * 0.44;
+    var layout = [
+      [0.08,0.20,8],[0.20,0.12,5],[0.30,0.22,6],[0.38,0.10,4],
+      [0.15,0.38,7],[0.28,0.45,5],[0.08,0.52,4],[0.36,0.35,6],
+      [0.22,0.60,8],[0.10,0.70,5],[0.32,0.68,4],[0.18,0.82,6],
+      [0.38,0.55,5],[0.05,0.88,4],[0.26,0.92,5]
+    ];
+    layout.forEach(function(d,i){
+      var ox = d[0]*nx + W*0.03, oy = d[1]*H;
+      netNodes.push({ ox:ox, oy:oy, x:ox, y:oy, r:d[2],
+        phase:Math.random()*Math.PI*2, speed:0.3+Math.random()*0.4,
+        col: i%3===0 ? 0 : (i%3===1 ? 1 : 2) });
+    });
+  }
+
+  function initParticles() {
+    particles = [];
+    for (var i=0; i<50; i++) {
+      var ox = Math.random()*W, oy = Math.random()*H;
+      particles.push({ ox:ox, oy:oy, x:ox, y:oy,
+        r: 1+Math.random()*2.5,
+        phase: Math.random()*Math.PI*2,
+        speed: 0.2+Math.random()*0.5 });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* ─── 배경 ─── */
+    ctx.fillStyle = '#F5F5F7';
+    ctx.fillRect(0, 0, W, H);
+
+    // 도트 그리드
+    ctx.fillStyle = 'rgba(46,124,246,0.06)';
+    var gs = 32;
+    for (var gx=gs; gx<W; gx+=gs) {
+      for (var gy=gs; gy<H; gy+=gs) {
+        ctx.beginPath();
+        ctx.arc(gx, gy, 0.8, 0, Math.PI*2);
+        ctx.fill();
+      }
+    }
+
+    // 오른쪽 방사형 글로우
+    var rg = ctx.createRadialGradient(W*0.68,H*0.5,0,W*0.68,H*0.5,W*0.48);
+    rg.addColorStop(0,'rgba(46,124,246,0.09)');
+    rg.addColorStop(1,'rgba(46,124,246,0)');
+    ctx.fillStyle = rg;
+    ctx.fillRect(0,0,W,H);
+
+    /* ─── 분자 네트워크 (왼쪽) ─── */
+    netNodes.forEach(function(n) {
+      n.x = n.ox + Math.sin(T*n.speed + n.phase)*5;
+      n.y = n.oy + Math.cos(T*n.speed*0.7 + n.phase)*5;
+    });
+
+    // 연결선
+    for (var i=0; i<netNodes.length; i++) {
+      for (var j=i+1; j<netNodes.length; j++) {
+        var dx=netNodes[j].x-netNodes[i].x, dy=netNodes[j].y-netNodes[i].y;
+        var dist=Math.sqrt(dx*dx+dy*dy), maxD=W*0.22;
+        if (dist<maxD) {
+          var a=(1-dist/maxD)*0.28;
+          ctx.strokeStyle='rgba(46,124,246,'+a+')';
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.moveTo(netNodes[i].x,netNodes[i].y);
+          ctx.lineTo(netNodes[j].x,netNodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // 노드
+    netNodes.forEach(function(n) {
+      var pulse = 1 + 0.14*Math.sin(T*n.speed*2+n.phase);
+      var colors = [
+        ['rgba(46,124,246,0.25)','#2E7CF6'],
+        ['rgba(14,32,64,0.18)','#0E2040'],
+        ['rgba(91,184,246,0.2)','#5BB8F6']
+      ];
+      var c = colors[n.col];
+      // 글로우
+      var ng = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*5*pulse);
+      ng.addColorStop(0,c[0]); ng.addColorStop(1,'rgba(46,124,246,0)');
+      ctx.fillStyle=ng;
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r*5*pulse,0,Math.PI*2);
+      ctx.fill();
+      // 코어
+      ctx.fillStyle=c[1];
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r*pulse,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    /* ─── DNA 이중 나선 (중앙~오른쪽) ─── */
+    var cx   = W * 0.65;
+    var yTop = H * 0.04;
+    var yBot = H * 0.96;
+    var hH   = yBot - yTop;
+    var periods = 4.5;
+    var amp  = H * 0.095;
+    var rot  = T * 0.18;
+    var N    = 220;
+    var rstep = 11; // 룽 간격
+
+    // 룽 (뒤에 그림)
+    for (var i=0; i<=N; i+=rstep) {
+      var t  = i/N, y = yTop+hH*t;
+      var th = 2*Math.PI*periods*t + rot;
+      var x1 = cx + amp*Math.sin(th);
+      var x2 = cx - amp*Math.sin(th);
+      var fade = Math.min(t*6,1)*Math.min((1-t)*6,1);
+      var depth = Math.abs(Math.sin(th));
+      var alpha = fade*(0.12+0.38*depth);
+      ctx.strokeStyle='rgba(46,124,246,'+alpha+')';
+      ctx.lineWidth=1.2;
+      ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke();
+    }
+
+    // 가닥 1 (accent blue)
+    var sg1 = ctx.createLinearGradient(0,yTop,0,yBot);
+    sg1.addColorStop(0,'rgba(91,184,246,0)');
+    sg1.addColorStop(0.12,'rgba(46,124,246,0.9)');
+    sg1.addColorStop(0.88,'rgba(46,124,246,0.9)');
+    sg1.addColorStop(1,'rgba(91,184,246,0)');
+    ctx.strokeStyle=sg1; ctx.lineWidth=2.5; ctx.beginPath();
+    for (var i=0; i<=N; i++) {
+      var t=i/N, y=yTop+hH*t, th=2*Math.PI*periods*t+rot;
+      var x=cx+amp*Math.sin(th);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    // 가닥 2 (dark navy)
+    var sg2 = ctx.createLinearGradient(0,yTop,0,yBot);
+    sg2.addColorStop(0,'rgba(14,32,64,0)');
+    sg2.addColorStop(0.12,'rgba(14,32,64,0.85)');
+    sg2.addColorStop(0.88,'rgba(14,32,64,0.85)');
+    sg2.addColorStop(1,'rgba(14,32,64,0)');
+    ctx.strokeStyle=sg2; ctx.lineWidth=2.5; ctx.beginPath();
+    for (var i=0; i<=N; i++) {
+      var t=i/N, y=yTop+hH*t, th=2*Math.PI*periods*t+rot;
+      var x=cx-amp*Math.sin(th);
+      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    // 뉴클레오타이드 점
+    for (var i=0; i<=N; i+=rstep) {
+      var t=i/N, y=yTop+hH*t;
+      var th=2*Math.PI*periods*t+rot;
+      var x1=cx+amp*Math.sin(th), x2=cx-amp*Math.sin(th);
+      var fade=Math.min(t*6,1)*Math.min((1-t)*6,1);
+
+      ctx.fillStyle='rgba(46,124,246,'+(fade*0.92)+')';
+      ctx.beginPath(); ctx.arc(x1,y,3.5,0,Math.PI*2); ctx.fill();
+
+      ctx.fillStyle='rgba(14,32,64,'+(fade*0.88)+')';
+      ctx.beginPath(); ctx.arc(x2,y,3.5,0,Math.PI*2); ctx.fill();
+    }
+
+    /* ─── 플로팅 파티클 ─── */
+    particles.forEach(function(p){
+      p.x = p.ox + Math.sin(T*p.speed+p.phase)*10;
+      p.y = p.oy + Math.cos(T*p.speed*0.6+p.phase)*10;
+      var a = 0.04 + 0.07*Math.sin(T*1.8+p.phase);
+      ctx.fillStyle='rgba(46,124,246,'+a+')';
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+    });
+
+    /* ─── 레이블 태그 ─── */
+    var tags = [
+      {x:W*0.76,y:H*0.15,text:'GMP'},
+      {x:W*0.56,y:H*0.28,text:'CDMO'},
+      {x:W*0.79,y:H*0.72,text:'QC'},
+      {x:W*0.52,y:H*0.84,text:'IND'}
+    ];
+    tags.forEach(function(tag){
+      ctx.font = '600 11px IBM Plex Mono, monospace';
+      var tw = ctx.measureText(tag.text).width;
+      var pw=tw+16, ph=22, br=6;
+      var tx=tag.x-pw/2, ty=tag.y-ph/2;
+      // 배경
+      ctx.fillStyle='rgba(255,255,255,0.75)';
+      roundRect(ctx,tx,ty,pw,ph,br);
+      ctx.fill();
+      ctx.strokeStyle='rgba(46,124,246,0.25)';
+      ctx.lineWidth=1;
+      roundRect(ctx,tx,ty,pw,ph,br);
+      ctx.stroke();
+      // 텍스트
+      ctx.fillStyle='rgba(46,124,246,0.85)';
+      ctx.fillText(tag.text,tag.x-tw/2,tag.y+4);
+    });
+
+    T += 0.005;
+    rafId = requestAnimationFrame(draw);
+  }
+
+  function roundRect(c,x,y,w,h,r){
+    c.beginPath();
+    c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.arcTo(x+w,y,x+w,y+r,r);
+    c.lineTo(x+w,y+h-r);c.arcTo(x+w,y+h,x+w-r,y+h,r);
+    c.lineTo(x+r,y+h);c.arcTo(x,y+h,x,y+h-r,r);
+    c.lineTo(x,y+r);c.arcTo(x,y,x+r,y,r);
+    c.closePath();
+  }
+
+  window.addEventListener('resize', function(){ cancelAnimationFrame(rafId); resize(); draw(); });
+
+  // fetch로 삽입된 뒤 레이아웃이 확정될 때까지 rAF으로 대기
+  function tryInit(attempt) {
+    var cont = canvas.parentElement;
+    if (!cont) return;
+    var w = cont.clientWidth, h = cont.clientHeight;
+    if (w > 0 && h > 0) {
+      resize(); draw();
+    } else if (attempt < 30) {
+      requestAnimationFrame(function(){ tryInit(attempt + 1); });
+    }
+  }
+  tryInit(0);
+})();
+</script>
+</div>
