@@ -16,7 +16,7 @@
   <div id="sections"></div>
 
   <script>
-    const files = ['01_메뉴','02_히어로','03_회사소개','04_서비스','06_문의하기','07_푸터'];
+    const files = ['01_menu','02_hero','03_about','04_services','06_contact','07_footer'];
     const container = document.getElementById('sections');
 
     // innerHTML로 주입된 <script>는 실행되지 않으므로 직접 재실행
@@ -29,7 +29,7 @@
       });
     }
 
-    Promise.all(files.map(f => fetch(f).then(r => r.text())))
+    Promise.all(files.map(f => fetch(f + '.html').then(r => r.text())))
       .then(htmls => {
         container.innerHTML = htmls.join('\n');
         execScripts(container);
