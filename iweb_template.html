@@ -1,0 +1,49 @@
+<!-- iWEB에 삽입할 코드 블록들 -->
+
+<!-- 섹션 1: 메뉴 -->
+<div id="block-01"></div>
+<script>
+fetch('https://raw.githubusercontent.com/norahyodesign/geniecellbio/main/01_menu.html?t=' + Date.now())
+  .then(r => r.text())
+  .then(html => document.getElementById('block-01').innerHTML = html);
+</script>
+
+<!-- 섹션 2: 히어로 -->
+<div id="block-02"></div>
+<script>
+fetch('https://raw.githubusercontent.com/norahyodesign/geniecellbio/main/02_hero.html?t=' + Date.now())
+  .then(r => r.text())
+  .then(html => document.getElementById('block-02').innerHTML = html);
+</script>
+
+<!-- 섹션 3: 회사소개 -->
+<div id="block-03"></div>
+<script>
+fetch('https://raw.githubusercontent.com/norahyodesign/geniecellbio/main/03_about.html?t=' + Date.now())
+  .then(r => r.text())
+  .then(html => document.getElementById('block-03').innerHTML = html);
+</script>
+
+<!-- 섹션 4: 서비스 -->
+<div id="block-04"></div>
+<script>
+fetch('https://raw.githubusercontent.com/norahyodesign/geniecellbio/main/04_services.html?t=' + Date.now())
+  .then(r => r.text())
+  .then(html => document.getElementById('block-04').innerHTML = html);
+</script>
+
+<!-- 섹션 5: 문의 -->
+<div id="block-05"></div>
+<script>
+fetch('https://raw.githubusercontent.com/norahyodesign/geniecellbio/main/05_contact.html?t=' + Date.now())
+  .then(r => r.text())
+  .then(html => document.getElementById('block-05').innerHTML = html);
+</script>
+
+<!-- 섹션 6: 푸터 -->
+<div id="block-06"></div>
+<script>
+fetch('https://raw.githubusercontent.com/norahyodesign/geniecellbio/main/06_footer.html?t=' + Date.now())
+  .then(r => r.text())
+  .then(html => document.getElementById('block-06').innerHTML = html);
+</script>
