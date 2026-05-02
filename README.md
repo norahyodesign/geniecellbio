@@ -47,6 +47,30 @@
 
 ---
 
+## Pre-commit Hook 설치
+
+커밋 전 HTML 유효성·보안·플레이스홀더를 자동 검사합니다.
+
+```bash
+# 최초 1회 설치
+cp pre-commit.sh .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+```
+
+### 검사 항목
+
+| # | 검사 | 실패 시 |
+|---|------|---------|
+| 1 | HTML 유효성 (html-validate) | 커밋 중단 |
+| 2 | `href="#"` 깨진 링크 | 경고 |
+| 3 | 플레이스홀더 (`홍길동`, `000-0000` 등) | 경고 |
+| 4 | `target="_blank"` rel 누락 | 커밋 중단 |
+| 5 | `console.log` 잔재 | 커밋 중단 |
+
+수동 실행: `bash pre-commit.sh`
+
+---
+
 ## 테스트 방법
 
 ### 1. 로컬 테스트
