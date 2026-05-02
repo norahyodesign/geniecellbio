@@ -83,30 +83,18 @@
       <div class="hero-overline">Human Cell Management</div>
       <h1>인체세포등<br><span>관리업 서비스</span></h1>
       <p>첨단재생바이오법 기준에 따라 원료세포 수급·안전성 검증부터 자가세포 장기 보관까지, 세포치료제 개발의 핵심 원료 기반을 지원합니다.</p>
-      <div class="hero-svc-btns">
-        <a href="#service-supply" class="hero-svc-btn">
-          <div class="hsb-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"/></svg>
-          </div>
-          <div class="hsb-text">
-            <span class="hsb-badge">Supply</span>
-            <span class="hsb-title">원료세포 공급</span>
-          </div>
-          <svg class="hsb-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#service-banking" class="hero-svc-btn">
-          <div class="hsb-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
-          </div>
-          <div class="hsb-text">
-            <span class="hsb-badge">Bio-Banking</span>
-            <span class="hsb-title">자가세포 보관</span>
-          </div>
-          <svg class="hsb-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
     </div>
   </section>
+
+  <!-- SERVICE TABS -->
+  <nav class="tab-nav" id="cm-tabs">
+    <div class="tab-nav-inner">
+      <button class="tab-item" data-svc="supply">원료세포 공급</button>
+      <button class="tab-item" data-svc="banking">자가세포 보관</button>
+    </div>
+  </nav>
+
+  <div id="default-sections">
 
   <!-- OVERVIEW -->
   <section class="section">
@@ -131,67 +119,8 @@
     </div>
   </section>
 
-  <!-- SERVICE DETAIL -->
-  <section class="section alt">
-    <div class="inner">
-      <div class="section-label">Services</div>
-      <h2 class="section-h2">세부 <span>서비스</span></h2>
-      <p class="section-sub">원료세포 공급과 자가세포 보관, 두 축으로 세포치료제 개발의 원료 문제를 근본부터 해결합니다.</p>
-      <div class="svc-detail-grid">
-
-        <!-- 원료세포 공급 -->
-        <div id="service-supply" class="svc-detail-card">
-          <div class="sdc-left">
-            <div class="sdc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"/>
-              </svg>
-            </div>
-            <div class="sdc-badge">Supply</div>
-            <h3 class="sdc-h3">원료세포<br>공급</h3>
-          </div>
-          <div class="sdc-right">
-            <p class="sdc-desc">첨단재생바이오법 시행 이후, 출처가 불분명하거나 관리 기준을 충족하지 못한 세포는 의약품 원료로 사용할 수 없습니다. 처음부터 적법한 세포로 시작하세요.</p>
-            <blockquote class="sdc-quote">"해외 구매 또는 일반 기증자에게 받은 세포로 연구를 완성했는데, 상업화 단계에서 기증자 적격성 평가(전염병 검사·동의서 등)가 법적 기준에 미달하여 그동안의 모든 연구 데이터를 버리고 처음부터 다시 시작해야 하는 경우가 발생합니다."</blockquote>
-            <span class="sdc-group-label">공급 유형</span>
-            <ul class="sdc-list">
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>임상시험용·제품생산용 공급 — 첨생법 기준 채취·관리된 고품질 원료세포</li>
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>연구·개발용 공급 — 다양한 기증자 유래 R&amp;D용 세포로 신뢰할 수 있는 기초 데이터 확보</li>
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>안전성 시험 결과 식약처 제출 대행 — 기원·채취 기록·검사 항목 증빙 원스톱 대행</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 자가세포 보관 (Bio-Banking) -->
-        <div id="service-banking" class="svc-detail-card">
-          <div class="sdc-left">
-            <div class="sdc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
-              </svg>
-            </div>
-            <div class="sdc-badge">Bio-Banking</div>
-            <h3 class="sdc-h3">자가세포<br>보관 서비스</h3>
-          </div>
-          <div class="sdc-right">
-            <p class="sdc-desc">세포치료제의 핵심은 '세포의 젊음과 활성'입니다. 환자의 상태가 악화된 후 채취한 세포는 치료 효능이 급격히 떨어집니다. 건강할 때 미리 보관된 세포가 치료 성공률을 결정짓습니다.</p>
-            <blockquote class="sdc-quote">"항암제 개발에는 성공했지만, 정작 투여받을 환자의 면역세포 상태가 항암치료로 인해 너무 망가져 있어 치료제 제조 자체가 불가능한 상황이 생깁니다. 건강할 때 미리 보관된 세포는 치료제 제조의 성공률을 결정짓는 핵심 변수입니다."</blockquote>
-            <span class="sdc-group-label">보관 품목</span>
-            <ul class="sdc-list">
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가 NK Cell</li>
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가 T-Cell</li>
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가 지방줄기세포</li>
-              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>최첨단 극저온 보관 (-196°C) — 세포 생존율·활성도 원형 유지</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- PROCESS -->
-  <section class="section">
+  <section class="section alt">
     <div class="inner">
       <div class="section-label">Process</div>
       <h2 class="section-h2">서비스 <span>진행 절차</span></h2>
@@ -237,7 +166,7 @@
   </section>
 
   <!-- STRENGTHS -->
-  <section class="section alt">
+  <section class="section">
     <div class="inner">
       <div class="section-label">Why Us</div>
       <h2 class="section-h2">지니셀바이오만의 <span>강점</span></h2>
@@ -296,6 +225,126 @@
     </div>
   </section>
 
+  </div><!-- /default-sections -->
+
+  <!-- SERVICE DETAIL -->
+  <div id="svc-detail-section" style="display:none">
+
+    <!-- 원료세포 공급 -->
+    <div class="svc-detail-view" data-view="supply">
+      <section class="section">
+        <div class="inner">
+          <div class="sde-intro">
+            <div>
+              <span class="sde-intro-badge">원료세포 공급 · Supply</span>
+              <h2 class="sde-intro-h2">처음부터<br><span>적법한 세포로</span></h2>
+              <p class="sde-intro-tagline">첨생법 기준 기증자 적격성 평가부터 식약처 제출 서류까지 원스톱으로 지원합니다.</p>
+            </div>
+            <div>
+              <div class="sde-pain-label">현장의 고민</div>
+              <p class="sde-pain-quote">"해외 구매 또는 일반 기증자에게 받은 세포로 연구를 완성했는데, 상업화 단계에서 기증자 적격성 평가(전염병 검사·동의서 등)가 법적 기준에 미달하여 그동안의 모든 연구 데이터를 버리고 처음부터 다시 시작해야 하는 경우가 발생합니다."</p>
+            </div>
+          </div>
+          <div class="sde-items-section">
+            <span class="sde-items-label">서비스 항목</span>
+            <h3 class="sde-items-h3">원료세포 공급 세부 서비스</h3>
+            <div class="sde-item">
+              <span class="sde-item-num">01</span>
+              <div>
+                <div class="sde-item-title">임상시험용 · 제품생산용 공급</div>
+                <div class="sde-item-desc">첨생법 기준 채취·관리된 고품질 원료세포를 임상 및 제품 생산에 적합한 형태로 공급합니다. 기증자 적격성 평가(HBV·HCV·HIV 등 전염병 검사, 동의서 포함)를 완료한 세포만 제공되어 상업화 전환 시 데이터 손실 위험이 없습니다.</div>
+              </div>
+            </div>
+            <div class="sde-item">
+              <span class="sde-item-num">02</span>
+              <div>
+                <div class="sde-item-title">연구 · 개발용 공급</div>
+                <div class="sde-item-desc">다양한 기증자 유래 R&amp;D용 세포로 신뢰할 수 있는 기초 데이터를 확보합니다. 상업화를 염두에 둔 적법 기준으로 채취·보관되어 연구 결과를 임상으로 연결하는 데 지장이 없습니다.</div>
+              </div>
+            </div>
+            <div class="sde-item">
+              <span class="sde-item-num">03</span>
+              <div>
+                <div class="sde-item-title">안전성 시험 결과 식약처 제출 대행</div>
+                <div class="sde-item-desc">세포 기원·채취 기록·법정 검사 항목 증빙 자료를 일괄 구성하여 식약처 제출을 원스톱으로 대행합니다. 기증자 동의서, HBV/HCV/HIV/매독 검사 성적서 등 복잡한 서류 준비를 전문가가 처리합니다.</div>
+              </div>
+            </div>
+            <div class="sde-back-cta">
+              <button class="sde-back-btn">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                서비스 개요로 돌아가기
+              </button>
+              <a href="support.html#contact" class="btn-primary">상담 신청 &#8594;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 자가세포 보관 -->
+    <div class="svc-detail-view" data-view="banking">
+      <section class="section">
+        <div class="inner">
+          <div class="sde-intro">
+            <div>
+              <span class="sde-intro-badge">자가세포 보관 · Bio-Banking</span>
+              <h2 class="sde-intro-h2">건강할 때<br><span>미리 보관하는</span> 세포</h2>
+              <p class="sde-intro-tagline">-196°C 극저온 보관으로 세포 활성도를 채취 시점 원형 그대로 유지합니다.</p>
+            </div>
+            <div>
+              <div class="sde-pain-label">현장의 고민</div>
+              <p class="sde-pain-quote">"항암제 개발에는 성공했지만, 정작 투여받을 환자의 면역세포 상태가 항암치료로 인해 너무 망가져 있어 치료제 제조 자체가 불가능한 상황이 생깁니다. 건강할 때 미리 보관된 세포는 치료제 제조의 성공률을 결정짓는 핵심 변수입니다."</p>
+            </div>
+          </div>
+          <div class="sde-items-section">
+            <span class="sde-items-label">서비스 항목</span>
+            <h3 class="sde-items-h3">자가세포 보관 세부 서비스</h3>
+            <div class="sde-item">
+              <span class="sde-item-num">01</span>
+              <div>
+                <span class="sde-group-title">보관 가능 세포 종류</span>
+                <div class="sde-item-title">자가 면역세포 · 줄기세포 보관</div>
+                <div class="sde-item-desc">자가 NK Cell, T-Cell, 지방줄기세포 등 다양한 면역·줄기세포를 보관합니다. 채취 시점의 세포 활성도를 최대한 유지하기 위해 최첨단 동결보존 프로토콜을 적용합니다.</div>
+              </div>
+            </div>
+            <div class="sde-item">
+              <span class="sde-item-num">02</span>
+              <div>
+                <span class="sde-group-title">극저온 보관 기술</span>
+                <div class="sde-item-title">-196°C 액체질소 장기 보관</div>
+                <div class="sde-item-desc">최첨단 극저온(-196°C) 액체질소 탱크에 세포를 장기 보관합니다. 세포 생존율·활성도를 채취 시점 원형 그대로 유지하며, 전 과정을 전자 기록 시스템으로 추적 관리합니다. 정기 모니터링으로 보관 환경의 안전성을 상시 확인합니다.</div>
+              </div>
+            </div>
+            <div class="sde-item">
+              <span class="sde-item-num">03</span>
+              <div>
+                <span class="sde-group-title">품질 관리 및 출고</span>
+                <div class="sde-item-title">첨생법 기준 관리 · CoA 발행</div>
+                <div class="sde-item-desc">마이코플라스마·무균 시험 등 정기 품질시험을 수행하여 세포 안전성을 상시 관리합니다. 출고 시 CoA 성적서를 제공하며, 드라이아이스 또는 액체질소 조건으로 안전하게 이송합니다.</div>
+              </div>
+            </div>
+            <div class="sde-item">
+              <span class="sde-item-num">04</span>
+              <div>
+                <span class="sde-group-title">CDMO 연계</span>
+                <div class="sde-item-title">보관 세포 → GMP 생산 직결</div>
+                <div class="sde-item-desc">지니셀바이오 CDMO 서비스와 직결되어, 보관 세포를 활용한 치료제 GMP 생산까지 원스톱으로 진행합니다. 별도 기관 이관 없이 동일 시설 내에서 세포 출고부터 제품 생산까지 처리합니다.</div>
+              </div>
+            </div>
+            <div class="sde-back-cta">
+              <button class="sde-back-btn">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                서비스 개요로 돌아가기
+              </button>
+              <a href="support.html#contact" class="btn-primary">상담 신청 &#8594;</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div><!-- /svc-detail-section -->
+
   <footer class="page-footer">
     <div class="footer-copy">&copy; 2026 GenicellBio. All rights reserved.</div>
     <div class="footer-links">
@@ -305,5 +354,41 @@
   </footer>
 
 </div><!-- .page-wrap -->
+
+<script>
+(function() {
+  var tabs = document.querySelectorAll('#cm-tabs .tab-item');
+  var defaultSections = document.getElementById('default-sections');
+  var detailSection = document.getElementById('svc-detail-section');
+  var detailViews = document.querySelectorAll('.svc-detail-view');
+
+  function showDefault() {
+    defaultSections.style.display = '';
+    detailSection.style.display = 'none';
+    detailSection.classList.remove('open');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+  }
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var svc = this.dataset.svc;
+      if (this.classList.contains('active')) { showDefault(); return; }
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      detailViews.forEach(function(v) { v.classList.remove('visible'); });
+      var target = document.querySelector('[data-view="' + svc + '"]');
+      if (target) target.classList.add('visible');
+      defaultSections.style.display = 'none';
+      detailSection.style.display = '';
+      detailSection.classList.add('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  document.querySelectorAll('.sde-back-btn').forEach(function(btn) {
+    btn.addEventListener('click', showDefault);
+  });
+})();
+</script>
 </body>
 </html>
