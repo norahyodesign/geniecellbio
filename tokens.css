@@ -544,7 +544,7 @@ body { background: var(--white); color: var(--text); }
 .form-wrap { max-width: 640px; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-.form-group.full { grid-column: 1 / -1; }
+.form-group.full, .form-group-full { grid-column: 1 / -1; }
 .form-label { font-size: 13px; font-weight: 600; color: var(--text); }
 .form-input, .form-textarea, .form-select {
   padding: 12px 16px; border-radius: var(--radius-sm);
@@ -915,8 +915,7 @@ body { background: var(--white); color: var(--text); }
 ══════════════════════════════════ */
 /* 필수 입력 표시 */
 .required-mark { color: var(--accent); }
-/* 폼 full-width 열 */
-.form-group-full { grid-column: 1 / -1; }
+/* 폼 full-width 열 — .form-group.full 과 동일, 하위 호환용 */
 /* 링크 색상 상속 */
 .link-inherit { color: inherit; text-decoration: none; }
 /* 섹션 내 보조 제목 간격 */
