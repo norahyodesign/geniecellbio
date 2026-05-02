@@ -6,33 +6,15 @@
   <title>지니셀바이오 | 첨단바이오의약품 CDMO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="tokens.css">
 <style>
 /* ────────────────────────────────
-   RESET & TOKENS
+   INDEX.HTML 고유 스타일 (tokens.css 미정의 영역)
 ──────────────────────────────── */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-:root {
-  --navy:        #0E2040;
-  --navy2:       #1B3A6B;
-  --accent:      #2E7CF6;
-  --accent2:     #5BB8F6;
-  --accent-light:#E8F1FE;
-  --white:       #fff;
-  --gray-bg:     #F5F5F7;
-  --text:        #1d1d1f;
-  --text2:       #6e6e73;
-  --text3:       #86868b;
-  --border:      #e8e8ed;
-  --radius:      20px;
-  --nav-h:       60px;
-  --font:        'DM Sans', system-ui, sans-serif;
-  --mono:        'IBM Plex Mono', monospace;
-  --max-w:       1080px;
-}
-html { font-family: var(--font); -webkit-font-smoothing: antialiased; }
-/* 한국어 단어 단위 줄바꿈 전역 적용 */
+/* index 고유 토큰 (tokens.css에 없는 것만) */
+:root { --navy2: #1B3A6B; }
 * { word-break: keep-all; overflow-wrap: break-word; }
 
 /* ────────────────────────────────
@@ -776,6 +758,18 @@ body {
 </style>
 </head>
 <body>
+<!-- SVG 아이콘 스프라이트 (hidden) -->
+<svg aria-hidden="true" focusable="false" style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ico-check" viewBox="0 0 16 16" fill="none">
+    <path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ico-arrow-right" viewBox="0 0 16 16" fill="none">
+    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ico-chevron-down" viewBox="0 0 16 16" fill="none">
+    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
 
 <!-- ────────────── NAV ────────────── -->
 <nav id="gcb-nav" aria-label="주 메뉴">
@@ -789,7 +783,7 @@ body {
 
     <ul class="nav-menu">
       <li class="nav-item">
-        <button type="button" class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">회사소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="about.html#greeting">인사말</a>
           <a href="about.html#company">회사소개</a>
@@ -797,7 +791,7 @@ body {
         </div>
       </li>
       <li class="nav-item">
-        <button type="button" class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">서비스 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a>
           <a href="cell-management.html">인체세포등 관리업</a>
@@ -805,7 +799,7 @@ body {
         </div>
       </li>
       <li class="nav-item">
-        <button type="button" class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">고객지원 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="support.html#qna">Q&amp;A</a>
           <a href="support.html#contact">Contact Us</a>
@@ -854,16 +848,16 @@ body {
 
   <!-- S1: HERO -->
   <section class="snap-sec" id="s1">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="1080001154-preview.mp4" type="video/mp4">
+    <video class="hero-video" autoplay muted loop playsinline preload="none" poster="hero-poster.jpg">
       <source src="hero-bg.webm" type="video/webm">
+      <source src="1080001154-preview.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <h1 class="hero-h1">당신의 연구가<br>멈추지 않도록,<br><span>전문성이 길을 엽니다.</span></h1>
       <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여, 귀사의 시간과 비용을 성공으로 치환합니다.</p>
       <div class="hero-cta">
-        <a href="#s4" class="btn-primary">서비스 문의하기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#s4" class="btn-primary">서비스 문의하기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         <a href="#s3" class="btn-ghost">서비스 알아보기 →</a>
       </div>
     </div>
@@ -955,11 +949,11 @@ body {
           <h3>첨단바이오의약품<br>CDMO Service</h3>
           <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅</p>
           <ul class="svc-list">
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>GMP 기준 공정 개선 및 임상 생산</li>
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>마이코플라스마·바이러스 부정시험</li>
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>IND 컨설팅 · 식약처 대관업무</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>GMP 기준 공정 개선 및 임상 생산</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>마이코플라스마·바이러스 부정시험</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>IND 컨설팅 · 식약처 대관업무</li>
           </ul>
-          <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 인체세포 -->
         <div class="svc-card">
@@ -968,11 +962,11 @@ body {
           <h3>인체세포등<br>관리업 Service</h3>
           <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지</p>
           <ul class="svc-list">
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>임상·R&amp;D용 원료세포 공급</li>
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가 NK Cell·T-Cell·지방줄기세포 보관</li>
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>안전성 시험 결과 식약처 제출 대행</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>임상·R&amp;D용 원료세포 공급</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>자가 NK Cell·T-Cell·지방줄기세포 보관</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>안전성 시험 결과 식약처 제출 대행</li>
           </ul>
-          <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 세포처리시설 -->
         <div class="svc-card">
@@ -981,11 +975,11 @@ body {
           <h3>세포처리시설<br>Service</h3>
           <p>재생의료기관 파트너로 안전한 시술과 연구 계획 수립 지원</p>
           <ul class="svc-list">
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>재생의료기관 투여용 인체세포 공급</li>
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>의료기관 위탁생산(CMO) 대행</li>
-            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>연구/치료계획서 파트 작성지원</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>재생의료기관 투여용 인체세포 공급</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>의료기관 위탁생산(CMO) 대행</li>
+            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>연구/치료계획서 파트 작성지원</li>
           </ul>
-          <a href="cell-facility.html" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="cell-facility.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
       </div>
   </section>

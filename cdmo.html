@@ -6,7 +6,8 @@
   <title>CDMO 서비스 | 지니셀바이오</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="tokens.css">
 <style>
 /* ── CDMO 전용: hero (page-hero와 다른 dark navy gradient) ── */
@@ -41,6 +42,18 @@
 </style>
 </head>
 <body>
+<!-- SVG 아이콘 스프라이트 (hidden) -->
+<svg aria-hidden="true" focusable="false" style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ico-check" viewBox="0 0 16 16" fill="none">
+    <path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ico-arrow-right" viewBox="0 0 16 16" fill="none">
+    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ico-chevron-down" viewBox="0 0 16 16" fill="none">
+    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
 
 <!-- NAV -->
 <nav id="gcb-nav" aria-label="주 메뉴">
@@ -53,7 +66,7 @@
     </a>
     <ul class="nav-menu">
       <li class="nav-item">
-        <button type="button" class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">회사소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="about.html#greeting">인사말</a>
           <a href="about.html#company">회사소개</a>
@@ -61,7 +74,7 @@
         </div>
       </li>
       <li class="nav-item is-active">
-        <button type="button" class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">서비스 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="cdmo.html" class="is-active">CDMO (위탁생산·QC·RA)</a>
           <a href="cell-management.html">인체세포등 관리업</a>
@@ -69,7 +82,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <button type="button" class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">고객지원 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="support.html#qna">Q&amp;A</a>
           <a href="support.html#contact">Contact Us</a>
