@@ -43,7 +43,7 @@
 <body>
 
 <!-- NAV -->
-<nav id="gcb-nav">
+<nav id="gcb-nav" aria-label="주 메뉴">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <div class="nav-logo-icon">
@@ -53,7 +53,7 @@
     </a>
     <ul class="nav-menu">
       <li class="nav-item">
-        <button class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
           <a href="about.html#greeting">인사말</a>
           <a href="about.html#company">회사소개</a>
@@ -61,7 +61,7 @@
         </div>
       </li>
       <li class="nav-item is-active">
-        <button class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
           <a href="cdmo.html" class="is-active">CDMO (위탁생산·QC·RA)</a>
           <a href="cell-management.html">인체세포등 관리업</a>
@@ -69,7 +69,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
           <a href="support.html#qna">Q&amp;A</a>
           <a href="support.html#contact">Contact Us</a>
@@ -77,7 +77,7 @@
       </li>
     </ul>
     <a href="support.html#contact" class="nav-cta">상담 신청</a>
-    <button class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">
+    <button type="button" class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -116,11 +116,11 @@
   </section>
 
   <!-- CDMO SERVICE TABS -->
-  <nav class="tab-nav" id="cdmo-tabs">
+  <nav class="tab-nav" id="cdmo-tabs" aria-label="서비스 탭 메뉴">
     <div class="tab-nav-inner">
-      <button class="tab-item" data-svc="cmo">CMO · 위탁생산</button>
-      <button class="tab-item" data-svc="qc">QC · 위탁품질시험</button>
-      <button class="tab-item" data-svc="ra">RA · 인허가 컨설팅</button>
+      <button type="button" class="tab-item" data-svc="cmo">CMO · 위탁생산</button>
+      <button type="button" class="tab-item" data-svc="qc">QC · 위탁품질시험</button>
+      <button type="button" class="tab-item" data-svc="ra">RA · 인허가 컨설팅</button>
     </div>
   </nav>
 
@@ -309,7 +309,7 @@
               </div>
             </div>
             <div class="sde-back-cta">
-              <button class="sde-back-btn" data-back="cmo">
+              <button type="button" class="sde-back-btn" data-back="cmo">
                 <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 서비스 개요로 돌아가기
               </button>
@@ -371,7 +371,7 @@
               </div>
             </div>
             <div class="sde-back-cta">
-              <button class="sde-back-btn" data-back="qc">
+              <button type="button" class="sde-back-btn" data-back="qc">
                 <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 서비스 개요로 돌아가기
               </button>
@@ -429,7 +429,7 @@
               </div>
             </div>
             <div class="sde-back-cta">
-              <button class="sde-back-btn" data-back="ra">
+              <button type="button" class="sde-back-btn" data-back="ra">
                 <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 서비스 개요로 돌아가기
               </button>

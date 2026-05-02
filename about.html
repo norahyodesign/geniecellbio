@@ -132,7 +132,7 @@
 <body>
 
 <!-- NAV -->
-<nav id="gcb-nav">
+<nav id="gcb-nav" aria-label="주 메뉴">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <div class="nav-logo-icon">
@@ -142,7 +142,7 @@
     </a>
     <ul class="nav-menu">
       <li class="nav-item is-active">
-        <button class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
           <a href="about.html#greeting">인사말</a>
           <a href="about.html#company">회사소개</a>
@@ -150,7 +150,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
           <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a>
           <a href="cell-management.html">인체세포등 관리업</a>
@@ -158,7 +158,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
           <a href="support.html#qna">Q&amp;A</a>
           <a href="support.html#contact">Contact Us</a>
@@ -166,7 +166,7 @@
       </li>
     </ul>
     <a href="support.html#contact" class="nav-cta">상담 신청</a>
-    <button class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">
+    <button type="button" class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -211,7 +211,7 @@
   </section>
 
   <!-- TAB NAV -->
-  <nav class="tab-nav" id="about-tabs">
+  <nav class="tab-nav" id="about-tabs" aria-label="회사소개 메뉴">
     <div class="tab-nav-inner">
       <a href="#greeting" class="tab-item active" data-target="greeting">인사말</a>
       <a href="#company"  class="tab-item"        data-target="company">회사소개</a>
@@ -268,17 +268,17 @@
       <p class="section-sub">지니셀바이오는 2020년 설립된 첨단바이오의약품 CDMO 전문기업입니다.</p>
 
       <!-- 회사 기본 정보 -->
-      <table class="company-info-table">
+      <table class="company-info-table"><tbody>
         <tr><th>회사명</th><td>주식회사 지니셀바이오 (GenicellBio Inc.)</td></tr>
         <tr><th>설립일</th><td>2020년 3월</td></tr>
         <tr><th>대표이사</th><td>홍길동</td></tr>
         <tr><th>주요 사업</th><td>첨단바이오의약품 CDMO (CMO·QC·RA), 인체세포등 관리업, 세포처리시설 운영</td></tr>
         <tr><th>인증</th><td>식약처 의약품 제조 및 품질관리 기준(GMP) 인증 · 인체세포등 관리업 허가</td></tr>
         <tr><th>본사</th><td>서울특별시 마포구 (세포처리시설 : 경기도 성남시)</td></tr>
-      </table>
+      </tbody></table>
 
       <!-- 핵심 가치 -->
-      <div class="section-label" style="margin-top: 64px;">Core Values</div>
+      <div class="section-label section-label-mt">Core Values</div>
       <h2 class="section-h2">핵심 <span>가치</span></h2>
 
       <div class="values-grid">
@@ -305,10 +305,10 @@
       </div>
 
       <!-- 연혁 -->
-      <div class="section-label" style="margin-top: 72px;">History</div>
+      <div class="section-label section-label-mt-lg">History</div>
       <h2 class="section-h2">회사 <span>연혁</span></h2>
 
-      <div class="timeline" style="margin-top: 40px;">
+      <div class="timeline timeline-mt">
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div class="tl-year">2020</div>
@@ -359,7 +359,7 @@
       <p class="section-sub">본사 및 세포처리시설 위치를 안내드립니다.</p>
 
       <!-- 본사 -->
-      <h3 style="font-size:18px; font-weight:700; color:var(--text); letter-spacing:-0.02em; margin-bottom:28px;">
+      <h3 class="location-h3">
         🏢 본사 (서울)
       </h3>
       <div class="location-wrap">
@@ -380,7 +380,7 @@
           </div>
           <div class="loc-item">
             <span class="loc-label">대표 전화</span>
-            <span class="loc-val">02-000-0000</span>
+            <span class="loc-val">02&#8209;000&#8209;0000</span>
           </div>
           <div class="loc-item">
             <span class="loc-label">이메일</span>
@@ -411,7 +411,7 @@
       </div>
 
       <!-- 세포처리시설 -->
-      <h3 style="font-size:18px; font-weight:700; color:var(--text); letter-spacing:-0.02em; margin: 64px 0 28px;">
+      <h3 class="location-h3 location-h3-mt">
         🧫 세포처리시설 (경기·성남)
       </h3>
       <div class="location-wrap">

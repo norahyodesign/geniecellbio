@@ -909,3 +909,25 @@ body { background: var(--white); color: var(--text); }
     scroll-behavior: auto !important;
   }
 }
+
+/* ══════════════════════════════════
+   UTILITY — INLINE STYLE 대체 클래스
+══════════════════════════════════ */
+/* 필수 입력 표시 */
+.required-mark { color: var(--accent); }
+/* 폼 full-width 열 */
+.form-group-full { grid-column: 1 / -1; }
+/* 링크 색상 상속 */
+.link-inherit { color: inherit; text-decoration: none; }
+/* 섹션 내 보조 제목 간격 */
+.section-label-mt { margin-top: 64px; }
+.section-label-mt-lg { margin-top: 72px; }
+/* 위치 섹션 소제목 */
+.location-h3 {
+  font-size: 18px; font-weight: 700;
+  color: var(--text); letter-spacing: -0.02em;
+  margin-bottom: 28px;
+}
+.location-h3-mt { margin: 64px 0 28px; }
+/* 타임라인 간격 */
+.timeline-mt { margin-top: 40px; }
