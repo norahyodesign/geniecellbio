@@ -7,13 +7,19 @@
 ## 파일 구조
 
 ```
-├── index.html          # 메인 사이트 (단일 HTML, 4섹션 scroll-snap 완전 내장)
+├── index.html           # 메인 사이트 (단일 HTML, 4섹션 scroll-snap 완전 내장)
+├── tokens.css           # 디자인 토큰 & 컴포넌트 공유 스타일시트
+├── cdmo.html            # CDMO 서비스 상세 페이지
+├── cell-management.html # 인체세포등 관리업 상세 페이지
+├── cell-facility.html   # 세포처리시설 상세 페이지
+├── about.html           # 회사소개 통합 페이지 (인사말 / 회사소개 / 오시는길)
+├── support.html         # 고객지원 통합 페이지 (Q&A / Contact Us)
 │
-├── test-cdn.html       # CDN 로드 테스트 페이지
-├── iweb_template.html  # 아임웹에 삽입할 코드 (CDN iframe 방식)
-├── serve.sh            # 로컬 서버 실행 스크립트
-├── purge-cdn.sh        # jsDelivr CDN 캐시 퍼지 스크립트
-└── AGENTS.md           # AI 에이전트 공통 지침
+├── test-cdn.html        # CDN 로드 테스트 페이지
+├── iweb_template.html   # 아임웹에 삽입할 코드 (CDN iframe 방식)
+├── serve.sh             # 로컈 서버 실행 스크립트
+├── purge-cdn.sh         # jsDelivr CDN 캐시 퍼지 스크립트
+└── AGENTS.md            # AI 에이전트 공통 지침
 ```
 
 > 모든 섹션(S1~S4)은 `index.html` 안에 완전히 내장되어 있습니다.  

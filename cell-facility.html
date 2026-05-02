@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>세포처리시설 | 지니셀바이오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+<style>
+/* ── 시설 스펙 그리드 ── */
+.facility-spec-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+  margin-bottom: 56px;
+}
+.fspec-card {
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 28px; background: var(--white);
+  transition: border-color .3s, box-shadow .3s;
+}
+.fspec-card:hover { border-color: rgba(46,124,246,.3); box-shadow: var(--shadow-sm); }
+.fspec-label { font: 700 11px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.fspec-val { font-size: 22px; font-weight: 700; color: var(--navy); letter-spacing: -0.03em; line-height: 1.2; }
+.fspec-desc { font-size: 13px; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+
+/* ── 장비 목록 ── */
+.equip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.equip-item {
+  border-radius: var(--radius-sm); padding: 20px;
+  background: var(--gray-bg); display: flex; align-items: flex-start; gap: 14px;
+}
+.equip-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: var(--accent-light); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.equip-icon svg { width: 18px; height: 18px; color: var(--accent); }
+.equip-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -0.01em; }
+.equip-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* ── 이용 안내 테이블 ── */
+.guide-table { width: 100%; border-collapse: collapse; }
+.guide-table tr { border-bottom: 1px solid var(--border); }
+.guide-table tr:last-child { border-bottom: none; }
+.guide-table th { width: 160px; padding: 16px 0; text-align: left; font-size: 13px; font-weight: 600; color: var(--text3); vertical-align: top; }
+.guide-table td { padding: 16px 0; font-size: 14px; color: var(--text); line-height: 1.7; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) { .equip-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px) {
+  .facility-spec-grid { grid-template-columns: 1fr; }
+  .equip-grid { grid-template-columns: 1fr 1fr; }
+  .guide-table th { width: 110px; }
+}
+@media (max-width: 480px) { .equip-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="gcb-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="white"/></svg>
+      </div>
+      GenicellBio
+    </a>
+    <a href="index.html#s3" class="nav-back">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      서비스 목록
+    </a>
+    <a href="support.html#contact" class="nav-cta">상담 신청</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-overline">Cell Processing Facility</div>
+      <h1>GMP 인증<br><span>세포처리시설</span></h1>
+      <p>식약처 GMP 기준을 충족하는 ISO Class 7 클린룸과 최첨단 장비로 세포·유전자 치료제의 안전한 처리 환경을 제공합니다.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">GMP 인증</span>
+        <span class="hero-tag">ISO Class 7</span>
+        <span class="hero-tag">클린룸</span>
+        <span class="hero-tag">24h 모니터링</span>
+        <span class="hero-tag">BSL-2</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW STATS -->
+  <section class="section">
+    <div class="inner">
+      <div class="section-label">Overview</div>
+      <h2 class="section-h2">시설 <span>현황</span></h2>
+      <p class="section-sub">경기도 성남 판교 소재, 최첨단 세포처리시설 현황입니다.</p>
+
+      <div class="ov-grid">
+        <div class="ov-card">
+          <div class="ov-num">ISO<span>7</span></div>
+          <div class="ov-label">Class 7 클린룸<br>2개 독립 라인</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-num">BSL<span>-2</span></div>
+          <div class="ov-label">생물안전 2등급<br>시설 인증</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-num">24<span>h</span></div>
+          <div class="ov-label">환경·온도 상시<br>모니터링 시스템</div>
+        </div>
+      </div>
+
+      <!-- 상세 스펙 -->
+      <div class="facility-spec-grid">
+        <div class="fspec-card">
+          <div class="fspec-label">Clean Room Class</div>
+          <div class="fspec-val">ISO Class 7</div>
+          <div class="fspec-desc">EU GMP Grade B 동급 클린룸 2개 라인 운영</div>
+        </div>
+        <div class="fspec-card">
+          <div class="fspec-label">총 시설 면적</div>
+          <div class="fspec-val">약 500 m²</div>
+          <div class="fspec-desc">클린룸·준비실·보관실·QC랩 포함</div>
+        </div>
+        <div class="fspec-card">
+          <div class="fspec-label">보관 용량</div>
+          <div class="fspec-val">10,000 바이알+</div>
+          <div class="fspec-desc">-196°C 액체질소 탱크 4기, -80°C ULT 냉동고 6대</div>
+        </div>
+        <div class="fspec-card">
+          <div class="fspec-label">환경 모니터링</div>
+          <div class="fspec-val">24 / 7</div>
+          <div class="fspec-desc">온도·습도·부유입자수 실시간 자동 기록, 일탈 즉시 알람</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="section alt">
+    <div class="inner">
+      <div class="section-label">Equipment</div>
+      <h2 class="section-h2">주요 <span>장비</span></h2>
+      <p class="section-sub">세포치료제 개발·생산에 최적화된 전용 장비를 갖추고 있습니다.</p>
+
+      <div class="equip-grid">
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5"/><path d="M9.75 3.104a24.3 24.3 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">생물안전작업대 (BSC)</div>
+            <div class="equip-desc">Class II Type A2, 6대<br>클린룸 내 무균 조작 전용</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">CO₂ 인큐베이터</div>
+            <div class="equip-desc">온도·CO₂ 제어, 8대<br>고용량 세포 배양 지원</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">액체질소 보관 탱크</div>
+            <div class="equip-desc">기상 질소 방식, 4기<br>-196°C 장기 극저온 보관</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">유세포분석기 (Flow)</div>
+            <div class="equip-desc">다색 분석, 2대<br>세포 순도·표현형 분석</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">세포 자동 계수기</div>
+            <div class="equip-desc">생존율·농도 자동 측정<br>Vi-CELL 계열</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">프로그래매틱 냉동기</div>
+            <div class="equip-desc">제어 속도 냉동(CRF)<br>세포 동결 보존 최적화</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">PCR / qPCR 시스템</div>
+            <div class="equip-desc">Real-time qPCR, 2대<br>세포 동일성·마이코플라스마 시험</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">ELISA Reader</div>
+            <div class="equip-desc">사이토카인·단백질 정량<br>QC 품질시험 지원</div>
+          </div>
+        </div>
+        <div class="equip-item">
+          <div class="equip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+          </div>
+          <div>
+            <div class="equip-name">환경 모니터링 시스템</div>
+            <div class="equip-desc">온도·습도·차압 실시간<br>데이터 수집 및 알람</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이용 안내 -->
+  <section class="section">
+    <div class="inner">
+      <div class="section-label">How to Use</div>
+      <h2 class="section-h2">시설 이용 <span>안내</span></h2>
+      <p class="section-sub">세포처리시설 이용 절차와 조건을 안내드립니다.</p>
+
+      <table class="guide-table">
+        <tr>
+          <th>이용 형태</th>
+          <td>
+            <strong>① 처리 의뢰</strong> — 시료 입고 후 당사 전담 인력이 모든 처리 수행<br>
+            <strong>② 시설 임대 (CPO)</strong> — 의뢰사 인력이 당사 클린룸에서 직접 조작 (사전 협의 필요)
+          </td>
+        </tr>
+        <tr>
+          <th>예약 방법</th>
+          <td>최소 5영업일 전 이메일·전화 사전 예약 필수. 긴급 요청 시 별도 협의.</td>
+        </tr>
+        <tr>
+          <th>방문 요건</th>
+          <td>GMP 시설 입장 시 교육 이수 및 복장 규정 준수 (당사 제공 가운·장갑·마스크 착용)</td>
+        </tr>
+        <tr>
+          <th>서비스 시간</th>
+          <td>평일 09:00 – 18:00 (긴급 배치는 사전 협의)</td>
+        </tr>
+        <tr>
+          <th>비용 안내</th>
+          <td>세포 종류, 처리량, 보관 기간에 따라 개별 견적 제공 (문의 후 협의)</td>
+        </tr>
+        <tr>
+          <th>NDA/계약</th>
+          <td>비밀유지계약(NDA) 및 시설 이용 계약 체결 후 진행</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- STRENGTHS -->
+  <section class="section alt">
+    <div class="inner">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-h2">시설 <span>차별점</span></h2>
+      <p class="section-sub">단순 공간 임대가 아닌, 전문 인력과 GMP 시스템이 통합된 서비스를 제공합니다.</p>
+
+      <div class="card-grid-2">
+        <div class="str-card">
+          <div class="str-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+          </div>
+          <div>
+            <div class="str-h4">식약처 GMP 인증 시설</div>
+            <div class="str-desc">임상용 세포치료제 생산 기준을 충족하는 GMP 인증 시설로, 규제 신뢰도 높은 데이터를 확보합니다.</div>
+          </div>
+        </div>
+        <div class="str-card">
+          <div class="str-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+          </div>
+          <div>
+            <div class="str-h4">전문 인력 상주</div>
+            <div class="str-desc">세포·유전자 치료제 전문 연구원이 상주하여 의뢰사의 공정 이전, 최적화, 문제 해결을 즉시 지원합니다.</div>
+          </div>
+        </div>
+        <div class="str-card">
+          <div class="str-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/></svg>
+          </div>
+          <div>
+            <div class="str-h4">전자 배치 기록 (eBR)</div>
+            <div class="str-desc">모든 처리 과정을 전자 배치 기록 시스템으로 관리하여, 완전한 데이터 추적과 감사 준비를 보장합니다.</div>
+          </div>
+        </div>
+        <div class="str-card">
+          <div class="str-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/></svg>
+          </div>
+          <div>
+            <div class="str-h4">CDMO 원스톱 연계</div>
+            <div class="str-desc">세포처리시설 이용 후 GMP 생산·QC·RA(인허가) 서비스로 자연스럽게 연계되어, 개발 전 과정을 한 곳에서 해결합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-label">Contact Us</div>
+      <h2>세포처리시설<br><span>이용 문의</span></h2>
+      <p>시설 견학부터 이용 절차까지, 전문 담당자가 직접 안내해 드립니다.</p>
+      <div class="cta-btns">
+        <a href="support.html#contact" class="btn-primary">시설 견학 신청 →</a>
+        <a href="mailto:contact@genicellbio.com" class="btn-ghost">이메일 문의 →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">개인정보처리방침</a>
+      <a href="#">이용약관</a>
+    </div>
+  </footer>
+
+</div><!-- .page-wrap -->
+</body>
+</html>

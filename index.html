@@ -70,15 +70,15 @@ body {
   top: 0; left: 0; right: 0;
   height: var(--nav-h);
   z-index: 1000;
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: saturate(160%) blur(24px);
+  -webkit-backdrop-filter: saturate(160%) blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
   transition: background .35s, border-color .35s;
 }
-/* 히어로 위 — 투명 다크 네비 */
+/* 히어로 위 — 완전 투명 블러 (S1) */
 #gcb-nav.on-hero {
-  background: rgba(5,10,20,0.35);
+  background: rgba(5,10,20,0.15);
   border-bottom-color: rgba(255,255,255,0.08);
 }
 #gcb-nav.on-hero .nav-logo { color: var(--white); }
@@ -86,6 +86,17 @@ body {
 #gcb-nav.on-hero .nav-link { color: rgba(255,255,255,0.72); }
 #gcb-nav.on-hero .nav-item:hover .nav-link { color: var(--white); background: rgba(255,255,255,0.1); }
 #gcb-nav.on-hero .nav-ham svg { color: var(--white); }
+/* 다크 섹션 (S3·S4) — 투명 블러 + 흰 텍스트 */
+#gcb-nav.on-dark {
+  background: rgba(5,10,20,0.25);
+  border-bottom-color: rgba(255,255,255,0.08);
+}
+#gcb-nav.on-dark .nav-logo { color: var(--white); }
+#gcb-nav.on-dark .nav-logo-icon { background: rgba(255,255,255,0.15); }
+#gcb-nav.on-dark .nav-link { color: rgba(255,255,255,0.65); }
+#gcb-nav.on-dark .nav-item:hover .nav-link { color: var(--white); background: rgba(255,255,255,0.1); }
+#gcb-nav.on-dark .nav-ham svg { color: var(--white); }
+#gcb-nav.on-dark .nav-cta { background: rgba(46,124,246,0.85); }
 .nav-inner {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -236,7 +247,7 @@ body {
 }
 .hero-h1 {
   font-size: clamp(34px,4.8vw,62px);
-  font-weight: 700; line-height: 1.32; letter-spacing: -0.045em;
+  font-weight: 700; line-height: 1.2; letter-spacing: -0.045em;
   color: var(--white);
   margin-bottom: 48px;
   animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .1s both;
@@ -303,7 +314,7 @@ body {
 /* ABOUT 섹션 레이블 */
 .about-section-label {
   text-align: center;
-  margin-bottom: clamp(10px, 2vh, 28px);
+  margin-bottom: clamp(28px, 4vh, 52px);
 }
 .about-section-label .label-line {
   display: inline-flex; align-items: center; gap: 16px;
@@ -328,7 +339,7 @@ body {
   background: #f7f9fc;
   display: flex; align-items: center; justify-content: center;
   padding-top: var(--nav-h);
-  padding-bottom: max(8px, 1.5vh);
+  padding-bottom: var(--nav-h);
   position: relative; overflow: hidden;
 }
 #s2::before {
@@ -352,7 +363,7 @@ body {
 }
 .about-left .sec-overline.light { margin-bottom: clamp(6px, 1vh, 14px); }
 .about-h2 {
-  font-size: clamp(26px,3vw,42px); font-weight: 700;
+  font-size: clamp(26px,3.2vw,44px); font-weight: 700;
   line-height: 1.22; letter-spacing: -0.04em; color: var(--text);
   margin-bottom: clamp(10px, 1.8vh, 24px);
 }
@@ -416,7 +427,7 @@ body {
   background: #071525;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding-top: var(--nav-h);
-  padding-bottom: max(8px, 1.5vh);
+  padding-bottom: var(--nav-h);
   position: relative; overflow: hidden;
 }
 #s3::before {
@@ -432,10 +443,15 @@ body {
 }
 .svc-head h2 {
   font-size: clamp(26px,3.2vw,44px); font-weight: 700;
-  line-height: 1.2; letter-spacing: -0.04em; margin-bottom: clamp(6px, 1vh, 16px);
+  line-height: 1.22; letter-spacing: -0.04em; margin-bottom: clamp(6px, 1vh, 16px);
   color: var(--white);
 }
-.svc-head p { font-size: 15px; color: rgba(255,255,255,.42); line-height: 1.55; margin-bottom: clamp(6px, 1vh, 14px); }
+.svc-head h2 span {
+  background: linear-gradient(90deg, #5BB8F6, #a8dcff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.svc-head p { font-size: 15px; color: rgba(255,255,255,.42); line-height: 1.65; margin-bottom: clamp(6px, 1vh, 14px); }
 
 .svc-grid {
   width: 100%; max-width: var(--max-w); padding: 0 32px;
@@ -447,8 +463,9 @@ body {
 .svc-card {
   background: #f7f9fc;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 20px; padding: clamp(16px, 2.2vh, 28px) 22px;
+  border-radius: 20px; padding: clamp(22px, 3.2vh, 40px) 26px;
   position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
   transition: transform .4s cubic-bezier(.25,.46,.45,.94),
               box-shadow .4s, background .4s, border-color .4s;
   cursor: default;
@@ -489,7 +506,7 @@ body {
   background: rgba(46,124,246,0.14);
   border: 1px solid rgba(46,124,246,0.25);
   border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  margin-bottom: clamp(8px, 1.2vh, 16px);
+  margin-bottom: clamp(12px, 1.8vh, 22px);
   transition: background .35s, border-color .35s, box-shadow .35s, transform .35s;
 }
 .svc-card:hover .svc-icon {
@@ -502,20 +519,20 @@ body {
 .svc-card:hover .svc-icon svg { color: var(--white); }
 
 .svc-badge {
-  display: inline-block; margin-bottom: clamp(5px, 0.8vh, 10px);
+  display: inline-block; margin-bottom: clamp(8px, 1.2vh, 14px);
   font: 600 11px/1 var(--mono); color: var(--accent2);
   padding: 4px 10px; background: rgba(91,184,246,.12); border-radius: 20px;
   letter-spacing: 0.5px;
 }
 .svc-card h3 {
   font-size: 17px; font-weight: 700; letter-spacing: -0.025em;
-  margin-bottom: clamp(4px, 0.7vh, 10px); color: var(--text); line-height: 1.35;
+  margin-bottom: clamp(6px, 1vh, 12px); color: var(--text); line-height: 1.35;
 }
 .svc-card p {
-  font-size: 13px; line-height: 1.6; color: var(--text2);
-  margin-bottom: clamp(6px, 1vh, 14px);
+  font-size: 13px; line-height: 1.65; color: var(--text2);
+  margin-bottom: clamp(10px, 1.4vh, 18px);
 }
-.svc-list { list-style: none; display: flex; flex-direction: column; gap: clamp(4px, 0.7vh, 8px); }
+.svc-list { list-style: none; display: flex; flex-direction: column; gap: clamp(7px, 1vh, 12px); flex: 1; }
 .svc-list li {
   display: flex; align-items: flex-start; gap: 9px;
   font-size: 13px; font-weight: 500; color: var(--text3); line-height: 1.5;
@@ -526,7 +543,7 @@ body {
 
 .svc-more-btn {
   display: flex; align-items: center; justify-content: center; gap: 7px;
-  margin-top: clamp(8px, 1.2vh, 16px);
+  margin-top: clamp(16px, 2.4vh, 28px);
   font: 600 13px/1 var(--font); letter-spacing: -0.01em;
   color: #fff;
   text-decoration: none;
@@ -552,7 +569,7 @@ body {
   background: #0e2040;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding-top: var(--nav-h);
-  padding-bottom: max(8px, 1.5vh);
+  padding-bottom: var(--nav-h);
   position: relative; overflow: hidden;
   text-align: center;
 }
@@ -595,7 +612,7 @@ body {
 
 .contact-inner {
   position: relative; z-index: 1;
-  max-width: 640px; width: 100%; padding: clamp(20px, 3.5vh, 44px) clamp(24px, 5vw, 56px);
+  max-width: 480px; width: 100%; padding: clamp(36px, 6vh, 64px) clamp(32px, 6vw, 72px);
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 28px;
@@ -604,18 +621,17 @@ body {
   box-shadow: 0 32px 80px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.1);
 }
 .contact-h2 {
-  font-size: clamp(28px,3.8vw,50px); font-weight: 700;
-  line-height: 1.16; letter-spacing: -0.045em; color: var(--white);
+  font-size: clamp(26px,3.2vw,44px); font-weight: 700;
+  line-height: 1.22; letter-spacing: -0.04em; color: var(--white);
   margin-bottom: clamp(12px, 2vh, 28px);
 }
 .contact-h2 span {
-  background: linear-gradient(90deg, #ffffff 0%, #a8d4ff 100%);
+  background: linear-gradient(90deg, #5BB8F6, #a8dcff);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 24px rgba(168,212,255,0.5));
 }
 .contact-sub {
-  font-size: 16px; line-height: 1.6; letter-spacing: -0.01em;
+  font-size: 15px; line-height: 1.65; letter-spacing: -0.01em;
   color: rgba(255,255,255,.45); margin-bottom: clamp(12px, 1.8vh, 26px);
 }
 .contact-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
@@ -640,12 +656,24 @@ body {
 .btn-ghost-dark:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
 
 .contact-info {
-  display: flex; justify-content: center; gap: 40px;
-  margin-top: clamp(16px, 2.8vh, 40px); flex-wrap: wrap;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.6vh, 16px);
+  margin-top: clamp(24px, 4vh, 48px);
+  width: 100%;
 }
-.ci { text-align: center; }
-.ci-label { font: 600 11px/1 var(--mono); color: rgba(255,255,255,.28); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
-.ci-val { font-size: 15px; color: rgba(255,255,255,.62); }
+.ci {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+}
+.ci-label {
+  font: 600 11px/1 var(--mono); color: rgba(255,255,255,.38); letter-spacing: 1.5px;
+  text-transform: uppercase; flex-shrink: 0; text-align: left;
+}
+.ci-val { font-size: 15px; color: rgba(255,255,255,.75); text-align: right; }
 
 .footer-line {
   position: absolute; bottom: 0; left: 0; right: 0;
@@ -763,29 +791,29 @@ body {
       <li class="nav-item">
         <button class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
-          <a href="#">인사말</a>
-          <a href="#">회사소개</a>
-          <a href="#">오시는길</a>
+          <a href="about.html#greeting">인사말</a>
+          <a href="about.html#company">회사소개</a>
+          <a href="about.html#location">오시는길</a>
         </div>
       </li>
       <li class="nav-item">
         <button class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
-          <a href="#">CDMO (위탁생산·QC·RA)</a>
-          <a href="#">인체세포등 관리업</a>
-          <a href="#">세포처리시설</a>
+          <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a>
+          <a href="cell-management.html">인체세포등 관리업</a>
+          <a href="cell-facility.html">세포처리시설</a>
         </div>
       </li>
       <li class="nav-item">
         <button class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-drop">
-          <a href="#">Q&amp;A</a>
-          <a href="#">Contact Us</a>
+          <a href="support.html#qna">Q&amp;A</a>
+          <a href="support.html#contact">Contact Us</a>
         </div>
       </li>
     </ul>
 
-    <a href="#s4" class="nav-cta">상담 신청</a>
+    <a href="support.html#contact" class="nav-cta">상담 신청</a>
     <button class="nav-ham" onclick="document.getElementById('gcb-drawer').classList.toggle('open')" aria-label="메뉴">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
     </button>
@@ -796,15 +824,15 @@ body {
 <div class="nav-drawer" id="gcb-drawer">
   <div class="nav-drawer-section">
     <div class="nav-drawer-label">회사소개</div>
-    <a href="#">인사말</a><a href="#">회사소개</a><a href="#">오시는길</a>
+    <a href="about.html#greeting">인사말</a><a href="about.html#company">회사소개</a><a href="about.html#location">오시는길</a>
   </div>
   <div class="nav-drawer-section">
     <div class="nav-drawer-label">서비스</div>
-    <a href="#">CDMO (위탁생산·QC·RA)</a><a href="#">인체세포등 관리업</a><a href="#">세포처리시설</a>
+    <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a><a href="cell-management.html">인체세포등 관리업</a><a href="cell-facility.html">세포처리시설</a>
   </div>
   <div class="nav-drawer-section">
     <div class="nav-drawer-label">고객지원</div>
-    <a href="#">Q&amp;A</a><a href="#">Contact Us</a>
+    <a href="support.html#qna">Q&amp;A</a><a href="support.html#contact">Contact Us</a>
   </div>
 </div>
 
@@ -916,7 +944,7 @@ body {
       <span class="label-line">Services</span>
     </div>
     <div class="svc-head">
-        <h2>지니셀바이오 서비스</h2>
+        <h2>지니셀바이오 <span>서비스</span></h2>
         <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
       </div>
       <div class="svc-grid">
@@ -931,7 +959,7 @@ body {
             <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>마이코플라스마·바이러스 부정시험</li>
             <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>IND 컨설팅 · 식약처 대관업무</li>
           </ul>
-          <a href="#" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <!-- 인체세포 -->
         <div class="svc-card">
@@ -977,17 +1005,7 @@ body {
     <div class="contact-inner">
       <h2 class="contact-h2">프로젝트를<br><span>시작해 보세요.</span></h2>
       <p class="contact-sub">어느 단계에서든, 전문가가 최적의 솔루션을 안내합니다. 기초 연구부터 상용화까지 편하게 문의하세요.</p>
-      <div class="contact-cta">
-        <a href="mailto:contact@genicellbio.com" class="btn-primary-dark">
-          이메일 문의하기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="tel:0212345678" class="btn-ghost-dark">전화 상담 →</a>
-      </div>
       <div class="contact-info">
-        <div class="ci">
-          <div class="ci-label">주소</div>
-          <div class="ci-val">서울시 송파구 충민로 66</div>
-        </div>
         <div class="ci">
           <div class="ci-label">전화</div>
           <div class="ci-val">02-1234-5678</div>
@@ -995,6 +1013,10 @@ body {
         <div class="ci">
           <div class="ci-label">이메일</div>
           <div class="ci-val">contact@genicellbio.com</div>
+        </div>
+        <div class="ci">
+          <div class="ci-label">주소</div>
+          <div class="ci-val">서울시 송파구 충민로 66</div>
         </div>
       </div>
     </div>
@@ -1025,8 +1047,10 @@ body {
     current = idx;
     dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
     var id = secs[idx];
-    pdotsEl.classList.toggle('on-dark', darkSecs.indexOf(id) > -1);
+    var isDark = darkSecs.indexOf(id) > -1;
+    pdotsEl.classList.toggle('on-dark', isDark);
     nav.classList.toggle('on-hero', idx === 0);
+    nav.classList.toggle('on-dark', isDark && idx !== 0);
   }
 
   snap.addEventListener('scroll', function(){

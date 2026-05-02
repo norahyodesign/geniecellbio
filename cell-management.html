@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인체세포등 관리업 | 지니셀바이오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+<style>
+/* ── 페이지 전용 ── */
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+
+/* ── Spec table ── */
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid var(--border); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table th {
+  width: 180px; padding: 16px 0; text-align: left;
+  font-size: 13px; font-weight: 600; color: var(--text3); vertical-align: top;
+}
+.spec-table td { padding: 16px 0; font-size: 14px; color: var(--text); line-height: 1.6; }
+.spec-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font: 600 11px/1 var(--mono); letter-spacing: 0.5px;
+  background: var(--accent-light); color: var(--accent);
+  margin-right: 6px; margin-bottom: 4px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .svc-grid { grid-template-columns: 1fr; } .spec-table th { width: 110px; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="gcb-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="white"/></svg>
+      </div>
+      GenicellBio
+    </a>
+    <a href="index.html#s3" class="nav-back">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      서비스 목록
+    </a>
+    <a href="support.html#contact" class="nav-cta">상담 신청</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-overline">Human Cell Management</div>
+      <h1>인체세포등<br><span>관리업 서비스</span></h1>
+      <p>식약처 허가 인체세포등 관리업 시설에서 세포·조직의 수집, 처리, 보관, 출고를 안전하고 체계적으로 수행합니다.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">인체세포등 관리업</span>
+        <span class="hero-tag">세포 은행</span>
+        <span class="hero-tag">GMP 처리</span>
+        <span class="hero-tag">장기 보관</span>
+        <span class="hero-tag">첨단재생의료법</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section">
+    <div class="inner">
+      <div class="section-label">Overview</div>
+      <h2 class="section-h2">인체세포등 관리업 <span>개요</span></h2>
+      <p class="section-sub">첨단재생의료법에 따른 허가 사업자로서, 안전·적법하게 인체 유래 세포 및 조직을 관리합니다.</p>
+
+      <div class="ov-grid">
+        <div class="ov-card">
+          <div class="ov-num">허가<span>·</span></div>
+          <div class="ov-label">식약처 인체세포등<br>관리업 허가 보유</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-num">GMP<span>+</span></div>
+          <div class="ov-label">GMP 준수 세포<br>수집·처리·보관 환경</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-num">-196<span>°C</span></div>
+          <div class="ov-label">액체질소 극저온<br>장기 보관 시스템</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE CARDS -->
+  <section class="section alt">
+    <div class="inner">
+      <div class="section-label">Services</div>
+      <h2 class="section-h2">세부 <span>서비스</span></h2>
+      <p class="section-sub">수집부터 출고까지 세포 라이프사이클 전 단계를 관리합니다.</p>
+
+      <div class="svc-grid">
+
+        <!-- 수집·접수 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+            </svg>
+          </div>
+          <div class="card-badge">Collection</div>
+          <h3 class="card-h3">세포·조직 수집 및 접수</h3>
+          <p class="card-desc">의료기관으로부터 기증받은 인체 유래 세포·조직을 적정 조건에서 운반·접수합니다.</p>
+          <ul class="card-list">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>공여자 검사 결과 확인</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>냉장·냉동 수송 조건 관리</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>접수 기록 및 추적 관리</li>
+          </ul>
+        </div>
+
+        <!-- 처리 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
+            </svg>
+          </div>
+          <div class="card-badge">Processing</div>
+          <h3 class="card-h3">세포 처리 및 분주</h3>
+          <p class="card-desc">GMP 클린룸 환경에서 세포 분리, 세척, 분주, 동결 보존제 첨가 등 처리를 수행합니다.</p>
+          <ul class="card-list">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>PBMC, 줄기세포 분리·처리</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>무균 조작 SOP 준수</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>처리 배치 기록서 발행</li>
+          </ul>
+        </div>
+
+        <!-- 보관 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+            </svg>
+          </div>
+          <div class="card-badge">Storage</div>
+          <h3 class="card-h3">극저온 장기 보관</h3>
+          <p class="card-desc">-196°C 액체질소 탱크와 -80°C 초저온 냉동고에서 세포의 생존율을 최대로 유지합니다.</p>
+          <ul class="card-list">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>24시간 온도 모니터링</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>이중화 보관 시스템 (백업 탱크)</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>재고 및 로트 추적 관리</li>
+          </ul>
+        </div>
+
+        <!-- 품질시험 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+          </div>
+          <div class="card-badge">QC</div>
+          <h3 class="card-h3">품질 시험 및 성적서 발행</h3>
+          <p class="card-desc">수집·처리된 세포에 대한 규정 품질시험을 수행하고 공여자 검사 성적서를 발행합니다.</p>
+          <ul class="card-list">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>마이코플라스마·무균시험</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>세포 생존율·순도 확인</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>CoA 성적서 발행</li>
+          </ul>
+        </div>
+
+        <!-- 출고 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+            </svg>
+          </div>
+          <div class="card-badge">Distribution</div>
+          <h3 class="card-h3">세포 출고 및 운송</h3>
+          <p class="card-desc">품질시험 적합 판정 후 적정 조건의 운송 포장으로 안전하게 출고합니다.</p>
+          <ul class="card-list">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>드라이아이스 / 액체질소 운송</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>출고 기록 및 추적 보증</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>국내·해외 운송 지원</li>
+          </ul>
+        </div>
+
+        <!-- 컨설팅 -->
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+            </svg>
+          </div>
+          <div class="card-badge">Consulting</div>
+          <h3 class="card-h3">규제·허가 컨설팅</h3>
+          <p class="card-desc">첨단재생의료법, 인체조직법 등 관련 규제 대응 전략을 수립하고 인허가를 지원합니다.</p>
+          <ul class="card-list">
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>첨단재생의료 임상연구 지원</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>관리업 신규 허가 컨설팅</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>감사 대비 SOP 수립</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="inner">
+      <div class="section-label">Process</div>
+      <h2 class="section-h2">서비스 <span>진행 절차</span></h2>
+      <p class="section-sub">의뢰 접수부터 최종 출고까지 투명하고 체계적으로 진행됩니다.</p>
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <div class="process-body">
+            <div class="process-title">서비스 상담 · MTA/NDA 체결</div>
+            <div class="process-desc">세포 종류, 수량, 보관 기간, 품질시험 항목을 협의합니다. 비밀유지계약(NDA) 및 물질이전협약(MTA) 체결 후 진행됩니다.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <div class="process-body">
+            <div class="process-title">공여자 검사 결과 검토</div>
+            <div class="process-desc">HBV, HCV, HIV 등 법정 공여자 검사 성적서를 검토하여 적합 여부를 확인합니다.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <div class="process-body">
+            <div class="process-title">세포 수집 · 입고</div>
+            <div class="process-desc">적정 냉장·냉동 조건에서 운송된 세포를 접수하고, 입고 기록을 생성합니다.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <div class="process-body">
+            <div class="process-title">처리 · 분주 · 극저온 보관</div>
+            <div class="process-desc">GMP 클린룸에서 처리 및 분주 후 -196°C 액체질소 탱크에 보관합니다. 모든 과정은 전자 기록 시스템으로 추적됩니다.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">05</div>
+          <div class="process-body">
+            <div class="process-title">품질시험 · CoA 발행</div>
+            <div class="process-desc">규정에 따른 품질시험 수행 후 CoA(Certificate of Analysis)를 발행합니다.</div>
+          </div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">06</div>
+          <div class="process-body">
+            <div class="process-title">출고 · 운송</div>
+            <div class="process-desc">의뢰기관 요청에 따라 출고 및 온도 보장 운송을 수행합니다. 출고 기록 및 추적 정보를 제공합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEC TABLE -->
+  <section class="section alt">
+    <div class="inner">
+      <div class="section-label">Specifications</div>
+      <h2 class="section-h2">취급 가능 <span>세포 유형</span></h2>
+      <p class="section-sub">다양한 인체 유래 세포를 체계적으로 관리합니다.</p>
+
+      <table class="spec-table">
+        <tr>
+          <th>조혈·면역 세포</th>
+          <td>
+            <span class="spec-badge">PBMC</span>
+            <span class="spec-badge">T세포</span>
+            <span class="spec-badge">NK세포</span>
+            <span class="spec-badge">수지상세포</span>
+            <span class="spec-badge">조혈모세포</span>
+          </td>
+        </tr>
+        <tr>
+          <th>줄기세포</th>
+          <td>
+            <span class="spec-badge">지방유래 MSC</span>
+            <span class="spec-badge">골수 MSC</span>
+            <span class="spec-badge">제대혈 MSC</span>
+            <span class="spec-badge">제대 MSC</span>
+          </td>
+        </tr>
+        <tr>
+          <th>조직</th>
+          <td>
+            <span class="spec-badge">지방 조직</span>
+            <span class="spec-badge">제대혈</span>
+            <span class="spec-badge">제대</span>
+            <span class="spec-badge">골수 흡인액</span>
+          </td>
+        </tr>
+        <tr>
+          <th>보관 온도</th>
+          <td>-196°C (액체질소 기상), -80°C (초저온 냉동)</td>
+        </tr>
+        <tr>
+          <th>최소 의뢰 수량</th>
+          <td>상담 후 결정 (소량 배치 가능)</td>
+        </tr>
+        <tr>
+          <th>관련 법령</th>
+          <td>첨단재생의료 및 첨단바이오의약품 안전 및 지원에 관한 법률 · 인체조직법</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-label">Contact Us</div>
+      <h2>인체세포등 관리업<br><span>서비스 문의</span></h2>
+      <p>세포 종류, 수량, 기간 등 간단한 정보만으로 맞춤 견적을 안내드립니다.</p>
+      <div class="cta-btns">
+        <a href="support.html#contact" class="btn-primary">문의하기 →</a>
+        <a href="mailto:contact@genicellbio.com" class="btn-ghost">이메일 문의 →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">개인정보처리방침</a>
+      <a href="#">이용약관</a>
+    </div>
+  </footer>
+
+</div><!-- .page-wrap -->
+</body>
+</html>

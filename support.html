@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>고객지원 | 지니셀바이오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+<style>
+/* ── Contact 2-column layout ── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 40px;
+  align-items: start;
+}
+.contact-info-card {
+  background: var(--gray-bg);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.contact-form-wrap {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+}
+.form-title {
+  font-size: 18px; font-weight: 700; color: var(--text);
+  letter-spacing: -0.025em; margin-bottom: 24px;
+}
+.form-submit-row {
+  display: flex; align-items: center; gap: 16px; margin-top: 8px; flex-wrap: wrap;
+}
+.form-note { font-size: 12px; color: var(--text3); line-height: 1.5; }
+/* ── 전송 완료 메시지 ── */
+.form-success {
+  display: none;
+  background: #e8f5e9; border: 1.5px solid #a5d6a7; border-radius: var(--radius-sm);
+  padding: 20px 24px; margin-top: 20px;
+  font-size: 14px; color: #2e7d32; font-weight: 500;
+}
+.form-success.visible { display: block; }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-form-wrap { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="gcb-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="white"/></svg>
+      </div>
+      GenicellBio
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      메인으로
+    </a>
+    <a href="#contact" class="nav-cta">상담 신청</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-overline">Support</div>
+      <h1>무엇이든<br><span>물어보세요</span></h1>
+      <p>첨단바이오의약품 개발의 어느 단계에서도 지니셀바이오가 함께합니다. 궁금한 점을 남겨주시면 전문가가 직접 답변드립니다.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">CDMO 문의</span>
+        <span class="hero-tag">시설 견학</span>
+        <span class="hero-tag">견적 요청</span>
+        <span class="hero-tag">기술 상담</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB NAV -->
+  <nav class="tab-nav" id="support-tabs">
+    <div class="tab-nav-inner">
+      <a href="#qna"     class="tab-item active" data-target="qna">자주 묻는 질문</a>
+      <a href="#contact" class="tab-item"        data-target="contact">문의하기</a>
+    </div>
+  </nav>
+
+  <!-- ─────────────────────────
+       S1. Q&A
+  ──────────────────────────── -->
+  <section id="qna" class="tab-section section tab-offset">
+    <div class="inner">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-h2">자주 묻는 <span>질문</span></h2>
+      <p class="section-sub">궁금한 점이 해결되지 않으면 아래 문의 폼을 이용해 주세요.</p>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            CDMO 서비스를 이용하려면 어느 단계부터 가능한가요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            Lab-scale 공정 최적화 단계부터 임상 1·2·3상, 나아가 상업 생산까지 모든 개발 단계에서 협의 가능합니다. 아직 GMP 공정이 확립되지 않은 초기 단계라도 공정 이전(Tech Transfer)부터 함께 시작할 수 있습니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            어떤 세포·유전자 치료제를 다룰 수 있나요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            줄기세포(MSC, iPSC), CAR-T, NK세포 치료제, 수지상세포 백신, 조혈모세포 이식용 세포 등 다양한 세포·유전자 치료제를 다루고 있습니다. 취급 가능 여부는 초기 상담 시 확인해 드립니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            최소 생산 규모(배치 수)에 제한이 있나요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            소규모 단일 배치부터 대규모 반복 배치까지 유연하게 대응합니다. 최소 의뢰 규모는 세포 종류와 공정 특성에 따라 달라지므로, 상담을 통해 맞춤 방안을 안내드립니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            NDA(비밀유지계약) 체결 후 상담이 가능한가요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            물론입니다. 모든 상담은 NDA 체결 후 진행되며, 고객의 공정 정보·임상 데이터 등 기밀 사항은 철저히 보호됩니다. 상담 신청 시 NDA 양식을 함께 발송해 드립니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            GMP 생산부터 IND 승인까지 얼마나 걸리나요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            공정 이전부터 IND 신청까지 통상 6~18개월이 소요되며, 시작 시점의 공정 완성도와 목표 제품에 따라 크게 달라집니다. 초기 상담에서 일정표를 함께 수립해 드립니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            세포처리시설 견학은 어떻게 신청하나요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            아래 문의 폼에서 '문의 유형'을 '시설 견학 신청'으로 선택하거나, 이메일(contact@genicellbio.com)로 희망 일정을 보내주세요. GMP 시설 특성상 사전 예약 및 NDA 체결이 필요합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            인체세포등 관리업과 CDMO 서비스는 함께 이용할 수 있나요?
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            네, 연계 서비스 이용이 가능합니다. 공여 세포 수집·보관(관리업) → 처리·배양(세포처리시설) → GMP 생산·QC·RA(CDMO) 로 이어지는 통합 파이프라인을 한 곳에서 지원합니다.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────
+       S2. Contact
+  ──────────────────────────── -->
+  <section id="contact" class="tab-section section alt tab-offset">
+    <div class="inner">
+      <div class="section-label">Contact Us</div>
+      <h2 class="section-h2">문의 <span>하기</span></h2>
+      <p class="section-sub">아래 양식을 작성해 주시면 영업일 기준 1일 이내 담당자가 연락드립니다.</p>
+
+      <div class="contact-layout">
+
+        <!-- 연락처 정보 -->
+        <div class="contact-info-card">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">이메일</div>
+              <div class="contact-info-val"><a href="mailto:contact@genicellbio.com">contact@genicellbio.com</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">전화</div>
+              <div class="contact-info-val"><a href="tel:0200000000">02-000-0000</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">운영시간</div>
+              <div class="contact-info-val">평일 09:00 – 18:00<br>(주말·공휴일 휴무)</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0zM19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            </div>
+            <div>
+              <div class="contact-info-label">본사 주소</div>
+              <div class="contact-info-val">서울특별시 마포구 월드컵북로 000<br>GenicellBio 빌딩 4층</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 문의 폼 -->
+        <div class="contact-form-wrap">
+          <div class="form-title">문의 양식</div>
+          <form id="contact-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="f-name">이름 <span style="color:var(--accent)">*</span></label>
+                <input class="form-input" id="f-name" name="name" type="text" placeholder="홍길동" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-company">소속 기관</label>
+                <input class="form-input" id="f-company" name="company" type="text" placeholder="(주)바이오텍" autocomplete="organization">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-email">이메일 <span style="color:var(--accent)">*</span></label>
+                <input class="form-input" id="f-email" name="email" type="email" placeholder="email@example.com" required autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-phone">연락처</label>
+                <input class="form-input" id="f-phone" name="phone" type="tel" placeholder="010-0000-0000" autocomplete="tel">
+              </div>
+              <div class="form-group full" style="grid-column: 1 / -1;">
+                <label class="form-label" for="f-type">문의 유형 <span style="color:var(--accent)">*</span></label>
+                <select class="form-select" id="f-type" name="type" required>
+                  <option value="">선택해 주세요</option>
+                  <option>CDMO 서비스 문의</option>
+                  <option>인체세포등 관리업 문의</option>
+                  <option>세포처리시설 이용·견학</option>
+                  <option>견적 요청</option>
+                  <option>파트너십·협업 제안</option>
+                  <option>기타</option>
+                </select>
+              </div>
+              <div class="form-group full" style="grid-column: 1 / -1;">
+                <label class="form-label" for="f-msg">문의 내용 <span style="color:var(--accent)">*</span></label>
+                <textarea class="form-textarea" id="f-msg" name="message" rows="5" placeholder="문의 내용을 자유롭게 작성해 주세요. (세포 종류, 개발 단계, 희망 서비스 등 구체적으로 작성해 주시면 더욱 정확한 안내가 가능합니다.)" required></textarea>
+              </div>
+            </div>
+            <div class="form-submit-row">
+              <button type="submit" class="btn-primary">
+                문의 보내기
+                <svg viewBox="0 0 16 16" fill="none" style="width:14px;height:14px;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="form-note">개인정보는 문의 답변 목적으로만 사용되며,<br>답변 완료 후 파기됩니다.</p>
+            </div>
+          </form>
+          <div class="form-success" id="form-success">
+            ✅ 문의가 접수되었습니다. 영업일 기준 1일 이내 이메일 또는 전화로 연락드리겠습니다.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">개인정보처리방침</a>
+      <a href="#">이용약관</a>
+    </div>
+  </footer>
+
+</div><!-- .page-wrap -->
+
+<script>
+// ── 탭 활성화 (IntersectionObserver) ──
+(function() {
+  const sections = document.querySelectorAll('.tab-section');
+  const tabs     = document.querySelectorAll('#support-tabs .tab-item');
+
+  const activate = (id) => {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) activate(e.target.id); });
+  }, { rootMargin: `-${60 + 48 + 8}px 0px -45% 0px`, threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+  tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.target)));
+})();
+
+// ── FAQ 아코디언 ──
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item   = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ── 문의 폼 (mailto 연동) ──
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name    = document.getElementById('f-name').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const type    = document.getElementById('f-type').value;
+  const msg     = document.getElementById('f-msg').value.trim();
+
+  if (!name || !email || !type || !msg) {
+    alert('필수 항목(이름, 이메일, 문의 유형, 내용)을 모두 입력해 주세요.');
+    return;
+  }
+
+  const subject = encodeURIComponent(`[지니셀바이오 문의] ${type} — ${name}`);
+  const body    = encodeURIComponent(
+    `이름: ${name}\n소속: ${company || '미입력'}\n이메일: ${email}\n연락처: ${phone || '미입력'}\n문의 유형: ${type}\n\n문의 내용:\n${msg}`
+  );
+  window.location.href = `mailto:contact@genicellbio.com?subject=${subject}&body=${body}`;
+
+  document.getElementById('form-success').classList.add('visible');
+  this.reset();
+});
+</script>
+
+</body>
+</html>
