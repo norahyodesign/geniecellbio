@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>인체세포등 관리업 | 지니셀바이오</title>
+  <meta name="description" content="지니셀바이오 인체세포등 관리업. 첨단재생바이오법 기준 원료세포 수급·안전성 검증·자가세포 장기 보관 서비스를 제공합니다.">
+  <meta property="og:title" content="인체세포등 관리업 | 지니셀바이오">
+  <meta property="og:description" content="첨단재생바이오법 기준 원료세포 수급, 안전성 검증, 자가세포 장기 보관 서비스. 세포치료제 개발의 핵심 원료 기반을 지원합니다.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -27,6 +33,7 @@
   </symbol>
 </svg>
 
+<header>
 <nav id="gcb-nav" aria-label="주 메뉴">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
@@ -87,8 +94,9 @@
     <a href="support.html#contact">Contact Us</a>
   </div>
 </div>
+</header>
 
-<div class="page-wrap">
+<main class="page-wrap">
 
   <!-- HERO -->
   <section class="page-hero">
@@ -241,7 +249,7 @@
   </div><!-- /default-sections -->
 
   <!-- SERVICE DETAIL -->
-  <div id="svc-detail-section" style="display:none">
+  <div id="svc-detail-section" hidden>
 
     <!-- 원료세포 공급 -->
     <div class="svc-detail-view" data-view="supply">
@@ -366,7 +374,7 @@
     </div>
   </footer>
 
-</div><!-- .page-wrap -->
+</main>
 
 <script>
 (function() {
@@ -377,7 +385,7 @@
 
   function showDefault() {
     defaultSections.style.display = '';
-    detailSection.style.display = 'none';
+    detailSection.setAttribute('hidden', '');
     detailSection.classList.remove('open');
     tabs.forEach(function(t) { t.classList.remove('active'); });
   }
@@ -392,7 +400,7 @@
       var target = document.querySelector('[data-view="' + svc + '"]');
       if (target) target.classList.add('visible');
       defaultSections.style.display = 'none';
-      detailSection.style.display = '';
+      detailSection.removeAttribute('hidden');
       detailSection.classList.add('open');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });

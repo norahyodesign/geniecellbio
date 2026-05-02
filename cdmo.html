@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CDMO 서비스 | 지니셀바이오</title>
+  <meta name="description" content="지니셀바이오 CDMO 서비스. 첨단바이오의약품 위탁개발·GMP 생산·품질시험·인허가 컨설팅 원스톱 서비스를 제공합니다.">
+  <meta property="og:title" content="CDMO 서비스 | 지니셀바이오">
+  <meta property="og:description" content="첨단바이오의약품 위탁개발·GMP 생산·품질시험·인허가 컨설팅 원스톱 CDMO 서비스. 지니셀바이오와 함께 하세요.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -56,6 +62,7 @@
 </svg>
 
 <!-- NAV -->
+<header>
 <nav id="gcb-nav" aria-label="주 메뉴">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
@@ -116,8 +123,9 @@
     <a href="support.html#contact">Contact Us</a>
   </div>
 </div>
+</header>
 
-<div class="page-wrap">
+<main class="page-wrap">
 
   <!-- HERO -->
   <section class="cdmo-hero">
@@ -273,7 +281,7 @@
   </div><!-- /default-sections -->
 
   <!-- SERVICE DETAIL - 에디토리얼 -->
-  <div id="svc-detail-section" style="display:none">
+  <div id="svc-detail-section" hidden>
 
     <!-- CMO -->
     <div class="svc-detail-view" data-view="cmo">
@@ -464,7 +472,7 @@
     </div>
   </footer>
 
-</div><!-- .page-wrap -->
+</main>
 
 <script>
 (function() {
@@ -476,7 +484,7 @@
   function showDefault() {
     tabs.forEach(function(t) { t.classList.remove('active'); });
     detailViews.forEach(function(v) { v.classList.remove('visible'); });
-    detailSection.style.display = 'none';
+    detailSection.setAttribute('hidden', '');
     detailSection.classList.remove('open');
     defaultSections.style.display = '';
   }
@@ -511,7 +519,7 @@
 
       // 에디토리얼 섹션 표시 + 애니메이션
       detailSection.classList.remove('open');
-      detailSection.style.display = '';
+      detailSection.removeAttribute('hidden');
       void detailSection.offsetWidth;
       detailSection.classList.add('open');
     });
