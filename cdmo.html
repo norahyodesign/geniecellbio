@@ -9,79 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
 <style>
-/* ── CDMO 페이지 전용 ── */
-:root {
-  --navy:        #0E2040;
-  --navy2:       #1B3A6B;
-  --accent:      #2E7CF6;
-  --accent2:     #5BB8F6;
-  --accent-light:#E8F1FE;
-  --white:       #fff;
-  --gray-bg:     #F5F5F7;
-  --gray-bg2:    #f0f4fa;
-  --text:        #1d1d1f;
-  --text2:       #6e6e73;
-  --text3:       #86868b;
-  --border:      #e8e8ed;
-  --radius:      20px;
-  --nav-h:       60px;
-  --font:        'DM Sans', system-ui, sans-serif;
-  --mono:        'IBM Plex Mono', monospace;
-  --max-w:       1080px;
-}
-html { font-family: var(--font); -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-* { word-break: keep-all; overflow-wrap: break-word; }
-body { background: var(--white); color: var(--text); }
-
-/* ── NAV ── */
-#gcb-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--nav-h); z-index: 1000;
-  background: rgba(255,255,255,0.88);
-  backdrop-filter: saturate(160%) blur(24px);
-  -webkit-backdrop-filter: saturate(160%) blur(24px);
-  border-bottom: 1px solid rgba(0,0,0,0.07);
-}
-.nav-inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
-  height: 100%; display: flex; align-items: center; justify-content: space-between;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 9px;
-  font-size: 16px; font-weight: 700; color: var(--navy);
-  letter-spacing: -0.03em; text-decoration: none;
-}
-.nav-logo-icon {
-  width: 30px; height: 30px; background: var(--navy); border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-}
-.nav-logo-icon svg { width: 16px; height: 16px; }
-.nav-back {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; font-weight: 500; color: var(--text2);
-  text-decoration: none; padding: 8px 14px; border-radius: 8px;
-  transition: background .2s, color .2s;
-}
-.nav-back:hover { background: var(--gray-bg); color: var(--navy); }
-.nav-back svg { width: 14px; height: 14px; }
-.nav-cta {
-  font-size: 13px; font-weight: 600; color: var(--white);
-  background: var(--accent); border: none; border-radius: 50px;
-  padding: 9px 20px; cursor: pointer; font-family: var(--font);
-  text-decoration: none; transition: background .2s, transform .2s;
-}
-.nav-cta:hover { background: #1a6ae0; transform: translateY(-1px); }
-
-/* ── LAYOUT ── */
-.page-wrap { padding-top: var(--nav-h); }
-.inner { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
-
-/* ── HERO ── */
+/* ── CDMO 전용: hero (page-hero와 다른 dark navy gradient) ── */
 .cdmo-hero {
   background: linear-gradient(160deg, #071525 0%, #0e2040 60%, #0a1a35 100%);
   padding: 100px 32px 80px;
-  position: relative; overflow: hidden;
-  text-align: center;
+  position: relative; overflow: hidden; text-align: center;
 }
 .cdmo-hero::before {
   content: ''; position: absolute; inset: 0;
@@ -90,149 +22,28 @@ body { background: var(--white); color: var(--text); }
     radial-gradient(ellipse at 75% 60%, rgba(91,184,246,.10) 0%, transparent 50%);
   pointer-events: none;
 }
-.cdmo-hero-inner {
-  position: relative; z-index: 1;
-  max-width: 720px; margin: 0 auto;
-}
-.hero-overline {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase; color: var(--accent2);
-  margin-bottom: 28px;
-}
-.hero-overline::before, .hero-overline::after {
-  content: ''; display: block; width: 32px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent2));
-}
-.hero-overline::after { background: linear-gradient(90deg, var(--accent2), transparent); }
+.cdmo-hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
 .cdmo-hero h1 {
   font-size: clamp(32px, 5vw, 58px); font-weight: 700;
-  line-height: 1.18; letter-spacing: -0.04em; color: var(--white);
-  margin-bottom: 24px;
+  line-height: 1.18; letter-spacing: -0.04em; color: var(--white); margin-bottom: 24px;
 }
 .cdmo-hero h1 span {
   background: linear-gradient(90deg, #5BB8F6, #a8dcff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .cdmo-hero p {
   font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.55);
   max-width: 560px; margin: 0 auto 40px;
 }
-.hero-tags { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.hero-tag {
-  font: 600 12px/1 var(--mono); color: var(--accent2);
-  padding: 6px 14px; background: rgba(91,184,246,.1);
-  border: 1px solid rgba(91,184,246,.25); border-radius: 20px;
-  letter-spacing: 0.5px;
-}
 
-/* ── SECTION COMMON ── */
-.section { padding: 80px 0; }
-.section.alt { background: var(--white); }
-.section-label {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase; color: var(--accent);
-  margin-bottom: 20px;
-}
-.section-label::before, .section-label::after {
-  content: ''; display: block; width: 28px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent));
-}
-.section-label::after { background: linear-gradient(90deg, var(--accent), transparent); }
-.section-h2 {
-  font-size: clamp(26px, 3.2vw, 40px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em; color: var(--text);
-  margin-bottom: 16px;
-}
-.section-h2 span {
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.section-sub {
-  font-size: 16px; line-height: 1.7; color: var(--text2);
-  max-width: 560px; margin-bottom: 56px;
-}
-
-/* ── OVERVIEW STATS ── */
-.overview-grid {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
-  margin-bottom: 64px;
-}
-.ov-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 20px; padding: 32px 28px;
-  text-align: center;
-  transition: box-shadow .3s, transform .3s;
-}
-.ov-card:hover { box-shadow: 0 8px 32px rgba(46,124,246,.1); transform: translateY(-4px); }
-.ov-num {
-  font-size: clamp(28px,4vw,44px); font-weight: 700; letter-spacing: -0.04em;
-  color: var(--navy); margin-bottom: 8px; line-height: 1;
-}
-.ov-num span { color: var(--accent); }
-.ov-label { font-size: 14px; color: var(--text2); line-height: 1.5; }
-
-/* ── HERO SERVICE BUTTONS ── */
-.hero-svc-btns {
-  display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
-  margin-top: 40px; position: relative; z-index: 1;
-}
-.hero-svc-btn {
-  display: flex; align-items: center; gap: 16px;
-  padding: 18px 24px; border-radius: 16px;
-  background: rgba(255,255,255,.07);
-  border: 1.5px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  cursor: pointer; text-align: left;
-  transition: background .2s, border-color .2s, transform .2s;
-  min-width: 210px;
-}
-.hero-svc-btn:hover {
-  background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.28);
-  transform: translateY(-2px);
-}
-.hero-svc-btn.active {
-  background: rgba(46,124,246,.2); border-color: var(--accent);
-  transform: translateY(-2px);
-}
-.hsb-icon {
-  width: 44px; height: 44px; flex-shrink: 0;
-  background: rgba(255,255,255,.1); border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-}
-.hero-svc-btn.active .hsb-icon { background: rgba(46,124,246,.35); }
-.hsb-icon svg { width: 20px; height: 20px; color: rgba(255,255,255,.8); }
-.hsb-text { flex: 1; }
-.hsb-badge {
-  font: 600 10px/1 var(--mono); color: var(--accent2);
-  letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 4px;
-}
-.hsb-title {
-  font: 600 15px/1.3 var(--font); color: var(--white); letter-spacing: -0.02em;
-}
-.hsb-arrow {
-  color: rgba(255,255,255,.25); transition: color .2s, transform .2s;
-}
-.hero-svc-btn:hover .hsb-arrow,
-.hero-svc-btn.active .hsb-arrow {
-  color: rgba(255,255,255,.6); transform: translateX(3px);
-}
-
-/* ── SERVICE DETAIL (에디토리얼 레이아웃) ── */
+/* ── CDMO SERVICE DETAIL (에디토리얼 레이아웃) ── */
 .svc-detail-view { display: none; }
 .svc-detail-view.visible { display: block; }
-#svc-detail-section.open {
-  animation: detailFadeIn .35s cubic-bezier(.4,0,.2,1);
-}
+#svc-detail-section.open { animation: detailFadeIn .35s cubic-bezier(.4,0,.2,1); }
 @keyframes detailFadeIn {
   from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-/* 인트로: 왼쪽 타이틀 + 오른쪽 Pain Point */
 .sde-intro {
   padding: 72px 0 56px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
@@ -240,210 +51,69 @@ body { background: var(--white); color: var(--text); }
 }
 .sde-intro-badge {
   font: 600 11px/1 var(--mono); color: var(--accent);
-  letter-spacing: 2.5px; text-transform: uppercase;
-  display: block; margin-bottom: 16px;
+  letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 16px;
 }
 .sde-intro-h2 {
   font-size: clamp(32px, 4vw, 50px); font-weight: 700;
-  letter-spacing: -0.04em; line-height: 1.15; color: var(--text);
-  margin: 0 0 14px;
+  letter-spacing: -0.04em; line-height: 1.15; color: var(--text); margin: 0 0 14px;
 }
 .sde-intro-h2 span {
   background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.sde-intro-tagline {
-  font-size: 15px; color: var(--text2); line-height: 1.65;
-}
+.sde-intro-tagline { font-size: 15px; color: var(--text2); line-height: 1.65; }
 .sde-pain-label {
   font: 600 10px/1 var(--mono); color: var(--text3);
   letter-spacing: 2px; text-transform: uppercase;
   margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
 }
-.sde-pain-label::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
-}
+.sde-pain-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .sde-pain-quote {
   font-size: clamp(15px, 1.8vw, 18px); line-height: 1.8;
-  color: var(--text); font-style: italic;
-  position: relative; padding-left: 22px;
+  color: var(--text); font-style: italic; position: relative; padding-left: 22px;
 }
 .sde-pain-quote::before {
   content: ''; position: absolute; left: 0; top: 4px; bottom: 4px;
   width: 3px; background: var(--accent); border-radius: 2px;
 }
-
-/* 서비스 항목 (번호 + 제목 + 설명) */
 .sde-items-section { padding: 56px 0; }
 .sde-items-label {
   font: 600 10px/1 var(--mono); color: var(--text3);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 8px; display: block;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: block;
 }
-.sde-items-h3 {
-  font-size: 24px; font-weight: 700; letter-spacing: -0.03em;
-  color: var(--text); margin-bottom: 40px;
-}
+.sde-items-h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); margin-bottom: 40px; }
 .sde-item {
   display: grid; grid-template-columns: 56px 1fr;
-  gap: 0 28px; padding: 32px 0;
-  border-top: 1px solid var(--border);
+  gap: 0 28px; padding: 32px 0; border-top: 1px solid var(--border);
 }
 .sde-item:last-of-type { border-bottom: 1px solid var(--border); }
-.sde-item-num {
-  font: 600 13px/1 var(--mono); color: var(--accent);
-  padding-top: 4px; letter-spacing: 0;
-}
-.sde-item-title {
-  font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
-  color: var(--text); margin-bottom: 8px;
-}
-.sde-item-desc {
-  font-size: 14px; line-height: 1.75; color: var(--text2);
-}
+.sde-item-num { font: 600 13px/1 var(--mono); color: var(--accent); padding-top: 4px; }
+.sde-item-title { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; }
+.sde-item-desc { font-size: 14px; line-height: 1.75; color: var(--text2); }
 .sde-group-title {
   font: 600 11px/1 var(--mono); color: var(--accent2);
-  letter-spacing: 1.5px; text-transform: uppercase;
-  display: block; margin-bottom: 6px;
+  letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 6px;
 }
-
-/* 뒤로가기 + 상담 신청 */
 .sde-back-cta {
   padding: 40px 0 8px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 16px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
 }
 .sde-back-btn {
   display: inline-flex; align-items: center; gap: 8px;
   font: 500 14px/1 var(--font); color: var(--text2);
-  background: none; border: none; cursor: pointer; padding: 0;
-  transition: color .2s;
+  background: none; border: none; cursor: pointer; padding: 0; transition: color .2s;
 }
 .sde-back-btn:hover { color: var(--navy); }
 .sde-back-btn svg { width: 16px; height: 16px; }
 
-/* ── PROCESS ── */
-.process-list {
-  display: flex; flex-direction: column; gap: 0;
-  position: relative;
-}
-.process-list::before {
-  content: ''; position: absolute;
-  left: 27px; top: 28px; bottom: 28px;
-  width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2));
-  border-radius: 1px;
-}
-.process-item {
-  display: flex; align-items: flex-start; gap: 28px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-}
-.process-item:last-child { border-bottom: none; }
-.process-num {
-  width: 56px; height: 56px; flex-shrink: 0;
-  background: var(--accent); color: var(--white);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font: 700 15px/1 var(--mono); position: relative; z-index: 1;
-}
-.process-body { flex: 1; padding-top: 6px; }
-.process-title {
-  font-size: 17px; font-weight: 700; letter-spacing: -0.02em;
-  color: var(--text); margin-bottom: 6px;
-}
-.process-desc { font-size: 14px; line-height: 1.7; color: var(--text2); }
-
-/* ── STRENGTHS ── */
-.strengths-grid {
-  display: grid; grid-template-columns: repeat(2,1fr); gap: 20px;
-}
-.str-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 16px; padding: 28px 28px;
-  display: flex; gap: 20px; align-items: flex-start;
-  transition: box-shadow .3s, border-color .3s;
-}
-.str-card:hover { box-shadow: 0 6px 24px rgba(46,124,246,.08); border-color: rgba(46,124,246,.2); }
-.str-icon {
-  width: 44px; height: 44px; flex-shrink: 0;
-  background: var(--accent-light); border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-}
-.str-icon svg { width: 20px; height: 20px; color: var(--accent); }
-.str-h4 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; letter-spacing: -0.02em; }
-.str-desc { font-size: 13px; line-height: 1.65; color: var(--text2); }
-
-/* ── CTA ── */
-.cta-section {
-  background: linear-gradient(135deg, #071525 0%, #0e2040 100%);
-  padding: 80px 32px; text-align: center; position: relative; overflow: hidden;
-}
-.cta-section::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(46,124,246,.18) 0%, transparent 60%);
-  pointer-events: none;
-}
-.cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-.cta-label {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-family: var(--mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase; color: var(--accent2);
-  margin-bottom: 24px;
-}
-.cta-section h2 {
-  font-size: clamp(26px,3.5vw,42px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em; color: var(--white);
-  margin-bottom: 16px;
-}
-.cta-section h2 span {
-  background: linear-gradient(90deg, #5BB8F6, #a8dcff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.cta-section p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.5); margin-bottom: 40px; }
-.cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 14px 30px; border-radius: 50px;
-  font: 600 14px/1 var(--font); background: var(--accent); color: var(--white);
-  border: none; cursor: pointer; text-decoration: none;
-  box-shadow: 0 4px 20px rgba(46,124,246,.45);
-  transition: background .25s, transform .25s;
-}
-.btn-primary:hover { background: #1a6ae0; transform: translateY(-2px); }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 13px 28px; border-radius: 50px;
-  font: 600 14px/1 var(--font); color: rgba(255,255,255,.7);
-  background: transparent; border: 1.5px solid rgba(255,255,255,.2);
-  cursor: pointer; text-decoration: none;
-  transition: border-color .25s, color .25s;
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
-
-/* ── FOOTER ── */
-.page-footer {
-  background: #071525; padding: 24px 32px;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-copy { font-size: 12px; color: rgba(255,255,255,.22); }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { font-size: 12px; color: rgba(255,255,255,.22); text-decoration: none; transition: color .2s; }
-.footer-links a:hover { color: rgba(255,255,255,.55); }
-
-/* ── RESPONSIVE ── */
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .inner { padding: 0 20px; }
   .cdmo-hero { padding: 80px 20px 60px; }
-  .overview-grid { grid-template-columns: 1fr; }
   .sde-intro { grid-template-columns: 1fr; gap: 32px; padding: 48px 0 40px; }
   .sde-pain-quote { font-size: 15px; }
   .sde-item { grid-template-columns: 40px 1fr; gap: 0 16px; padding: 24px 0; }
   .sde-items-h3 { font-size: 20px; margin-bottom: 28px; }
   .sde-back-cta { flex-direction: column; align-items: flex-start; }
-  .strengths-grid { grid-template-columns: 1fr; }
-  .process-list::before { left: 23px; }
-  .process-num { width: 48px; height: 48px; }
 }
 </style>
 </head>
@@ -458,13 +128,58 @@ body { background: var(--white); color: var(--text); }
       </div>
       GenicellBio
     </a>
-    <a href="index.html#s3" class="nav-back">
-      <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      서비스 목록
-    </a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <button class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop">
+          <a href="about.html#greeting">인사말</a>
+          <a href="about.html#company">회사소개</a>
+          <a href="about.html#location">오시는길</a>
+        </div>
+      </li>
+      <li class="nav-item is-active">
+        <button class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop">
+          <a href="cdmo.html" class="is-active">CDMO (위탁생산·QC·RA)</a>
+          <a href="cell-management.html">인체세포등 관리업</a>
+          <a href="cell-facility.html">세포처리시설</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop">
+          <a href="support.html#qna">Q&amp;A</a>
+          <a href="support.html#contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
     <a href="support.html#contact" class="nav-cta">상담 신청</a>
+    <button class="nav-ham" onclick="document.getElementById('gcb-drawer').classList.toggle('open')" aria-label="메뉴">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </nav>
+
+<!-- 모바일 드로어 -->
+<div class="nav-drawer" id="gcb-drawer">
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">회사소개</div>
+    <a href="about.html#greeting">인사말</a>
+    <a href="about.html#company">회사소개</a>
+    <a href="about.html#location">오시는길</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">서비스</div>
+    <a href="cdmo.html" class="is-active">CDMO (위탁생산·QC·RA)</a>
+    <a href="cell-management.html">인체세포등 관리업</a>
+    <a href="cell-facility.html">세포처리시설</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">고객지원</div>
+    <a href="support.html#qna">Q&amp;A</a>
+    <a href="support.html#contact">Contact Us</a>
+  </div>
+</div>
 
 <div class="page-wrap">
 
@@ -474,40 +189,17 @@ body { background: var(--white); color: var(--text); }
       <div class="hero-overline">CDMO Service</div>
       <h1>첨단바이오의약품<br><span>위탁개발·생산·인허가</span></h1>
       <p>GMP 인증 시설과 전문 인력으로 임상 생산부터 품질시험, 식약처 인허가까지 전 과정을 원스톱으로 지원합니다.</p>
-      <div class="hero-svc-btns">
-        <button class="hero-svc-btn" data-svc="cmo">
-          <div class="hsb-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
-          </div>
-          <div class="hsb-text">
-            <span class="hsb-badge">CMO</span>
-            <span class="hsb-title">위탁생산</span>
-          </div>
-          <svg class="hsb-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="hero-svc-btn" data-svc="qc">
-          <div class="hsb-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-          </div>
-          <div class="hsb-text">
-            <span class="hsb-badge">QC</span>
-            <span class="hsb-title">위탁품질시험</span>
-          </div>
-          <svg class="hsb-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="hero-svc-btn" data-svc="ra">
-          <div class="hsb-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-          </div>
-          <div class="hsb-text">
-            <span class="hsb-badge">RA</span>
-            <span class="hsb-title">인허가 컨설팅</span>
-          </div>
-          <svg class="hsb-arrow" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
     </div>
   </section>
+
+  <!-- CDMO SERVICE TABS -->
+  <nav class="tab-nav" id="cdmo-tabs">
+    <div class="tab-nav-inner">
+      <button class="tab-item" data-svc="cmo">CMO · 위탁생산</button>
+      <button class="tab-item" data-svc="qc">QC · 위탁품질시험</button>
+      <button class="tab-item" data-svc="ra">RA · 인허가 컨설팅</button>
+    </div>
+  </nav>
 
   <div id="default-sections">
 
@@ -840,18 +532,17 @@ body { background: var(--white); color: var(--text); }
 
 <script>
 (function() {
-  var heroBtns        = document.querySelectorAll('.hero-svc-btn');
+  var tabs            = document.querySelectorAll('#cdmo-tabs .tab-item');
   var defaultSections = document.getElementById('default-sections');
   var detailSection   = document.getElementById('svc-detail-section');
   var detailViews     = document.querySelectorAll('.svc-detail-view');
 
   function showDefault() {
-    heroBtns.forEach(function(b) { b.classList.remove('active'); });
+    tabs.forEach(function(t) { t.classList.remove('active'); });
     detailViews.forEach(function(v) { v.classList.remove('visible'); });
     detailSection.style.display = 'none';
     detailSection.classList.remove('open');
     defaultSections.style.display = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // 뒤로가기 버튼
@@ -859,9 +550,9 @@ body { background: var(--white); color: var(--text); }
     btn.addEventListener('click', showDefault);
   });
 
-  // 히어로 서비스 버튼
-  heroBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
+  // 탭 클릭
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
       var target    = this.dataset.svc;
       var wasActive = this.classList.contains('active');
 
@@ -870,8 +561,8 @@ body { background: var(--white); color: var(--text); }
         return;
       }
 
-      // 버튼 상태 업데이트
-      heroBtns.forEach(function(b) { b.classList.remove('active'); });
+      // 탭 상태 업데이트
+      tabs.forEach(function(t) { t.classList.remove('active'); });
       this.classList.add('active');
 
       // 기본 섹션 숨기기
@@ -885,13 +576,8 @@ body { background: var(--white); color: var(--text); }
       // 에디토리얼 섹션 표시 + 애니메이션
       detailSection.classList.remove('open');
       detailSection.style.display = '';
-      void detailSection.offsetWidth; // reflow
+      void detailSection.offsetWidth;
       detailSection.classList.add('open');
-
-      // 상단으로 스크롤
-      setTimeout(function() {
-        detailSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 60);
     });
   });
 })();

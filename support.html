@@ -65,13 +65,58 @@
       </div>
       GenicellBio
     </a>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      메인으로
-    </a>
-    <a href="#contact" class="nav-cta">상담 신청</a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <button class="nav-link">회사소개 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop">
+          <a href="about.html#greeting">인사말</a>
+          <a href="about.html#company">회사소개</a>
+          <a href="about.html#location">오시는길</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link">서비스 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop">
+          <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a>
+          <a href="cell-management.html">인체세포등 관리업</a>
+          <a href="cell-facility.html">세포처리시설</a>
+        </div>
+      </li>
+      <li class="nav-item is-active">
+        <button class="nav-link">고객지원 <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop">
+          <a href="support.html#qna">Q&amp;A</a>
+          <a href="support.html#contact">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <a href="support.html#contact" class="nav-cta">상담 신청</a>
+    <button class="nav-ham" onclick="document.getElementById('gcb-drawer').classList.toggle('open')" aria-label="메뉴">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+    </button>
   </div>
 </nav>
+
+<!-- 모바일 드로어 -->
+<div class="nav-drawer" id="gcb-drawer">
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">회사소개</div>
+    <a href="about.html#greeting">인사말</a>
+    <a href="about.html#company">회사소개</a>
+    <a href="about.html#location">오시는길</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">서비스</div>
+    <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a>
+    <a href="cell-management.html">인체세포등 관리업</a>
+    <a href="cell-facility.html">세포처리시설</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">고객지원</div>
+    <a href="support.html#qna" class="is-active">Q&amp;A</a>
+    <a href="support.html#contact">Contact Us</a>
+  </div>
+</div>
 
 <div class="page-wrap">
 
