@@ -204,6 +204,7 @@ body { background: var(--white); color: var(--text); }
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(46,124,246,.50);
 }
+.btn-primary:active { transform: translateY(0); box-shadow: none; }
 
 /* Primary SM */
 .btn-primary-sm {
@@ -227,6 +228,7 @@ body { background: var(--white); color: var(--text); }
   transition: border-color .25s, color .25s;
 }
 .btn-ghost:hover { border-color: rgba(255,255,255,.55); color: var(--white); }
+.btn-ghost:active { opacity: 0.75; }
 
 /* Outline — 밝은 배경 위 */
 .btn-outline {
@@ -239,6 +241,7 @@ body { background: var(--white); color: var(--text); }
   transition: background .2s, color .2s;
 }
 .btn-outline:hover { background: var(--accent); color: var(--white); }
+.btn-outline:active { opacity: 0.8; transform: scale(0.98); }
 
 /* Nav CTA */
 .nav-cta {
@@ -352,7 +355,10 @@ body { background: var(--white); color: var(--text); }
   max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
   height: 100%; display: flex; align-items: center;
   justify-content: center; gap: 8px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
 }
+.tab-nav-inner::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 .tab-item {
   display: inline-flex; align-items: center;
   padding: 9px 26px; border-radius: 50px;
@@ -381,6 +387,7 @@ body { background: var(--white); color: var(--text); }
   box-shadow: 0 4px 18px rgba(14,32,64,.22);
   transform: translateY(-1px);
 }
+.tab-item:active { transform: translateY(0); opacity: 0.85; }
 
 /* ══════════════════════════════════
    CARD — 범용 컨텐츠 카드
