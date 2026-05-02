@@ -19,7 +19,12 @@
 ├── iweb_template.html   # 아임웹에 삽입할 코드 (CDN iframe 방식)
 ├── serve.sh             # 로컈 서버 실행 스크립트
 ├── purge-cdn.sh         # jsDelivr CDN 캐시 퍼지 스크립트
-└── AGENTS.md            # AI 에이전트 공통 지침
+├── AGENTS.md            # AI 에이전트 공통 지침
+└── doc/
+	├── design-guide.md  # 디자인 가이드
+	├── iweb-guide.md    # 아임웹 연동 가이드
+	├── todo.md          # 작업 메모
+	└── checklist.md     # UI/UX 개선 체크리스트
 ```
 
 > 모든 섹션(S1~S4)은 `index.html` 안에 완전히 내장되어 있습니다.  

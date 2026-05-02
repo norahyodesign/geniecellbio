@@ -780,7 +780,7 @@ body {
 <!-- ────────────── NAV ────────────── -->
 <nav id="gcb-nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">
+    <a href="index.html" class="nav-logo">
       <div class="nav-logo-icon">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="white"/></svg>
       </div>
@@ -814,7 +814,7 @@ body {
     </ul>
 
     <a href="support.html#contact" class="nav-cta">상담 신청</a>
-    <button class="nav-ham" onclick="document.getElementById('gcb-drawer').classList.toggle('open')" aria-label="메뉴">
+    <button class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -842,11 +842,11 @@ body {
 </button>
 
 <!-- 스크롤 진행 숫자 -->
-<div class="progress-dots" id="pdots">
-  <div class="pdot active" data-sec="0" onclick="goSec(0)">1</div>
-  <div class="pdot" data-sec="1" onclick="goSec(1)">2</div>
-  <div class="pdot" data-sec="2" onclick="goSec(2)">3</div>
-  <div class="pdot" data-sec="3" onclick="goSec(3)">4</div>
+<div class="progress-dots" id="pdots" role="navigation" aria-label="섹션 이동">
+  <div class="pdot active" data-sec="0" onclick="goSec(0)" role="button" tabindex="0" aria-label="1 Hero">1</div>
+  <div class="pdot" data-sec="1" onclick="goSec(1)" role="button" tabindex="0" aria-label="2 About">2</div>
+  <div class="pdot" data-sec="2" onclick="goSec(2)" role="button" tabindex="0" aria-label="3 Services">3</div>
+  <div class="pdot" data-sec="3" onclick="goSec(3)" role="button" tabindex="0" aria-label="4 Contact">4</div>
 </div>
 
 <!-- ────────────── SNAP CONTAINER ────────────── -->
@@ -972,7 +972,7 @@ body {
             <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가 NK Cell·T-Cell·지방줄기세포 보관</li>
             <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>안전성 시험 결과 식약처 제출 대행</li>
           </ul>
-          <a href="#" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
         <!-- 세포처리시설 -->
         <div class="svc-card">
@@ -985,7 +985,7 @@ body {
             <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>의료기관 위탁생산(CMO) 대행</li>
             <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>연구/치료계획서 파트 작성지원</li>
           </ul>
-          <a href="#" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="cell-facility.html" class="svc-more-btn">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
   </section>
@@ -1008,15 +1008,15 @@ body {
       <div class="contact-info">
         <div class="ci">
           <div class="ci-label">전화</div>
-          <div class="ci-val">02-1234-5678</div>
+          <div class="ci-val"><a href="tel:0200000000" style="color:inherit;text-decoration:none;">02-000-0000</a></div>
         </div>
         <div class="ci">
           <div class="ci-label">이메일</div>
-          <div class="ci-val">contact@genicellbio.com</div>
+          <div class="ci-val"><a href="mailto:contact@genicellbio.com" style="color:inherit;text-decoration:none;">contact@genicellbio.com</a></div>
         </div>
         <div class="ci">
           <div class="ci-label">주소</div>
-          <div class="ci-val">서울시 송파구 충민로 66</div>
+          <div class="ci-val">서울특별시 마포구 월드컵북로 000</div>
         </div>
       </div>
     </div>
@@ -1081,6 +1081,18 @@ body {
       if(target){ e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+})();
+
+// 드로어 토글 + aria-expanded
+(function() {
+  var ham    = document.getElementById('gcb-ham');
+  var drawer = document.getElementById('gcb-drawer');
+  if (ham && drawer) {
+    ham.addEventListener('click', function() {
+      var isOpen = drawer.classList.toggle('open');
+      ham.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
 })();
 </script>
 </body>

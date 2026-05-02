@@ -91,7 +91,7 @@
       </li>
     </ul>
     <a href="support.html#contact" class="nav-cta">상담 신청</a>
-    <button class="nav-ham" onclick="document.getElementById('gcb-drawer').classList.toggle('open')" aria-label="메뉴">
+    <button class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -325,8 +325,8 @@
               <p class="form-note">개인정보는 문의 답변 목적으로만 사용되며,<br>답변 완료 후 파기됩니다.</p>
             </div>
           </form>
-          <div class="form-success" id="form-success">
-            ✅ 문의가 접수되었습니다. 영업일 기준 1일 이내 이메일 또는 전화로 연락드리겠습니다.
+          <div class="form-success" id="form-success" role="status" aria-live="polite">
+            메일 클라이언트가 열립니다. 메일을 발송하시면 담당자가 영업일 기준 1일 이내 연락드립니다.
           </div>
         </div>
 
@@ -362,19 +362,59 @@
   tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.target)));
 })();
 
-// ── FAQ 아코디언 ──
+// ── nav 드로어 토글 + aria-expanded ──
+(function() {
+  const ham    = document.getElementById('gcb-ham');
+  const drawer = document.getElementById('gcb-drawer');
+  if (ham && drawer) {
+    ham.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      ham.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+})();
+
+// ── FAQ 아코디언 + aria-expanded ──
 document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.setAttribute('aria-expanded', 'false');
   btn.addEventListener('click', () => {
     const item   = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
 // ── 문의 폼 (mailto 연동) ──
+// 사용자 직접 실행: 펄인 유효성 검사는 JS로
+  // 인라인 오류 돌려주기
+  function showFieldError(id, msg) {
+    const el = document.getElementById(id);
+    let err = el.nextElementSibling;
+    if (!err || !err.classList.contains('field-error')) {
+      err = document.createElement('p');
+      err.className = 'field-error';
+      err.style.cssText = 'font-size:12px;color:#e53935;margin-top:4px;';
+      el.after(err);
+    }
+    err.textContent = msg;
+    el.setAttribute('aria-invalid', 'true');
+    el.focus();
+  }
+  function clearErrors() {
+    document.querySelectorAll('.field-error').forEach(e => e.remove());
+    document.querySelectorAll('[aria-invalid]').forEach(e => e.removeAttribute('aria-invalid'));
+  }
+
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
+  clearErrors();
   const name    = document.getElementById('f-name').value.trim();
   const company = document.getElementById('f-company').value.trim();
   const email   = document.getElementById('f-email').value.trim();
@@ -382,10 +422,12 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   const type    = document.getElementById('f-type').value;
   const msg     = document.getElementById('f-msg').value.trim();
 
-  if (!name || !email || !type || !msg) {
-    alert('필수 항목(이름, 이메일, 문의 유형, 내용)을 모두 입력해 주세요.');
-    return;
-  }
+  let hasError = false;
+  if (!name)  { showFieldError('f-name', '이름을 입력해 주세요.'); hasError = true; }
+  if (!email) { showFieldError('f-email', '이메일을 입력해 주세요.'); hasError = true; }
+  if (!type)  { showFieldError('f-type', '문의 유형을 선택해 주세요.'); hasError = true; }
+  if (!msg)   { showFieldError('f-msg', '문의 내용을 입력해 주세요.'); hasError = true; }
+  if (hasError) return;
 
   const subject = encodeURIComponent(`[지니셀바이오 문의] ${type} — ${name}`);
   const body    = encodeURIComponent(

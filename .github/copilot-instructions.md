@@ -339,4 +339,4 @@
 | `purge-cdn.sh` | CDN 캐시 퍼지 |
 | `AGENTS.md` | AI 에이전트 공통 지침 (Claude용) |
 | `README.md` | 프로젝트 문서 |
-| `doc/` | 디자인 가이드, 기획 문서 등 |
+| `doc/` | 디자인 가이드, 기획 문서, UI/UX 체크리스트 등 |
