@@ -751,17 +751,128 @@ body {
 #btn-top svg { width: 22px; height: 22px; }
 
 /* ────────────────────────────────
-   RESPONSIVE
+   RESPONSIVE — MOBILE
 ──────────────────────────────── */
 @media (max-width: 768px) {
-  .hero-h1 { font-size: clamp(32px,8vw,48px); }
-  .hero-sub { font-size: 16px; }
-  .about-stats { gap: 20px; }
-  .svc-grid { grid-template-columns: 1fr; gap: 16px; }
-  .contact-info { gap: 28px; }
-  .footer-line { flex-direction: column; gap: 6px; text-align: center; }
+  /* ── 스냅 → 일반 세로 스크롤 ── */
+  body {
+    height: auto;
+    overflow: auto;
+  }
+  #snap {
+    height: auto;
+    overflow-y: visible;
+    scroll-snap-type: none;
+  }
+  .snap-sec {
+    height: auto;
+    min-height: auto;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    overflow: visible;
+  }
+
+  /* ── S1 HERO ── */
+  #s1 {
+    min-height: 100svh;
+    overflow: hidden;
+    align-items: center;
+  }
+  .hero-body { padding: 0 24px; }
+  .hero-h1 { font-size: clamp(28px, 8vw, 42px); }
+  .hero-sub { font-size: 15px; max-width: 100%; }
+  .hero-cta { flex-direction: column; align-items: center; gap: 10px; }
+  .btn-primary, .btn-ghost {
+    width: 100%; max-width: 300px;
+    justify-content: center;
+  }
+
+  /* ── S2 · S3 · S4 공통 섹션 상하 여백 ── */
+  #s2, #s3, #s4 {
+    display: block;
+    padding-top: calc(var(--nav-h) + 56px);
+    padding-bottom: 72px;
+  }
+  #s2 { padding-left: 20px; padding-right: 20px; }
+  #s3 { padding-left: 0;    padding-right: 0;    }
+  #s4 { padding-left: 20px; padding-right: 20px; }
+
+  /* ── S2 ABOUT ── */
+  .about-inner { padding: 0; }
+  .about-section-label { margin-bottom: 28px; text-align: center; align-self: center; width: 100%; }
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .about-left {
+    align-items: center;
+    text-align: center;
+  }
+  .about-h2, .about-desc { text-align: center; }
+  .about-stats { justify-content: center; gap: 24px; }
+  .stat-num { font-size: clamp(20px, 5vw, 30px); }
+  .about-right { gap: 10px; }
+  .about-steps { gap: 8px; }
+  /* 스텝 카드 내용 가운데 */
+  .step-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 20px;
+  }
+  .step-num { width: auto; }
+
+  /* ── S3 SERVICES ── */
+  .svc-head { padding: 0 20px; margin-bottom: 28px; text-align: center; }
+  .svc-head h2 { font-size: clamp(22px, 6vw, 34px); }
+  .svc-head p { font-size: 14px; }
+  .svc-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0 20px;
+  }
+  /* 카드 내용 가운데 정렬 + 요소별 마진 */
+  .svc-card {
+    align-items: center;
+    text-align: center;
+    padding: 28px 20px 24px;
+  }
+  /* 아이콘 → 타이틀 */
+  .svc-icon { margin-bottom: 16px; }
+  /* 뱃지 → 타이틀 */
+  .svc-badge { display: block; text-align: center; margin-bottom: 8px; }
+  /* 타이틀 */
+  .svc-card h3 { text-align: center; font-size: 16px; margin-bottom: 10px; }
+  /* 서브 (설명) */
+  .svc-card p  { text-align: center; font-size: 13px; margin-bottom: 16px; }
+  /* 바디 (체크리스트) */
+  .svc-list { align-items: center; width: 100%; gap: 10px; margin-bottom: 20px; }
+  .svc-list li { justify-content: center; }
+
+  /* ── S4 CONTACT ── */
+  .contact-inner {
+    padding: 32px 20px;
+    max-width: 100%;
+  }
+  .contact-h2 { font-size: clamp(22px, 6vw, 34px); }
+  .contact-cta { flex-direction: column; align-items: center; }
+  .contact-info { gap: 10px; }
+  .ci-val { font-size: 13px; }
+  .footer-line {
+    position: relative;
+    margin-top: 56px;
+    padding: 20px 0 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  /* ── 공통 ── */
   .progress-dots { display: none; }
-  .inner, .svc-grid, .contact-inner { padding: 0 20px; }
+  .inner { padding: 0 20px; }
+  #btn-top { right: 16px; bottom: 20px; width: 44px; height: 44px; }
+  #btn-top svg { width: 18px; height: 18px; }
 }
 </style>
 </head>
@@ -1038,18 +1149,20 @@ body {
 </main>
 
 <script>
-/* ── 스크롤 스냅 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
+/* ── 스크롤 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
 (function(){
   var snap    = document.getElementById('snap');
   var nav     = document.getElementById('gcb-nav');
   var dots    = document.querySelectorAll('.pdot');
   var pdotsEl = document.getElementById('pdots');
   var secs    = ['s1','s2','s3','s4'];
-  // s2는 흰 배경 → 점이 어두워야 함 (on-dark 제외)
   var darkSecs = ['s1','s3','s4'];
   var current = 0;
+  var btnTop  = document.getElementById('btn-top');
 
-  function updateDots(idx){
+  function isMobile(){ return window.innerWidth <= 768; }
+
+  function updateState(idx){
     current = idx;
     dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
     var id = secs[idx];
@@ -1059,26 +1172,47 @@ body {
     nav.classList.toggle('on-dark', isDark && idx !== 0);
   }
 
+  /* ── Desktop: snap 컨테이너 스크롤 ── */
   snap.addEventListener('scroll', function(){
-    var h   = snap.clientHeight;
+    if(isMobile()) return;
+    var h = snap.clientHeight;
     var idx = Math.round(snap.scrollTop / h);
     idx = Math.max(0, Math.min(secs.length - 1, idx));
-    if(idx !== current) updateDots(idx);
+    if(idx !== current) updateState(idx);
+    btnTop.classList.toggle('visible', snap.scrollTop > h * 0.5);
   }, {passive: true});
 
-  updateDots(0);
-
-  // Top 버튼 표시/숨김
-  var btnTop = document.getElementById('btn-top');
-  snap.addEventListener('scroll', function(){
-    btnTop.classList.toggle('visible', snap.scrollTop > snap.clientHeight * 0.5);
+  /* ── Mobile: window 스크롤 ── */
+  window.addEventListener('scroll', function(){
+    if(!isMobile()) return;
+    var scrollY = window.scrollY || document.documentElement.scrollTop;
+    var found = 0;
+    for(var i = 0; i < secs.length; i++){
+      var el = document.getElementById(secs[i]);
+      if(el && el.getBoundingClientRect().top <= 80) found = i;
+    }
+    if(found !== current) updateState(found);
+    btnTop.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
   }, {passive: true});
+
+  updateState(0);
+
   btnTop.addEventListener('click', function(){
-    snap.scrollTo({ top: 0, behavior: 'smooth' });
+    if(isMobile()){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      snap.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 
   window.goSec = function(idx){
-    snap.scrollTo({ top: snap.clientHeight * idx, behavior: 'smooth' });
+    var el = document.getElementById(secs[idx]);
+    if(!el) return;
+    if(isMobile()){
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      snap.scrollTo({ top: snap.clientHeight * idx, behavior: 'smooth' });
+    }
   };
 
   document.querySelectorAll('a[href^="#s"]').forEach(function(a){
