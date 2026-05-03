@@ -325,6 +325,9 @@ body {
 .about-section-label.on-dark .label-line { color: var(--accent2); }
 .about-section-label.on-dark .label-line::before { background: linear-gradient(90deg, transparent, var(--accent2)); }
 .about-section-label.on-dark .label-line::after  { background: linear-gradient(90deg, var(--accent2), transparent); }
+/* S2 기준값으로 S3·S4 명시 통일 */
+#s3 .about-section-label { margin-bottom: clamp(28px, 4vh, 52px); }
+#s4 .about-section-label { margin-bottom: clamp(28px, 4vh, 52px); }
 #s2 {
   background: #f7f9fc;
   display: flex; align-items: center; justify-content: center;
@@ -1141,10 +1144,10 @@ body {
       <div class="s4-ring"></div>
       <div class="s4-ring"></div>
     </div>
-    <div class="about-section-label on-dark">
-      <span class="label-line">Contact</span>
-    </div>
     <div class="contact-inner">
+      <div class="about-section-label on-dark">
+        <span class="label-line">Contact</span>
+      </div>
       <h2 class="contact-h2">프로젝트를<br><span>시작해 보세요.</span></h2>
       <p class="contact-sub">어느 단계에서든, 전문가가 최적의 솔루션을 안내합니다. 기초 연구부터 상용화까지 편하게 문의하세요.</p>
       <div class="contact-info">
