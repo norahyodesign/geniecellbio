@@ -366,13 +366,21 @@ body {
   font-size: 15px; line-height: 1.65; color: var(--text2);
   margin-bottom: clamp(8px, 1.6vh, 20px);
 }
-.about-stats { display: flex; gap: 32px; }
+.about-stats { display: flex; gap: 12px; margin-top: 8px; }
+.about-stats > div {
+  display: flex; flex-direction: column; align-items: flex-start;
+  background: var(--accent-light);
+  border: 1px solid rgba(46,124,246,.15);
+  border-radius: 14px;
+  padding: 14px 18px;
+  flex: 1;
+}
 .stat-num {
-  font-size: clamp(24px,3vw,38px); font-weight: 700; letter-spacing: -0.04em;
+  font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
   color: var(--navy); line-height: 1; margin-bottom: 6px;
 }
 .stat-num span { color: var(--accent); }
-.stat-label { font-size: 13px; color: var(--text3); line-height: 1.5; }
+.stat-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
 
 .about-right {
   display: flex; flex-direction: column; justify-content: center; gap: 12px;
@@ -396,7 +404,7 @@ body {
   letter-spacing: 1px; flex-shrink: 0; width: 28px;
 }
 .step-icon {
-  width: 38px; height: 38px; flex-shrink: 0;
+  width: 44px; height: 44px; flex-shrink: 0;
   background: linear-gradient(135deg,var(--accent),var(--accent2));
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 12px rgba(46,124,246,.25);
@@ -811,18 +819,22 @@ body {
     text-align: center;
   }
   .about-h2, .about-desc { text-align: center; }
-  .about-stats { justify-content: center; gap: 24px; }
-  .stat-num { font-size: clamp(20px, 5vw, 30px); }
+  .about-stats { justify-content: center; gap: 10px; flex-wrap: nowrap; width: 100%; }
+  .about-stats > div { align-items: center; text-align: center; padding: 12px 10px; }
+  .stat-num { font-size: clamp(16px, 4.5vw, 26px); }
   .about-right { gap: 10px; }
   .about-steps { gap: 8px; }
-  /* 스텝 카드 내용 가운데 */
+  /* 스텝 카드 — 왼쪽 아이콘 / 오른쪽 숫자+타이틀+바디 (세로 가운데) */
   .step-card {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
-    padding: 18px 20px;
+    text-align: left;
+    padding: 20px 20px;
+    gap: 20px;
   }
-  .step-num { width: auto; }
+  .step-card .step-icon { flex-shrink: 0; width: 44px; height: 44px; align-self: center; margin-top: 0; }
+  .step-card .step-num { width: auto; flex-shrink: 0; }
+  .step-card > div:last-child { display: flex; flex-direction: column; gap: 2px; }
 
   /* ── S3 SERVICES ── */
   .svc-head { padding: 0 20px; margin-bottom: 28px; text-align: center; }
@@ -835,25 +847,31 @@ body {
   }
   /* 카드 내용 가운데 정렬 + 요소별 마진 */
   .svc-card {
-    align-items: center;
-    text-align: center;
-    padding: 28px 20px 24px;
+    align-items: flex-start;
+    text-align: left;
+    padding: 32px 24px;
   }
-  /* 아이콘 → 타이틀 */
-  .svc-icon { margin-bottom: 16px; }
-  /* 뱃지 → 타이틀 */
-  .svc-badge { display: block; text-align: center; margin-bottom: 8px; }
-  /* 타이틀 */
-  .svc-card h3 { text-align: center; font-size: 16px; margin-bottom: 10px; }
+  /* 아이콘 + 타이틀 가로 행 */
+  .svc-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .svc-card-header .svc-icon { margin-bottom: 0; flex-shrink: 0; }
+  .svc-card-header h3 { text-align: left; font-size: 15px; margin-bottom: 0; line-height: 1.35; }
   /* 서브 (설명) */
-  .svc-card p  { text-align: center; font-size: 13px; margin-bottom: 16px; }
+  .svc-card p { text-align: left; font-size: 13px; margin-bottom: 16px; }
   /* 바디 (체크리스트) */
-  .svc-list { align-items: center; width: 100%; gap: 10px; margin-bottom: 20px; }
-  .svc-list li { justify-content: center; }
+  .svc-list { align-items: flex-start; width: 100%; gap: 10px; margin-bottom: 20px; }
+  .svc-list li { justify-content: flex-start; }
+  /* 자세히 보기 버튼 오른쪽 정렬 */
+  .svc-more-btn { margin-left: auto; }
 
   /* ── S4 CONTACT ── */
   .contact-inner {
-    padding: 32px 20px;
+    padding: 32px 24px;
     max-width: 100%;
   }
   .contact-h2 { font-size: clamp(22px, 6vw, 34px); }
@@ -1019,33 +1037,33 @@ body {
       <div class="about-right">
         <div class="about-steps">
           <div class="step-card">
-            <div class="step-num">01</div>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/></svg></div>
             <div>
+              <div class="step-num">01</div>
               <div class="step-title">기초 연구 지원</div>
               <div class="step-desc">R&amp;D 단계 원료세포 공급 및 기초 데이터 확보</div>
             </div>
           </div>
           <div class="step-card">
-            <div class="step-num">02</div>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"/></svg></div>
             <div>
+              <div class="step-num">02</div>
               <div class="step-title">공정 개발 · Scale-up</div>
               <div class="step-desc">Lab-scale → GMP 수준 상업 생산 최적화</div>
             </div>
           </div>
           <div class="step-card">
-            <div class="step-num">03</div>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
             <div>
+              <div class="step-num">03</div>
               <div class="step-title">품질시험 · 밸리데이션</div>
               <div class="step-desc">식약처 제출 기준 QC 시험 및 시험법 밸리데이션</div>
             </div>
           </div>
           <div class="step-card">
-            <div class="step-num">04</div>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg></div>
             <div>
+              <div class="step-num">04</div>
               <div class="step-title">인허가 · 시장 진입</div>
               <div class="step-desc">IND 컨설팅 및 식약처 대관업무 대행</div>
             </div>
@@ -1069,8 +1087,10 @@ body {
         <!-- CDMO -->
         <div class="svc-card">
           <div class="svc-card-num">01</div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
-          <h3>첨단바이오의약품<br>CDMO Service</h3>
+          <div class="svc-card-header">
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+            <h3>첨단바이오의약품<br>CDMO Service</h3>
+          </div>
           <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅</p>
           <ul class="svc-list">
             <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>GMP 기준 공정 개선 및 임상 생산</li>
@@ -1082,8 +1102,10 @@ body {
         <!-- 인체세포 -->
         <div class="svc-card">
           <div class="svc-card-num">02</div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
-          <h3>인체세포등<br>관리업 Service</h3>
+          <div class="svc-card-header">
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
+            <h3>인체세포등<br>관리업 Service</h3>
+          </div>
           <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지</p>
           <ul class="svc-list">
             <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>임상·R&amp;D용 원료세포 공급</li>
@@ -1095,8 +1117,10 @@ body {
         <!-- 세포처리시설 -->
         <div class="svc-card">
           <div class="svc-card-num">03</div>
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
-          <h3>세포처리시설<br>Service</h3>
+          <div class="svc-card-header">
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
+            <h3>세포처리시설<br>Service</h3>
+          </div>
           <p>재생의료기관 파트너로 안전한 시술과 연구 계획 수립 지원</p>
           <ul class="svc-list">
             <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>재생의료기관 투여용 인체세포 공급</li>
