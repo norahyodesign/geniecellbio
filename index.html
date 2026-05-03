@@ -325,9 +325,6 @@ body {
 .about-section-label.on-dark .label-line { color: var(--accent2); }
 .about-section-label.on-dark .label-line::before { background: linear-gradient(90deg, transparent, var(--accent2)); }
 .about-section-label.on-dark .label-line::after  { background: linear-gradient(90deg, var(--accent2), transparent); }
-/* S2 기준값으로 S3·S4 명시 통일 */
-#s3 .about-section-label { margin-bottom: clamp(28px, 4vh, 52px); }
-#s4 .about-section-label { margin-bottom: clamp(28px, 4vh, 52px); }
 #s2 {
   background: #f7f9fc;
   display: flex; align-items: center; justify-content: center;
@@ -352,7 +349,7 @@ body {
   align-items: stretch;
 }
 .about-left {
-  display: flex; flex-direction: column; justify-content: center;
+  display: flex; flex-direction: column; justify-content: flex-start;
 }
 .about-left .sec-overline.light { margin-bottom: clamp(6px, 1vh, 14px); }
 .about-h2 {
@@ -818,6 +815,7 @@ body {
     gap: 36px;
   }
   .about-left {
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
   }
