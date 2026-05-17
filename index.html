@@ -451,7 +451,7 @@ body {
    S3 SERVICES — 다크 프리미엄
 ──────────────────────────────── */
 #s3 {
-  background: #071525;
+  background: var(--gray-bg);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding-top: calc(var(--nav-h) + 72px);
   padding-bottom: 80px;
@@ -463,7 +463,7 @@ body {
   content: ''; position: absolute;
   top: -20%; left: 50%; transform: translateX(-50%);
   width: 80vw; height: 60vw;
-  background: radial-gradient(ellipse, rgba(46,124,246,.09) 0%, transparent 60%);
+  background: radial-gradient(ellipse, rgba(46,124,246,.05) 0%, transparent 60%);
   pointer-events: none;
 }
 .svc-head {
@@ -473,18 +473,18 @@ body {
 .svc-head h2 {
   font-size: clamp(26px,3.2vw,44px); font-weight: 700;
   line-height: 1.22; letter-spacing: -0.04em; margin-bottom: clamp(6px, 1vh, 16px);
-  color: var(--white);
+  color: var(--text);
 }
 .svc-head h2 span {
-  background: linear-gradient(90deg, #5BB8F6, #a8dcff);
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.svc-head p { font-size: 15px; color: rgba(255,255,255,.42); line-height: 1.65; margin-bottom: clamp(6px, 1vh, 14px); }
+.svc-head p { font-size: 15px; color: var(--text2); line-height: 1.65; margin-bottom: clamp(6px, 1vh, 14px); }
 
 .svc-grid {
   width: 100%; max-width: var(--max-w); padding: 0 32px;
-  display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(14px, 2vw, 28px);
+  display: grid; grid-template-columns: 1fr; gap: clamp(14px, 2vw, 28px);
   position: relative; z-index: 1;
 }
 
@@ -492,12 +492,21 @@ body {
 .svc-card {
   background: #f7f9fc;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 24px; padding: clamp(28px, 4vh, 48px) clamp(22px, 2.4vw, 36px);
+  border-radius: 24px; padding: clamp(24px, 3.2vh, 40px) clamp(22px, 2.4vw, 36px);
   position: relative; overflow: hidden;
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: row; align-items: center; gap: clamp(24px, 3vw, 48px);
   transition: transform .4s cubic-bezier(.25,.46,.45,.94),
               box-shadow .4s, background .4s, border-color .4s;
   cursor: default;
+}
+.svc-card-main {
+  flex: 1; display: flex; flex-direction: column; gap: 10px;
+  padding: 0 clamp(20px, 2.4vw, 36px);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+.svc-card-header {
+  display: flex; align-items: center; gap: 16px;
 }
 .svc-card:hover {
   background: #fff;
@@ -535,7 +544,7 @@ body {
   background: rgba(46,124,246,0.14);
   border: 1px solid rgba(46,124,246,0.25);
   border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  margin-bottom: clamp(12px, 1.8vh, 22px);
+  flex-shrink: 0;
   transition: background .35s, border-color .35s, box-shadow .35s, transform .35s;
 }
 .svc-card:hover .svc-icon {
@@ -554,8 +563,8 @@ body {
   letter-spacing: 0.5px;
 }
 .svc-card h3 {
-  font-size: 17px; font-weight: 700; letter-spacing: -0.025em;
-  margin-bottom: clamp(6px, 1vh, 12px); color: var(--text); line-height: 1.35;
+  font-size: clamp(16px, 1.6vw, 20px); font-weight: 700; letter-spacing: -0.03em;
+  margin-bottom: 0; color: var(--text); line-height: 1.3;
 }
 .svc-card p {
   font-size: 13px; line-height: 1.65; color: var(--text2);
@@ -572,21 +581,22 @@ body {
 
 .svc-more-btn {
   display: flex; align-items: center; justify-content: center; gap: 7px;
-  margin-top: clamp(16px, 2.4vh, 28px);
+  flex-shrink: 0; align-self: center;
   font: 600 13px/1 var(--font); letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--accent);
   text-decoration: none;
-  padding: 11px 24px;
-  border: none;
-  border-radius: 50px;
-  background: var(--accent);
-  box-shadow: 0 4px 16px rgba(46,124,246,.45);
-  transition: background .22s, box-shadow .22s, gap .22s;
+  padding: 14px 22px;
+  border: 1.5px solid rgba(46,124,246,0.35);
+  border-radius: 14px;
+  background: transparent;
+  white-space: nowrap;
+  transition: background .22s, color .22s, border-color .22s, gap .22s;
 }
 .svc-more-btn svg { width: 14px; height: 14px; transition: transform .22s; }
 .svc-more-btn:hover {
-  background: #1a6ae0;
-  box-shadow: 0 6px 24px rgba(46,124,246,.55);
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
   gap: 11px;
 }
 .svc-more-btn:hover svg { transform: translateX(2px); }
@@ -839,29 +849,18 @@ body {
     gap: 14px;
     padding: 0 20px;
   }
-  /* 카드 내용 가운데 정렬 + 요소별 마진 */
+  /* 카드 모바일: 세로 전환 */
   .svc-card {
+    flex-direction: column;
     align-items: flex-start;
-    text-align: left;
-    padding: 32px 24px;
+    padding: 28px 22px;
+    gap: 14px;
   }
+  .svc-more-btn { align-self: flex-start; }
   /* 아이콘 + 타이틀 가로 행 */
   .svc-card-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 14px; width: 100%;
   }
-  .svc-card-header .svc-icon { margin-bottom: 0; flex-shrink: 0; }
-  .svc-card-header h3 { text-align: left; font-size: 15px; margin-bottom: 0; line-height: 1.35; }
-  /* 서브 (설명) */
-  .svc-card p { text-align: left; font-size: 13px; margin-bottom: 16px; }
-  /* 바디 (체크리스트) */
-  .svc-list { align-items: flex-start; width: 100%; gap: 10px; margin-bottom: 20px; }
-  .svc-list li { justify-content: flex-start; }
-  /* 자세히 보기 버튼 오른쪽 정렬 */
-  .svc-more-btn { margin-left: auto; }
 
   /* ── S4 CONTACT ── */
   .contact-inner {
@@ -1088,44 +1087,44 @@ body {
       <div class="svc-grid">
         <!-- CDMO -->
         <div class="svc-card">
-          <div class="svc-card-header">
-            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
-            <h3>첨단바이오의약품<br>CDMO Service</h3>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+          <div class="svc-card-main">
+            <h3>첨단바이오의약품 CDMO Service</h3>
+            <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅</p>
+            <ul class="svc-list">
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>GMP 기준 공정 개선 및 임상 생산</li>
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>마이코플라스마·바이러스 부정시험</li>
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>IND 컨설팅 · 식약처 대관업무</li>
+            </ul>
           </div>
-          <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅</p>
-          <ul class="svc-list">
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>GMP 기준 공정 개선 및 임상 생산</li>
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>마이코플라스마·바이러스 부정시험</li>
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>IND 컨설팅 · 식약처 대관업무</li>
-          </ul>
           <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 인체세포 -->
         <div class="svc-card">
-          <div class="svc-card-header">
-            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
-            <h3>인체세포등<br>관리업 Service</h3>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
+          <div class="svc-card-main">
+            <h3>인체세포등 관리업 Service</h3>
+            <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지</p>
+            <ul class="svc-list">
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>임상·R&amp;D용 원료세포 공급</li>
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>자가 NK Cell·T-Cell·지방줄기세포 보관</li>
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>안전성 시험 결과 식약처 제출 대행</li>
+            </ul>
           </div>
-          <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지</p>
-          <ul class="svc-list">
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>임상·R&amp;D용 원료세포 공급</li>
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>자가 NK Cell·T-Cell·지방줄기세포 보관</li>
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>안전성 시험 결과 식약처 제출 대행</li>
-          </ul>
           <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 세포처리시설 -->
         <div class="svc-card">
-          <div class="svc-card-header">
-            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
-            <h3>세포처리시설<br>Service</h3>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
+          <div class="svc-card-main">
+            <h3>세포처리시설 Service</h3>
+            <p>재생의료기관 파트너로 안전한 시술과 연구 계획 수립 지원</p>
+            <ul class="svc-list">
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>재생의료기관 투여용 인체세포 공급</li>
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>의료기관 위탁생산(CMO) 대행</li>
+              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>연구/치료계획서 파트 작성지원</li>
+            </ul>
           </div>
-          <p>재생의료기관 파트너로 안전한 시술과 연구 계획 수립 지원</p>
-          <ul class="svc-list">
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>재생의료기관 투여용 인체세포 공급</li>
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>의료기관 위탁생산(CMO) 대행</li>
-            <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>연구/치료계획서 파트 작성지원</li>
-          </ul>
           <a href="cell-facility.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
       </div>
