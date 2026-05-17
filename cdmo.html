@@ -58,6 +58,91 @@
   .fcta-text { font-size: 13px; }
 }
 
+/* ── 섹션 여백 ── */
+.section { padding: 72px 0 80px; }
+.overview-grid { margin-bottom: 0; }
+#default-sections > .section:first-child { padding-top: 140px; }
+#default-sections > .section:last-child  { padding-bottom: 140px; }
+
+/* ── 타이포그래피 ── */
+.section-h2 { letter-spacing: -0.035em; line-height: 1.25; margin-bottom: 16px; }
+.section-sub { font-size: 15px; line-height: 1.75; color: var(--text2); margin-bottom: 40px; }
+.str-h4 { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.45; margin-bottom: 6px; }
+.str-desc { font-size: 14px; line-height: 1.75; color: var(--text2); }
+
+/* ── 진행 절차 — 에디토리얼 리스트 ── */
+.proc-list {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.proc-row {
+  display: grid;
+  grid-template-columns: 96px 1fr 1fr;
+  gap: 0 48px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.proc-n {
+  font: 700 52px/1 var(--mono);
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.proc-title {
+  font-size: 17px; font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+.proc-desc {
+  font-size: 14px; line-height: 1.75; color: var(--text2);
+}
+@media (max-width: 768px) {
+  .proc-row { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
+  .proc-n { font-size: 36px; }
+  .proc-desc { grid-column: 2; margin-top: 6px; }
+}
+@media (max-width: 480px) {
+  .proc-row { grid-template-columns: 1fr; gap: 8px; }
+  .proc-n { font-size: 28px; }
+  .proc-desc { grid-column: 1; }
+}
+
+/* ── 이미지 섹션 ── */
+.img-section { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: center; margin-top: 0; }
+.img-section.reverse { direction: rtl; }
+.img-section.reverse > * { direction: ltr; }
+.img-box {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: #ECEEF2;
+  position: relative;
+}
+.img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-box-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text3); font-size: 13px; letter-spacing: 0.02em;
+  background: #ECEEF2;
+}
+.img-content { display: flex; flex-direction: column; gap: 16px; }
+.img-content h3 { font-size: clamp(20px, 2.2vw, 28px); font-weight: 700; line-height: 1.35; letter-spacing: -0.03em; color: var(--navy); margin: 0; }
+.img-content p { font-size: 15px; line-height: 1.75; color: var(--text2); margin: 0; }
+.img-tag {
+  display: inline-block; align-self: flex-start; font: 700 11px/1 var(--font); letter-spacing: 0.8px;
+  text-transform: uppercase; background: var(--accent); color: var(--white);
+  padding: 6px 12px; border-radius: var(--radius-xs);
+}
+@media (max-width: 768px) {
+  .img-section { grid-template-columns: 1fr; }
+  .img-section.reverse { direction: ltr; }
+  .img-box { aspect-ratio: 3/2; }
+}
+
 /* ── Service Slider ── */
 .svc-slider {
   position: relative;
@@ -237,6 +322,23 @@
 
   <div id="default-sections">
 
+  <!-- 이미지 + 텍스트 섹션 -->
+  <section class="section">
+    <div class="inner">
+      <div class="img-section">
+        <div class="img-box">
+          <!-- 이미지 삽입: <img src="" alt="CDMO 시설"> -->
+          <div class="img-box-placeholder">이미지 준비 중</div>
+        </div>
+        <div class="img-content">
+          <span class="img-tag">CDMO</span>
+          <h3>첨단바이오의약품<br>위탁개발·생산 전문</h3>
+          <p>지니셀바이오는 세포·유전자 치료제 분야에 특화된 GMP 위탁생산(CMO), 품질시험(QC), 인허가 컨설팅(RA)을 원스톱으로 제공합니다. 초기 공정 개발부터 임상 생산, 허가 대관까지 전 단계를 함께합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- OVERVIEW -->
   <section class="section">
     <div class="inner">
@@ -266,41 +368,31 @@
     <div class="inner">
       <h2 class="section-h2">서비스 <span>진행 절차</span></h2>
       <p class="section-sub">초기 상담부터 제품 출하까지 단계별로 투명하게 진행됩니다.</p>
-      <div class="process-list">
-        <div class="process-item">
-          <div class="process-num">01</div>
-          <div class="process-body">
-            <div class="process-title">초기 상담 · 프로젝트 설계</div>
-            <div class="process-desc">개발 단계, 물질 특성, 목표 일정을 파악하여 최적의 서비스 패키지를 제안드립니다. 비밀유지계약(NDA) 체결 후 진행합니다.</div>
-          </div>
+      <div class="proc-list">
+        <div class="proc-row">
+          <div class="proc-n">01</div>
+          <div class="proc-title">초기 상담 · 프로젝트 설계</div>
+          <div class="proc-desc">개발 단계·물질 특성·목표 일정을 파악해 최적 서비스 패키지를 제안합니다. 비밀유지계약(NDA) 체결 후 진행합니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">02</div>
-          <div class="process-body">
-            <div class="process-title">공정 이전 · 기술 검토 (Tech Transfer)</div>
-            <div class="process-desc">보유 공정 문서를 검토하고 GMP 시설에 적합한 형태로 공정을 이전합니다. 필요 시 공정 최적화를 병행합니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">02</div>
+          <div class="proc-title">공정 이전 · Tech Transfer</div>
+          <div class="proc-desc">보유 공정 문서를 검토하고 GMP 시설에 적합한 형태로 공정을 이전합니다. 필요 시 공정 최적화를 병행합니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">03</div>
-          <div class="process-body">
-            <div class="process-title">GMP 생산 · 품질시험</div>
-            <div class="process-desc">GMP 환경에서 제품을 생산하고, 식약처 기준에 따른 품질시험을 동시 진행합니다. 배치 기록서와 성적서를 제공합니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">03</div>
+          <div class="proc-title">GMP 생산 · 품질시험</div>
+          <div class="proc-desc">GMP 환경에서 생산하고 식약처 기준 품질시험을 동시 진행합니다. 배치 기록서와 성적서를 제공합니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">04</div>
-          <div class="process-body">
-            <div class="process-title">인허가 문서 작성 · 제출</div>
-            <div class="process-desc">IND 또는 BLA 신청에 필요한 CTD 문서 작성을 지원하고, 식약처 대관업무를 대행합니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">04</div>
+          <div class="proc-title">인허가 문서 · 대관 대행</div>
+          <div class="proc-desc">IND·BLA 신청에 필요한 CTD 문서 작성을 지원하고, 식약처 대관업무를 대행합니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">05</div>
-          <div class="process-body">
-            <div class="process-title">출하 · 사후 지원</div>
-            <div class="process-desc">최종 제품 출하 후에도 규제 기관 질의 대응, 추가 시험 등 사후 지원을 지속합니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">05</div>
+          <div class="proc-title">출하 · 사후 지원</div>
+          <div class="proc-desc">최종 제품 출하 후에도 규제 기관 질의 대응, 추가 시험 등 사후 지원을 지속합니다.</div>
         </div>
       </div>
     </div>
@@ -362,19 +454,20 @@
     <div class="svc-detail-view" data-view="cmo">
       <section class="section">
         <div class="inner">
+          <div class="sde-back-cta">
+            <button type="button" class="sde-back-btn" data-back="cmo">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              서비스 개요로 돌아가기
+            </button>
+          </div>
           <div class="sde-intro">
-            <div>
-              <span class="sde-intro-badge">CMO · 위탁생산</span>
-              <h2 class="sde-intro-h2">Lab-scale에서<br><span>GMP 생산까지</span></h2>
-              <p class="sde-intro-tagline">연구 단계 공정을 비임상·임상 생산 수준으로 안전하게 전환합니다.</p>
-            </div>
-            <div>
-              <div class="sde-pain-label">현장의 고민</div>
-              <p class="sde-pain-quote">"연구실에서 수기로 배양할 때는 최고의 효능이 나왔지만, 자동화 대량 배양기로 전환하자 세포 활성도가 급격히 떨어지는 경우가 발생합니다. 지니셀바이오는 초기부터 상업용 scale-up을 고려한 공정 최적화로 이 간극을 메웁니다."</p>
-            </div>
+            <h2 class="sde-intro-h2">Lab-scale에서 <span>GMP 생산까지</span></h2>
+            <p class="sde-intro-tagline">연구 단계 공정을 비임상·임상 생산 수준으로 안전하게 전환합니다.</p>
+          </div>
+          <div class="sde-pain-block">
+            <p class="sde-pain-quote">"연구실에서 수기로 배양할 때는 최고의 효능이 나왔지만, 자동화 대량 배양기로 전환하자 세포 활성도가 급격히 떨어지는 경우가 발생합니다. 지니셀바이오는 초기부터 상업용 scale-up을 고려한 공정 최적화로 이 간극을 메웁니다."</p>
           </div>
           <div class="sde-items-section">
-            <span class="sde-items-label">서비스 항목</span>
             <h3 class="sde-items-h3">위탁생산 세부 서비스</h3>
             <div class="sde-item">
               <span class="sde-item-num">01</span>
@@ -404,13 +497,6 @@
                 <div class="sde-item-desc">모든 배치의 생산 기록, SOP, 일탈 보고서를 체계적으로 문서화합니다. 규제기관 감사(Audit) 및 사후 보완 요청에 즉각 대응 가능한 문서 체계를 구축합니다.</div>
               </div>
             </div>
-            <div class="sde-back-cta">
-              <button type="button" class="sde-back-btn" data-back="cmo">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                서비스 개요로 돌아가기
-              </button>
-              <a href="support.html#contact" class="btn-primary">상담 신청 →</a>
-            </div>
           </div>
         </div>
       </section>
@@ -420,19 +506,20 @@
     <div class="svc-detail-view" data-view="qc">
       <section class="section">
         <div class="inner">
+          <div class="sde-back-cta">
+            <button type="button" class="sde-back-btn" data-back="qc">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              서비스 개요로 돌아가기
+            </button>
+          </div>
           <div class="sde-intro">
-            <div>
-              <span class="sde-intro-badge">QC · 위탁품질시험</span>
-              <h2 class="sde-intro-h2">식약처 기준<br><span>공인 품질시험</span></h2>
-              <p class="sde-intro-tagline">마이코플라스마·바이러스 부정시험과 시험법 밸리데이션을 원스톱으로 제공합니다.</p>
-            </div>
-            <div>
-              <div class="sde-pain-label">현장의 고민</div>
-              <p class="sde-pain-quote">"PCR로 마이코플라스마 음성을 확인했더라도, NAT 시험법 밸리데이션 데이터가 없으면 임상 승인이 거절될 수 있습니다. 소 유래 원료 사용 시 보이지 않는 바이러스 혼입 리스크를 사전에 차단해야 합니다."</p>
-            </div>
+            <h2 class="sde-intro-h2">식약처 기준 <span>공인 품질시험</span></h2>
+            <p class="sde-intro-tagline">마이코플라스마·바이러스 부정시험과 시험법 밴리데이션을 원스톱으로 제공합니다.</p>
+          </div>
+          <div class="sde-pain-block">
+            <p class="sde-pain-quote">"PCR로 마이코플라스마 음성을 확인했더라도, NAT 시험법 밴리데이션 데이터가 없으면 임상 승인이 거절될 수 있습니다. 소 유래 원료 사용 시 보이지 않는 바이러스 혼입 리스크를 사전에 차단해야 합니다."</p>
           </div>
           <div class="sde-items-section">
-            <span class="sde-items-label">서비스 항목</span>
             <h3 class="sde-items-h3">위탁품질시험 세부 서비스</h3>
             <div class="sde-item">
               <span class="sde-item-num">01</span>
@@ -466,13 +553,6 @@
                 <div class="sde-item-desc">소 혈청·트립신 등 소 유래 원료 사용 시 혼입 가능한 BVDV 등 바이러스를 In vitro법으로 검사합니다. 규제기관 제출용 공식 시험 성적서를 포함하여 납품합니다.</div>
               </div>
             </div>
-            <div class="sde-back-cta">
-              <button type="button" class="sde-back-btn" data-back="qc">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                서비스 개요로 돌아가기
-              </button>
-              <a href="support.html#contact" class="btn-primary">상담 신청 →</a>
-            </div>
           </div>
         </div>
       </section>
@@ -482,19 +562,20 @@
     <div class="svc-detail-view" data-view="ra">
       <section class="section">
         <div class="inner">
+          <div class="sde-back-cta">
+            <button type="button" class="sde-back-btn" data-back="ra">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              서비스 개요로 돌아가기
+            </button>
+          </div>
           <div class="sde-intro">
-            <div>
-              <span class="sde-intro-badge">RA · 인허가 컨설팅</span>
-              <h2 class="sde-intro-h2">IND부터<br><span>품목허가까지</span></h2>
-              <p class="sde-intro-tagline">식약처 규제 전략 수립부터 대관업무 대행까지 전 과정을 전담합니다.</p>
-            </div>
-            <div>
-              <div class="sde-pain-label">현장의 고민</div>
-              <p class="sde-pain-quote">"논문용 데이터는 풍부하지만 식약처가 요구하는 CMC 기준에 맞춘 성적서가 규격화되지 않아, 보완 명령만 수차례 받다 임상이 1~2년 지연되는 사례가 빈번합니다."</p>
-            </div>
+            <h2 class="sde-intro-h2">IND부터 <span>품목허가까지</span></h2>
+            <p class="sde-intro-tagline">식약처 규제 전략 수립부터 대관업무 대행까지 전 과정을 전담합니다.</p>
+          </div>
+          <div class="sde-pain-block">
+            <p class="sde-pain-quote">"논문용 데이터는 풍부하지만 식약처가 요구하는 CMC 기준에 맞춰 는 성적서가 규격화되지 않아, 보완 명령만 수차례 받다 임상이 1~2년 지연되는 사례가 빈번합니다."</p>
           </div>
           <div class="sde-items-section">
-            <span class="sde-items-label">서비스 항목</span>
             <h3 class="sde-items-h3">인허가 컨설팅 세부 서비스</h3>
             <div class="sde-item">
               <span class="sde-item-num">01</span>
@@ -523,13 +604,6 @@
                 <div class="sde-item-title">규제 전략 수립 및 자문</div>
                 <div class="sde-item-desc">개발 초기부터 품목허가까지 단계별 규제 로드맵을 수립합니다. 비임상·임상 데이터 요건과 GMP 요구사항을 선제적으로 분석하여 불필요한 지연을 방지합니다.</div>
               </div>
-            </div>
-            <div class="sde-back-cta">
-              <button type="button" class="sde-back-btn" data-back="ra">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                서비스 개요로 돌아가기
-              </button>
-              <a href="support.html#contact" class="btn-primary">상담 신청 →</a>
             </div>
           </div>
         </div>

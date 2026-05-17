@@ -23,6 +23,8 @@
 <style>
 /* ── 섹션 공통 여백 (about 전용 override) ── */
 .tab-section.section { padding: 100px 0 120px; }
+.tab-section:first-of-type { padding-top: 140px; }
+.tab-section:last-of-type  { padding-bottom: 140px; }
 
 /* ── 인사말 레이아웃 ── */
 .greeting-layout {
@@ -685,8 +687,8 @@
     sections.forEach(s => s.classList.toggle('is-active', s.id === id));
     // URL 해시 업데이트 (pushState로 스크롤 없이)
     history.replaceState(null, '', '#' + id);
-    // 탭 바 상단으로 스크롤
-    document.getElementById('about-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // 상단으로 이동
+    window.scrollTo(0, 0);
   }
 
   // 탭 클릭
