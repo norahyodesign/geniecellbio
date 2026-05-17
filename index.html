@@ -235,7 +235,7 @@ body {
   margin: 0 auto;
 }
 .hero-h1 {
-  font-size: clamp(52px, 9vw, 120px);
+  font-size: clamp(36px, 6vw, 80px);
   font-weight: 700; line-height: 1.0; letter-spacing: 0.08em;
   color: var(--white);
   margin-bottom: 24px;
@@ -441,6 +441,21 @@ body {
 .step-row.in-view .step-divider  { opacity: 1; transform: none; transition-delay: 0.32s; }
 .step-row.in-view .step-desc-lg  { opacity: 1; transform: none; transition-delay: 0.42s; }
 
+/* ── 페이지 공통 reveal ── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(.25,.46,.45,.94),
+              transform 0.6s cubic-bezier(.25,.46,.45,.94);
+}
+[data-reveal].revealed { opacity: 1; transform: none; }
+[data-reveal='left'] { transform: translateX(-32px); }
+[data-reveal='left'].revealed { transform: none; }
+[data-reveal='right'] { transform: translateX(32px); }
+[data-reveal='right'].revealed { transform: none; }
+[data-reveal='scale'] { transform: translateY(20px) scale(0.96); }
+[data-reveal='scale'].revealed { transform: none; }
+
 @media (max-width: 900px) {
   .about-stats { gap: 10px; flex-wrap: wrap; }
   .about-stats > div { min-width: calc(33% - 8px); align-items: center; text-align: center; padding: 12px 10px; }
@@ -467,12 +482,12 @@ body {
   pointer-events: none;
 }
 .svc-head {
-  text-align: center; margin-bottom: clamp(10px, 1.8vh, 24px);
+  text-align: center; margin-bottom: clamp(32px, 5vh, 52px);
   position: relative; z-index: 1;
 }
 .svc-head h2 {
   font-size: clamp(26px,3.2vw,44px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em; margin-bottom: clamp(6px, 1vh, 16px);
+  line-height: 1.22; letter-spacing: -0.04em; margin-bottom: clamp(10px, 1.6vh, 20px);
   color: var(--text);
 }
 .svc-head h2 span {
@@ -480,7 +495,7 @@ body {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.svc-head p { font-size: 15px; color: var(--text2); line-height: 1.65; margin-bottom: clamp(6px, 1vh, 14px); }
+.svc-head p { font-size: 15px; color: var(--text2); line-height: 1.65; }
 
 .svc-grid {
   width: 100%; max-width: var(--max-w); padding: 0 32px;
@@ -563,12 +578,12 @@ body {
   letter-spacing: 0.5px;
 }
 .svc-card h3 {
-  font-size: clamp(16px, 1.6vw, 20px); font-weight: 700; letter-spacing: -0.03em;
-  margin-bottom: 0; color: var(--text); line-height: 1.3;
+  font-size: clamp(16px, 1.6vw, 20px); font-weight: 700; letter-spacing: -0.04em;
+  margin-bottom: 0; color: var(--text); line-height: 1.22;
 }
 .svc-card p {
-  font-size: 13px; line-height: 1.65; color: var(--text2);
-  margin-bottom: clamp(10px, 1.4vh, 18px);
+  font-size: 15px; line-height: 1.65; color: var(--text2);
+  margin-bottom: 0;
 }
 .svc-list { list-style: none; display: flex; flex-direction: column; gap: clamp(7px, 1vh, 12px); flex: 1; }
 .svc-list li {
@@ -602,126 +617,71 @@ body {
 .svc-more-btn:hover svg { transform: translateX(2px); }
 
 /* ────────────────────────────────
-   S4 CONTACT CTA
+   S4 CONTACT INFO
 ──────────────────────────────── */
 #s4 {
   background: #0e2040;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: calc(var(--nav-h) + 72px);
-  padding-bottom: 80px;
+  padding-top: calc(var(--nav-h) + 56px);
+  padding-bottom: 0;
   position: relative; overflow: hidden;
-  text-align: center;
   z-index: 1;
-  min-height: 100vh;
+  min-height: auto;
 }
 /* 배경 광원 그라디언트 */
 #s4::before {
   content: ''; position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(46,124,246,.2) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 40%, rgba(91,184,246,.12) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 60%, rgba(46,124,246,.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(91,184,246,.08) 0%, transparent 50%);
   pointer-events: none; z-index: 0;
 }
-
-/* 포인트 — 맥동하는 링 */
-.s4-rings {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0; height: 0;
-  pointer-events: none; z-index: 0;
-}
-.s4-ring {
-  position: absolute;
-  width: 320px; height: 320px;
-  margin: -160px 0 0 -160px;
-  border: 1px solid rgba(46,124,246,.22);
-  border-radius: 50%;
-  animation: ringPulse 5s ease-out infinite;
-}
-.s4-ring:nth-child(2) { animation-delay: 1.67s; }
-.s4-ring:nth-child(3) { animation-delay: 3.33s; }
-
-/* 중앙 글로우 오브 */
-.s4-orb {
-  position: absolute;
-  width: 220px; height: 220px;
-  margin: -110px 0 0 -110px;
-  background: radial-gradient(circle, rgba(46,124,246,.18) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: orbPulse 4s ease-in-out infinite alternate;
-}
-
-.contact-inner {
+.s4-inner {
   position: relative; z-index: 1;
-  max-width: 480px; width: 100%; padding: clamp(36px, 6vh, 64px) clamp(32px, 6vw, 72px);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 28px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 32px 80px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.1);
+  width: 100%; max-width: var(--max-w);
+  margin: 0 auto; padding: 0 32px 56px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
 }
-.contact-h2 {
-  font-size: clamp(26px,3.2vw,44px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em; color: var(--white);
-  margin-bottom: clamp(12px, 2vh, 28px);
+.s4-map {
+  border-radius: 20px; overflow: hidden;
+  aspect-ratio: 4/3;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
 }
-.contact-h2 span {
-  background: linear-gradient(90deg, #5BB8F6, #a8dcff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+.s4-map iframe {
+  width: 100%; height: 100%; display: block; border: 0;
+  filter: grayscale(20%) brightness(0.9);
 }
-.contact-sub {
-  font-size: 15px; line-height: 1.65; letter-spacing: -0.01em;
-  color: rgba(255,255,255,.45); margin-bottom: clamp(12px, 1.8vh, 26px);
-}
-.contact-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.btn-primary-dark {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 16px 36px; border-radius: 50px;
-  font: 600 15px/1 var(--font); color: var(--navy); background: #f7f9fc;
-  border: none; cursor: pointer; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(0,0,0,.25);
-  transition: background .25s, transform .25s, box-shadow .25s;
-}
-.btn-primary-dark:hover { background: #fff; transform:translateY(-2px); box-shadow:0 8px 32px rgba(0,0,0,.35); }
-.btn-primary-dark svg { width:14px; height:14px; }
-.btn-ghost-dark {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 15px 34px; border-radius: 50px;
-  font: 600 15px/1 var(--font); color: rgba(255,255,255,.65);
-  background: transparent; border: 1.5px solid rgba(255,255,255,.18);
-  cursor: pointer; text-decoration: none;
-  transition: border-color .25s, color .25s;
-}
-.btn-ghost-dark:hover { border-color: rgba(255,255,255,.5); color: var(--white); }
-
-.contact-info {
-  display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.6vh, 16px);
-  margin-top: clamp(24px, 4vh, 48px);
-  width: 100%;
+.s4-info { display: flex; flex-direction: column; gap: 10px; }
+.s4-title {
+  font-size: clamp(20px, 2vw, 28px); font-weight: 700;
+  color: var(--white); letter-spacing: -0.04em; line-height: 1.22;
+  margin-bottom: 8px;
 }
 .ci {
   display: flex; align-items: center; justify-content: space-between;
   gap: 20px;
-  width: 100%;
-  padding: 12px 20px;
-  border: 1px solid rgba(255,255,255,0.15);
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 12px;
   background: rgba(255,255,255,0.04);
 }
 .ci-label {
   font: 600 11px/1 var(--mono); color: rgba(255,255,255,.38); letter-spacing: 1.5px;
-  text-transform: uppercase; flex-shrink: 0; text-align: left;
+  text-transform: uppercase; flex-shrink: 0;
 }
-.ci-val { font-size: 15px; color: rgba(255,255,255,.75); text-align: right; }
-.ci-val a { color: #ffffff; text-decoration: none; }
+.ci-val { font-size: 14px; color: rgba(255,255,255,.75); text-align: right; }
+.ci-val a { color: #fff; text-decoration: none; }
 .ci-val a:hover { text-decoration: underline; }
-
+.s4-cta-row {
+  display: flex; gap: 10px; margin-top: 8px;
+}
 .footer-line {
-  position: absolute; bottom: 0; left: 0; right: 0;
+  position: relative; width: 100%;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 16px 32px;
+  padding: 14px 32px;
   border-top: 1px solid rgba(255,255,255,.06);
   z-index: 1;
 }
@@ -729,6 +689,12 @@ body {
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { font-size: 12px; color: rgba(255,255,255,.22); text-decoration: none; transition: color .2s; }
 .footer-links a:hover { color: rgba(255,255,255,.55); }
+
+.s4-cta-row .btn-outline {
+  color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.25);
+  background: transparent;
+}
+.s4-cta-row .btn-outline:hover { color: var(--white); border-color: rgba(255,255,255,.6); }
 
 /* ────────────────────────────────
    KEYFRAMES
@@ -755,33 +721,42 @@ body {
 }
 
 /* ────────────────────────────────
-   SCROLL PROGRESS DOTS
+   FLOATING CTA BAR
 ──────────────────────────────── */
-.progress-dots {
-  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
-  display: flex; flex-direction: column; gap: 8px; z-index: 900;
+#floating-cta {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  z-index: 950;
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(14,32,64,0.92);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  padding: 10px 10px 10px 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(46,124,246,.15);
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s, visibility .4s, transform .4s;
+  white-space: nowrap;
 }
-.pdot {
-  width: 28px; height: 28px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font: 600 11px/1 var(--mono);
-  color: rgba(0,0,0,.35);
-  background: rgba(0,0,0,.06);
-  border: 1.5px solid transparent;
-  cursor: pointer;
-  transition: color .25s, background .25s, border-color .25s, transform .25s;
+#floating-cta.visible {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
 }
-.pdot:hover { background: rgba(0,0,0,.1); color: rgba(0,0,0,.6); }
-.pdot.active {
+.fcta-text {
+  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75);
+  letter-spacing: -0.01em;
+}
+.fcta-btn {
+  display: flex; align-items: center; gap: 7px;
+  font: 600 13px/1 var(--font); color: var(--white);
+  text-decoration: none;
   background: var(--accent);
-  color: var(--white);
-  border-color: transparent;
-  transform: scale(1.1);
-  box-shadow: 0 2px 12px rgba(46,124,246,.45);
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(46,124,246,.5);
+  transition: background .2s, gap .2s;
 }
-.progress-dots.on-dark .pdot { color: rgba(255,255,255,.4); background: rgba(255,255,255,.1); }
-.progress-dots.on-dark .pdot:hover { background: rgba(255,255,255,.18); color: rgba(255,255,255,.8); }
-.progress-dots.on-dark .pdot.active { background: var(--accent); color: var(--white); }
+.fcta-btn svg { width: 14px; height: 14px; transition: transform .2s; }
+.fcta-btn:hover { background: #1a6ae0; gap: 10px; }
+.fcta-btn:hover svg { transform: translateX(2px); }
 
 /* ────────────────────────────────
    BACK TO TOP BUTTON
@@ -863,19 +838,13 @@ body {
   }
 
   /* ── S4 CONTACT ── */
-  .contact-inner {
-    padding: 32px 24px;
-    max-width: 100%;
-  }
-  .contact-h2 { font-size: clamp(22px, 6vw, 34px); }
-  .contact-cta { flex-direction: column; align-items: center; }
-  .contact-info { gap: 10px; }
+  .s4-inner { grid-template-columns: 1fr; gap: 20px; padding: 0 20px 40px; }
+  .s4-map { aspect-ratio: 16/9; }
+  .s4-title { font-size: clamp(18px, 5vw, 24px); }
+  .s4-cta-row { flex-direction: column; }
   .ci-val { font-size: 13px; }
   .footer-line {
-    position: relative;
-    margin-top: 56px;
-    padding: 20px 0 0;
-    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 14px 20px;
     flex-direction: column;
     gap: 6px;
     text-align: center;
@@ -886,6 +855,8 @@ body {
   .inner { padding: 0 20px; }
   #btn-top { right: 16px; bottom: 20px; width: 44px; height: 44px; }
   #btn-top svg { width: 18px; height: 18px; }
+  #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
+  .fcta-text { font-size: 13px; }
 }
 </style>
 </head>
@@ -969,13 +940,13 @@ body {
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<!-- 스크롤 진행 숫자 -->
-<nav class="progress-dots" id="pdots" aria-label="섹션 이동">
-  <button type="button" class="pdot active" data-sec="0" onclick="goSec(0)" aria-label="1 Hero">1</button>
-  <button type="button" class="pdot" data-sec="1" onclick="goSec(1)" aria-label="2 About">2</button>
-  <button type="button" class="pdot" data-sec="2" onclick="goSec(2)" aria-label="3 Services">3</button>
-  <button type="button" class="pdot" data-sec="3" onclick="goSec(3)" aria-label="4 Contact">4</button>
-</nav>
+<!-- 플로팅 문의 CTA -->
+<div id="floating-cta">
+  <span class="fcta-text">전문가에게 직접 묻어보세요</span>
+  <a href="support.html#contact" class="fcta-btn">문의하기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+
+<!-- 스크롤 진행 숫자 삭제 -->
 
 <!-- ────────────── SNAP CONTAINER ────────────── -->
 <main>
@@ -1008,19 +979,19 @@ body {
     <div class="about-inner">
 
       <!-- 헤더 -->
-      <div class="about-head">
+      <div class="about-head" data-reveal>
         <h2 class="about-h2">첨단바이오의약품<br>개발의 <span>처음부터 끝까지</span></h2>
         <p class="about-desc">복잡한 규제와 공정 리스크, 혼자 고민하지 마십시오. 기초 연구에서 상용화까지, 개발 단계별 맞춤형 솔루션으로 첨단바이오의약품의 성공적인 시장 진입을 지원합니다.</p>
         <div class="about-stats">
-          <div>
+          <div data-reveal data-delay="0.1">
             <div class="stat-num">GMP<span>·</span></div>
             <div class="stat-label">인증 생산 시설<br>완비</div>
           </div>
-          <div>
+          <div data-reveal data-delay="0.2">
             <div class="stat-num">4<span>단계</span></div>
             <div class="stat-label">개발 전 과정<br>One-Stop 지원</div>
           </div>
-          <div>
+          <div data-reveal data-delay="0.3">
             <div class="stat-num">3<span>개</span></div>
             <div class="stat-label">핵심 서비스<br>라이선스 보유</div>
           </div>
@@ -1080,13 +1051,13 @@ body {
 
   <!-- S3: SERVICES -->
   <section class="snap-sec" id="s3">
-    <div class="svc-head">
+    <div class="svc-head" data-reveal>
         <h2>지니셀바이오 <span>서비스</span></h2>
         <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
       </div>
       <div class="svc-grid">
         <!-- CDMO -->
-        <div class="svc-card">
+        <div class="svc-card" data-reveal data-delay="0.05">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
           <div class="svc-card-main">
             <h3>첨단바이오의약품 CDMO Service</h3>
@@ -1100,7 +1071,7 @@ body {
           <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 인체세포 -->
-        <div class="svc-card">
+        <div class="svc-card" data-reveal data-delay="0.15">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
           <div class="svc-card-main">
             <h3>인체세포등 관리업 Service</h3>
@@ -1114,7 +1085,7 @@ body {
           <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 세포처리시설 -->
-        <div class="svc-card">
+        <div class="svc-card" data-reveal data-delay="0.25">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
           <div class="svc-card-main">
             <h3>세포처리시설 Service</h3>
@@ -1132,31 +1103,37 @@ body {
 
   <!-- S4: CONTACT -->
   <section class="snap-sec" id="s4">
-    <!-- 포인트 링 애니메이션 -->
-    <div class="s4-rings">
-      <div class="s4-orb"></div>
-      <div class="s4-ring"></div>
-      <div class="s4-ring"></div>
-      <div class="s4-ring"></div>
-    </div>
-    <div class="contact-inner">
-      <div class="about-section-label on-dark">
-        <span class="label-line">Contact</span>
+    <div class="s4-inner">
+      <!-- 지도 -->
+      <div class="s4-map" data-reveal='left'>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.5!2d126.9!3d37.56!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zGenicellBio!5e0!3m2!1sko!2skr!4v1"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="지니셀바이오 오시는길"></iframe>
       </div>
-      <h2 class="contact-h2">프로젝트를<br><span>시작해 보세요.</span></h2>
-      <p class="contact-sub">어느 단계에서든, 전문가가 최적의 솔루션을 안내합니다. 기초 연구부터 상용화까지 편하게 문의하세요.</p>
-      <div class="contact-info">
-        <div class="ci">
+      <!-- 연락처 정보 -->
+      <div class="s4-info">
+        <div class="s4-title" data-reveal>오시는 길 &amp; 연락처</div>
+        <div class="ci" data-reveal data-delay="0.08">
+          <div class="ci-label">대표자</div>
+          <div class="ci-val">홍길동</div>
+        </div>
+        <div class="ci" data-reveal data-delay="0.14">
           <div class="ci-label">전화</div>
-          <div class="ci-val"><a href="tel:0200000000" class="link-inherit">02&#8209;000&#8209;0000</a></div>
+          <div class="ci-val"><a href="tel:0200000000">02&#8209;000&#8209;0000</a></div>
         </div>
-        <div class="ci">
+        <div class="ci" data-reveal data-delay="0.20">
           <div class="ci-label">이메일</div>
-          <div class="ci-val"><a href="mailto:contact@genicellbio.com" class="link-inherit">contact@genicellbio.com</a></div>
+          <div class="ci-val"><a href="mailto:contact@genicellbio.com">contact@genicellbio.com</a></div>
         </div>
-        <div class="ci">
+        <div class="ci" data-reveal data-delay="0.26">
           <div class="ci-label">주소</div>
           <div class="ci-val">서울특별시 마포구 월드컵북로 000</div>
+        </div>
+        <div class="ci" data-reveal data-delay="0.32">
+          <div class="ci-label">사업자등록번호</div>
+          <div class="ci-val">000-00-00000</div>
         </div>
       </div>
     </div>
@@ -1176,19 +1153,16 @@ body {
 /* ── 스크롤 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
 (function(){
   var nav     = document.getElementById('gcb-nav');
-  var dots    = document.querySelectorAll('.pdot');
-  var pdotsEl = document.getElementById('pdots');
   var secs    = ['s1','s2','s3','s4'];
   var darkSecs = ['s1','s3','s4'];
   var current = 0;
   var btnTop  = document.getElementById('btn-top');
+  var fctaEl  = document.getElementById('floating-cta');
 
   function updateState(idx){
     current = idx;
-    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
     var id = secs[idx];
     var isDark = darkSecs.indexOf(id) > -1;
-    pdotsEl.classList.toggle('on-dark', isDark);
     nav.classList.toggle('on-hero', idx === 0);
     nav.classList.toggle('on-dark', isDark && idx !== 0);
   }
@@ -1202,6 +1176,7 @@ body {
     }
     if(found !== current) updateState(found);
     btnTop.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
+    fctaEl.classList.toggle('visible', scrollY > window.innerHeight * 0.3);
   }, {passive: true});
 
   updateState(0);
@@ -1238,6 +1213,24 @@ body {
     });
   }, { threshold: 0.2 });
   rows.forEach(function(row) { obs.observe(row); });
+})();
+
+// 페이지 공통 reveal 애니메이션
+(function() {
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var delay = el.getAttribute('data-delay');
+        if (delay) el.style.transitionDelay = delay + 's';
+        el.classList.add('revealed');
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { obs.observe(el); });
 })();
 (function() {
   var ham    = document.getElementById('gcb-ham');
