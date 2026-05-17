@@ -129,23 +129,43 @@
 /* ── 진행 절차 — 에디토리얼 리스트 ── */
 .proc-list {
   margin-top: 40px;
-  border-top: 1px solid var(--border);
+  position: relative;
+  padding-left: 36px;
+}
+/* 수직 연결선 */
+.proc-list::before {
+  content: '';
+  position: absolute;
+  left: 13px; top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
 }
 .proc-row {
   display: grid;
-  grid-template-columns: 96px 1fr 1fr;
+  grid-template-columns: 40px 1fr 1fr;
   gap: 0 48px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
   align-items: center;
+  position: relative;
+}
+.proc-row:last-child { border-bottom: 1px solid var(--border); }
+/* 단계 점 */
+.proc-row::before {
+  content: '';
+  position: absolute;
+  left: -28px; top: 50%; transform: translateY(-50%);
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--accent-light);
 }
 .proc-n {
-  font: 700 52px/1 var(--mono);
-  letter-spacing: -0.05em;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font: 700 20px/1 var(--mono);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  padding-top: 2px;
 }
 .proc-title {
   font-size: 17px; font-weight: 700;
@@ -157,13 +177,14 @@
   font-size: 14px; line-height: 1.75; color: var(--text2);
 }
 @media (max-width: 768px) {
-  .proc-row { grid-template-columns: 64px 1fr; grid-template-rows: auto auto; }
-  .proc-n { font-size: 36px; }
+  .proc-list { padding-left: 28px; }
+  .proc-list::before { left: 5px; }
+  .proc-row { grid-template-columns: 36px 1fr; grid-template-rows: auto auto; }
+  .proc-row::before { left: -21px; top: 30px; }
   .proc-desc { grid-column: 2; margin-top: 6px; }
 }
 @media (max-width: 480px) {
   .proc-row { grid-template-columns: 1fr; gap: 8px; }
-  .proc-n { font-size: 28px; }
   .proc-desc { grid-column: 1; }
 }
 </style>

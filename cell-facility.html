@@ -58,6 +58,71 @@
   .fcta-text { font-size: 13px; }
 }
 
+/* ── 섹션 여백 ── */
+.overview-grid { margin-bottom: 0; }
+#default-sections > .section:first-child { padding-top: 140px; }
+#default-sections > .section:last-child  { padding-bottom: 140px; }
+
+/* ── 진행 절차 ── */
+.proc-list {
+  margin-top: 40px;
+  position: relative;
+  padding-left: 36px;
+}
+.proc-list::before {
+  content: '';
+  position: absolute;
+  left: 13px; top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.proc-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr;
+  gap: 0 48px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  align-items: center;
+  position: relative;
+}
+.proc-row:last-child { border-bottom: 1px solid var(--border); }
+.proc-row::before {
+  content: '';
+  position: absolute;
+  left: -28px; top: 50%; transform: translateY(-50%);
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+.proc-n {
+  font: 700 20px/1 var(--mono);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  padding-top: 2px;
+}
+.proc-title {
+  font-size: 17px; font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+.proc-desc {
+  font-size: 14px; line-height: 1.75; color: var(--text2);
+}
+@media (max-width: 768px) {
+  .proc-list { padding-left: 28px; }
+  .proc-list::before { left: 5px; }
+  .proc-row { grid-template-columns: 36px 1fr; grid-template-rows: auto auto; }
+  .proc-row::before { left: -21px; top: 30px; }
+  .proc-desc { grid-column: 2; margin-top: 6px; }
+}
+@media (max-width: 480px) {
+  .proc-row { grid-template-columns: 1fr; gap: 8px; }
+  .proc-desc { grid-column: 1; }
+}
+
 /* ── Service Slider ── */
 .svc-slider {
   position: relative;
@@ -262,34 +327,26 @@
     <div class="inner">
       <h2 class="section-h2">서비스 <span>진행 절차</span></h2>
       <p class="section-sub">의뢰 상담부터 시술·연구 승인 지원까지 단계별로 진행됩니다.</p>
-      <div class="process-list">
-        <div class="process-item">
-          <div class="process-num">01</div>
-          <div class="process-body">
-            <div class="process-title">서비스 상담 · NDA 체결</div>
-            <div class="process-desc">필요한 세포 종류, 시술 또는 연구 목적, 일정을 협의합니다. 비밀유지계약(NDA) 및 위탁계약 체결 후 진행됩니다.</div>
-          </div>
+      <div class="proc-list">
+        <div class="proc-row">
+          <div class="proc-n">01</div>
+          <div class="proc-title">서비스 상담 · NDA 체결</div>
+          <div class="proc-desc">필요한 세포 종류, 시술 또는 연구 목적, 일정을 협의합니다. 비밀유지계약(NDA) 및 위탁계약 체결 후 진행됩니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">02</div>
-          <div class="process-body">
-            <div class="process-title">세포 처리 · 공급</div>
-            <div class="process-desc">GMP 전용 세포처리시설에서 표준화된 SOP에 따라 투여용 세포를 처리·가공합니다. 모든 공정은 전자 기록으로 완벽하게 추적됩니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">02</div>
+          <div class="proc-title">세포 처리 · 공급</div>
+          <div class="proc-desc">GMP 전용 세포처리시설에서 표준화된 SOP에 따라 투여용 세포를 처리·가공합니다. 모든 공정은 전자 기록으로 완벽하게 추적됩니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">03</div>
-          <div class="process-body">
-            <div class="process-title">품질 시험 · 성적서 발행</div>
-            <div class="process-desc">투여 전 무균 시험, 세포 생존율·순도 확인 등 품질시험을 수행하고, 성적서(CoA)를 발행합니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">03</div>
+          <div class="proc-title">품질 시험 · 성적서 발행</div>
+          <div class="proc-desc">투여 전 무균 시험, 세포 생존율·순도 확인 등 품질시험을 수행하고, 성적서(CoA)를 발행합니다.</div>
         </div>
-        <div class="process-item">
-          <div class="process-num">04</div>
-          <div class="process-body">
-            <div class="process-title">CMC 문서 작성 · 심의 지원</div>
-            <div class="process-desc">연구·치료계획서에 필요한 CMC 근거 자료 및 안전성 데이터를 구축합니다. KAC 등 심의위원회 제출용 자료를 전담 작성하여 승인 가능성을 높입니다.</div>
-          </div>
+        <div class="proc-row">
+          <div class="proc-n">04</div>
+          <div class="proc-title">CMC 문서 작성 · 심의 지원</div>
+          <div class="proc-desc">연구·치료계획서에 필요한 CMC 근거 자료 및 안전성 데이터를 구축합니다. KAC 등 심의위원회 제출용 자료를 전담 작성하여 승인 가능성을 높입니다.</div>
         </div>
       </div>
     </div>
