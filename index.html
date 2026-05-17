@@ -67,8 +67,9 @@ body {
   left: 0; right: 0;
   top: -50%; height: 200%;
   background-image: url('geniecell_imge/main%20img.jpg');
-  background-size: 120%;
-  background-position: bottom center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   will-change: transform;
 }
 
@@ -1001,6 +1002,12 @@ body {
   #btn-top svg { width: 18px; height: 18px; }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
+  /* 이미지 배너 모바일: 패럴랙스 해제, cover로 전체 채움 */
+  .facility-banner-img {
+    top: 0; height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
 }
 </style>
 </head>
