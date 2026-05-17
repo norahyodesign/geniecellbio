@@ -26,23 +26,16 @@
 * { word-break: keep-all; overflow-wrap: break-word; }
 
 /* ────────────────────────────────
-   SCROLL SNAP LAYOUT
+   STICKY HERO LAYOUT
 ──────────────────────────────── */
 body {
-  height: 100dvh;
-  overflow: hidden;
+  overflow-y: auto;
   background: var(--white);
 }
 #snap {
-  height: 100dvh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  /* scroll 컨테이너 → 단순 wrapper */
 }
 .snap-sec {
-  height: 100dvh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   position: relative;
   overflow: hidden;
 }
@@ -210,6 +203,10 @@ body {
 #s1 {
   background: #050a14;
   display: flex; align-items: center; justify-content: center;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 0;
 }
 .hero-video {
   position: absolute; inset: 0;
@@ -230,32 +227,37 @@ body {
 .hero-body {
   position: relative; z-index: 2;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 0 32px;
+  align-items: flex-start;
+  text-align: left;
+  max-width: var(--max-w);
   width: 100%;
+  padding: 0 32px;
+  margin: 0 auto;
 }
 .hero-h1 {
-  font-size: clamp(34px,4.8vw,62px);
-  font-weight: 700; line-height: 1.2; letter-spacing: -0.045em;
+  font-size: clamp(52px, 9vw, 120px);
+  font-weight: 700; line-height: 1.0; letter-spacing: 0.08em;
   color: var(--white);
-  margin-bottom: 48px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
   animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .1s both;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.35);
 }
-.hero-h1 span {
-  background: linear-gradient(100deg, #00e5ff 0%, #38bdff 40%, #ffffff 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero-tagline {
+  font-size: clamp(18px, 2.4vw, 30px);
+  font-weight: 500; line-height: 1.5; letter-spacing: -0.025em;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 20px;
+  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .22s both;
 }
 .hero-sub {
-  font-size: 18px; font-weight: 400; line-height: 1.68; letter-spacing: -0.01em;
-  color: rgba(255,255,255,0.68);
-  max-width: 540px; margin: 0 auto 40px;
-  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .28s both;
+  font-size: 16px; font-weight: 400; line-height: 1.7; letter-spacing: -0.01em;
+  color: rgba(255,255,255,0.55);
+  max-width: 520px; margin-bottom: 40px;
+  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .34s both;
 }
 .hero-cta {
-  display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  display: flex; justify-content: flex-start; gap: 12px; flex-wrap: wrap;
   animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .46s both;
 }
 .btn-primary {
@@ -328,9 +330,13 @@ body {
 #s2 {
   background: #f7f9fc;
   display: flex; align-items: center; justify-content: center;
-  padding-top: var(--nav-h);
-  padding-bottom: var(--nav-h);
+  padding-top: calc(var(--nav-h) + 72px);
+  padding-bottom: 80px;
   position: relative; overflow: hidden;
+  z-index: 1;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -20px 60px rgba(0,0,0,.18);
+  min-height: 100vh;
 }
 #s2::before {
   content: ''; position: absolute;
@@ -344,14 +350,11 @@ body {
   max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
   display: flex; flex-direction: column;
 }
-.about-content {
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 48px);
-  align-items: stretch;
+.about-head {
+  width: 100%;
+  text-align: center;
+  margin-bottom: clamp(32px, 4vh, 48px);
 }
-.about-left {
-  display: flex; flex-direction: column; justify-content: flex-start;
-}
-.about-left .sec-overline.light { margin-bottom: clamp(6px, 1vh, 14px); }
 .about-h2 {
   font-size: clamp(26px,3.2vw,44px); font-weight: 700;
   line-height: 1.22; letter-spacing: -0.04em; color: var(--text);
@@ -368,7 +371,7 @@ body {
 }
 .about-stats { display: flex; gap: 12px; margin-top: 8px; }
 .about-stats > div {
-  display: flex; flex-direction: column; align-items: flex-start;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
   background: var(--accent-light);
   border: 1px solid rgba(46,124,246,.15);
   border-radius: 14px;
@@ -381,41 +384,67 @@ body {
 }
 .stat-num span { color: var(--accent); }
 .stat-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
+.about-steps-grid {
+  display: flex; flex-direction: column;
+  gap: clamp(16px, 2.4vh, 28px);
+  width: 100%;
+  margin-top: clamp(56px, 7vh, 96px);
+}
+.step-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.4vw, 40px);
+  align-items: stretch;
+}
+.step-row.reverse .step-img-placeholder { order: -1; }
+.step-text-block {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: clamp(8px, 1.2vh, 16px) 0;
+  justify-content: center;
+}
+.step-num-lg {
+  font: 600 11px/1 var(--mono); color: var(--accent);
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.step-title-lg {
+  font-size: clamp(18px, 1.9vw, 24px); font-weight: 700;
+  color: var(--text); letter-spacing: -0.04em; line-height: 1.22;
+}
+.step-divider {
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+}
+.step-desc-lg {
+  font-size: 15px; line-height: 1.65; color: var(--text2);
+}
+.step-img-placeholder {
+  aspect-ratio: 16 / 9;
+  background: #ECEEF2;
+  border-radius: 20px;
+  overflow: hidden;
+}
 
-.about-right {
-  display: flex; flex-direction: column; justify-content: center; gap: 12px;
+/* ── 스텝 애니메이션 초기 상태 ── */
+.step-row .step-img-placeholder,
+.step-row .step-num-lg,
+.step-row .step-title-lg,
+.step-row .step-divider,
+.step-row .step-desc-lg {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.55s cubic-bezier(.25,.46,.45,.94),
+              transform 0.55s cubic-bezier(.25,.46,.45,.94);
 }
-.about-steps { display: flex; flex-direction: column; gap: clamp(6px, 0.9vh, 10px); }
-.step-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px; padding: clamp(10px, 1.4vh, 16px) 20px;
-  display: flex; align-items: center; gap: 16px;
-  transition: background .25s, transform .25s, box-shadow .25s, border-color .25s;
-}
-.step-card:hover {
-  background: var(--white);
-  box-shadow: 0 8px 32px rgba(46,124,246,.1);
-  transform: translateX(4px);
-  border-color: rgba(46,124,246,.25);
-}
-.step-num {
-  font: 700 12px/1 var(--mono); color: var(--accent);
-  letter-spacing: 1px; flex-shrink: 0; width: 28px;
-}
-.step-icon {
-  width: 44px; height: 44px; flex-shrink: 0;
-  background: linear-gradient(135deg,var(--accent),var(--accent2));
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(46,124,246,.25);
-}
-.step-icon svg { width: 17px; height: 17px; color: white; }
-.step-title { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 2px; }
-.step-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+.step-row.in-view .step-img-placeholder { opacity: 1; transform: none; transition-delay: 0s; }
+.step-row.in-view .step-num-lg   { opacity: 1; transform: none; transition-delay: 0.12s; }
+.step-row.in-view .step-title-lg { opacity: 1; transform: none; transition-delay: 0.22s; }
+.step-row.in-view .step-divider  { opacity: 1; transform: none; transition-delay: 0.32s; }
+.step-row.in-view .step-desc-lg  { opacity: 1; transform: none; transition-delay: 0.42s; }
 
 @media (max-width: 900px) {
-  .about-inner { grid-template-columns: 1fr; gap: 36px; align-items: start; }
-  .about-stats { gap: 20px; }
+  .about-stats { gap: 10px; flex-wrap: wrap; }
+  .about-stats > div { min-width: calc(33% - 8px); align-items: center; text-align: center; padding: 12px 10px; }
+  .stat-num { font-size: clamp(16px, 4.5vw, 26px); }
 }
 
 /* ────────────────────────────────
@@ -424,9 +453,11 @@ body {
 #s3 {
   background: #071525;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: var(--nav-h);
-  padding-bottom: var(--nav-h);
+  padding-top: calc(var(--nav-h) + 72px);
+  padding-bottom: 80px;
   position: relative; overflow: hidden;
+  z-index: 1;
+  min-height: 100vh;
 }
 #s3::before {
   content: ''; position: absolute;
@@ -453,7 +484,7 @@ body {
 
 .svc-grid {
   width: 100%; max-width: var(--max-w); padding: 0 32px;
-  display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(10px, 1.4vw, 18px);
+  display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(14px, 2vw, 28px);
   position: relative; z-index: 1;
 }
 
@@ -461,7 +492,7 @@ body {
 .svc-card {
   background: #f7f9fc;
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 20px; padding: clamp(22px, 3.2vh, 40px) 26px;
+  border-radius: 24px; padding: clamp(28px, 4vh, 48px) clamp(22px, 2.4vw, 36px);
   position: relative; overflow: hidden;
   display: flex; flex-direction: column;
   transition: transform .4s cubic-bezier(.25,.46,.45,.94),
@@ -566,10 +597,12 @@ body {
 #s4 {
   background: #0e2040;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: var(--nav-h);
-  padding-bottom: var(--nav-h);
+  padding-top: calc(var(--nav-h) + 72px);
+  padding-bottom: 80px;
   position: relative; overflow: hidden;
   text-align: center;
+  z-index: 1;
+  min-height: 100vh;
 }
 /* 배경 광원 그라디언트 */
 #s4::before {
@@ -764,78 +797,38 @@ body {
    RESPONSIVE — MOBILE
 ──────────────────────────────── */
 @media (max-width: 768px) {
-  /* ── 스냅 → 일반 세로 스크롤 ── */
-  body {
-    height: auto;
-    overflow: auto;
-  }
-  #snap {
-    height: auto;
-    overflow-y: visible;
-    scroll-snap-type: none;
-  }
-  .snap-sec {
-    height: auto;
-    min-height: auto;
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
-    overflow: visible;
-  }
-
   /* ── S1 HERO ── */
   #s1 {
-    min-height: 100svh;
+    position: relative;
+    height: 100svh;
     overflow: hidden;
     align-items: center;
   }
   .hero-body { padding: 0 24px; }
-  .hero-h1 { font-size: clamp(28px, 8vw, 42px); }
-  .hero-sub { font-size: 15px; max-width: 100%; }
-  .hero-cta { flex-direction: column; align-items: center; gap: 10px; }
-  .btn-primary, .btn-ghost {
-    width: 100%; max-width: 300px;
-    justify-content: center;
-  }
+  .hero-h1 { font-size: clamp(36px, 11vw, 60px); }
+  .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
+  .hero-sub { font-size: 14px; }
+  .hero-cta { gap: 10px; }
 
   /* ── S2 · S3 · S4 공통 섹션 상하 여백 ── */
   #s2, #s3, #s4 {
-    display: block;
+    display: flex;
     padding-top: calc(var(--nav-h) + 56px);
     padding-bottom: 72px;
+    min-height: auto;
   }
-  #s2 { padding-left: 20px; padding-right: 20px; }
-  #s3 { padding-left: 0;    padding-right: 0;    }
+  #s2 { border-radius: 20px 20px 0 0; padding-left: 20px; padding-right: 20px; }
+  #s3 { padding-left: 0; padding-right: 0; }
   #s4 { padding-left: 20px; padding-right: 20px; }
 
   /* ── S2 ABOUT ── */
-  .about-inner { padding: 0; }
-  .about-section-label { margin-bottom: 28px; text-align: center; align-self: center; width: 100%; }
-  .about-content {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-  .about-left {
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-  }
-  .about-h2, .about-desc { text-align: center; }
-  .about-stats { justify-content: center; gap: 10px; flex-wrap: nowrap; width: 100%; }
-  .about-stats > div { align-items: center; text-align: center; padding: 12px 10px; }
-  .stat-num { font-size: clamp(16px, 4.5vw, 26px); }
-  .about-right { gap: 10px; }
-  .about-steps { gap: 8px; }
-  /* 스텝 카드 — 왼쪽 아이콘 / 오른쪽 숫자+타이틀+바디 (세로 가운데) */
-  .step-card {
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    padding: 20px 20px;
-    gap: 20px;
-  }
-  .step-card .step-icon { flex-shrink: 0; width: 44px; height: 44px; align-self: center; margin-top: 0; }
-  .step-card .step-num { width: auto; flex-shrink: 0; }
-  .step-card > div:last-child { display: flex; flex-direction: column; gap: 2px; }
+  .about-inner { padding: 0 20px; }
+  .about-head { margin-bottom: 36px; }
+  .about-stats { flex-wrap: wrap; gap: 10px; }
+  .about-stats > div { min-width: 30%; }
+  .about-steps-grid { gap: 16px; }
+  .step-row { grid-template-columns: 1fr; gap: 14px; }
+  .step-row.reverse .step-img-placeholder { order: 0; }
 
   /* ── S3 SERVICES ── */
   .svc-head { padding: 0 20px; margin-bottom: 28px; text-align: center; }
@@ -997,8 +990,9 @@ body {
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-body">
-      <h1 class="hero-h1">당신의 연구가<br>멈추지 않도록,<br><span>전문성이 길을 엽니다.</span></h1>
-      <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여, 귀사의 시간과 비용을 성공으로 치환합니다.</p>
+      <h1 class="hero-h1">GenicellBio</h1>
+      <p class="hero-tagline">당신의 연구가 멈추지 않도록, 전문성의 길을 엽니다</p>
+      <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여,<br>귀사의 시간과 비용을 성공으로 치환합니다.</p>
       <div class="hero-cta">
         <a href="#s4" class="btn-primary">서비스 문의하기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         <a href="#s3" class="btn-ghost">서비스 알아보기 →</a>
@@ -1013,12 +1007,10 @@ body {
   <!-- S2: ABOUT -->
   <section class="snap-sec" id="s2">
     <div class="about-inner">
-      <div class="about-section-label">
-        <span class="label-line">About</span>
-      </div>
-      <div class="about-content">
-        <div class="about-left">
-          <h2 class="about-h2">첨단바이오의약품<br>개발의 <span>처음부터 끝까지</span></h2>
+
+      <!-- 헤더 -->
+      <div class="about-head">
+        <h2 class="about-h2">첨단바이오의약품<br>개발의 <span>처음부터 끝까지</span></h2>
         <p class="about-desc">복잡한 규제와 공정 리스크, 혼자 고민하지 마십시오. 기초 연구에서 상용화까지, 개발 단계별 맞춤형 솔루션으로 첨단바이오의약품의 성공적인 시장 진입을 지원합니다.</p>
         <div class="about-stats">
           <div>
@@ -1035,51 +1027,60 @@ body {
           </div>
         </div>
       </div>
-      <div class="about-right">
-        <div class="about-steps">
-          <div class="step-card">
-            <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/></svg></div>
-            <div>
-              <div class="step-num">01</div>
-              <div class="step-title">기초 연구 지원</div>
-              <div class="step-desc">R&amp;D 단계 원료세포 공급 및 기초 데이터 확보</div>
-            </div>
+
+      <!-- 스텝 그리드 -->
+      <div class="about-steps-grid">
+
+        <!-- Step 01 — 텍스트 좌 / 이미지 우 -->
+        <div class="step-row">
+          <div class="step-text-block">
+            <div class="step-num-lg">STEP 01</div>
+            <div class="step-title-lg">기초 연구 지원</div>
+            <div class="step-divider"></div>
+            <div class="step-desc-lg">R&amp;D 단계 원료세포 공급 및 기초 데이터 확보. 연구 목적에 맞는 세포 선별부터 초기 품질 확인까지 지원합니다.</div>
           </div>
-          <div class="step-card">
-            <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"/></svg></div>
-            <div>
-              <div class="step-num">02</div>
-              <div class="step-title">공정 개발 · Scale-up</div>
-              <div class="step-desc">Lab-scale → GMP 수준 상업 생산 최적화</div>
-            </div>
-          </div>
-          <div class="step-card">
-            <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
-            <div>
-              <div class="step-num">03</div>
-              <div class="step-title">품질시험 · 밸리데이션</div>
-              <div class="step-desc">식약처 제출 기준 QC 시험 및 시험법 밸리데이션</div>
-            </div>
-          </div>
-          <div class="step-card">
-            <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.63 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg></div>
-            <div>
-              <div class="step-num">04</div>
-              <div class="step-title">인허가 · 시장 진입</div>
-              <div class="step-desc">IND 컨설팅 및 식약처 대관업무 대행</div>
-            </div>
-          </div>
+          <div class="step-img-placeholder"></div>
         </div>
-      </div>
+
+        <!-- Step 02 -->
+        <div class="step-row">
+          <div class="step-text-block">
+            <div class="step-num-lg">STEP 02</div>
+            <div class="step-title-lg">공정 개발 · Scale-up</div>
+            <div class="step-divider"></div>
+            <div class="step-desc-lg">Lab-scale에서 GMP 수준의 상업 생산까지 최적화. 공정 파라미터 정립 및 배치 재현성을 확보합니다.</div>
+          </div>
+          <div class="step-img-placeholder"></div>
+        </div>
+
+        <!-- Step 03 — 텍스트 좌 / 이미지 우 -->
+        <div class="step-row">
+          <div class="step-text-block">
+            <div class="step-num-lg">STEP 03</div>
+            <div class="step-title-lg">품질시험 · 밸리데이션</div>
+            <div class="step-divider"></div>
+            <div class="step-desc-lg">식약처 제출 기준 QC 시험 및 시험법 밸리데이션. 마이코플라스마·바이러스 부정시험 포함 전 항목을 수행합니다.</div>
+          </div>
+          <div class="step-img-placeholder"></div>
+        </div>
+
+        <!-- Step 04 -->
+        <div class="step-row">
+          <div class="step-text-block">
+            <div class="step-num-lg">STEP 04</div>
+            <div class="step-title-lg">인허가 · 시장 진입</div>
+            <div class="step-divider"></div>
+            <div class="step-desc-lg">IND 컨설팅 및 식약처 대관업무 대행. 임상시험 승인부터 품목허가까지 전 과정을 전문가가 지원합니다.</div>
+          </div>
+          <div class="step-img-placeholder"></div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- S3: SERVICES -->
   <section class="snap-sec" id="s3">
-    <div class="about-section-label on-dark">
-      <span class="label-line">Services</span>
-    </div>
     <div class="svc-head">
         <h2>지니셀바이오 <span>서비스</span></h2>
         <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
@@ -1087,7 +1088,6 @@ body {
       <div class="svc-grid">
         <!-- CDMO -->
         <div class="svc-card">
-          <div class="svc-card-num">01</div>
           <div class="svc-card-header">
             <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
             <h3>첨단바이오의약품<br>CDMO Service</h3>
@@ -1102,7 +1102,6 @@ body {
         </div>
         <!-- 인체세포 -->
         <div class="svc-card">
-          <div class="svc-card-num">02</div>
           <div class="svc-card-header">
             <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
             <h3>인체세포등<br>관리업 Service</h3>
@@ -1117,7 +1116,6 @@ body {
         </div>
         <!-- 세포처리시설 -->
         <div class="svc-card">
-          <div class="svc-card-num">03</div>
           <div class="svc-card-header">
             <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
             <h3>세포처리시설<br>Service</h3>
@@ -1178,7 +1176,6 @@ body {
 <script>
 /* ── 스크롤 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
 (function(){
-  var snap    = document.getElementById('snap');
   var nav     = document.getElementById('gcb-nav');
   var dots    = document.querySelectorAll('.pdot');
   var pdotsEl = document.getElementById('pdots');
@@ -1186,8 +1183,6 @@ body {
   var darkSecs = ['s1','s3','s4'];
   var current = 0;
   var btnTop  = document.getElementById('btn-top');
-
-  function isMobile(){ return window.innerWidth <= 768; }
 
   function updateState(idx){
     current = idx;
@@ -1199,19 +1194,7 @@ body {
     nav.classList.toggle('on-dark', isDark && idx !== 0);
   }
 
-  /* ── Desktop: snap 컨테이너 스크롤 ── */
-  snap.addEventListener('scroll', function(){
-    if(isMobile()) return;
-    var h = snap.clientHeight;
-    var idx = Math.round(snap.scrollTop / h);
-    idx = Math.max(0, Math.min(secs.length - 1, idx));
-    if(idx !== current) updateState(idx);
-    btnTop.classList.toggle('visible', snap.scrollTop > h * 0.5);
-  }, {passive: true});
-
-  /* ── Mobile: window 스크롤 ── */
   window.addEventListener('scroll', function(){
-    if(!isMobile()) return;
     var scrollY = window.scrollY || document.documentElement.scrollTop;
     var found = 0;
     for(var i = 0; i < secs.length; i++){
@@ -1225,21 +1208,12 @@ body {
   updateState(0);
 
   btnTop.addEventListener('click', function(){
-    if(isMobile()){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      snap.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   window.goSec = function(idx){
     var el = document.getElementById(secs[idx]);
-    if(!el) return;
-    if(isMobile()){
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      snap.scrollTo({ top: snap.clientHeight * idx, behavior: 'smooth' });
-    }
+    if(el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   document.querySelectorAll('a[href^="#s"]').forEach(function(a){
@@ -1251,6 +1225,21 @@ body {
 })();
 
 // 드로어 토글 + aria-expanded + 바깥 탭 닫기
+
+// 스텝 섹션 스크롤 애니메이션
+(function() {
+  var rows = document.querySelectorAll('.step-row');
+  if (!rows.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  rows.forEach(function(row) { obs.observe(row); });
+})();
 (function() {
   var ham    = document.getElementById('gcb-ham');
   var drawer = document.getElementById('gcb-drawer');
