@@ -1434,10 +1434,20 @@ body {
     var startX = 0;
     var isDragging = false;
 
+    // 슬라이더의 자연 좌표 저장 (transform 없는 상태)
+    slider.style.transform = 'none';
+    var gridNaturalLeft = slider.getBoundingClientRect().left;
+
     function goTo(idx) {
       current = Math.max(0, Math.min(total - 1, idx));
-      var cardW = slider.querySelector('.svc-card').offsetWidth + 12; // card width + gap
-      slider.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+      var cardW = cards[0].offsetWidth;
+      var gap = 12;
+      var vw = window.innerWidth;
+      // 활성 카드의 자연 left 위치 → 뷰포트 중앙에 오도록 offset 계산
+      var naturalCardLeft = gridNaturalLeft + current * (cardW + gap);
+      var targetLeft = (vw - cardW) / 2;
+      var offset = targetLeft - naturalCardLeft;
+      slider.style.transform = 'translateX(' + offset + 'px)';
       dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
       cards.forEach(function(c, i) { c.classList.toggle('svc-active', i === current); });
       if (prevBtn) prevBtn.disabled = current === 0;
