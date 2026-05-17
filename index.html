@@ -33,6 +33,7 @@
 ──────────────────────────────── */
 body {
   overflow-y: auto;
+  overflow-x: clip;
   background: var(--white);
 }
 #snap {
@@ -850,7 +851,7 @@ body {
     min-height: auto;
   }
   #s2 { border-radius: 20px 20px 0 0; padding-left: 20px; padding-right: 20px; }
-  #s3 { padding-left: 0; padding-right: 0; overflow: hidden; }
+  #s3 { padding-left: 0; padding-right: 0; overflow: visible; }
   #s4 { padding-left: 20px; padding-right: 20px; }
 
   /* ── S2 ABOUT ── */
@@ -897,14 +898,14 @@ body {
     display: block;
     width: 100%;
     overflow: visible;
-    padding: 12px 20px;
-    margin: -12px 0;
+    padding: 24px 20px;
+    margin: -24px 0;
     box-sizing: border-box;
   }
   .svc-slider-clip {
-    overflow: hidden;
+    overflow: visible;
     margin: 0 -20px;
-    padding: 12px 20px;
+    padding: 24px 20px;
   }
   .svc-grid {
     display: flex;
@@ -915,8 +916,8 @@ body {
     will-change: transform;
   }
   .svc-card {
-    min-width: calc(85% - 6px);
-    width: calc(85% - 6px);
+    min-width: calc(80% - 6px);
+    width: calc(80% - 6px);
     display: flex;
     flex-direction: column;
     align-items: center;
