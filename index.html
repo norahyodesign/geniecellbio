@@ -832,9 +832,10 @@ body {
     align-items: center;
     text-align: center;
   }
-  .hero-sub { max-width: 100%; }
-  .hero-cta { justify-content: center; flex-direction: column; align-items: center; }
-  .hero-h1 { font-size: clamp(36px, 11vw, 60px); }
+  .hero-sub { max-width: 100%; display: none; }
+  .hero-cta { justify-content: center; flex-direction: column; align-items: center; margin-top: 32px; }
+  .hero-cta .btn-primary, .hero-cta .btn-ghost { width: 240px; justify-content: center; }
+  .hero-h1 { font-size: clamp(28px, 8vw, 44px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
   .hero-tagline .mobile-br::before { content: '\A'; white-space: pre; }
   .hero-sub { font-size: 14px; }
@@ -1098,8 +1099,8 @@ body {
       <p class="hero-tagline">당신의 연구가 멈추지 않도록,<span class="mobile-br"></span> 전문성의 길을 엽니다</p>
       <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여,<br>귀사의 시간과 비용을 성공으로 치환합니다.</p>
       <div class="hero-cta">
-        <a href="#s4" class="btn-primary">서비스 문의하기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
-        <a href="#s3" class="btn-ghost">서비스 알아보기 →</a>
+        <a href="#s4" class="btn-primary">서비스 문의하기</a>
+        <a href="#s3" class="btn-ghost">서비스 알아보기</a>
       </div>
     </div>
     <div class="scroll-hint">
