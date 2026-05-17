@@ -260,7 +260,7 @@ body { background: var(--white); color: var(--text); }
 /* ══════════════════════════════════
    SECTION COMMON
 ══════════════════════════════════ */
-.section { padding: 72px 0 80px; }
+.section { padding: 80px 0; }
 .section.alt { background: var(--gray-bg2); }
 
 .section-label {
@@ -508,11 +508,11 @@ body { background: var(--white); color: var(--text); }
 }
 .ov-card:hover { box-shadow: 0 8px 32px rgba(46,124,246,.35); transform: translateY(-4px); }
 .ov-num {
-  font-size: clamp(28px,4vw,44px); font-weight: 700; letter-spacing: -0.04em;
+  font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
   color: var(--white); margin-bottom: 8px; line-height: 1;
 }
 .ov-num span { color: rgba(255,255,255,0.7); }
-.ov-label { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.5; }
+.ov-label { font-size: 12px; color: rgba(255,255,255,0.78); line-height: 1.5; }
 
 /* ── 2-column card grid ── */
 .card-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -739,11 +739,11 @@ body { background: var(--white); color: var(--text); }
 }
 .ov-card:hover { box-shadow: 0 8px 32px rgba(46,124,246,.35); transform: translateY(-4px); }
 .ov-num {
-  font-size: clamp(28px,4vw,44px); font-weight: 700; letter-spacing: -0.04em;
+  font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
   color: var(--white); margin-bottom: 8px; line-height: 1;
 }
 .ov-num span { color: rgba(255,255,255,0.7); }
-.ov-label { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.5; }
+.ov-label { font-size: 12px; color: rgba(255,255,255,0.78); line-height: 1.5; }
 
 /* ══════════════════════════════════
    SERVICE DETAIL CARD (좌/우 패널)
