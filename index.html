@@ -923,6 +923,13 @@ body {
     gap: 16px;
     border-radius: var(--radius);
     flex-shrink: 0;
+    box-shadow: none !important;
+    border-color: var(--border) !important;
+    transition: box-shadow .3s, border-color .3s;
+  }
+  .svc-card.svc-active {
+    box-shadow: 0 16px 48px rgba(0,0,0,.13), 0 0 32px rgba(46,124,246,.10) !important;
+    border-color: rgba(46,124,246,.22) !important;
   }
   .svc-card-main {
     border-left: none; border-right: none;
@@ -938,8 +945,9 @@ body {
   .svc-dots-wrap {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 0;
   }
   .svc-dot-btn {
     width: 8px; height: 8px;
@@ -956,6 +964,7 @@ body {
     align-items: center;
     gap: 12px;
     margin-top: 16px;
+    width: 100%;
   }
   .svc-arrow-btn {
     width: 40px; height: 40px;
@@ -1430,6 +1439,7 @@ body {
       var cardW = slider.querySelector('.svc-card').offsetWidth + 12; // card width + gap
       slider.style.transform = 'translateX(-' + (current * cardW) + 'px)';
       dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
+      cards.forEach(function(c, i) { c.classList.toggle('svc-active', i === current); });
       if (prevBtn) prevBtn.disabled = current === 0;
       if (nextBtn) nextBtn.disabled = current === total - 1;
     }
