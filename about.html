@@ -14,81 +14,150 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="tokens.css">
 <style>
-/* ── 인사말 Quote Card ── */
+/* ── 섹션 공통 여백 (about 전용 override) ── */
+.tab-section.section { padding: 100px 0 120px; }
+
+/* ── 인사말 레이아웃 ── */
+.greeting-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: flex-start;
+}
+.greeting-img-box {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.greeting-img-placeholder {
+  width: 100%; aspect-ratio: 3/4;
+  background: #ECEEF2;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.greeting-caption { text-align: center; }
+.greeting-sig-name { font-size: 16px; font-weight: 700; color: var(--text); }
+.greeting-sig-role { font-size: 13px; color: var(--text2); margin-top: 2px; }
+.greeting-text { display: flex; flex-direction: column; gap: 24px; }
 .greeting-quote {
   background: var(--navy);
   border-radius: var(--radius);
-  padding: 52px 56px;
+  padding: 36px 40px;
   position: relative; overflow: hidden;
-  margin-bottom: 56px;
 }
 .greeting-quote::before {
   content: '"';
   position: absolute; top: -20px; left: 32px;
-  font-size: 160px; line-height: 1; font-weight: 700;
+  font-size: 140px; line-height: 1; font-weight: 700;
   color: rgba(46,124,246,.15); pointer-events: none;
   font-family: Georgia, serif;
 }
 .greeting-quote blockquote {
   position: relative; z-index: 1;
-  font-size: clamp(18px, 2.4vw, 26px); font-weight: 500;
-  line-height: 1.75; color: var(--white); letter-spacing: -0.01em;
-  margin-bottom: 36px;
+  font-size: clamp(15px, 1.6vw, 18px); font-weight: 500;
+  line-height: 1.8; color: var(--white); letter-spacing: -0.01em;
+  margin: 0;
 }
 .greeting-quote blockquote span { color: var(--accent2); font-weight: 700; }
-.greeting-sig {
-  display: flex; align-items: center; gap: 16px;
+.greeting-body { display: flex; flex-direction: column; gap: 14px; }
+.greeting-body p { font-size: 15px; line-height: 1.75; color: var(--text2); margin: 0; }
+@media (max-width: 768px) {
+  .greeting-layout { grid-template-columns: 1fr; }
+  .greeting-img-placeholder { aspect-ratio: 4/3; max-width: 240px; margin: 0 auto; }
 }
-.greeting-avatar {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 700; color: var(--white);
-  flex-shrink: 0;
-}
-.greeting-sig-info { display: flex; flex-direction: column; gap: 3px; }
-.greeting-sig-name { font-size: 16px; font-weight: 700; color: var(--white); }
-.greeting-sig-role { font-size: 13px; color: rgba(255,255,255,.5); }
 
 /* ── Mission / Vision ── */
-.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
-.mv-card {
-  border-radius: var(--radius); padding: 36px 32px;
-  position: relative; overflow: hidden;
+.mv-items { display: flex; flex-direction: column; gap: 48px; margin-top: 64px; }
+.mv-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
 }
-.mv-card.mission { background: var(--accent); }
-.mv-card.vision  { background: var(--gray-bg2); border: 1.5px solid var(--border); }
+/* 비주얼 영역 — 회색 빈 박스 */
+.mv-visual {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: #ECEEF2;
+  position: relative;
+  z-index: 0;
+}
+.mv-visual-inner { display: none; }
+/* 텍스트 — 박스 없이 나란히 */
+.mv-content {
+  padding: clamp(32px, 4vw, 48px) clamp(28px, 3.5vw, 44px);
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; gap: 16px;
+  align-items: flex-start;
+}
+.mv-item.vision .mv-visual { order: 2; }
+.mv-item.vision .mv-content { order: 1; }
 .mv-overline {
-  font: 700 11px/1 var(--mono); letter-spacing: 3px; text-transform: uppercase;
-  margin-bottom: 16px;
+  display: inline-block;
+  font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase;
+  background: var(--accent); color: var(--white);
+  padding: 6px 12px; border-radius: var(--radius-xs);
 }
-.mv-card.mission .mv-overline { color: rgba(255,255,255,.6); }
-.mv-card.vision  .mv-overline { color: var(--accent); }
-.mv-card h3 {
-  font-size: clamp(17px, 2vw, 22px); font-weight: 700; line-height: 1.45;
-  letter-spacing: -0.025em;
+.mv-content h3 {
+  font-size: clamp(18px, 2vw, 24px); font-weight: 700; line-height: 1.45;
+  color: var(--navy); margin: 0; letter-spacing: -0.025em;
 }
-.mv-card.mission h3 { color: var(--white); }
-.mv-card.vision  h3 { color: var(--text); }
-.mv-card p { font-size: 14px; line-height: 1.7; margin-top: 12px; }
-.mv-card.mission p { color: rgba(255,255,255,.7); }
-.mv-card.vision  p { color: var(--text2); }
+.mv-content p { font-size: 14px; line-height: 1.75; color: var(--text2); margin: 0; }
+/* 스크롤 리빌 */
+.mv-item .mv-visual {
+  opacity: 0; transform: translateX(-32px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.mv-item .mv-content {
+  opacity: 0; transform: translateX(32px);
+  transition: opacity .65s .13s ease, transform .65s .13s ease;
+}
+.mv-item.vision .mv-visual  { transform: translateX(32px); }
+.mv-item.vision .mv-content { transform: translateX(-32px); }
+.mv-item.in-view .mv-visual,
+.mv-item.in-view .mv-content { opacity: 1; transform: none; }
+
+/* ── Company 2-col layout ── */
+.co-layout { display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px,3vw,48px); align-items: start; margin-top: 32px; }
+.co-stats { display: flex; flex-direction: column; gap: 12px; }
 
 /* ── Values grid ── */
-.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
 .value-card {
-  border-radius: var(--radius-sm); padding: 28px 20px; text-align: center;
+  border-radius: var(--radius-sm); padding: 24px 20px;
   background: var(--white); border: 1.5px solid var(--border);
   transition: border-color .3s, box-shadow .3s, transform .3s;
 }
 .value-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-4px); }
-.value-emoji { font-size: 32px; margin-bottom: 12px; }
 .value-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.02em; }
 .value-desc { font-size: 13px; line-height: 1.6; color: var(--text2); }
+
+/* ── Zigzag Timeline ── */
+.tl-zz { display: grid; grid-template-columns: 1fr 36px 1fr; position: relative; margin-top: 48px; }
+.tl-zz::before {
+  content: ''; position: absolute;
+  left: calc(50% - 1px); top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  pointer-events: none;
+}
+.tl-zz-node { display: flex; justify-content: center; padding-top: 4px; position: relative; z-index: 1; }
+.tl-zz-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--white);
+  box-shadow: 0 0 0 3px rgba(46,124,246,.2); flex-shrink: 0;
+}
+.tl-zz-content { padding: 0 28px 48px; text-align: right; }
+.tl-zz-content.right { text-align: left; padding: 0 0 48px 28px; }
+.tl-zz-spacer { padding-bottom: 48px; }
+.tl-zz-year { font: 700 20px/1 var(--mono); color: var(--accent); margin-bottom: 10px; }
+.tl-zz-desc { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 4px; }
+.tl-zz-sub { font-size: 13px; color: var(--text2); line-height: 1.6; }
 
 /* ── Company Info row ── */
 .company-info-table { width: 100%; border-collapse: collapse; }
@@ -103,23 +172,53 @@
 }
 
 /* ── Location ── */
-.location-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.loc-block { display: flex; flex-direction: column; gap: 28px; }
 .map-placeholder {
   border-radius: var(--radius); background: var(--gray-bg2); border: 1.5px solid var(--border);
-  aspect-ratio: 4/3; display: flex; flex-direction: column;
+  aspect-ratio: 21/8; width: 100%;
+  display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 16px;
   color: var(--text3);
 }
 .map-placeholder svg { width: 48px; height: 48px; opacity: .4; }
 .map-placeholder p { font-size: 14px; font-weight: 500; }
 .map-btn { margin-top: 8px; }
-.location-info { display: flex; flex-direction: column; gap: 24px; }
-.loc-item { display: flex; flex-direction: column; gap: 6px; }
-.loc-label { font: 700 11px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
-.loc-val { font-size: 15px; color: var(--text); line-height: 1.6; }
-.transport-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
-.transport-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text2); line-height: 1.5; }
-.transport-list li svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+.loc-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.loc-item {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--border);
+}
+.loc-item:last-child { border-right: none; }
+.loc-label { font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent); }
+.loc-val { font-size: 14px; color: var(--text); line-height: 1.6; }
+.loc-transport {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.loc-transport-title {
+  font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase;
+  color: var(--accent); padding: 16px 24px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.transport-list { list-style: none; display: flex; flex-direction: row; flex-wrap: wrap; gap: 0; margin: 0; }
+.transport-list li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--text2); line-height: 1.5;
+  padding: 14px 24px;
+  border-right: 1px solid var(--border);
+}
+.transport-list li:last-child { border-right: none; }
+.transport-list li svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
@@ -128,13 +227,64 @@
 @media (max-width: 768px) {
   .greeting-quote { padding: 36px 28px; }
   .greeting-quote blockquote { font-size: 17px; }
-  .mv-grid { grid-template-columns: 1fr; }
+  .mv-item { grid-template-columns: 1fr; }
+  .mv-visual { min-height: 180px; order: 0 !important; }
+  .mv-content { margin-left: 0; margin-right: 0; margin-top: 0; }
   .values-grid { grid-template-columns: repeat(2,1fr); }
-  .location-wrap { grid-template-columns: 1fr; }
-  .company-info-table th { width: 100px; }
+  .loc-info-grid { grid-template-columns: repeat(2, 1fr); }
+  .loc-item:nth-child(odd) { border-right: 1px solid var(--border); }
+  .loc-item:nth-child(even) { border-right: none; }
+  .loc-item { border-bottom: 1px solid var(--border); }
+  .loc-item:nth-last-child(-n+2) { border-bottom: none; }
+  .transport-list { flex-direction: column; }
+  .transport-list li { border-right: none; border-bottom: 1px solid var(--border); }
+  .transport-list li:last-child { border-bottom: none; }
+  .co-layout { grid-template-columns: 1fr; }
+  .tl-zz { grid-template-columns: 1fr; }
+  .tl-zz-node, .tl-zz-spacer { display: none; }
+  .tl-zz::before { display: none; }
+  .tl-zz-content, .tl-zz-content.right { padding: 0 0 32px 24px; text-align: left; border-left: 2px solid var(--border); position: relative; }
+  .tl-zz-content::before { content: ''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--white); box-shadow: 0 0 0 3px rgba(46,124,246,.2); }
 }
 @media (max-width: 480px) {
   .values-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+/* ── Floating CTA ── */
+#floating-cta {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  z-index: 950;
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(14,32,64,0.92);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  padding: 10px 10px 10px 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(46,124,246,.15);
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s, visibility .4s, transform .4s;
+  white-space: nowrap;
+}
+#floating-cta.visible {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+.fcta-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: -0.01em; }
+.fcta-btn {
+  display: flex; align-items: center; gap: 7px;
+  font: 600 13px/1 var(--font); color: var(--white);
+  text-decoration: none;
+  background: var(--accent);
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(46,124,246,.5);
+  transition: background .2s, gap .2s;
+}
+.fcta-btn svg { width: 14px; height: 14px; transition: transform .2s; }
+.fcta-btn:hover { background: #1a6ae0; gap: 10px; }
+.fcta-btn:hover svg { transform: translateX(2px); }
+@media (max-width: 480px) {
+  #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
+  .fcta-text { font-size: 13px; }
 }
 
 /* ── 탭 전환 — 한 번에 하나씩 표시 ── */
@@ -222,23 +372,8 @@
 
 <main class="page-wrap">
 
-  <!-- HERO -->
-  <section class="page-hero">
-    <div class="page-hero-inner">
-      <div class="hero-overline">About Us</div>
-      <h1>세포로 만드는<br><span>더 나은 미래</span></h1>
-      <p>지니셀바이오는 첨단바이오의약품 CDMO 전문기업으로, 세포·유전자 치료제의 개발·생산·인허가를 원스톱으로 지원합니다.</p>
-      <div class="hero-tags">
-        <span class="hero-tag">CDMO</span>
-        <span class="hero-tag">GMP 시설</span>
-        <span class="hero-tag">첨단바이오의약품</span>
-        <span class="hero-tag">세포·유전자 치료제</span>
-      </div>
-    </div>
-  </section>
-
   <!-- TAB NAV -->
-  <nav class="tab-nav" id="about-tabs" aria-label="회사소개 메뉴">
+  <nav class="tab-nav svc-tab-nav" id="about-tabs" aria-label="회사소개 메뉴">
     <div class="tab-nav-inner">
       <a href="#greeting" class="tab-item active" data-target="greeting">인사말</a>
       <a href="#company"  class="tab-item"        data-target="company">회사소개</a>
@@ -251,35 +386,55 @@
   ──────────────────────────── -->
   <section id="greeting" class="tab-section section tab-offset">
     <div class="inner">
-      <div class="section-label">CEO Message</div>
       <h2 class="section-h2">대표이사 <span>인사말</span></h2>
       <p class="section-sub">지니셀바이오를 찾아주신 여러분께 진심으로 감사드립니다.</p>
 
-      <div class="greeting-quote">
-        <blockquote>
-          "첨단바이오의약품은 더 이상 미래의 이야기가 아닙니다.<br>
-          지니셀바이오는 <span>세포·유전자 치료제의 개발과 상업화</span>라는 험난한 여정을,<br>
-          고객과 함께 가장 안전하고 빠른 길로 완주하는 파트너가 되겠습니다."
-        </blockquote>
-        <div class="greeting-sig">
-          <div class="greeting-avatar">G</div>
-          <div class="greeting-sig-info">
+      <div class="greeting-layout">
+        <!-- 이미지 박스 -->
+        <div class="greeting-img-box">
+          <div class="greeting-img-placeholder"></div>
+          <div class="greeting-caption">
             <div class="greeting-sig-name">홍길동</div>
             <div class="greeting-sig-role">대표이사 · CEO, GenicellBio</div>
           </div>
         </div>
+        <!-- 인사말 텍스트 -->
+        <div class="greeting-text">
+          <div class="greeting-quote">
+            <blockquote>
+              "첨단바이오의약품은 더 이상 미래의 이야기가 아닙니다.<br>
+              지니셀바이오는 <span>세포·유전자 치료제의 개발과 상업화</span>라는 험난한 여정을,<br>
+              고객과 함께 가장 안전하고 빠른 길로 완주하는 파트너가 되겠습니다."
+            </blockquote>
+          </div>
+          <div class="greeting-body">
+            <p>저희 지니셀바이오는 2020년 설립 이후, GMP 인증 시설을 기반으로 세포·유전자 치료제 분야의 위탁생산(CMO), 품질시험(QC), 인허가 컨설팅(RA) 서비스를 제공해 왔습니다.</p>
+            <p>연구자와 제약사가 치료제 개발에만 집중할 수 있도록, 복잡한 규제와 공정의 모든 과정을 함께 해결해 드리겠습니다.</p>
+            <p>더 많은 환자에게 더 빨리 치료제가 닿을 수 있도록, 지니셀바이오가 든든한 파트너가 되겠습니다.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="mv-grid">
-        <div class="mv-card mission">
-          <div class="mv-overline">Mission</div>
-          <h3>검증된 GMP 역량으로<br>치료제 개발의 장벽을 낮춘다</h3>
-          <p>세포·유전자 치료제 개발사가 핵심 연구에 집중할 수 있도록, CMO·QC·RA 전 과정을 책임지고 지원합니다.</p>
+      <div class="mv-items">
+        <div class="mv-item mission">
+          <div class="mv-visual">
+            <div class="mv-visual-inner"><span class="mv-big-label">Mission</span></div>
+          </div>
+          <div class="mv-content">
+            <div class="mv-overline">Mission</div>
+            <h3>검증된 GMP 역량으로<br>치료제 개발의 장벽을 낮춘다</h3>
+            <p>세포·유전자 치료제 개발사가 핵심 연구에 집중할 수 있도록, CMO·QC·RA 전 과정을 책임지고 지원합니다.</p>
+          </div>
         </div>
-        <div class="mv-card vision">
-          <div class="mv-overline">Vision</div>
-          <h3>아시아 최고의<br>첨단바이오 CDMO 파트너</h3>
-          <p>2030년까지 국내외 50개 이상의 파이프라인을 지원하여, 아시아 시장을 선도하는 CDMO로 성장합니다.</p>
+        <div class="mv-item vision">
+          <div class="mv-visual">
+            <div class="mv-visual-inner"><span class="mv-big-label">Vision</span></div>
+          </div>
+          <div class="mv-content">
+            <div class="mv-overline">Vision</div>
+            <h3>아시아 최고의<br>첨단바이오 CDMO 파트너</h3>
+            <p>2030년까지 국내외 50개 이상의 파이프라인을 지원하여, 아시아 시장을 선도하는 CDMO로 성장합니다.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -288,9 +443,8 @@
   <!-- ────────────────────────
        S2. 회사소개
   ──────────────────────────── -->
-  <section id="company" class="tab-section section alt tab-offset">
+  <section id="company" class="tab-section section tab-offset">
     <div class="inner">
-      <div class="section-label">Company</div>
       <h2 class="section-h2">회사 <span>개요</span></h2>
       <p class="section-sub">지니셀바이오는 2020년 설립된 첨단바이오의약품 CDMO 전문기업입니다.</p>
 
@@ -319,73 +473,76 @@
         <tr><th>본사</th><td>서울특별시 마포구 (세포처리시설 : 경기도 성남시)</td></tr>
       </tbody></table>
 
-      <!-- 핵심 가치 -->
-      <div class="section-label section-label-mt">Core Values</div>
-      <h2 class="section-h2">핵심 <span>가치</span></h2>
+      <h2 class="section-h2 section-h2-mt">핵심 <span>가치</span></h2>
 
       <div class="values-grid">
         <div class="value-card">
-          <div class="value-emoji">🔬</div>
           <div class="value-name">과학적 엄밀성</div>
           <div class="value-desc">데이터와 근거 중심의 의사결정으로 최고 수준의 품질을 유지합니다.</div>
         </div>
         <div class="value-card">
-          <div class="value-emoji">🤝</div>
           <div class="value-name">신뢰와 투명성</div>
           <div class="value-desc">고객과의 소통에서 언제나 정직하고 투명한 파트너십을 지향합니다.</div>
         </div>
         <div class="value-card">
-          <div class="value-emoji">⚡</div>
           <div class="value-name">민첩한 실행력</div>
           <div class="value-desc">빠르게 변화하는 규제 환경과 프로젝트 요구에 유연하게 대응합니다.</div>
         </div>
         <div class="value-card">
-          <div class="value-emoji">🌱</div>
           <div class="value-name">지속 가능한 혁신</div>
           <div class="value-desc">환자의 삶을 바꾸는 치료제가 세상에 나올 수 있도록 끊임없이 혁신합니다.</div>
         </div>
       </div>
 
-      <!-- 연혁 -->
-      <div class="section-label section-label-mt-lg">History</div>
-      <h2 class="section-h2">회사 <span>연혁</span></h2>
+      <h2 class="section-h2 section-h2-mt">회사 <span>연혁</span></h2>
 
-      <div class="timeline timeline-mt">
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2020</div>
-          <div class="tl-desc">주식회사 지니셀바이오 설립</div>
-          <div class="tl-sub">서울 마포구 소재, 첨단바이오의약품 CDMO 사업 개시</div>
+      <div class="tl-zz">
+        <div class="tl-zz-content">
+          <div class="tl-zz-year">2020</div>
+          <div class="tl-zz-desc">주식회사 지니셀바이오 설립</div>
+          <div class="tl-zz-sub">서울 마포구 소재, 첨단바이오의약품 CDMO 사업 개시</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2021</div>
-          <div class="tl-desc">식약처 GMP 인증 취득 · 인체세포등 관리업 허가</div>
-          <div class="tl-sub">경기 성남시 세포처리시설 착공 및 ISO Class 7 클린룸 구축</div>
+        <div class="tl-zz-node"><div class="tl-zz-dot"></div></div>
+        <div class="tl-zz-spacer"></div>
+
+        <div class="tl-zz-spacer"></div>
+        <div class="tl-zz-node"><div class="tl-zz-dot"></div></div>
+        <div class="tl-zz-content right">
+          <div class="tl-zz-year">2021</div>
+          <div class="tl-zz-desc">식약처 GMP 인증 취득 · 인체세포등 관리업 허가</div>
+          <div class="tl-zz-sub">경기 성남시 세포처리시설 착공 및 ISO Class 7 클린룸 구축</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2022</div>
-          <div class="tl-desc">첫 CDMO 상업 계약 체결 · 임상 1상 배치 생산 완료</div>
-          <div class="tl-sub">줄기세포 치료제 IND 승인 대관 대행 성공</div>
+
+        <div class="tl-zz-content">
+          <div class="tl-zz-year">2022</div>
+          <div class="tl-zz-desc">첫 CDMO 상업 계약 체결 · 임상 1상 배치 생산 완료</div>
+          <div class="tl-zz-sub">줄기세포 치료제 IND 승인 대관 대행 성공</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2023</div>
-          <div class="tl-desc">시설 증설 완료 (클린룸 2개 라인 추가)</div>
-          <div class="tl-sub">CAR-T 세포치료제 공정 이전·생산 첫 수행, 누적 파이프라인 15개 돌파</div>
+        <div class="tl-zz-node"><div class="tl-zz-dot"></div></div>
+        <div class="tl-zz-spacer"></div>
+
+        <div class="tl-zz-spacer"></div>
+        <div class="tl-zz-node"><div class="tl-zz-dot"></div></div>
+        <div class="tl-zz-content right">
+          <div class="tl-zz-year">2023</div>
+          <div class="tl-zz-desc">시설 증설 완료 (클린룸 2개 라인 추가)</div>
+          <div class="tl-zz-sub">CAR-T 세포치료제 공정 이전·생산 첫 수행, 누적 파이프라인 15개 돌파</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2024</div>
-          <div class="tl-desc">시리즈 A 투자 유치 · 글로벌 CDMO 파트너십 체결</div>
-          <div class="tl-sub">일본·싱가포르 파이프라인 지원 개시, 임직원 50명 돌파</div>
+
+        <div class="tl-zz-content">
+          <div class="tl-zz-year">2024</div>
+          <div class="tl-zz-desc">시리즈 A 투자 유치 · 글로벌 CDMO 파트너십 체결</div>
+          <div class="tl-zz-sub">일본·싱가포르 파이프라인 지원 개시, 임직원 50명 돌파</div>
         </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2025 ~</div>
-          <div class="tl-desc">아시아 Top 3 첨단바이오 CDMO를 향한 도약</div>
-          <div class="tl-sub">신규 GMP 시설 착공, 상업 배치 생산 역량 확보</div>
+        <div class="tl-zz-node"><div class="tl-zz-dot"></div></div>
+        <div class="tl-zz-spacer"></div>
+
+        <div class="tl-zz-spacer"></div>
+        <div class="tl-zz-node"><div class="tl-zz-dot"></div></div>
+        <div class="tl-zz-content right">
+          <div class="tl-zz-year">2025 ~</div>
+          <div class="tl-zz-desc">아시아 Top 3 첨단바이오 CDMO를 향한 도약</div>
+          <div class="tl-zz-sub">신규 GMP 시설 착공, 상업 배치 생산 역량 확보</div>
         </div>
       </div>
     </div>
@@ -396,26 +553,20 @@
   ──────────────────────────── -->
   <section id="location" class="tab-section section tab-offset">
     <div class="inner">
-      <div class="section-label">Location</div>
       <h2 class="section-h2">오시는 <span>길</span></h2>
       <p class="section-sub">본사 및 세포처리시설 위치를 안내드립니다.</p>
 
-      <!-- 본사 -->
-      <h3 class="location-h3">
-        🏢 본사 (서울)
-      </h3>
-      <div class="location-wrap">
+      <h3 class="location-h3">본사 (서울)</h3>
+      <div class="loc-block">
         <div class="map-placeholder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
             <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
           </svg>
           <p>서울특별시 마포구 본사</p>
-          <a href="https://map.naver.com/v5/search/서울특별시+마포구" target="_blank" rel="noopener noreferrer" class="btn-outline map-btn">
-            네이버 지도 열기 →
-          </a>
+          <a href="https://map.naver.com/v5/search/서울특별시+마포구" target="_blank" rel="noopener noreferrer" class="btn-outline map-btn">네이버 지도 열기 →</a>
         </div>
-        <div class="location-info">
+        <div class="loc-info-grid">
           <div class="loc-item">
             <span class="loc-label">주소</span>
             <span class="loc-val">서울특별시 마포구 월드컵북로 000<br>GenicellBio 빌딩 4·5층</span>
@@ -430,44 +581,39 @@
           </div>
           <div class="loc-item">
             <span class="loc-label">운영시간</span>
-            <span class="loc-val">평일 09:00 – 18:00 (주말·공휴일 휴무)</span>
+            <span class="loc-val">평일 09:00 – 18:00<br>(주말·공휴일 휴무)</span>
           </div>
-          <div class="loc-item">
-            <span class="loc-label">교통 안내</span>
-            <ul class="transport-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-                지하철 2호선 홍대입구역 3번 출구 도보 5분
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-                공항철도 홍대입구역 연결
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-                주차 가능 (방문 전 사전 예약 필요)
-              </li>
-            </ul>
-          </div>
+        </div>
+        <div class="loc-transport">
+          <div class="loc-transport-title">교통 안내</div>
+          <ul class="transport-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+              지하철 2호선 홍대입구역 3번 출구 도보 5분
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+              공항철도 홍대입구역 연결
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+              주차 가능 (방문 전 사전 예약 필요)
+            </li>
+          </ul>
         </div>
       </div>
 
-      <!-- 세포처리시설 -->
-      <h3 class="location-h3 location-h3-mt">
-        🧫 세포처리시설 (경기·성남)
-      </h3>
-      <div class="location-wrap">
+      <h3 class="location-h3 location-h3-mt">세포처리시설 (경기·성남)</h3>
+      <div class="loc-block">
         <div class="map-placeholder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
             <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
           </svg>
           <p>경기도 성남시 세포처리시설</p>
-          <a href="https://map.naver.com/v5/search/경기도+성남시" target="_blank" rel="noopener noreferrer" class="btn-outline map-btn">
-            네이버 지도 열기 →
-          </a>
+          <a href="https://map.naver.com/v5/search/경기도+성남시" target="_blank" rel="noopener noreferrer" class="btn-outline map-btn">네이버 지도 열기 →</a>
         </div>
-        <div class="location-info">
+        <div class="loc-info-grid">
           <div class="loc-item">
             <span class="loc-label">주소</span>
             <span class="loc-val">경기도 성남시 분당구 판교로 000<br>GenicellBio 세포처리시설동</span>
@@ -477,32 +623,27 @@
             <span class="loc-val">031-000-0000</span>
           </div>
           <div class="loc-item">
-            <span class="loc-label">교통 안내</span>
-            <ul class="transport-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-                신분당선 판교역 2번 출구 도보 10분
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
-                시설 방문은 사전 예약 필수
-              </li>
-            </ul>
+            <span class="loc-label">이메일</span>
+            <span class="loc-val">contact@genicellbio.com</span>
+          </div>
+          <div class="loc-item">
+            <span class="loc-label">방문 안내</span>
+            <span class="loc-val">사전 예약 필수<br>(무단 방문 불가)</span>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-inner">
-      <div class="cta-label">Contact Us</div>
-      <h2>함께 시작할 준비가<br><span>되셨나요?</span></h2>
-      <p>어느 개발 단계에서든 상담 가능합니다. 전문가가 직접 안내드립니다.</p>
-      <div class="cta-btns">
-        <a href="support.html#contact" class="btn-primary">문의하기 →</a>
-        <a href="mailto:contact@genicellbio.com" class="btn-ghost">이메일 보내기 →</a>
+        <div class="loc-transport">
+          <div class="loc-transport-title">교통 안내</div>
+          <ul class="transport-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+              신분당선 판교역 2번 출구 도보 10분
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+              시설 방문은 사전 예약 필수
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -517,7 +658,21 @@
 
 </main>
 
+<div id="floating-cta">
+  <span class="fcta-text">전문가에게 직접 물어보세요</span>
+  <a href="support.html#contact" class="fcta-btn">문의하기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+
 <script>
+// ── Floating CTA 가시성 ──
+(function() {
+  var el = document.getElementById('floating-cta');
+  if (!el) return;
+  window.addEventListener('scroll', function() {
+    el.classList.toggle('visible', window.scrollY > 120);
+  }, { passive: true });
+})();
+
 // ── 탭 전환 (섹션 show/hide) ──
 (function() {
   const sections = document.querySelectorAll('.tab-section');
@@ -548,7 +703,34 @@
   showTab(initial);
 })();
 
-// 드로어 토글 + aria-expanded + 바깥 탭 닫기
+// ── MV 스크롤 리빌 애니메이션 ──
+(function() {
+  function observeMV() {
+    const items = document.querySelectorAll('.mv-item');
+    if (!items.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18 });
+    items.forEach(el => io.observe(el));
+  }
+  observeMV();
+
+  // 탭 전환 시 재관찰 (display:none → block 후 다시 체크)
+  document.querySelectorAll('#about-tabs .tab-item').forEach(tab => {
+    tab.addEventListener('click', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.mv-item:not(.in-view)').forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 0.85) el.classList.add('in-view');
+        });
+      }, 120);
+    });
+  });
+})();
+
+
 (function() {
   const ham    = document.getElementById('gcb-ham');
   const drawer = document.getElementById('gcb-drawer');

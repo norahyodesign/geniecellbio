@@ -14,38 +14,109 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="tokens.css">
 <style>
-/* ── CDMO 전용: hero (page-hero와 다른 dark navy gradient) ── */
-.cdmo-hero {
-  background: linear-gradient(160deg, #071525 0%, #0e2040 60%, #0a1a35 100%);
-  padding: 100px 32px 80px;
-  position: relative; overflow: hidden; text-align: center;
+/* ── Floating CTA ── */
+#floating-cta {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  z-index: 950;
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(14,32,64,0.92);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  padding: 10px 10px 10px 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(46,124,246,.15);
+  opacity: 0; visibility: hidden;
+  transition: opacity .4s, visibility .4s, transform .4s;
+  white-space: nowrap;
 }
-.cdmo-hero::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(46,124,246,.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 60%, rgba(91,184,246,.10) 0%, transparent 50%);
-  pointer-events: none;
+#floating-cta.visible {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
 }
-.cdmo-hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
-.cdmo-hero h1 {
-  font-size: clamp(32px, 5vw, 58px); font-weight: 700;
-  line-height: 1.18; letter-spacing: -0.04em; color: var(--white); margin-bottom: 24px;
+.fcta-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: -0.01em; }
+.fcta-btn {
+  display: flex; align-items: center; gap: 7px;
+  font: 600 13px/1 var(--font); color: var(--white);
+  text-decoration: none;
+  background: var(--accent);
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(46,124,246,.5);
+  transition: background .2s, gap .2s;
 }
-.cdmo-hero h1 span {
-  background: linear-gradient(90deg, #5BB8F6, #a8dcff);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+.fcta-btn svg { width: 14px; height: 14px; transition: transform .2s; }
+.fcta-btn:hover { background: #1a6ae0; gap: 10px; }
+.fcta-btn:hover svg { transform: translateX(2px); }
+@media (max-width: 480px) {
+  #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
+  .fcta-text { font-size: 13px; }
 }
-.cdmo-hero p {
-  font-size: 17px; line-height: 1.7; color: rgba(255,255,255,.55);
-  max-width: 560px; margin: 0 auto;
+
+/* ── Service Slider ── */
+.svc-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21/8;
+  overflow: hidden;
+  background: #ECEEF2;
 }
-@media (max-width: 768px) {
-  .cdmo-hero { padding: 80px 20px 60px; }
+.svc-slides {
+  display: flex;
+  height: 100%;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.svc-slide {
+  min-width: 100%;
+  height: 100%;
+}
+.svc-slide-img {
+  width: 100%;
+  height: 100%;
+  background: #ECEEF2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+.svc-slide:nth-child(2) .svc-slide-img { background: #E4E7EF; }
+.svc-slide:nth-child(3) .svc-slide-img { background: #DAE0EA; }
+.svc-slide-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.svc-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(6px);
+  border: none; border-radius: 50%;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
+  transition: background .2s, opacity .2s;
+  opacity: 0.7;
+}
+.svc-arrow:hover { background: #fff; opacity: 1; }
+.svc-arrow svg { width: 20px; height: 20px; }
+.svc-arrow.prev { left: 16px; }
+.svc-arrow.next { right: 16px; }
+.svc-dots {
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 10;
+}
+.svc-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.5); border: none; padding: 0; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.svc-dot.is-active { background: #fff; transform: scale(1.3); }
+@media (max-width: 600px) {
+  .svc-arrow { width: 36px; height: 36px; }
+  .svc-arrow svg { width: 16px; height: 16px; }
 }
 </style>
 </head>
@@ -129,17 +200,34 @@
 
 <main class="page-wrap">
 
-  <!-- HERO -->
-  <section class="cdmo-hero">
-    <div class="cdmo-hero-inner">
-      <div class="hero-overline">CDMO Service</div>
-      <h1>첨단바이오의약품<br><span>위탁개발·생산·인허가</span></h1>
-      <p>GMP 인증 시설과 전문 인력으로 임상 생산부터 품질시험, 식약처 인허가까지 전 과정을 원스톱으로 지원합니다.</p>
+  <!-- 이미지 슬라이더 -->
+  <div class="svc-slider" id="svc-slider">
+    <div class="svc-slides">
+      <div class="svc-slide">
+        <div class="svc-slide-img"><!-- 이미지 1: <img src="" alt=""> --></div>
+      </div>
+      <div class="svc-slide">
+        <div class="svc-slide-img"><!-- 이미지 2: <img src="" alt=""> --></div>
+      </div>
+      <div class="svc-slide">
+        <div class="svc-slide-img"><!-- 이미지 3: <img src="" alt=""> --></div>
+      </div>
     </div>
-  </section>
+    <button type="button" class="svc-arrow prev" aria-label="이전 슬라이드">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 5l-5 5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" class="svc-arrow next" aria-label="다음 슬라이드">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="svc-dots">
+      <button type="button" class="svc-dot is-active" aria-label="슬라이드 1"></button>
+      <button type="button" class="svc-dot" aria-label="슬라이드 2"></button>
+      <button type="button" class="svc-dot" aria-label="슬라이드 3"></button>
+    </div>
+  </div>
 
   <!-- CDMO SERVICE TABS -->
-  <nav class="tab-nav" id="cdmo-tabs" aria-label="서비스 탭 메뉴">
+  <nav class="tab-nav svc-tab-nav" id="cdmo-tabs" aria-label="CDMO 세부 서비스">
     <div class="tab-nav-inner">
       <button type="button" class="tab-item" data-svc="cmo">CMO · 위탁생산</button>
       <button type="button" class="tab-item" data-svc="qc">QC · 위탁품질시험</button>
@@ -152,7 +240,6 @@
   <!-- OVERVIEW -->
   <section class="section">
     <div class="inner">
-      <div class="section-label">Overview</div>
       <h2 class="section-h2">왜 지니셀바이오 <span>CDMO</span>인가?</h2>
       <p class="section-sub">복잡한 규제 환경과 고도화된 공정 요구사항, 혼자 감당하지 않아도 됩니다. 당사의 전문 역량이 리스크를 최소화합니다.</p>
       <div class="overview-grid">
@@ -177,7 +264,6 @@
   <!-- PROCESS -->
   <section class="section">
     <div class="inner">
-      <div class="section-label">Process</div>
       <h2 class="section-h2">서비스 <span>진행 절차</span></h2>
       <p class="section-sub">초기 상담부터 제품 출하까지 단계별로 투명하게 진행됩니다.</p>
       <div class="process-list">
@@ -221,9 +307,8 @@
   </section>
 
   <!-- STRENGTHS -->
-  <section class="section alt">
+  <section class="section">
     <div class="inner">
-      <div class="section-label">Why Us</div>
       <h2 class="section-h2">지니셀바이오만의 <span>강점</span></h2>
       <p class="section-sub">검증된 경험과 전문 인프라로 경쟁사 대비 차별화된 가치를 제공합니다.</p>
       <div class="strengths-grid">
@@ -267,18 +352,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-inner">
-      <div class="cta-label">Contact Us</div>
-      <h2>CDMO 서비스<br><span>문의하기</span></h2>
-      <p>어느 개발 단계에서든 상담 가능합니다. 간단한 정보만으로 맞춤 견적을 안내드립니다.</p>
-      <div class="cta-btns">
-        <a href="mailto:contact@genicellbio.com" class="btn-primary">이메일 문의 →</a>
-        <a href="tel:0212345678" class="btn-ghost">전화 상담 →</a>
-      </div>
-    </div>
-  </section>
 
   </div><!-- /default-sections -->
 
@@ -465,7 +538,6 @@
 
   </div><!-- /svc-detail-section -->
 
-  <!-- FOOTER -->
   <footer class="page-footer">
     <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
     <div class="footer-links">
@@ -476,12 +548,56 @@
 
 </main>
 
+<div id="floating-cta">
+  <span class="fcta-text">전문가에게 직접 물어보세요</span>
+  <a href="support.html#contact" class="fcta-btn">문의하기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+
+<script>
+(function() {
+  var el = document.getElementById('floating-cta');
+  if (!el) return;
+  window.addEventListener('scroll', function() {
+    el.classList.toggle('visible', window.scrollY > 120);
+  }, { passive: true });
+})();
+</script>
+
+<script>
+(function() {
+  var slider  = document.getElementById('svc-slider');
+  if (!slider) return;
+  var track   = slider.querySelector('.svc-slides');
+  var slides  = slider.querySelectorAll('.svc-slide');
+  var dots    = slider.querySelectorAll('.svc-dot');
+  var cur     = 0;
+  var timer;
+
+  function go(n) {
+    cur = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('is-active', i === cur); });
+  }
+
+  slider.querySelector('.prev').addEventListener('click', function() { go(cur - 1); resetTimer(); });
+  slider.querySelector('.next').addEventListener('click', function() { go(cur + 1); resetTimer(); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); resetTimer(); }); });
+
+  function startTimer() { timer = setInterval(function() { go(cur + 1); }, 4000); }
+  function resetTimer() { clearInterval(timer); startTimer(); }
+  startTimer();
+  slider.addEventListener('mouseenter', function() { clearInterval(timer); });
+  slider.addEventListener('mouseleave', startTimer);
+})();
+</script>
+
 <script>
 (function() {
   var tabs            = document.querySelectorAll('#cdmo-tabs .tab-item');
   var defaultSections = document.getElementById('default-sections');
   var detailSection   = document.getElementById('svc-detail-section');
   var detailViews     = document.querySelectorAll('.svc-detail-view');
+  var slider          = document.getElementById('svc-slider');
 
   function showDefault() {
     tabs.forEach(function(t) { t.classList.remove('active'); });
@@ -489,6 +605,7 @@
     detailSection.setAttribute('hidden', '');
     detailSection.classList.remove('open');
     defaultSections.style.display = '';
+    if (slider) slider.style.display = '';
   }
 
   // 뒤로가기 버튼
@@ -511,6 +628,9 @@
       tabs.forEach(function(t) { t.classList.remove('active'); });
       this.classList.add('active');
 
+      // 슬라이더 숨기기
+      if (slider) slider.style.display = 'none';
+
       // 기본 섹션 숨기기
       defaultSections.style.display = 'none';
 
@@ -524,6 +644,7 @@
       detailSection.removeAttribute('hidden');
       void detailSection.offsetWidth;
       detailSection.classList.add('open');
+      window.scrollTo(0, 0);
     });
   });
 })();

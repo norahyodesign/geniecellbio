@@ -14,8 +14,11 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="tokens.css">
 <style>
 /* ── Contact 2-column layout ── */
@@ -159,7 +162,7 @@
   </section>
 
   <!-- TAB NAV -->
-  <nav class="tab-nav" id="support-tabs" aria-label="지원 메뉴">
+  <nav class="tab-nav svc-tab-nav" id="support-tabs" aria-label="지원 메뉴">
     <div class="tab-nav-inner">
       <a href="#qna"     class="tab-item active" data-target="qna">자주 묻는 질문</a>
       <a href="#contact" class="tab-item"        data-target="contact">문의하기</a>
@@ -379,7 +382,7 @@
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) activate(e.target.id); });
-  }, { rootMargin: `-${60 + 48 + 8}px 0px -45% 0px`, threshold: 0 });
+  }, { rootMargin: `-${60 + 60 + 8}px 0px -45% 0px`, threshold: 0 });
 
   sections.forEach(s => observer.observe(s));
   tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.target)));

@@ -39,12 +39,12 @@
   --radius-xs: 8px;
 
   /* ── Layout ── */
-  --nav-h:  60px;
-  --tab-h:  60px;
-  --max-w:  1080px;
+  --nav-h:     60px;
+  --tab-h:     60px;
+  --max-w:     1080px;
 
   /* ── Typography ── */
-  --font: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', 'Courier New', monospace;
 
   /* ── Shadow ── */
@@ -125,6 +125,8 @@ body { background: var(--white); color: var(--text); }
 .nav-link svg { width: 12px; height: 12px; transition: transform .25s; flex-shrink: 0; }
 .nav-item:hover > .nav-link { color: var(--navy); background: var(--gray-bg); }
 .nav-item:hover > .nav-link svg { transform: rotate(180deg); }
+.nav-item.open > .nav-link { color: var(--navy); background: var(--gray-bg); }
+.nav-item.open > .nav-link svg { transform: rotate(180deg); }
 
 /* 현재 페이지 섹션 강조 */
 .nav-item.is-active > .nav-link { color: var(--accent); background: var(--accent-light); }
@@ -140,6 +142,10 @@ body { background: var(--white); color: var(--text); }
   z-index: 10;
 }
 .nav-item:hover .nav-drop {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-item.open .nav-drop {
   opacity: 1; visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
@@ -341,6 +347,45 @@ body { background: var(--white); color: var(--text); }
 }
 
 /* ══════════════════════════════════
+   SERVICE PAGE NAV — 슬라이더 오버레이 버튼
+══════════════════════════════════ */
+.svc-page-nav {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 20;
+  white-space: nowrap;
+}
+.svc-page-link {
+  display: inline-flex; align-items: center;
+  padding: 9px 22px; border-radius: 50px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text2);
+  text-decoration: none;
+  background: rgba(255,255,255,0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  font-family: var(--font);
+  transition: background .18s, color .18s, border-color .18s;
+}
+.svc-page-link:hover { background: #fff; color: var(--navy); border-color: rgba(14,32,64,0.2); }
+.svc-page-link.is-active {
+  background: #fff;
+  color: var(--navy);
+  border-color: rgba(14,32,64,0.25);
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+}
+@media (max-width: 600px) {
+  .svc-page-link { padding: 7px 14px; font-size: 12px; }
+}
+
+/* ══════════════════════════════════
    TAB NAV — 통합 페이지 (about / support)
 ══════════════════════════════════ */
 .tab-nav {
@@ -388,6 +433,34 @@ body { background: var(--white); color: var(--text); }
   transform: translateY(-1px);
 }
 .tab-item:active { transform: translateY(0); opacity: 0.85; }
+
+/* 서비스 페이지 언더라인 탭 */
+.svc-tab-nav .tab-item {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text3);
+  padding: 0 20px;
+  height: 100%;
+  border-bottom: 2px solid transparent;
+  transform: none;
+}
+.svc-tab-nav .tab-item:hover {
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border);
+  box-shadow: none;
+  transform: none;
+}
+.svc-tab-nav .tab-item.active {
+  color: var(--navy);
+  background: transparent;
+  border-color: var(--navy);
+  box-shadow: none;
+  font-weight: 600;
+  transform: none;
+}
 
 /* ══════════════════════════════════
    CARD — 범용 컨텐츠 카드
@@ -930,10 +1003,12 @@ body { background: var(--white); color: var(--text); }
 .section-label-mt-lg { margin-top: 72px; }
 /* 위치 섹션 소제목 */
 .location-h3 {
-  font-size: 18px; font-weight: 700;
-  color: var(--text); letter-spacing: -0.02em;
+  font-size: clamp(20px, 2.4vw, 28px); font-weight: 700;
+  color: var(--navy); letter-spacing: -0.03em; line-height: 1.3;
   margin-bottom: 28px;
 }
-.location-h3-mt { margin: 64px 0 28px; }
+.location-h3-mt { margin: 72px 0 28px; }
 /* 타임라인 간격 */
 .timeline-mt { margin-top: 40px; }
+/* 섹션 내 헤더 상단 간격 */
+.section-h2-mt { margin-top: 72px; }

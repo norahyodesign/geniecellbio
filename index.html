@@ -14,8 +14,11 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="tokens.css">
 <style>
 /* ────────────────────────────────
@@ -380,9 +383,9 @@ body {
 }
 .stat-num {
   font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
-  color: var(--navy); line-height: 1; margin-bottom: 6px;
+  color: var(--accent); line-height: 1; margin-bottom: 6px;
 }
-.stat-num span { color: var(--accent); }
+.stat-num span { color: var(--navy); font-size: 0.72em; }
 .stat-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
 .about-steps-grid {
   display: flex; flex-direction: column;
@@ -398,12 +401,17 @@ body {
 .step-row.reverse .step-img-placeholder { order: -1; }
 .step-text-block {
   display: flex; flex-direction: column; gap: 14px;
-  padding: clamp(8px, 1.2vh, 16px) 0;
+  padding: clamp(28px, 3.6vh, 44px) clamp(24px, 2.8vw, 40px);
   justify-content: center;
 }
 .step-num-lg {
-  font: 600 11px/1 var(--mono); color: var(--accent);
-  letter-spacing: 3px; text-transform: uppercase;
+  font: 600 11px/1 var(--font); color: var(--white);
+  letter-spacing: 0.8px; text-transform: uppercase;
+  display: inline-flex; align-items: center;
+  padding: 5px 12px;
+  background: var(--accent);
+  border-radius: 50px;
+  width: fit-content;
 }
 .step-title-lg {
   font-size: clamp(18px, 1.9vw, 24px); font-weight: 700;
@@ -556,19 +564,17 @@ body {
 
 .svc-icon {
   width: 52px; height: 52px;
-  background: rgba(46,124,246,0.14);
-  border: 1px solid rgba(46,124,246,0.25);
+  background: var(--accent);
   border-radius: 16px; display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  transition: background .35s, border-color .35s, box-shadow .35s, transform .35s;
+  transition: background .35s, box-shadow .35s, transform .35s;
 }
 .svc-card:hover .svc-icon {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border-color: transparent;
+  background: #1a6ae0;
   box-shadow: 0 8px 32px rgba(46,124,246,.45);
   transform: scale(1.08);
 }
-.svc-icon svg { width: 26px; height: 26px; color: var(--accent2); transition: color .35s; }
+.svc-icon svg { width: 26px; height: 26px; color: var(--white); transition: color .35s; }
 .svc-card:hover .svc-icon svg { color: var(--white); }
 
 .svc-badge {
