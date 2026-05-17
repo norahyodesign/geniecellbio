@@ -502,17 +502,23 @@ body { background: var(--white); color: var(--text); }
 /* ── OV CARD (숫자 통계) ── */
 .ov-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 56px; }
 .ov-card {
-  background: var(--accent); border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(46,124,246,0.10) 0%, rgba(91,184,246,0.08) 100%);
+  border: 1px solid rgba(46,124,246,0.20);
   border-radius: var(--radius); padding: 32px 28px; text-align: center;
-  transition: box-shadow .3s, transform .3s;
+  transition: transform .3s, box-shadow .3s, background .3s, border-color .3s;
 }
-.ov-card:hover { box-shadow: 0 8px 32px rgba(46,124,246,.35); transform: translateY(-4px); }
+.ov-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(46,124,246,0.18);
+  background: linear-gradient(135deg, rgba(46,124,246,0.18) 0%, rgba(91,184,246,0.14) 100%);
+  border-color: rgba(46,124,246,0.40);
+}
 .ov-num {
   font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
-  color: var(--white); margin-bottom: 8px; line-height: 1;
+  color: var(--navy); margin-bottom: 8px; line-height: 1;
 }
-.ov-num span { color: rgba(255,255,255,0.7); }
-.ov-label { font-size: 12px; color: rgba(255,255,255,0.78); line-height: 1.5; }
+.ov-num span { color: var(--accent); }
+.ov-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
 
 /* ── 2-column card grid ── */
 .card-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -733,17 +739,23 @@ body { background: var(--white); color: var(--text); }
   margin-bottom: 64px;
 }
 .ov-card {
-  background: var(--accent); border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(46,124,246,0.10) 0%, rgba(91,184,246,0.08) 100%);
+  border: 1px solid rgba(46,124,246,0.20);
   border-radius: 20px; padding: 32px 28px; text-align: center;
-  transition: box-shadow .3s, transform .3s;
+  transition: transform .3s, box-shadow .3s, background .3s, border-color .3s;
 }
-.ov-card:hover { box-shadow: 0 8px 32px rgba(46,124,246,.35); transform: translateY(-4px); }
+.ov-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(46,124,246,0.18);
+  background: linear-gradient(135deg, rgba(46,124,246,0.18) 0%, rgba(91,184,246,0.14) 100%);
+  border-color: rgba(46,124,246,0.40);
+}
 .ov-num {
   font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
-  color: var(--white); margin-bottom: 8px; line-height: 1;
+  color: var(--navy); margin-bottom: 8px; line-height: 1;
 }
-.ov-num span { color: rgba(255,255,255,0.7); }
-.ov-label { font-size: 12px; color: rgba(255,255,255,0.78); line-height: 1.5; }
+.ov-num span { color: var(--accent); }
+.ov-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
 
 /* ══════════════════════════════════
    SERVICE DETAIL CARD (좌/우 패널)
