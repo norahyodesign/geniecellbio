@@ -49,6 +49,30 @@ body {
 }
 
 /* ────────────────────────────────
+   FACILITY BANNER (#s-banner)
+──────────────────────────────── */
+#s-banner {
+  width: 100%; height: 25vh;
+  scroll-snap-align: start;
+  overflow: hidden;
+  background: #0e1f3d;
+}
+.facility-banner {
+  position: relative;
+  width: 100%; height: 100%;
+  overflow: hidden;
+}
+.facility-banner-img {
+  position: absolute;
+  left: 0; right: 0;
+  top: -50%; height: 200%;
+  background-image: url('geniecell_imge/main%20img.jpg');
+  background-size: 120%;
+  background-position: bottom center;
+  will-change: transform;
+}
+
+/* ────────────────────────────────
    NAV
 ──────────────────────────────── */
 #gcb-nav {
@@ -520,11 +544,16 @@ body {
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: var(--radius); padding: clamp(24px, 3.2vh, 40px) clamp(22px, 2.4vw, 36px);
   position: relative; overflow: hidden;
-  display: flex; flex-direction: row; align-items: center; gap: clamp(24px, 3vw, 48px);
+  display: grid;
+  grid-template-columns: 150px 1fr 150px;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
   transition: transform .4s cubic-bezier(.25,.46,.45,.94),
               box-shadow .4s, background .4s, border-color .4s;
   cursor: default;
 }
+.svc-icon { justify-self: center; flex-shrink: unset; }
+.svc-more-btn { justify-self: center; align-self: center; flex-shrink: unset; }
 .svc-card-main {
   flex: 1; display: flex; flex-direction: column; gap: 10px;
   padding: 0 clamp(20px, 2.4vw, 36px);
@@ -631,8 +660,8 @@ body {
 #s4 {
   background: #0e2040;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: calc(var(--nav-h) + 56px);
-  padding-bottom: 0;
+  padding-top: calc(var(--nav-h) + 72px);
+  padding-bottom: calc(var(--nav-h) + 72px);
   position: relative; overflow: hidden;
   z-index: 1;
   min-height: auto;
@@ -648,7 +677,7 @@ body {
 .s4-inner {
   position: relative; z-index: 1;
   width: 100%; max-width: var(--max-w);
-  margin: 0 auto; padding: 0 32px 56px;
+  margin: 0 auto; padding: 0 32px;
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(24px, 3vw, 48px);
   align-items: start;
@@ -667,7 +696,7 @@ body {
 .s4-title {
   font-size: clamp(20px, 2vw, 28px); font-weight: 700;
   color: var(--white); letter-spacing: -0.04em; line-height: 1.22;
-  margin-bottom: 8px;
+  margin-bottom: clamp(28px, 4vh, 48px);
 }
 .ci {
   display: flex; align-items: center; justify-content: space-between;
@@ -688,7 +717,7 @@ body {
   display: flex; gap: 10px; margin-top: 8px;
 }
 .footer-line {
-  position: relative; width: 100%;
+  position: absolute; bottom: 0; left: 0; right: 0;
   display: flex; justify-content: space-between; align-items: center;
   padding: 14px 32px;
   border-top: 1px solid rgba(255,255,255,.06);
@@ -798,17 +827,22 @@ body {
     overflow: hidden;
     align-items: center;
   }
-  .hero-body { padding: 0 24px; }
+  .hero-body {
+    padding: 0 24px;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-sub { max-width: 100%; }
+  .hero-cta { justify-content: center; }
   .hero-h1 { font-size: clamp(36px, 11vw, 60px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
   .hero-sub { font-size: 14px; }
-  .hero-cta { gap: 10px; }
 
   /* ── S2 · S3 · S4 공통 섹션 상하 여백 ── */
   #s2, #s3, #s4 {
     display: flex;
-    padding-top: calc(var(--nav-h) + 56px);
-    padding-bottom: calc(var(--nav-h) + 56px);
+    padding-top: calc(var(--nav-h) + 48px);
+    padding-bottom: calc(var(--nav-h) + 48px);
     min-height: auto;
   }
   #s2 { border-radius: 20px 20px 0 0; padding-left: 20px; padding-right: 20px; }
@@ -817,39 +851,96 @@ body {
 
   /* ── S2 ABOUT ── */
   .about-inner { padding: 0 20px; }
-  .about-head { margin-bottom: 36px; }
-  .about-stats { flex-wrap: wrap; gap: 10px; }
+  .about-head { margin-bottom: 36px; text-align: center; }
+  .about-h2 { text-align: center; }
+  .about-desc { text-align: center; }
+  .about-stats { flex-wrap: wrap; gap: 10px; justify-content: center; }
   .about-stats > div { min-width: 30%; }
-  .about-steps-grid { gap: 16px; }
-  .step-row { grid-template-columns: 1fr; gap: 14px; }
+  .about-steps-grid { gap: 0; padding-left: 16px; border-left: 2px solid var(--border); }
+  .step-row {
+    display: block;
+    padding: 0 0 32px 20px;
+    position: relative;
+    gap: 0;
+  }
+  .step-row::before {
+    content: '';
+    position: absolute;
+    left: -6px; top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 3px rgba(46,124,246,.2);
+  }
+  .step-row:last-child { padding-bottom: 0; }
+  .step-img-placeholder { display: none; }
+  .step-text-block { padding: 0; gap: 10px; }
   .step-row.reverse .step-img-placeholder { order: 0; }
 
   /* ── S3 SERVICES ── */
   .svc-head { padding: 0 20px; margin-bottom: 28px; text-align: center; }
   .svc-head h2 { font-size: clamp(22px, 6vw, 34px); }
   .svc-head p { font-size: 14px; }
-  .svc-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+  /* 모바일 슬라이더 */
+  .svc-slider-wrap {
+    display: block;
+    width: 100%;
+    overflow: hidden;
     padding: 0 20px;
+    box-sizing: border-box;
   }
-  /* 카드 모바일: 세로 전환 */
+  .svc-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 0;
+    transition: transform .35s cubic-bezier(.25,.46,.45,.94);
+    will-change: transform;
+  }
   .svc-card {
+    min-width: calc(85% - 6px);
+    width: calc(85% - 6px);
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 28px 22px;
-    gap: 14px;
+    align-items: center;
+    text-align: center;
+    padding: 28px 20px;
+    gap: 16px;
+    border-radius: var(--radius);
+    flex-shrink: 0;
   }
-  .svc-more-btn { align-self: flex-start; }
-  /* 아이콘 + 타이틀 가로 행 */
-  .svc-card-header {
-    display: flex; align-items: center; gap: 14px; width: 100%;
+  .svc-card-main {
+    border-left: none; border-right: none;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    width: 100%;
   }
+  .svc-icon { justify-self: unset; }
+  .svc-more-btn { justify-self: unset; align-self: center; }
+  .svc-list { align-items: center; }
+  .svc-card-header { display: flex; align-items: center; gap: 14px; width: 100%; justify-content: center; }
+  /* dot 인디케이터 */
+  .svc-dots-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .svc-dot-btn {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none; padding: 0; cursor: pointer;
+    transition: background .2s, transform .2s, width .2s;
+  }
+  .svc-dot-btn.is-active { background: var(--accent); transform: scale(1.3); }
 
   /* ── S4 CONTACT ── */
-  .s4-inner { grid-template-columns: 1fr; gap: 20px; padding: 0 20px 40px; }
-  .s4-map { aspect-ratio: 16/9; }
-  .s4-title { font-size: clamp(18px, 5vw, 24px); }
+  .s4-inner { grid-template-columns: 1fr; gap: 16px; padding: 0 20px 32px; }
+  .s4-map { aspect-ratio: 4/3; order: 2; }
+  .s4-info { order: 1; }
+  .s4-title { text-align: center; font-size: clamp(18px, 5vw, 24px); margin-bottom: 24px; }
   .s4-cta-row { flex-direction: column; }
   .ci-val { font-size: 13px; }
   .footer-line {
@@ -1058,13 +1149,21 @@ body {
     </div>
   </section>
 
+  <!-- S2b: FACILITY BANNER -->
+  <section class="snap-sec" id="s-banner">
+    <div class="facility-banner">
+      <div class="facility-banner-img" id="facility-parallax"></div>
+    </div>
+  </section>
+
   <!-- S3: SERVICES -->
   <section class="snap-sec" id="s3">
     <div class="svc-head" data-reveal>
         <h2>지니셀바이오 <span>서비스</span></h2>
         <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
       </div>
-      <div class="svc-grid">
+      <div class="svc-slider-wrap" id="svc-slider-wrap">
+      <div class="svc-grid" id="svc-slider">
         <!-- CDMO -->
         <div class="svc-card" data-reveal data-delay="0.05">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
@@ -1107,6 +1206,12 @@ body {
           </div>
           <a href="cell-facility.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
+      </div><!-- /svc-grid -->
+      </div><!-- /svc-slider-wrap -->
+      <div class="svc-dots-wrap" id="svc-dots" aria-hidden="true">
+        <button type="button" class="svc-dot-btn is-active" data-idx="0"></button>
+        <button type="button" class="svc-dot-btn" data-idx="1"></button>
+        <button type="button" class="svc-dot-btn" data-idx="2"></button>
       </div>
   </section>
 
@@ -1257,6 +1362,76 @@ body {
       }
     });
   }
+})();
+</script>
+<script>
+/* ── S3 Service Card Swipe Slider (mobile only) ── */
+(function() {
+  function initSlider() {
+    if (window.innerWidth > 768) return;
+    var wrap = document.getElementById('svc-slider-wrap');
+    var slider = document.getElementById('svc-slider');
+    var dots = document.querySelectorAll('#svc-dots .svc-dot-btn');
+    if (!wrap || !slider || !dots.length) return;
+
+    var cards = slider.querySelectorAll('.svc-card');
+    var total = cards.length;
+    var current = 0;
+    var startX = 0;
+    var isDragging = false;
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      var cardW = slider.querySelector('.svc-card').offsetWidth + 12; // card width + gap
+      slider.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+      dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
+    }
+
+    wrap.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', function(e) {
+      if (!isDragging) return;
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+      isDragging = false;
+    }, { passive: true });
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() { goTo(parseInt(dot.dataset.idx)); });
+    });
+
+    goTo(0);
+  }
+
+  initSlider();
+  window.addEventListener('resize', initSlider);
+})();
+</script>
+<script>
+/* ── Facility Banner Parallax ── */
+(function() {
+  var img = document.getElementById('facility-parallax');
+  var banner = document.getElementById('s-banner');
+  if (!img || !banner) return;
+
+  function onScroll() {
+    var rect = banner.getBoundingClientRect();
+    var vh = window.innerHeight;
+    // 배너가 뷰포트 안에 있을 때만 계산
+    if (rect.bottom < 0 || rect.top > vh) return;
+    // -0.5 ~ 0.5 범위로 정규화
+    var progress = (rect.top / vh);
+    // 이미지 이동 범위 제한 (이미지 여백 내에서만 움직임)
+    var shift = Math.max(-15, Math.min(15, progress * 20));
+    img.style.transform = 'translateY(' + shift + '%)';
+  }
+
+  var scroller = window;
+  scroller.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 })();
 </script>
 </body>
