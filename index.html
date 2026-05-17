@@ -555,6 +555,7 @@ body {
 }
 .svc-icon { justify-self: center; flex-shrink: unset; }
 .svc-more-btn { justify-self: center; align-self: center; flex-shrink: unset; }
+.svc-arrows { display: none; }
 .svc-card-main {
   flex: 1; display: flex; flex-direction: column; gap: 10px;
   padding: 0 clamp(20px, 2.4vw, 36px);
@@ -849,7 +850,7 @@ body {
     min-height: auto;
   }
   #s2 { border-radius: 20px 20px 0 0; padding-left: 20px; padding-right: 20px; }
-  #s3 { padding-left: 0; padding-right: 0; }
+  #s3 { padding-left: 0; padding-right: 0; overflow: visible; }
   #s4 { padding-left: 20px; padding-right: 20px; }
 
   /* ── S2 ABOUT ── */
@@ -1290,7 +1291,7 @@ body {
         <div class="s4-title" data-reveal>오시는 길 &amp; 연락처</div>
         <div class="ci" data-reveal data-delay="0.08">
           <div class="ci-label">대표자</div>
-          <div class="ci-val">이준</div>
+          <div class="ci-val">이&nbsp;&nbsp;준</div>
         </div>
         <div class="ci" data-reveal data-delay="0.14">
           <div class="ci-label">전화</div>
