@@ -87,9 +87,61 @@
 }
 .greeting-body p:last-child { border-bottom: none; }
 @media (max-width: 768px) {
-  .greeting-layout { grid-template-columns: 1fr; }
-  .greeting-img-box { max-width: 260px; margin: 0 auto; width: 100%; }
-  .greeting-img-placeholder { min-height: 300px; }
+  .tab-section.section { padding: 64px 0; }
+  .tab-section:first-of-type { padding-top: 64px; }
+  .tab-section:last-of-type  { padding-bottom: 64px; }
+
+  /* ── 인사말 모바일 레이아웃 ── */
+  .greeting-layout { grid-template-columns: 1fr; gap: 0; }
+
+  /* 이미지: 전체폭, 상단 */
+  .greeting-img-box {
+    width: 100%; max-width: 100%; margin: 0;
+    border-radius: 16px;
+    aspect-ratio: 4/3;
+  }
+  .greeting-img-placeholder { min-height: unset; height: 100%; }
+
+  /* 텍스트 영역 */
+  .greeting-text {
+    align-items: flex-start; text-align: left;
+    margin-top: 28px; gap: 16px;
+  }
+
+  /* 인용구: 배경 없애고 왼쪽 accent 라인 */
+  .greeting-quote {
+    background: none;
+    border-left: 3px solid var(--accent);
+    border-top: none;
+    border-radius: 0;
+    padding: 4px 0 4px 18px;
+  }
+  .greeting-quote::before { display: none; }
+  .greeting-quote blockquote {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.8;
+    text-align: left;
+  }
+  .greeting-quote blockquote span { color: var(--accent); font-style: normal; font-weight: 700; }
+
+  /* 본문: 데스크톱과 동일한 라인 박스 */
+  .greeting-body {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .greeting-body p {
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    margin: 0;
+  }
+  .greeting-body p:last-child { padding-bottom: 14px; border-bottom: none; }
 }
 
 /* ── Mission / Vision ── */
@@ -248,9 +300,25 @@
 @media (max-width: 768px) {
   .greeting-quote { padding: 36px 28px; }
   .greeting-quote blockquote { font-size: 17px; }
-  .mv-item { grid-template-columns: 1fr; }
-  .mv-visual { min-height: 180px; order: 0 !important; }
-  .mv-content { margin-left: 0; margin-right: 0; margin-top: 0; }
+  .mv-item {
+    grid-template-columns: 1fr;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  }
+  .mv-visual { display: none; }
+  .mv-content {
+    padding: 28px 24px;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    order: 1 !important;
+  }
+  .mv-item.vision .mv-content { order: 1 !important; }
+  .mv-content h3 { font-size: 18px; }
+  .mv-items { gap: 16px; margin-top: 40px; }
   .values-grid { grid-template-columns: repeat(2,1fr); }
   .loc-info-grid { grid-template-columns: repeat(2, 1fr); }
   .loc-item:nth-child(odd) { border-right: 1px solid var(--border); }

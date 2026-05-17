@@ -833,9 +833,10 @@ body {
     text-align: center;
   }
   .hero-sub { max-width: 100%; }
-  .hero-cta { justify-content: center; }
+  .hero-cta { justify-content: center; flex-direction: column; align-items: center; }
   .hero-h1 { font-size: clamp(36px, 11vw, 60px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
+  .hero-tagline .mobile-br::before { content: '\A'; white-space: pre; }
   .hero-sub { font-size: 14px; }
 
   /* ── S2 · S3 · S4 공통 섹션 상하 여백 ── */
@@ -1094,7 +1095,7 @@ body {
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <h1 class="hero-h1">GENIECELLBIO</h1>
-      <p class="hero-tagline">당신의 연구가 멈추지 않도록, 전문성의 길을 엽니다</p>
+      <p class="hero-tagline">당신의 연구가 멈추지 않도록,<span class="mobile-br"></span> 전문성의 길을 엽니다</p>
       <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여,<br>귀사의 시간과 비용을 성공으로 치환합니다.</p>
       <div class="hero-cta">
         <a href="#s4" class="btn-primary">서비스 문의하기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
@@ -1198,7 +1199,7 @@ body {
       <div class="svc-slider-wrap" id="svc-slider-wrap">
       <div class="svc-grid" id="svc-slider">
         <!-- CDMO -->
-        <div class="svc-card" data-reveal data-delay="0.05">
+        <div class="svc-card" data-reveal data-delay="0.05" style="box-shadow:0 16px 48px rgba(0,0,0,.13),0 0 32px rgba(46,124,246,.10); border-color:rgba(46,124,246,.22);">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
           <div class="svc-card-main">
             <h3>첨단바이오의약품 CDMO Service</h3>
@@ -1212,7 +1213,7 @@ body {
           <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 인체세포 -->
-        <div class="svc-card" data-reveal data-delay="0.15">
+        <div class="svc-card" data-reveal data-delay="0.15" style="box-shadow:0 16px 48px rgba(0,0,0,.13),0 0 32px rgba(46,124,246,.10); border-color:rgba(46,124,246,.22);">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
           <div class="svc-card-main">
             <h3>인체세포등 관리업 Service</h3>
@@ -1226,7 +1227,7 @@ body {
           <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <!-- 세포처리시설 -->
-        <div class="svc-card" data-reveal data-delay="0.25">
+        <div class="svc-card" data-reveal data-delay="0.25" style="box-shadow:0 16px 48px rgba(0,0,0,.13),0 0 32px rgba(46,124,246,.10); border-color:rgba(46,124,246,.22);">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
           <div class="svc-card-main">
             <h3>세포처리시설 Service</h3>
