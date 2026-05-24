@@ -8,6 +8,7 @@ BASE_URL="https://purge.jsdelivr.net/gh/${REPO}@${BRANCH}"
 
 FILES=(
   "index.html"
+  "nav.js"
   "cdmo.html"
   "cell-management.html"
   "cell-facility.html"
