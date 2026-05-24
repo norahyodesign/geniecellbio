@@ -14,6 +14,7 @@ FILES=(
   "cell-facility.html"
   "about.html"
   "support.html"
+  "privacy.html"
   "tokens.css"
 )
 

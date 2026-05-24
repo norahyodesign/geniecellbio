@@ -50,31 +50,6 @@ body {
 }
 
 /* ────────────────────────────────
-   FACILITY BANNER (#s-banner)
-──────────────────────────────── */
-#s-banner {
-  width: 100%; height: 25vh;
-  scroll-snap-align: start;
-  overflow: hidden;
-  background: #0e1f3d;
-}
-.facility-banner {
-  position: relative;
-  width: 100%; height: 100%;
-  overflow: hidden;
-}
-.facility-banner-img {
-  position: absolute;
-  left: 0; right: 0;
-  top: -50%; height: 200%;
-  background-image: url('geniecell_imge/main%20img.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  will-change: transform;
-}
-
-/* ────────────────────────────────
    NAV
 ──────────────────────────────── */
 #gcb-nav {
@@ -108,7 +83,7 @@ body {
 #gcb-nav.on-dark .nav-link { color: rgba(255,255,255,0.65); }
 #gcb-nav.on-dark .nav-item:hover .nav-link { color: var(--white); background: rgba(255,255,255,0.1); }
 #gcb-nav.on-dark .nav-ham svg { color: var(--white); }
-#gcb-nav.on-dark .nav-cta { background: rgba(46,124,246,0.85); }
+#gcb-nav.on-dark .nav-cta { background: rgba(152,214,250,0.85); }
 /* index.html 전용: 로고 흰색 (hero 어두운 배경) */
 .nav-logo-img { filter: brightness(0) invert(1); }
 
@@ -122,8 +97,8 @@ body {
   padding: 6px 16px; border-radius: 20px;
   margin-bottom: 24px;
 }
-.sec-overline.light { color: var(--accent); background: var(--accent-light); }
-.sec-overline.dark  { color: var(--accent2); border: 1px solid rgba(91,184,246,0.35); }
+.sec-overline.light { color: var(--accent-text); background: var(--accent-light); }
+.sec-overline.dark  { color: var(--accent2); border: 1px solid rgba(189,230,252,0.35); }
 
 /* ────────────────────────────────
    S1 HERO
@@ -154,12 +129,7 @@ body {
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(5,10,20,0.55) 0%,
-    rgba(5,10,20,0.45) 50%,
-    rgba(5,10,20,0.72) 100%
-  );
+  background: rgba(5,10,20,0.55);
   z-index: 1;
 }
 .hero-body {
@@ -196,20 +166,17 @@ body {
   max-width: 520px; margin-bottom: 40px;
   animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .34s both;
 }
-.hero-cta {
-  display: flex; justify-content: flex-start; gap: 12px; flex-wrap: wrap;
-  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .46s both;
-}
+
 .btn-primary {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 15px 32px; border-radius: 50px;
   font: 600 15px/1 var(--font); letter-spacing: -0.01em;
-  background: var(--accent); color: var(--white); border: none;
+  background: var(--accent); color: var(--navy); border: none;
   cursor: pointer; text-decoration: none;
-  box-shadow: 0 4px 24px rgba(46,124,246,.5);
+  box-shadow: 0 4px 24px rgba(152,214,250,.5);
   transition: background .25s, transform .25s, box-shadow .25s;
 }
-.btn-primary:hover { background:#1a6ae0; transform:translateY(-2px); box-shadow:0 8px 32px rgba(46,124,246,.6); }
+.btn-primary:hover { background:#7CC4E8; transform:translateY(-2px); box-shadow:0 8px 32px rgba(152,214,250,.6); }
 .btn-primary svg { width:14px; height:14px; transition:transform .2s; }
 .btn-primary:hover svg { transform:translateX(3px); }
 .btn-ghost {
@@ -268,155 +235,247 @@ body {
   animation: scrollDot 1.8s ease infinite;
 }
 
-/* ABOUT 섹션 레이블 */
-.about-section-label {
-  text-align: center;
-  margin-bottom: clamp(28px, 4vh, 52px);
-}
-.about-section-label .label-line {
-  display: inline-flex; align-items: center; gap: 16px;
-  font-family: var(--mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--accent);
-}
-.about-section-label .label-line::before,
-.about-section-label .label-line::after {
-  content: '';
-  display: block;
-  width: 40px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent));
-}
-.about-section-label .label-line::after {
-  background: linear-gradient(90deg, var(--accent), transparent);
-}
-.about-section-label.on-dark .label-line { color: var(--accent2); }
-.about-section-label.on-dark .label-line::before { background: linear-gradient(90deg, transparent, var(--accent2)); }
-.about-section-label.on-dark .label-line::after  { background: linear-gradient(90deg, var(--accent2), transparent); }
+/* ────────────────────────────────
+   S2 BUSINESS — 서비스 카드 섹션
+──────────────────────────────── */
 #s2 {
-  background: #f7f9fc;
+  background: var(--white);
   display: flex; align-items: center; justify-content: center;
-  padding-top: calc(var(--nav-h) + 72px);
-  padding-bottom: calc(var(--nav-h) + 72px);
-  position: relative; overflow: hidden;
-  z-index: 1;
-  border-radius: 28px 28px 0 0;
-  box-shadow: 0 -20px 60px rgba(0,0,0,.18);
-  min-height: 100vh;
+  padding: calc(var(--nav-h) + 80px) 0 80px;
+  position: relative; z-index: 1;
 }
-#s2::before {
-  content: ''; position: absolute;
-  top: -10%; right: -8%;
-  width: 50vw; height: 50vw;
-  background: radial-gradient(circle, rgba(46,124,246,.05) 0%, transparent 65%);
-  pointer-events: none;
+.biz-inner {
+  width: 100%; max-width: var(--max-w);
+  margin: 0 auto; padding: 0 32px;
 }
-.about-inner {
-  position: relative; z-index: 1; width: 100%;
-  max-width: var(--max-w); margin: 0 auto; padding: 0 32px;
-  display: flex; flex-direction: column;
-}
-.about-head {
-  width: 100%;
+.biz-head {
   text-align: center;
-  margin-bottom: clamp(32px, 4vh, 48px);
+  margin-bottom: clamp(48px, 6vh, 72px);
 }
-.about-h2 {
-  font-size: clamp(26px,3.2vw,44px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em; color: var(--text);
-  margin-bottom: clamp(16px, 2.4vh, 36px);
+.biz-label {
+  display: inline-block;
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent-text); background: var(--accent-light);
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 20px;
 }
-.about-h2 span {
-  background: linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+.biz-head h2 {
+  font-size: clamp(26px, 3.2vw, 44px); font-weight: 700;
+  line-height: 1.22; letter-spacing: -0.04em;
+  color: var(--text); margin-bottom: 16px;
 }
-.about-desc {
-  font-size: 15px; line-height: 1.65; color: var(--text2);
-  margin-bottom: clamp(28px, 3.6vh, 44px);
+.biz-head h2 span {
+  color: var(--accent-text);
 }
-.about-stats { display: flex; gap: 12px; margin-top: 0; }
-.about-stats > div {
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-  background: linear-gradient(135deg, rgba(46,124,246,0.10) 0%, rgba(91,184,246,0.08) 100%);
-  border: 1px solid rgba(46,124,246,0.20);
-  border-radius: var(--radius);
-  padding: 24px 20px;
-  flex: 1;
-  transition: transform .3s, box-shadow .3s, background .3s, border-color .3s;
+.biz-head p {
+  font-size: 16px; color: var(--text2); line-height: 1.65;
 }
-.about-stats > div:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 36px rgba(46,124,246,0.18);
-  background: linear-gradient(135deg, rgba(46,124,246,0.18) 0%, rgba(91,184,246,0.14) 100%);
-  border-color: rgba(46,124,246,0.40);
-}
-.stat-num {
-  font-size: clamp(20px,2.4vw,30px); font-weight: 700; letter-spacing: -0.04em;
-  color: var(--navy); line-height: 1; margin-bottom: 12px;
-}
-.stat-num span { color: var(--accent); font-size: 0.72em; }
-.stat-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
-.about-steps-grid {
+.biz-cards {
   display: flex; flex-direction: column;
-  gap: clamp(16px, 2.4vh, 28px);
-  width: 100%;
-  margin-top: clamp(56px, 7vh, 96px);
+  gap: clamp(24px, 3vw, 40px);
 }
-.step-row {
+.biz-card {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(16px, 2.4vw, 40px);
-  align-items: stretch;
-}
-.step-row.reverse .step-img-placeholder { order: -1; }
-.step-text-block {
-  display: flex; flex-direction: column; gap: 14px;
-  padding: clamp(28px, 3.6vh, 44px) clamp(24px, 2.8vw, 40px);
-  justify-content: center;
-}
-.step-num-lg {
-  font: 600 11px/1 var(--font); color: var(--white);
-  letter-spacing: 0.8px; text-transform: uppercase;
-  display: inline-flex; align-items: center;
-  padding: 5px 12px;
-  background: var(--accent);
-  border-radius: var(--radius-xs);
-  width: fit-content;
-}
-.step-title-lg {
-  font-size: clamp(18px, 1.9vw, 24px); font-weight: 700;
-  color: var(--text); letter-spacing: -0.04em; line-height: 1.22;
-}
-.step-divider {
-  width: 32px; height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 2px;
-}
-.step-desc-lg {
-  font-size: 15px; line-height: 1.65; color: var(--text2);
-}
-.step-img-placeholder {
-  aspect-ratio: 16 / 9;
-  background: #ECEEF2;
-  border-radius: 20px;
+  background: var(--gray-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94),
+              box-shadow .4s, border-color .4s;
+}
+.biz-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.12), 0 0 40px rgba(152,214,250,.08);
+  border-color: rgba(152,214,250,.25);
+}
+.biz-card-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+.biz-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+.biz-card:hover .biz-card-img img {
+  transform: scale(1.05);
+}
+.biz-card-body {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 3.6vw, 48px);
+  gap: 16px;
+}
+.biz-card-body h3 {
+  font-size: clamp(18px, 1.8vw, 24px); font-weight: 700;
+  color: var(--text); letter-spacing: -0.03em; line-height: 1.3;
+}
+.biz-card-body p {
+  font-size: 15px; line-height: 1.7; color: var(--text2);
+}
+.biz-card-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 14px/1 var(--font); letter-spacing: -0.01em;
+  color: var(--accent-text);
+  text-decoration: none;
+  padding: 12px 24px;
+  border: 1.5px solid rgba(152,214,250,0.35);
+  border-radius: 50px;
+  background: transparent;
+  width: fit-content;
+  transition: background .22s, color .22s, border-color .22s, gap .22s;
+}
+.biz-card-btn:hover {
+  background: var(--accent); color: var(--navy);
+  border-color: var(--accent); gap: 12px;
 }
 
-/* ── 스텝 애니메이션 초기 상태 ── */
-.step-row .step-img-placeholder,
-.step-row .step-num-lg,
-.step-row .step-title-lg,
-.step-row .step-divider,
-.step-row .step-desc-lg {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.55s cubic-bezier(.25,.46,.45,.94),
-              transform 0.55s cubic-bezier(.25,.46,.45,.94);
+/* ── 페이지 공통 reveal ── */
+
+/* ────────────────────────────────
+   S3 NEWS — 소식 섹션
+──────────────────────────────── */
+#s3 {
+  background: var(--gray-bg);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 80px 0;
+  position: relative; z-index: 1;
 }
-.step-row.in-view .step-img-placeholder { opacity: 1; transform: none; transition-delay: 0s; }
-.step-row.in-view .step-num-lg   { opacity: 1; transform: none; transition-delay: 0.12s; }
-.step-row.in-view .step-title-lg { opacity: 1; transform: none; transition-delay: 0.22s; }
-.step-row.in-view .step-divider  { opacity: 1; transform: none; transition-delay: 0.32s; }
-.step-row.in-view .step-desc-lg  { opacity: 1; transform: none; transition-delay: 0.42s; }
+.news-inner {
+  width: 100%; max-width: var(--max-w);
+  margin: 0 auto; padding: 0 32px;
+}
+.news-head {
+  text-align: center;
+  margin-bottom: clamp(40px, 5vh, 64px);
+}
+.news-head h2 {
+  font-size: clamp(26px, 3.2vw, 44px); font-weight: 700;
+  line-height: 1.22; letter-spacing: -0.04em;
+  color: var(--text); margin-bottom: 12px;
+}
+.news-head p {
+  font-size: 16px; color: var(--text2); line-height: 1.65;
+}
+.news-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.news-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.25,.46,.45,.94),
+              box-shadow .35s, border-color .35s;
+}
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.10);
+  border-color: rgba(152,214,250,.20);
+}
+.news-card-img {
+  position: relative; overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+.news-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.news-card:hover .news-card-img img {
+  transform: scale(1.04);
+}
+.news-card-body {
+  padding: 24px; display: flex;
+  flex-direction: column; gap: 10px;
+}
+.news-card-date {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  color: var(--text3); letter-spacing: 0.5px;
+}
+.news-card-body h3 {
+  font-size: 17px; font-weight: 700;
+  color: var(--text); line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+.news-card-body p {
+  font-size: 14px; line-height: 1.65;
+  color: var(--text2);
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+.news-card-plus {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 600; color: var(--text);
+  transition: transform .35s cubic-bezier(.25,.46,.45,.94),
+              background .3s, color .3s;
+  z-index: 2;
+  pointer-events: none;
+}
+.news-card:hover .news-card-plus {
+  transform: rotate(90deg) scale(1.15);
+  background: var(--accent); color: var(--navy);
+}
+
+/* ────────────────────────────────
+   FOOTER
+──────────────────────────────── */
+.main-footer {
+  background: var(--navy); color: rgba(255,255,255,.65);
+  padding: 56px 32px 32px;
+}
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.footer-logo img {
+  height: 28px; filter: brightness(0) invert(1);
+}
+.footer-logo span {
+  font: 700 16px/1 var(--font); color: var(--white);
+  letter-spacing: -0.02em;
+}
+.footer-info {
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 13px; line-height: 1.65;
+}
+.footer-info strong {
+  color: rgba(255,255,255,.85); font-weight: 600;
+}
+.footer-links-col {
+  display: flex; flex-direction: column; gap: 10px;
+  justify-content: flex-start; align-items: flex-end;
+}
+.footer-links-col a {
+  font-size: 14px; color: rgba(255,255,255,.65);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-links-col a:hover { color: var(--white); }
+.footer-bottom {
+  max-width: var(--max-w); margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,.1);
+  margin-top: 40px; padding-top: 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(255,255,255,.35);
+}
 
 /* ── 페이지 공통 reveal ── */
 [data-reveal] {
@@ -434,248 +493,9 @@ body {
 [data-reveal='scale'].revealed { transform: none; }
 
 @media (max-width: 900px) {
-  .about-stats { gap: 10px; flex-wrap: wrap; }
-  .about-stats > div { min-width: calc(33% - 8px); align-items: center; text-align: center; padding: 12px 10px; }
-  .stat-num { font-size: clamp(16px, 4.5vw, 26px); }
+  .biz-card { grid-template-columns: 1fr; }
+  .biz-card-img { aspect-ratio: 16 / 9; }
 }
-
-/* ────────────────────────────────
-   S3 SERVICES — 다크 프리미엄
-──────────────────────────────── */
-#s3 {
-  background: var(--gray-bg);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: calc(var(--nav-h) + 72px);
-  padding-bottom: calc(var(--nav-h) + 72px);
-  position: relative; overflow: hidden;
-  z-index: 1;
-  min-height: 100vh;
-}
-#s3::before {
-  content: ''; position: absolute;
-  top: -20%; left: 50%; transform: translateX(-50%);
-  width: 80vw; height: 60vw;
-  background: radial-gradient(ellipse, rgba(46,124,246,.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-.svc-head {
-  text-align: center; margin-bottom: clamp(32px, 5vh, 52px);
-  position: relative; z-index: 1;
-}
-.svc-head h2 {
-  font-size: clamp(26px,3.2vw,44px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em; margin-bottom: clamp(10px, 1.6vh, 20px);
-  color: var(--text);
-}
-.svc-head h2 span {
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.svc-head p { font-size: 15px; color: var(--text2); line-height: 1.65; }
-
-.svc-grid {
-  width: 100%; max-width: var(--max-w); padding: 0 32px;
-  display: grid; grid-template-columns: 1fr; gap: clamp(14px, 2vw, 28px);
-  position: relative; z-index: 1;
-}
-
-/* 카드 — 글래스 다크 */
-.svc-card {
-  background: #f7f9fc;
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: var(--radius); padding: clamp(24px, 3.2vh, 40px) clamp(22px, 2.4vw, 36px);
-  position: relative; overflow: hidden;
-  display: grid;
-  grid-template-columns: 150px 1fr 150px;
-  align-items: center;
-  gap: clamp(24px, 3vw, 48px);
-  transition: transform .4s cubic-bezier(.25,.46,.45,.94),
-              box-shadow .4s, background .4s, border-color .4s;
-  cursor: default;
-}
-.svc-icon { justify-self: center; flex-shrink: unset; }
-.svc-more-btn { justify-self: center; align-self: center; flex-shrink: unset; }
-.svc-arrows { display: none; }
-.svc-card-main {
-  flex: 1; display: flex; flex-direction: column; gap: 10px;
-  padding: 0 clamp(20px, 2.4vw, 36px);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-}
-.svc-card-header {
-  display: flex; align-items: center; gap: 16px;
-}
-.svc-card:hover {
-  background: #fff;
-  border-color: rgba(46,124,246,0.28);
-  transform: translateY(-10px);
-  box-shadow: 0 24px 60px rgba(0,0,0,.18), 0 0 40px rgba(46,124,246,.08);
-}
-/* 상단 그라디언트 선 */
-.svc-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
-  opacity: 0; transition: opacity .5s;
-}
-.svc-card:hover::before { opacity: 1; }
-/* 우하단 글로우 */
-.svc-card::after {
-  content: ''; position: absolute; bottom: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(46,124,246,.15) 0%, transparent 70%);
-  opacity: 0; transition: opacity .5s;
-  pointer-events: none;
-}
-.svc-card:hover::after { opacity: 1; }
-
-.svc-card-num {
-  position: absolute; top: 12px; right: 16px;
-  font: 700 88px/1 var(--mono); letter-spacing: -0.05em;
-  color: rgba(0,0,0,.04); pointer-events: none;
-  transition: color .3s;
-}
-.svc-card:hover .svc-card-num { color: rgba(46,124,246,.08); }
-
-.svc-icon {
-  width: 52px; height: 52px;
-  background: var(--accent);
-  border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background .35s, box-shadow .35s, transform .35s;
-}
-.svc-card:hover .svc-icon {
-  background: #1a6ae0;
-  box-shadow: 0 8px 32px rgba(46,124,246,.45);
-  transform: scale(1.08);
-}
-.svc-icon svg { width: 26px; height: 26px; color: var(--white); transition: color .35s; }
-.svc-card:hover .svc-icon svg { color: var(--white); }
-
-.svc-badge {
-  display: inline-block; margin-bottom: clamp(8px, 1.2vh, 14px);
-  font: 600 11px/1 var(--mono); color: var(--accent2);
-  padding: 4px 10px; background: rgba(91,184,246,.12); border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-.svc-card h3 {
-  font-size: clamp(16px, 1.6vw, 20px); font-weight: 700; letter-spacing: -0.04em;
-  margin-bottom: 0; color: var(--text); line-height: 1.22;
-}
-.svc-card p {
-  font-size: 15px; line-height: 1.65; color: var(--text2);
-  margin-bottom: 0;
-}
-.svc-list { list-style: none; display: flex; flex-direction: column; gap: clamp(7px, 1vh, 12px); flex: 1; }
-.svc-list li {
-  display: flex; align-items: flex-start; gap: 9px;
-  font-size: 13px; font-weight: 500; color: var(--text3); line-height: 1.5;
-  transition: color .3s;
-}
-.svc-list li svg { width:14px; height:14px; color:var(--accent); flex-shrink:0; margin-top:2px; }
-.svc-card:hover .svc-list li { color: var(--text2); }
-
-.svc-more-btn {
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  flex-shrink: 0; align-self: center;
-  font: 600 13px/1 var(--font); letter-spacing: -0.01em;
-  color: var(--accent);
-  text-decoration: none;
-  padding: 14px 22px;
-  border: 1.5px solid rgba(46,124,246,0.35);
-  border-radius: 14px;
-  background: transparent;
-  white-space: nowrap;
-  transition: background .22s, color .22s, border-color .22s, gap .22s;
-}
-.svc-more-btn svg { width: 14px; height: 14px; transition: transform .22s; }
-.svc-more-btn:hover {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-  gap: 11px;
-}
-.svc-more-btn:hover svg { transform: translateX(2px); }
-
-/* ────────────────────────────────
-   S4 CONTACT INFO
-──────────────────────────────── */
-#s4 {
-  background: #0e2040;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding-top: calc(var(--nav-h) + 72px);
-  padding-bottom: calc(var(--nav-h) + 72px);
-  position: relative; overflow: hidden;
-  z-index: 1;
-  min-height: auto;
-}
-/* 배경 광원 그라디언트 */
-#s4::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 60%, rgba(46,124,246,.15) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 30%, rgba(91,184,246,.08) 0%, transparent 50%);
-  pointer-events: none; z-index: 0;
-}
-.s4-inner {
-  position: relative; z-index: 1;
-  width: 100%; max-width: var(--max-w);
-  margin: 0 auto; padding: 0 32px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 3vw, 48px);
-  align-items: start;
-}
-.s4-map {
-  border-radius: 20px; overflow: hidden;
-  aspect-ratio: 4/3;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
-}
-.s4-map iframe {
-  width: 100%; height: 100%; display: block; border: 0;
-  filter: grayscale(20%) brightness(0.9);
-}
-.s4-info { display: flex; flex-direction: column; gap: 10px; }
-.s4-title {
-  font-size: clamp(20px, 2vw, 28px); font-weight: 700;
-  color: var(--white); letter-spacing: -0.04em; line-height: 1.22;
-  margin-bottom: clamp(28px, 4vh, 48px);
-}
-.ci {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 20px;
-  padding: 12px 16px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  background: rgba(255,255,255,0.04);
-}
-.ci-label {
-  font: 600 11px/1 var(--mono); color: rgba(255,255,255,.38); letter-spacing: 1.5px;
-  text-transform: uppercase; flex-shrink: 0;
-}
-.ci-val { font-size: 14px; color: rgba(255,255,255,.75); text-align: right; }
-.ci-val a { color: #fff; text-decoration: none; }
-.ci-val a:hover { text-decoration: underline; }
-.s4-cta-row {
-  display: flex; gap: 10px; margin-top: 8px;
-}
-.footer-line {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 32px;
-  border-top: 1px solid rgba(255,255,255,.06);
-  z-index: 1;
-}
-.footer-copy { font-size: 12px; color: rgba(255,255,255,.22); }
-.footer-links { display: flex; gap: 20px; }
-.footer-links a { font-size: 12px; color: rgba(255,255,255,.22); text-decoration: none; transition: color .2s; }
-.footer-links a:hover { color: rgba(255,255,255,.55); }
-
-.s4-cta-row .btn-outline {
-  color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.25);
-  background: transparent;
-}
-.s4-cta-row .btn-outline:hover { color: var(--white); border-color: rgba(255,255,255,.6); }
 
 /* ────────────────────────────────
    KEYFRAMES
@@ -713,7 +533,7 @@ body {
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 50px;
   padding: 10px 10px 10px 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(46,124,246,.15);
+  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(152,214,250,.15);
   opacity: 0; visibility: hidden;
   transition: opacity .4s, visibility .4s, transform .4s;
   white-space: nowrap;
@@ -732,11 +552,11 @@ body {
   background: var(--accent);
   padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 0 4px 16px rgba(46,124,246,.5);
+  box-shadow: 0 4px 16px rgba(152,214,250,.5);
   transition: background .2s, gap .2s;
 }
 .fcta-btn svg { width: 14px; height: 14px; transition: transform .2s; }
-.fcta-btn:hover { background: #1a6ae0; gap: 10px; }
+.fcta-btn:hover { background: #7CC4E8; gap: 10px; }
 .fcta-btn:hover svg { transform: translateX(2px); }
 
 /* ────────────────────────────────
@@ -745,10 +565,10 @@ body {
 #btn-top {
   position: fixed; right: 28px; bottom: 32px; z-index: 900;
   width: 56px; height: 56px; border-radius: 50%;
-  background: var(--accent); color: var(--white);
+  background: var(--accent); color: var(--navy);
   border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(46,124,246,.5);
+  box-shadow: 0 4px 20px rgba(152,214,250,.5);
   opacity: 0; visibility: hidden;
   transform: translateY(12px);
   transition: opacity .3s, visibility .3s, transform .3s, background .2s;
@@ -756,7 +576,7 @@ body {
 #btn-top.visible {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
-#btn-top:hover { background: #1a6ae0; }
+#btn-top:hover { background: #7CC4E8; }
 #btn-top svg { width: 22px; height: 22px; }
 
 /* ────────────────────────────────
@@ -776,165 +596,34 @@ body {
     text-align: center;
   }
   .hero-sub { max-width: 100%; display: none; }
-  .hero-cta { justify-content: center; flex-direction: column; align-items: center; margin-top: 32px; }
-  .hero-cta .btn-primary, .hero-cta .btn-ghost { width: 240px; justify-content: center; }
+
   .hero-h1 { font-size: clamp(32px, 9vw, 50px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
   .hero-tagline .mobile-br::before { content: '\A'; white-space: pre; }
   .hero-sub { font-size: 14px; }
 
-  /* ── S2 · S3 · S4 공통 섹션 상하 여백 ── */
-  #s2, #s3, #s4 {
-    display: flex;
-    padding-top: calc(var(--nav-h) + 48px);
-    padding-bottom: calc(var(--nav-h) + 48px);
-    min-height: auto;
+  /* ── S2 BUSINESS 모바일 ── */
+  #s2 {
+    padding: calc(var(--nav-h) + 48px) 0 48px;
   }
-  #s2 { border-radius: 20px 20px 0 0; padding-left: 20px; padding-right: 20px; }
-  #s3 { padding-left: 0; padding-right: 0; overflow: visible; }
-  #s4 { padding-left: 20px; padding-right: 20px; }
+  .biz-inner { padding: 0 20px; }
+  .biz-head { margin-bottom: 36px; }
+  .biz-card { grid-template-columns: 1fr; }
+  .biz-card-img { aspect-ratio: 16 / 9; }
+  .biz-card-body { padding: 24px 20px; }
 
-  /* ── S2 ABOUT ── */
-  .about-inner { padding: 0 20px; }
-  .about-head { margin-bottom: 36px; text-align: center; }
-  .about-h2 { text-align: center; }
-  .about-desc { text-align: center; }
-  .about-stats { flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .about-stats > div { min-width: 30%; }
-  .about-steps-grid {
-    gap: 0;
-    padding-left: 20px;
-    border-left: 2px solid var(--border);
-    position: relative;
-  }
-  .step-row {
-    display: block;
-    padding: 0 0 32px 20px;
-    position: relative;
-    gap: 0;
-  }
-  .step-row::before {
-    content: '';
-    position: absolute;
-    left: -27px; top: 4px;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 2px solid var(--white);
-    box-shadow: 0 0 0 3px rgba(46,124,246,.2);
-    z-index: 1;
-  }
-  .step-row:last-child { padding-bottom: 0; }
-  .step-img-placeholder { display: none; }
-  .step-text-block { padding: 0; gap: 10px; }
-  .step-row.reverse .step-img-placeholder { order: 0; }
+  /* ── S3 NEWS 모바일 ── */
+  #s3 { padding: 48px 0; }
+  .news-inner { padding: 0 20px; }
+  .news-head { margin-bottom: 32px; }
+  .news-grid { grid-template-columns: 1fr; gap: 16px; }
+  .news-card-body { padding: 20px; }
 
-  /* ── S3 SERVICES ── */
-  .svc-head { padding: 0 20px; margin-bottom: 28px; text-align: center; }
-  .svc-head h2 { font-size: clamp(22px, 6vw, 34px); }
-  .svc-head p { font-size: 14px; }
-  /* 모바일 슬라이더 */
-  .svc-slider-wrap {
-    display: block;
-    width: 100%;
-    overflow: visible;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
-  .svc-slider-clip {
-    overflow: hidden;
-    margin: -60px -20px;
-    padding: 60px 20px;
-  }
-  .svc-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 12px;
-    padding: 0;
-    transition: transform .35s cubic-bezier(.25,.46,.45,.94);
-    will-change: transform;
-  }
-  .svc-card {
-    min-width: calc(80% - 6px);
-    width: calc(80% - 6px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 28px 20px;
-    gap: 16px;
-    border-radius: var(--radius);
-    flex-shrink: 0;
-    box-shadow: none !important;
-    border-color: var(--border) !important;
-    transition: box-shadow .3s, border-color .3s;
-  }
-  .svc-card.svc-active {
-    box-shadow: 0 16px 48px rgba(0,0,0,.13), 0 0 32px rgba(46,124,246,.10) !important;
-    border-color: rgba(46,124,246,.22) !important;
-  }
-  .svc-card-main {
-    border-left: none; border-right: none;
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    padding: 14px 0;
-    width: 100%;
-  }
-  .svc-icon { justify-self: unset; }
-  .svc-more-btn { justify-self: unset; align-self: center; }
-  .svc-list { align-items: center; }
-  .svc-card-header { display: flex; align-items: center; gap: 14px; width: 100%; justify-content: center; }
-  /* dot 인디케이터 */
-  .svc-dots-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin-top: 0;
-  }
-  .svc-dot-btn {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    border: none; padding: 0; cursor: pointer;
-    transition: background .2s, transform .2s, width .2s;
-  }
-  .svc-dot-btn.is-active { background: var(--accent); transform: scale(1.3); }
-  /* 화살표 버튼 */
-  .svc-arrows {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 16px;
-    width: 100%;
-  }
-  .svc-arrow-btn {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: 1.5px solid var(--border);
-    background: var(--white);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: background .2s, border-color .2s, transform .2s;
-  }
-  .svc-arrow-btn:hover { background: var(--accent); border-color: var(--accent); }
-  .svc-arrow-btn:hover svg { color: var(--white); }
-  .svc-arrow-btn:disabled { opacity: 0.3; pointer-events: none; }
-  .svc-arrow-btn svg { width: 18px; height: 18px; color: var(--text2); }
-
-  /* ── S4 CONTACT ── */
-  .s4-inner { grid-template-columns: 1fr; gap: 16px; padding: 0 20px 32px; }
-  .s4-map { aspect-ratio: 4/3; order: 2; }
-  .s4-info { order: 1; }
-  .s4-title { text-align: center; font-size: clamp(18px, 5vw, 24px); margin-bottom: 24px; }
-  .s4-cta-row { flex-direction: column; }
-  .ci-val { font-size: 13px; }
-  .footer-line {
-    padding: 14px 20px;
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-  }
+  /* ── FOOTER 모바일 ── */
+  .main-footer { padding: 40px 20px 24px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer-links-col { align-items: flex-start; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 
   /* ── 공통 ── */
   .progress-dots { display: none; }
@@ -943,12 +632,6 @@ body {
   #btn-top svg { width: 18px; height: 18px; }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
-  /* 이미지 배너 모바일: 패럴랙스 해제, cover로 전체 채움 */
-  .facility-banner-img {
-    top: 0; height: 100%;
-    background-size: cover;
-    background-position: center;
-  }
 }
 </style>
 </head>
@@ -986,10 +669,6 @@ body {
       <h1 class="hero-h1">GENIECELLBIO</h1>
       <p class="hero-tagline">당신의 연구가 멈추지 않도록,<span class="mobile-br"></span> 전문성의 길을 엽니다</p>
       <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여,<br>귀사의 시간과 비용을 성공으로 치환합니다.</p>
-      <div class="hero-cta">
-        <a href="#s4" class="btn-primary">서비스 문의하기</a>
-        <a href="#s3" class="btn-ghost">서비스 알아보기</a>
-      </div>
     </div>
     <!-- 프로그레스 바 -->
     <div class="hero-progress" id="hero-progress">
@@ -1004,198 +683,101 @@ body {
     </div>
   </section>
 
-  <!-- S2: ABOUT -->
+  <!-- S2: BUSINESS — 서비스 카드 -->
   <section class="snap-sec" id="s2">
-    <div class="about-inner">
-
-      <!-- 헤더 -->
-      <div class="about-head" data-reveal>
-        <h2 class="about-h2">첨단바이오의약품<br>개발의 <span>처음부터 끝까지</span></h2>
-        <p class="about-desc">복잡한 규제와 공정 리스크, 혼자 고민하지 마십시오. 기초 연구에서 상용화까지, 개발 단계별 맞춤형 솔루션으로 첨단바이오의약품의 성공적인 시장 진입을 지원합니다.</p>
-        <div class="about-stats">
-          <div data-reveal data-delay="0.1">
-            <div class="stat-num">GMP<span>·</span></div>
-            <div class="stat-label">인증 생산 시설<br>완비</div>
-          </div>
-          <div data-reveal data-delay="0.2">
-            <div class="stat-num">4<span>단계</span></div>
-            <div class="stat-label">개발 전 과정<br>One-Stop 지원</div>
-          </div>
-          <div data-reveal data-delay="0.3">
-            <div class="stat-num">3<span>개</span></div>
-            <div class="stat-label">핵심 서비스<br>라이선스 보유</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 스텝 그리드 -->
-      <div class="about-steps-grid">
-
-        <!-- Step 01 — 텍스트 좌 / 이미지 우 -->
-        <div class="step-row">
-          <div class="step-text-block">
-            <div class="step-num-lg">STEP 01</div>
-            <div class="step-title-lg">기초 연구 지원</div>
-            <div class="step-divider"></div>
-            <div class="step-desc-lg">R&amp;D 단계 원료세포 공급 및 기초 데이터 확보. 연구 목적에 맞는 세포 선별부터 초기 품질 확인까지 지원합니다.</div>
-          </div>
-          <div class="step-img-placeholder"></div>
-        </div>
-
-        <!-- Step 02 -->
-        <div class="step-row">
-          <div class="step-text-block">
-            <div class="step-num-lg">STEP 02</div>
-            <div class="step-title-lg">공정 개발 · Scale-up</div>
-            <div class="step-divider"></div>
-            <div class="step-desc-lg">Lab-scale에서 GMP 수준의 상업 생산까지 최적화. 공정 파라미터 정립 및 배치 재현성을 확보합니다.</div>
-          </div>
-          <div class="step-img-placeholder"></div>
-        </div>
-
-        <!-- Step 03 — 텍스트 좌 / 이미지 우 -->
-        <div class="step-row">
-          <div class="step-text-block">
-            <div class="step-num-lg">STEP 03</div>
-            <div class="step-title-lg">품질시험 · 밸리데이션</div>
-            <div class="step-divider"></div>
-            <div class="step-desc-lg">식약처 제출 기준 QC 시험 및 시험법 밸리데이션. 마이코플라스마·바이러스 부정시험 포함 전 항목을 수행합니다.</div>
-          </div>
-          <div class="step-img-placeholder"></div>
-        </div>
-
-        <!-- Step 04 -->
-        <div class="step-row">
-          <div class="step-text-block">
-            <div class="step-num-lg">STEP 04</div>
-            <div class="step-title-lg">인허가 · 시장 진입</div>
-            <div class="step-divider"></div>
-            <div class="step-desc-lg">IND 컨설팅 및 식약처 대관업무 대행. 임상시험 승인부터 품목허가까지 전 과정을 전문가가 지원합니다.</div>
-          </div>
-          <div class="step-img-placeholder"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- S2b: FACILITY BANNER -->
-  <section class="snap-sec" id="s-banner">
-    <div class="facility-banner">
-      <div class="facility-banner-img" id="facility-parallax"></div>
-    </div>
-  </section>
-
-  <!-- S3: SERVICES -->
-  <section class="snap-sec" id="s3">
-    <div class="svc-head" data-reveal>
-        <h2>지니셀바이오 <span>서비스</span></h2>
+    <div class="biz-inner">
+      <div class="biz-head" data-reveal>
+        <h2><span>BUSINESS</span></h2>
         <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
       </div>
-      <div class="svc-slider-wrap" id="svc-slider-wrap">
-      <div class="svc-slider-clip">
-      <div class="svc-grid" id="svc-slider">
-        <!-- CDMO -->
-        <div class="svc-card" data-reveal data-delay="0.05" style="box-shadow:0 16px 48px rgba(0,0,0,.13),0 0 32px rgba(46,124,246,.10); border-color:rgba(46,124,246,.22);">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
-          <div class="svc-card-main">
-            <h3>첨단바이오의약품 CDMO Service</h3>
-            <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅</p>
-            <ul class="svc-list">
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>GMP 기준 공정 개선 및 임상 생산</li>
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>마이코플라스마·바이러스 부정시험</li>
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>IND 컨설팅 · 식약처 대관업무</li>
-            </ul>
-          </div>
-          <a href="cdmo.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
-        </div>
-        <!-- 인체세포 -->
-        <div class="svc-card" data-reveal data-delay="0.15" style="box-shadow:0 16px 48px rgba(0,0,0,.13),0 0 32px rgba(46,124,246,.10); border-color:rgba(46,124,246,.22);">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg></div>
-          <div class="svc-card-main">
-            <h3>인체세포등 관리업 Service</h3>
-            <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지</p>
-            <ul class="svc-list">
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>임상·R&amp;D용 원료세포 공급</li>
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>자가 NK Cell·T-Cell·지방줄기세포 보관</li>
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>안전성 시험 결과 식약처 제출 대행</li>
-            </ul>
-          </div>
-          <a href="cell-management.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
-        </div>
-        <!-- 세포처리시설 -->
-        <div class="svc-card" data-reveal data-delay="0.25" style="box-shadow:0 16px 48px rgba(0,0,0,.13),0 0 32px rgba(46,124,246,.10); border-color:rgba(46,124,246,.22);">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"/></svg></div>
-          <div class="svc-card-main">
-            <h3>세포처리시설 Service</h3>
-            <p>재생의료기관 파트너로 안전한 시술과 연구 계획 수립 지원</p>
-            <ul class="svc-list">
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>재생의료기관 투여용 인체세포 공급</li>
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>의료기관 위탁생산(CMO) 대행</li>
-              <li><svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-check"/></svg>연구/치료계획서 파트 작성지원</li>
-            </ul>
-          </div>
-          <a href="cell-facility.html" class="svc-more-btn">자세히 보기 <svg aria-hidden="true" focusable="false" width="14" height="14"><use href="#ico-arrow-right"/></svg></a>
-        </div>
-      </div><!-- /svc-grid -->
-      </div><!-- /svc-slider-clip -->
-      </div><!-- /svc-slider-wrap -->
-      <div class="svc-arrows" id="svc-arrows" aria-hidden="true">
-        <button type="button" class="svc-arrow-btn" id="svc-prev" aria-label="이전" disabled>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="svc-dots-wrap" id="svc-dots" aria-hidden="true">
-          <button type="button" class="svc-dot-btn is-active" data-idx="0"></button>
-          <button type="button" class="svc-dot-btn" data-idx="1"></button>
-          <button type="button" class="svc-dot-btn" data-idx="2"></button>
-        </div>
-        <button type="button" class="svc-arrow-btn" id="svc-next" aria-label="다음">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-  </section>
 
-  <!-- S4: CONTACT -->
-  <section class="snap-sec" id="s4">
-    <div class="s4-inner">
-      <!-- 지도 -->
-      <div class="s4-map" data-reveal='left'>
-        <iframe
-          src="https://maps.google.com/maps?q=경기도+성남시+중원구+갈마치로+314&output=embed&hl=ko"
-          allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="지니셀바이오 오시는길"></iframe>
-      </div>
-      <!-- 연락처 정보 -->
-      <div class="s4-info">
-        <div class="s4-title" data-reveal>오시는 길 &amp; 연락처</div>
-        <div class="ci" data-reveal data-delay="0.08">
-          <div class="ci-label">대표자</div>
-          <div class="ci-val">이&nbsp;&nbsp;준</div>
+      <div class="biz-cards">
+        <!-- Card 1: CDMO -->
+        <div class="biz-card" data-reveal data-delay="0.1">
+          <div class="biz-card-img">
+            <img src="geniecell_imge/main%20ex1.jpg" alt="CDMO 서비스" loading="lazy">
+          </div>
+          <div class="biz-card-body">
+            <h3>첨단바이오의약품 CDMO</h3>
+            <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅까지 GMP 기준의 원스톱 서비스를 제공합니다.</p>
+            <a href="cdmo.html" class="biz-card-btn">View more +</a>
+          </div>
         </div>
-        <div class="ci" data-reveal data-delay="0.14">
-          <div class="ci-label">전화</div>
-          <div class="ci-val"><a href="tel:0200000000">031&#8209;000&#8209;0000</a></div>
+
+        <!-- Card 2: 인체세포등 관리업 -->
+        <div class="biz-card" data-reveal data-delay="0.2">
+          <div class="biz-card-img">
+            <img src="geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340637.jpg" alt="인체세포등 관리업" loading="lazy">
+          </div>
+          <div class="biz-card-body">
+            <h3>인체세포등 관리업</h3>
+            <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지, 세포 자원의 안전한 관리와 품질 보증을 지원합니다.</p>
+            <a href="cell-management.html" class="biz-card-btn">View more +</a>
+          </div>
         </div>
-        <div class="ci" data-reveal data-delay="0.20">
-          <div class="ci-label">이메일</div>
-          <div class="ci-val"><a href="mailto:contact@genicellbio.com">contact@genicellbio.com</a></div>
-        </div>
-        <div class="ci" data-reveal data-delay="0.26">
-          <div class="ci-label">주소</div>
-          <div class="ci-val">경기도 성남시 중원구 갈마치로 314</div>
-        </div>
-        <div class="ci" data-reveal data-delay="0.32">
-          <div class="ci-label">사업자등록번호</div>
-          <div class="ci-val">387-87-03619</div>
+
+        <!-- Card 3: 세포처리시설 -->
+        <div class="biz-card" data-reveal data-delay="0.3">
+          <div class="biz-card-img">
+            <img src="geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg" alt="세포처리시설" loading="lazy">
+          </div>
+          <div class="biz-card-body">
+            <h3>세포처리시설</h3>
+            <p>재생의료기관 파트너로서 안전한 시술과 연구 계획 수립, 투여용 인체세포 공급을 지원합니다.</p>
+            <a href="cell-facility.html" class="biz-card-btn">View more +</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="footer-line">
-      <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
-      <div class="footer-links">
-        <a href="#">개인정보처리방침</a>
-        <a href="#">이용약관</a>
+  </section>
+
+  <!-- S3: NEWS — 지니셀바이오 소식 -->
+  <section id="s3">
+    <div class="news-inner">
+      <div class="news-head" data-reveal>
+        <h2>지니셀바이오 <span>소식</span></h2>
+        <p>최신 뉴스와 업계 동향을 전합니다</p>
+      </div>
+
+      <div class="news-grid">
+        <!-- News 1 -->
+        <div class="news-card" data-reveal data-delay="0.1">
+          <div class="news-card-img">
+            <img src="geniecell_imge/main%20ex2.jpg" alt="세포유전자치료제 뉴스" loading="lazy">
+            <span class="news-card-plus">+</span>
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-date">2026.05.12</span>
+            <h3>식약처, 첫 국산 세포유전자치료제 품목허가 승인</h3>
+            <p>식품의약품안전처가 국내 최초 세포유전자치료제의 품목허가를 승인하며 첨단바이오 CDMO 시장 성장에 탄력이 붙을 전망입니다.</p>
+          </div>
+        </div>
+
+        <!-- News 2 -->
+        <div class="news-card" data-reveal data-delay="0.2">
+          <div class="news-card-img">
+            <img src="geniecell_imge/main%20ex3.jpg" alt="재생의료 뉴스" loading="lazy">
+            <span class="news-card-plus">+</span>
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-date">2026.04.03</span>
+            <h3>재생의료법 시행 2년, 세포치료 임상 100건 돌파</h3>
+            <p>재생의료법 시행 이후 세포치료 임상시험이 누적 100건을 넘어서며 업계 성장을 견인하고 있습니다.</p>
+          </div>
+        </div>
+
+        <!-- News 3 -->
+        <div class="news-card" data-reveal data-delay="0.3">
+          <div class="news-card-img">
+            <img src="geniecell_imge/main%20ex4.jpg" alt="바이오코리아 뉴스" loading="lazy">
+            <span class="news-card-plus">+</span>
+          </div>
+          <div class="news-card-body">
+            <span class="news-card-date">2026.02.21</span>
+            <h3>바이오코리아 2026, CDMO 통합 솔루션 전시관 운영</h3>
+            <p>오는 6월 서울 COEX에서 개최되는 바이오코리아 2026에 CDMO 통합 솔루션 전시관을 운영합니다.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1203,12 +785,37 @@ body {
 </div><!-- #snap -->
 </main>
 
+<!-- FOOTER -->
+<footer class="main-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">
+        <img src="geniecell_imge/%EC%A7%80%EB%8B%88%EC%85%80%EB%B0%94%EC%9D%B4%EC%98%A4%20%EB%A1%9C%EA%B3%A0.png" alt="지니셀바이오">
+        <span>GenicellBio</span>
+      </a>
+      <div class="footer-info">
+        <div><strong>대표이사</strong> 이 준</div>
+        <div><strong>TEL</strong> 02-000-0000</div>
+        <div><strong>E-mail</strong> contact@genicellbio.com</div>
+        <div><strong>본사</strong> 경기도 성남시 중원구 갈마치로 314, 3층 301~306호 (성남 센트럴비즈타워 1)</div>
+      </div>
+    </div>
+    <div class="footer-links-col">
+      <a href="about.html#location">오시는 길</a>
+      <a href="privacy.html">개인정보처리방침</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 GenicellBio. All rights reserved.</span>
+  </div>
+</footer>
+
 <script>
 /* ── 스크롤 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
 (function(){
   var nav     = document.getElementById('gcb-nav');
-  var secs    = ['s1','s2','s3','s4'];
-  var darkSecs = ['s1','s3','s4'];
+  var secs    = ['s1','s2','s3'];
+  var darkSecs = ['s1'];
   var current = 0;
   var btnTop  = document.getElementById('btn-top');
   var fctaEl  = document.getElementById('floating-cta');
@@ -1254,21 +861,6 @@ body {
 
 // 드로어 토글 + aria-expanded + 바깥 탭 닫기
 
-// 스텝 섹션 스크롤 애니메이션
-(function() {
-  var rows = document.querySelectorAll('.step-row');
-  if (!rows.length) return;
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  rows.forEach(function(row) { obs.observe(row); });
-})();
-
 // 페이지 공통 reveal 애니메이션
 (function() {
   var els = document.querySelectorAll('[data-reveal]');
@@ -1285,69 +877,6 @@ body {
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   els.forEach(function(el) { obs.observe(el); });
-})();
-</script>
-<script>
-/* ── S3 Service Card Swipe Slider (mobile only) ── */
-(function() {
-  function initSlider() {
-    if (window.innerWidth > 768) return;
-    var wrap = document.getElementById('svc-slider-wrap');
-    var slider = document.getElementById('svc-slider');
-    var dots = document.querySelectorAll('#svc-dots .svc-dot-btn');
-    var prevBtn = document.getElementById('svc-prev');
-    var nextBtn = document.getElementById('svc-next');
-    if (!wrap || !slider || !dots.length) return;
-
-    var cards = slider.querySelectorAll('.svc-card');
-    var total = cards.length;
-    var current = 0;
-    var startX = 0;
-    var isDragging = false;
-
-    // 슬라이더의 자연 좌표 저장 (transform 없는 상태)
-    slider.style.transform = 'none';
-    var gridNaturalLeft = slider.getBoundingClientRect().left;
-
-    function goTo(idx) {
-      current = Math.max(0, Math.min(total - 1, idx));
-      var cardW = cards[0].offsetWidth;
-      var gap = 12;
-      var vw = window.innerWidth;
-      // 활성 카드의 자연 left 위치 → 뷰포트 중앙에 오도록 offset 계산
-      var naturalCardLeft = gridNaturalLeft + current * (cardW + gap);
-      var targetLeft = (vw - cardW) / 2;
-      var offset = targetLeft - naturalCardLeft;
-      slider.style.transform = 'translateX(' + offset + 'px)';
-      dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
-      cards.forEach(function(c, i) { c.classList.toggle('svc-active', i === current); });
-      if (prevBtn) prevBtn.disabled = current === 0;
-      if (nextBtn) nextBtn.disabled = current === total - 1;
-    }
-
-    wrap.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    }, { passive: true });
-
-    wrap.addEventListener('touchend', function(e) {
-      if (!isDragging) return;
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-      isDragging = false;
-    }, { passive: true });
-
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() { goTo(parseInt(dot.dataset.idx)); });
-    });
-    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); });
-
-    goTo(0);
-  }
-
-  initSlider();
-  window.addEventListener('resize', initSlider);
 })();
 </script>
 <script>
@@ -1419,30 +948,6 @@ body {
 
   // 초기 시작
   startProgress();
-})();
-</script>
-<script>
-/* ── Facility Banner Parallax ── */
-(function() {
-  var img = document.getElementById('facility-parallax');
-  var banner = document.getElementById('s-banner');
-  if (!img || !banner) return;
-
-  function onScroll() {
-    var rect = banner.getBoundingClientRect();
-    var vh = window.innerHeight;
-    // 배너가 뷰포트 안에 있을 때만 계산
-    if (rect.bottom < 0 || rect.top > vh) return;
-    // -0.5 ~ 0.5 범위로 정규화
-    var progress = (rect.top / vh);
-    // 이미지 이동 범위 제한 (이미지 여백 내에서만 움직임)
-    var shift = Math.max(-15, Math.min(15, progress * 20));
-    img.style.transform = 'translateY(' + shift + '%)';
-  }
-
-  var scroller = window;
-  scroller.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 })();
 </script>
 </body>

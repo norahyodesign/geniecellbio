@@ -47,7 +47,7 @@
 .greeting-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 20px 20px 18px;
-  background: linear-gradient(to top, rgba(14,32,64,0.82) 0%, rgba(14,32,64,0) 100%);
+  background: rgba(14,32,64,0.82);
   text-align: left;
 }
 .greeting-sig-name { font-size: 16px; font-weight: 700; color: var(--white); }
@@ -73,7 +73,7 @@
   line-height: 1.9; color: var(--text); letter-spacing: -0.01em;
   margin: 0; font-style: italic;
 }
-.greeting-quote blockquote span { color: var(--accent); font-weight: 600; font-style: normal; }
+.greeting-quote blockquote span { color: var(--accent-text); font-weight: 600; font-style: normal; }
 .greeting-body {
   display: flex; flex-direction: column; gap: 0;
   border-radius: var(--radius);
@@ -121,7 +121,7 @@
     line-height: 1.8;
     text-align: left;
   }
-  .greeting-quote blockquote span { color: var(--accent); font-style: normal; font-weight: 700; }
+  .greeting-quote blockquote span { color: var(--accent-text); font-style: normal; font-weight: 700; }
 
   /* 본문: 데스크톱과 동일한 라인 박스 */
   .greeting-body {
@@ -171,7 +171,7 @@
 .mv-overline {
   display: inline-block;
   font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase;
-  background: var(--accent); color: var(--white);
+  background: var(--accent); color: var(--navy);
   padding: 6px 12px; border-radius: var(--radius-xs);
 }
 .mv-content h3 {
@@ -213,19 +213,19 @@
 .tl-zz::before {
   content: ''; position: absolute;
   left: calc(50% - 1px); top: 0; bottom: 0;
-  width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  width: 2px; background: var(--accent);
   pointer-events: none;
 }
 .tl-zz-node { display: flex; justify-content: center; padding-top: 4px; position: relative; z-index: 1; }
 .tl-zz-dot {
   width: 12px; height: 12px; border-radius: 50%;
   background: var(--accent); border: 2px solid var(--white);
-  box-shadow: 0 0 0 3px rgba(46,124,246,.2); flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(152,214,250,.2); flex-shrink: 0;
 }
 .tl-zz-content { padding: 0 28px 48px; text-align: right; }
 .tl-zz-content.right { text-align: left; padding: 0 0 48px 28px; }
 .tl-zz-spacer { padding-bottom: 48px; }
-.tl-zz-year { font: 700 20px/1 var(--mono); color: var(--accent); margin-bottom: 10px; }
+.tl-zz-year { font: 700 20px/1 var(--mono); color: var(--accent-text); margin-bottom: 10px; }
 .tl-zz-desc { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 4px; }
 .tl-zz-sub { font-size: 13px; color: var(--text2); line-height: 1.6; }
 
@@ -264,7 +264,7 @@
   border-right: 1px solid var(--border);
 }
 .loc-item:last-child { border-right: none; }
-.loc-label { font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent); }
+.loc-label { font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent-text); }
 .loc-val { font-size: 14px; color: var(--text); line-height: 1.6; }
 .loc-transport {
   display: flex; flex-direction: column; gap: 0;
@@ -274,7 +274,7 @@
 }
 .loc-transport-title {
   font: 700 11px/1 var(--font); letter-spacing: 0.8px; text-transform: uppercase;
-  color: var(--accent); padding: 16px 24px 12px;
+  color: var(--accent-text); padding: 16px 24px 12px;
   border-bottom: 1px solid var(--border);
 }
 .transport-list { list-style: none; display: flex; flex-direction: row; flex-wrap: wrap; gap: 0; margin: 0; }
@@ -285,7 +285,7 @@
   border-right: 1px solid var(--border);
 }
 .transport-list li:last-child { border-right: none; }
-.transport-list li svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
+.transport-list li svg { width: 15px; height: 15px; color: var(--accent-text); flex-shrink: 0; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
@@ -327,7 +327,7 @@
   .tl-zz-node, .tl-zz-spacer { display: none; }
   .tl-zz::before { display: none; }
   .tl-zz-content, .tl-zz-content.right { padding: 0 0 32px 24px; text-align: left; border-left: 2px solid var(--border); position: relative; }
-  .tl-zz-content::before { content: ''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--white); box-shadow: 0 0 0 3px rgba(46,124,246,.2); }
+  .tl-zz-content::before { content: ''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--white); box-shadow: 0 0 0 3px rgba(152,214,250,.2); }
 }
 @media (max-width: 480px) {
   .values-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -343,7 +343,7 @@
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 50px;
   padding: 10px 10px 10px 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(46,124,246,.15);
+  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(152,214,250,.15);
   opacity: 0; visibility: hidden;
   transition: opacity .4s, visibility .4s, transform .4s;
   white-space: nowrap;
@@ -359,11 +359,11 @@
   background: var(--accent);
   padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 0 4px 16px rgba(46,124,246,.5);
+  box-shadow: 0 4px 16px rgba(152,214,250,.5);
   transition: background .2s, gap .2s;
 }
 .fcta-btn svg { width: 14px; height: 14px; transition: transform .2s; }
-.fcta-btn:hover { background: #1a6ae0; gap: 10px; }
+.fcta-btn:hover { background: #7CC4E8; gap: 10px; }
 .fcta-btn:hover svg { transform: translateX(2px); }
 @media (max-width: 480px) {
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
@@ -611,7 +611,7 @@
   <footer class="page-footer">
     <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
     <div class="footer-links">
-      <a href="#">개인정보처리방침</a>
+      <a href="privacy.html">개인정보처리방침</a>
       <a href="#">이용약관</a>
     </div>
   </footer>
