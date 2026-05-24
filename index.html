@@ -233,11 +233,21 @@ body {
   top: 0;
   z-index: 0;
 }
-.hero-video {
+/* ── 이미지 슬라이더 ── */
+.hero-slides {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
   z-index: 0;
+  overflow: hidden;
+}
+.hero-slide {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity .9s ease;
+}
+.hero-slide.is-active {
+  opacity: 1;
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -309,6 +319,32 @@ body {
   transition: background .25s, border-color .25s, color .25s;
 }
 .btn-ghost:hover { background:rgba(255,255,255,0.18); border-color:rgba(255,255,255,.55); color:var(--white); }
+
+/* ── Hero Progress Bars ── */
+.hero-progress {
+  position: absolute;
+  bottom: 72px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hero-prog-bar {
+  width: 60px; height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.25);
+  overflow: hidden;
+  cursor: pointer;
+}
+.hero-prog-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width linear;
+}
+.hero-prog-bar.is-done .hero-prog-fill { width: 100%; transition: none; }
 
 .scroll-hint {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
@@ -1106,10 +1142,13 @@ body {
 
   <!-- S1: HERO -->
   <section class="snap-sec" id="s1">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
-      <source src="hero-bg.webm" type="video/webm">
-      <source src="1080001154-preview.mp4" type="video/mp4">
-    </video>
+    <!-- 이미지 슬라이더 -->
+    <div class="hero-slides" id="hero-slides">
+      <div class="hero-slide is-active" style="background-image:url('geniecell_imge/main%20img.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340637.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340733.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg')"></div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <h1 class="hero-h1">GENIECELLBIO</h1>
@@ -1119,6 +1158,13 @@ body {
         <a href="#s4" class="btn-primary">서비스 문의하기</a>
         <a href="#s3" class="btn-ghost">서비스 알아보기</a>
       </div>
+    </div>
+    <!-- 프로그레스 바 -->
+    <div class="hero-progress" id="hero-progress">
+      <div class="hero-prog-bar is-done"><div class="hero-prog-fill"></div></div>
+      <div class="hero-prog-bar"><div class="hero-prog-fill"></div></div>
+      <div class="hero-prog-bar"><div class="hero-prog-fill"></div></div>
+      <div class="hero-prog-bar"><div class="hero-prog-fill"></div></div>
     </div>
     <div class="scroll-hint">
       <div class="scroll-hint-dot"></div>
@@ -1487,6 +1533,77 @@ body {
 
   initSlider();
   window.addEventListener('resize', initSlider);
+})();
+</script>
+<script>
+/* ── Hero Image Slider ── */
+(function() {
+  var DURATION = 3000; // 3초
+  var slides = document.querySelectorAll('#hero-slides .hero-slide');
+  var bars   = document.querySelectorAll('#hero-progress .hero-prog-bar');
+  var fills  = document.querySelectorAll('#hero-progress .hero-prog-fill');
+  if (!slides.length || !bars.length) return;
+
+  var total   = slides.length;
+  var current = 0;
+  var timer   = null;
+  var startTs = null;
+  var raf     = null;
+
+  function goTo(idx) {
+    slides[current].classList.remove('is-active');
+    bars[current].classList.add('is-done');
+    fills[current].style.transition = 'none';
+    fills[current].style.width = '100%';
+
+    current = (idx + total) % total;
+
+    slides[current].classList.add('is-active');
+    bars.forEach(function(b, i) {
+      if (i < current) {
+        b.classList.add('is-done');
+        fills[i].style.transition = 'none';
+        fills[i].style.width = '100%';
+      } else if (i === current) {
+        b.classList.remove('is-done');
+        fills[i].style.transition = 'none';
+        fills[i].style.width = '0%';
+      } else {
+        b.classList.remove('is-done');
+        fills[i].style.transition = 'none';
+        fills[i].style.width = '0%';
+      }
+    });
+    startProgress();
+  }
+
+  function startProgress() {
+    cancelAnimationFrame(raf);
+    clearTimeout(timer);
+    startTs = null;
+
+    function tick(ts) {
+      if (!startTs) startTs = ts;
+      var elapsed = ts - startTs;
+      var pct = Math.min(elapsed / DURATION * 100, 100);
+      fills[current].style.transition = 'none';
+      fills[current].style.width = pct + '%';
+      if (pct < 100) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        goTo(current + 1);
+      }
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  // 클릭으로 슬라이드 이동
+  bars.forEach(function(bar, i) {
+    bar.addEventListener('click', function() { goTo(i); });
+  });
+
+  // 초기 시작
+  startProgress();
 })();
 </script>
 <script>
