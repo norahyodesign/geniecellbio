@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet"></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,wght@1,700;1,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="tokens.css">
 <style>
 /* ────────────────────────────────
@@ -109,105 +109,8 @@ body {
 #gcb-nav.on-dark .nav-item:hover .nav-link { color: var(--white); background: rgba(255,255,255,0.1); }
 #gcb-nav.on-dark .nav-ham svg { color: var(--white); }
 #gcb-nav.on-dark .nav-cta { background: rgba(46,124,246,0.85); }
-.nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 32px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-logo {
-  display: flex; align-items: center;
-  font-size: 15px; font-weight: 800; color: var(--navy);
-  letter-spacing: 0.12em; text-decoration: none;
-  text-transform: uppercase;
-}
-.nav-logo-icon { display: none; }
-
-.nav-menu { display: flex; align-items: center; gap: 4px; list-style: none; }
-.nav-item { position: relative; }
-.nav-link {
-  display: flex; align-items: center; gap: 4px;
-  padding: 8px 14px;
-  font-size: 13px; font-weight: 500; color: var(--text2);
-  text-decoration: none; border-radius: 8px;
-  transition: color .2s, background .2s;
-  cursor: pointer; white-space: nowrap;
-  background: none; border: none; font-family: var(--font);
-}
-.nav-link svg { width: 12px; height: 12px; transition: transform .25s; flex-shrink: 0; }
-.nav-item:hover .nav-link { color: var(--navy); background: var(--gray-bg); }
-.nav-item:hover .nav-link svg { transform: rotate(180deg); }
-
-.nav-drop {
-  position: absolute; top: calc(100% + 8px); left: 50%;
-  transform: translateX(-50%) translateY(-8px);
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 8px;
-  min-width: 160px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-  opacity: 0; visibility: hidden;
-  transition: opacity .22s ease, transform .22s ease, visibility .22s;
-}
-.nav-item:hover .nav-drop {
-  opacity: 1; visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-.nav-drop a {
-  display: block;
-  padding: 9px 14px;
-  font-size: 13px; font-weight: 500; color: var(--text2);
-  text-decoration: none; border-radius: 8px;
-  transition: background .15s, color .15s;
-  white-space: nowrap;
-}
-.nav-drop a:hover { background: var(--gray-bg); color: var(--navy); }
-
-.nav-cta {
-  font-size: 13px; font-weight: 600;
-  color: var(--white); background: var(--accent);
-  border: none; border-radius: 50px;
-  padding: 9px 20px;
-  cursor: pointer; font-family: var(--font);
-  text-decoration: none;
-  transition: background .2s, transform .2s;
-}
-.nav-cta:hover { background: #1a6ae0; transform: translateY(-1px); }
-
-.nav-ham { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-.nav-ham svg { width: 22px; height: 22px; color: var(--navy); }
-
-.nav-drawer {
-  display: none;
-  position: fixed; top: var(--nav-h); left: 0; right: 0;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 32px 24px;
-  z-index: 999;
-}
-.nav-drawer.open { display: block; }
-.nav-drawer-section { margin-bottom: 16px; }
-.nav-drawer-label {
-  font-size: 11px; font-weight: 600; color: var(--text3);
-  letter-spacing: 1.5px; text-transform: uppercase;
-  margin-bottom: 8px; padding: 0 4px;
-}
-.nav-drawer a {
-  display: block; padding: 10px 4px;
-  font-size: 15px; font-weight: 500; color: var(--text);
-  text-decoration: none; border-bottom: 1px solid var(--border);
-}
-.nav-drawer a:last-child { border-bottom: none; }
-
-@media (max-width: 768px) {
-  .nav-menu, .nav-cta { display: none; }
-  .nav-ham { display: block; }
-}
+/* index.html 전용: 로고 흰색 (hero 어두운 배경) */
+.nav-logo-img { filter: brightness(0) invert(1); }
 
 /* ────────────────────────────────
    섹션 공통
@@ -270,8 +173,10 @@ body {
   margin: 0 auto;
 }
 .hero-h1 {
-  font-size: clamp(36px, 6vw, 80px);
-  font-weight: 700; line-height: 1.0; letter-spacing: 0.08em;
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 800;
+  line-height: 1.0; letter-spacing: 0.08em;
   color: var(--white);
   margin-bottom: 24px;
   text-transform: uppercase;
@@ -323,8 +228,7 @@ body {
 /* ── Hero Progress Bars ── */
 .hero-progress {
   position: absolute;
-  bottom: 72px; left: 50%;
-  transform: translateX(-50%);
+  bottom: 72px; right: 48px;
   z-index: 3;
   display: flex;
   gap: 8px;
@@ -874,7 +778,7 @@ body {
   .hero-sub { max-width: 100%; display: none; }
   .hero-cta { justify-content: center; flex-direction: column; align-items: center; margin-top: 32px; }
   .hero-cta .btn-primary, .hero-cta .btn-ghost { width: 240px; justify-content: center; }
-  .hero-h1 { font-size: clamp(28px, 8vw, 44px); }
+  .hero-h1 { font-size: clamp(32px, 9vw, 50px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
   .hero-tagline .mobile-br::before { content: '\A'; white-space: pre; }
   .hero-sub { font-size: 14px; }
@@ -1067,15 +971,12 @@ body {
 <nav id="gcb-nav" aria-label="주 메뉴">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="white"/></svg>
-      </div>
-      GENIECELLBIO
+      <img src="geniecell_imge/%EC%A7%80%EB%8B%88%EC%85%80%EB%B0%94%EC%9D%B4%EC%98%A4%20%EB%A1%9C%EA%B3%A0.png" alt="지니셀바이오" class="nav-logo-img">
     </a>
 
     <ul class="nav-menu">
       <li class="nav-item">
-        <button type="button" class="nav-link">회사소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
+        <button type="button" class="nav-link">기업소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
         <div class="nav-drop">
           <a href="about.html#greeting">인사말</a>
           <a href="about.html#company">회사소개</a>
@@ -1083,11 +984,25 @@ body {
         </div>
       </li>
       <li class="nav-item">
-        <button type="button" class="nav-link">서비스 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>
+        <a href="cdmo.html" class="nav-link">CDMO 서비스 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a>
         <div class="nav-drop">
-          <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a>
-          <a href="cell-management.html">인체세포등 관리업</a>
-          <a href="cell-facility.html">세포처리시설</a>
+          <a href="cdmo.html">CMO · 위탁생산</a>
+          <a href="cdmo.html">QC · 위탁품질시험</a>
+          <a href="cdmo.html">RA · 인허가 컨설팅</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="cell-management.html" class="nav-link">인체세포등 관리업 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a>
+        <div class="nav-drop">
+          <a href="cell-management.html">원료세포 공급</a>
+          <a href="cell-management.html">자가세포 보관</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="cell-facility.html" class="nav-link">세포처리시설 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a>
+        <div class="nav-drop">
+          <a href="cell-facility.html">투여용 세포 공급</a>
+          <a href="cell-facility.html">치료계획서 작성 지원</a>
         </div>
       </li>
       <li class="nav-item">
@@ -1109,16 +1024,31 @@ body {
 <!-- 모바일 드로어 -->
 <div class="nav-drawer" id="gcb-drawer">
   <div class="nav-drawer-section">
-    <div class="nav-drawer-label">회사소개</div>
-    <a href="about.html#greeting">인사말</a><a href="about.html#company">회사소개</a><a href="about.html#location">오시는길</a>
+    <div class="nav-drawer-label">기업소개</div>
+    <a href="about.html#greeting">인사말</a>
+    <a href="about.html#company">회사소개</a>
+    <a href="about.html#location">오시는길</a>
   </div>
   <div class="nav-drawer-section">
-    <div class="nav-drawer-label">서비스</div>
-    <a href="cdmo.html">CDMO (위탁생산·QC·RA)</a><a href="cell-management.html">인체세포등 관리업</a><a href="cell-facility.html">세포처리시설</a>
+    <div class="nav-drawer-label">CDMO 서비스</div>
+    <a href="cdmo.html">CMO · 위탁생산</a>
+    <a href="cdmo.html">QC · 위탁품질시험</a>
+    <a href="cdmo.html">RA · 인허가 컨설팅</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">인체세포등 관리업</div>
+    <a href="cell-management.html">원료세포 공급</a>
+    <a href="cell-management.html">자가세포 보관</a>
+  </div>
+  <div class="nav-drawer-section">
+    <div class="nav-drawer-label">세포처리시설</div>
+    <a href="cell-facility.html">투여용 세포 공급</a>
+    <a href="cell-facility.html">치료계획서 작성 지원</a>
   </div>
   <div class="nav-drawer-section">
     <div class="nav-drawer-label">고객지원</div>
-    <a href="support.html#qna">Q&amp;A</a><a href="support.html#contact">Contact Us</a>
+    <a href="support.html#qna">Q&amp;A</a>
+    <a href="support.html#contact">Contact Us</a>
   </div>
 </div>
 </header>
@@ -1144,10 +1074,10 @@ body {
   <section class="snap-sec" id="s1">
     <!-- 이미지 슬라이더 -->
     <div class="hero-slides" id="hero-slides">
-      <div class="hero-slide is-active" style="background-image:url('geniecell_imge/main%20img.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340637.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340733.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg')"></div>
+      <div class="hero-slide is-active" style="background-image:url('geniecell_imge/main%20ex1.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('geniecell_imge/main%20ex2.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('geniecell_imge/main%20ex3.jpg')"></div>
+      <div class="hero-slide" style="background-image:url('geniecell_imge/main%20ex4.jpg')"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-body">
