@@ -274,6 +274,9 @@ body { background: var(--white); color: var(--text); }
   transition: background .2s, transform .2s;
 }
 .nav-cta:hover { background: #7CC4E8; transform: translateY(-1px); }
+@media (max-width: 768px) {
+  .nav-cta { display: none; }
+}
 
 /* ══════════════════════════════════
    SECTION COMMON

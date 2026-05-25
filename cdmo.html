@@ -158,12 +158,98 @@
   .img-box { aspect-ratio: 3/2; }
 }
 
+/* ── Service Slider ── */
+.svc-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21/8;
+  overflow: hidden;
+  background: #ECEEF2;
+}
+.svc-slides {
+  display: flex;
+  height: 100%;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.svc-slide {
+  min-width: 100%;
+  height: 100%;
+}
+.svc-slide-img {
+  width: 100%;
+  height: 100%;
+  background: #ECEEF2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+.svc-slide:nth-child(2) .svc-slide-img { background: #E4E7EF; }
+.svc-slide:nth-child(3) .svc-slide-img { background: #DAE0EA; }
+.svc-slide-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.svc-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(6px);
+  border: none; border-radius: 50%;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
+  transition: background .2s, opacity .2s;
+  opacity: 0.7;
+}
+.svc-arrow:hover { background: #fff; opacity: 1; }
+.svc-arrow svg { width: 20px; height: 20px; }
+.svc-arrow.prev { left: 16px; }
+.svc-arrow.next { right: 16px; }
+.svc-dots {
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 10;
+}
+.svc-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.5); border: none; padding: 0; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.svc-dot.is-active { background: #fff; transform: scale(1.3); }
+@media (max-width: 600px) {
+  .svc-arrow { width: 36px; height: 36px; }
+  .svc-arrow svg { width: 16px; height: 16px; }
+}
 </style>
 </head>
 <body>
 <script src="nav.js"></script>
 
 <main class="page-wrap">
+
+  <!-- 이미지 슬라이더 -->
+  <div class="svc-slider" id="svc-slider">
+    <div class="svc-slides">
+      <div class="svc-slide">
+        <div class="svc-slide-img"><img src="geniecell_imge/main%20ex1.jpg" alt="지니셀바이오 GMP 생산 시설"></div>
+      </div>
+      <div class="svc-slide">
+        <div class="svc-slide-img"><img src="geniecell_imge/main%20ex3.jpg" alt="CDMO 세포 처리 환경"></div>
+      </div>
+      <div class="svc-slide">
+        <div class="svc-slide-img"><img src="geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg" alt="현대식 과학 실험실 장비"></div>
+      </div>
+    </div>
+    <button type="button" class="svc-arrow prev" aria-label="이전 슬라이드">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 5l-5 5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" class="svc-arrow next" aria-label="다음 슬라이드">
+      <svg viewBox="0 0 20 20" fill="none"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="svc-dots">
+      <button type="button" class="svc-dot is-active" aria-label="슬라이드 1"></button>
+      <button type="button" class="svc-dot" aria-label="슬라이드 2"></button>
+      <button type="button" class="svc-dot" aria-label="슬라이드 3"></button>
+    </div>
+  </div>
 
   <!-- CDMO SERVICE TABS -->
   <nav class="tab-nav svc-tab-nav" id="cdmo-tabs" aria-label="CDMO 세부 서비스">
@@ -487,10 +573,39 @@
 
 <script>
 (function() {
+  var slider  = document.getElementById('svc-slider');
+  if (!slider) return;
+  var track   = slider.querySelector('.svc-slides');
+  var slides  = slider.querySelectorAll('.svc-slide');
+  var dots    = slider.querySelectorAll('.svc-dot');
+  var cur     = 0;
+  var timer;
+
+  function go(n) {
+    cur = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, i) { d.classList.toggle('is-active', i === cur); });
+  }
+
+  slider.querySelector('.prev').addEventListener('click', function() { go(cur - 1); resetTimer(); });
+  slider.querySelector('.next').addEventListener('click', function() { go(cur + 1); resetTimer(); });
+  dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); resetTimer(); }); });
+
+  function startTimer() { timer = setInterval(function() { go(cur + 1); }, 4000); }
+  function resetTimer() { clearInterval(timer); startTimer(); }
+  startTimer();
+  slider.addEventListener('mouseenter', function() { clearInterval(timer); });
+  slider.addEventListener('mouseleave', startTimer);
+})();
+</script>
+
+<script>
+(function() {
   var tabs            = document.querySelectorAll('#cdmo-tabs .tab-item');
   var defaultSections = document.getElementById('default-sections');
   var detailSection   = document.getElementById('svc-detail-section');
   var detailViews     = document.querySelectorAll('.svc-detail-view');
+  var slider          = document.getElementById('svc-slider');
 
   function showDefault() {
     tabs.forEach(function(t) { t.classList.remove('active'); });
@@ -498,6 +613,7 @@
     detailSection.setAttribute('hidden', '');
     detailSection.classList.remove('open');
     defaultSections.style.display = '';
+    if (slider) slider.style.display = '';
   }
 
   // 뒤로가기 버튼
@@ -519,6 +635,9 @@
       // 탭 상태 업데이트
       tabs.forEach(function(t) { t.classList.remove('active'); });
       this.classList.add('active');
+
+      // 슬라이더 숨기기
+      if (slider) slider.style.display = 'none';
 
       // 기본 섹션 숨기기
       defaultSections.style.display = 'none';
