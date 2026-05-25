@@ -29,9 +29,9 @@
     '    </a>',
 
     '    <ul class="nav-menu">',
-    // 기업소개
+    // 회사소개
     '      <li class="nav-item" data-nav="about">',
-    '        <button type="button" class="nav-link">기업소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>',
+    '        <button type="button" class="nav-link">회사소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>',
     '        <div class="nav-drop">',
     '          <a href="about.html#greeting">인사말</a>',
     '          <a href="about.html#company">회사소개</a>',
@@ -83,7 +83,7 @@
     // 모바일 드로어
     '<div class="nav-drawer" id="gcb-drawer">',
     '  <div class="nav-drawer-section">',
-    '    <div class="nav-drawer-label">기업소개</div>',
+    '    <div class="nav-drawer-label">회사소개</div>',
     '    <a href="about.html#greeting">인사말</a>',
     '    <a href="about.html#company">회사소개</a>',
     '    <a href="about.html#location">오시는길</a>',

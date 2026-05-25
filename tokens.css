@@ -1,5 +1,5 @@
 /*
- * tokens.css — GenicellBio Design System
+ * tokens.css — GeniecellBio Design System
  * 모든 서브페이지가 공유하는 디자인 토큰 & 컴포넌트
  */
 
@@ -127,7 +127,7 @@ body { background: var(--white); color: var(--text); }
 .nav-logo-icon { display: none; }
 
 /* 드롭다운 메뉴 */
-.nav-menu { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-menu { display: flex; align-items: center; gap: 12px; list-style: none; }
 .nav-item { position: relative; }
 .nav-link {
   display: flex; align-items: center; gap: 4px;
@@ -947,8 +947,56 @@ body { background: var(--white); color: var(--text); }
 .sde-back-btn svg { width: 15px; height: 15px; }
 
 /* ══════════════════════════════════
-   FOOTER
+   FOOTER (공통)
 ══════════════════════════════════ */
+.main-footer {
+  background: var(--navy); color: rgba(255,255,255,.65);
+  padding: 56px 32px 32px;
+}
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.footer-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.footer-logo img {
+  height: 28px; filter: brightness(0) invert(1);
+}
+.footer-logo span {
+  font: 700 16px/1 var(--font); color: var(--white);
+  letter-spacing: -0.02em;
+}
+.footer-info {
+  display: flex; flex-direction: column; gap: 6px;
+  font-size: 13px; line-height: 1.65;
+}
+.footer-info strong {
+  color: rgba(255,255,255,.85); font-weight: 600;
+}
+.footer-links-col {
+  display: flex; flex-direction: column; gap: 10px;
+  justify-content: flex-start; align-items: flex-end;
+}
+.footer-links-col a {
+  font-size: 14px; color: rgba(255,255,255,.65);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-links-col a:hover { color: var(--white); }
+.footer-bottom {
+  max-width: var(--max-w); margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,.1);
+  margin-top: 40px; padding-top: 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(255,255,255,.35);
+}
+/* 하위 호환: 기존 page-footer */
 .page-footer {
   background: #071525; padding: 24px 32px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
@@ -995,6 +1043,10 @@ body { background: var(--white); color: var(--text); }
   .btn-primary, .btn-ghost { padding: 12px 22px; font-size: 13px; }
   .nav-inner { padding: 0 20px; }
   .page-footer { padding: 20px; flex-direction: column; align-items: flex-start; }
+  .main-footer { padding: 40px 20px 24px; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer-links-col { align-items: flex-start; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
 @media (max-width: 480px) {
   .tab-item { padding: 7px 13px; font-size: 12px; }

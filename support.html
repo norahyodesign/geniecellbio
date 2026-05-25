@@ -158,7 +158,7 @@
             <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-a">
-            아래 문의 폼에서 '문의 유형'을 '시설 견학 신청'으로 선택하거나, 이메일(contact@genicellbio.com)로 희망 일정을 보내주세요. GMP 시설 특성상 사전 예약 및 NDA 체결이 필요합니다.
+            아래 문의 폼에서 '문의 유형'을 '시설 견학 신청'으로 선택하거나, 이메일(geniecellbio@geniecellbio.com)로 희망 일정을 보내주세요. GMP 시설 특성상 사전 예약 및 NDA 체결이 필요합니다.
           </div>
         </div>
 
@@ -194,7 +194,7 @@
             </div>
             <div>
               <div class="contact-info-label">이메일</div>
-              <div class="contact-info-val"><a href="mailto:contact@genicellbio.com">contact@genicellbio.com</a></div>
+              <div class="contact-info-val"><a href="mailto:geniecellbio@geniecellbio.com">geniecellbio@geniecellbio.com</a></div>
             </div>
           </div>
           <div class="contact-info-item">
@@ -281,15 +281,9 @@
     </div>
   </section>
 
-  <footer class="page-footer">
-    <div class="footer-copy">© 2026 GenicellBio. All rights reserved.</div>
-    <div class="footer-links">
-      <a href="privacy.html">개인정보처리방침</a>
-      <a href="#">이용약관</a>
-    </div>
-  </footer>
-
 </main>
+
+<script src="footer.js"></script>
 
 <script>
 // ── 탭 활성화 (IntersectionObserver) ──
@@ -371,7 +365,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   const body    = encodeURIComponent(
     `이름: ${name}\n소속: ${company || '미입력'}\n이메일: ${email}\n연락처: ${phone || '미입력'}\n문의 유형: ${type}\n\n문의 내용:\n${msg}`
   );
-  window.location.href = `mailto:contact@genicellbio.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:geniecellbio@geniecellbio.com?subject=${subject}&body=${body}`;
 
   document.getElementById('form-success').classList.add('visible');
   this.reset();

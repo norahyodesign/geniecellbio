@@ -9,6 +9,7 @@
 ```
 ├── index.html           # 메인 사이트 (단일 HTML, 4섹션 scroll-snap 완전 내장)
 ├── nav.js               # 공통 네비게이션 (모든 페이지가 공유)
+├── footer.js            # 공통 푸터 (모든 페이지가 공유)
 ├── tokens.css           # 디자인 토큰 & 컴포넌트 공유 스타일시트
 ├── cdmo.html            # CDMO 서비스 상세 페이지
 ├── cell-management.html # 인체세포등 관리업 상세 페이지

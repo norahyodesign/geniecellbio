@@ -158,7 +158,29 @@ body {
   font-weight: 500; line-height: 1.5; letter-spacing: -0.025em;
   color: rgba(255,255,255,0.88);
   margin-bottom: 20px;
-  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .22s both;
+  overflow: hidden;
+}
+.hero-tagline .ht-line {
+  display: block;
+  opacity: 0;
+}
+.hero-tagline .ht-left {
+  animation: slideFromLeft .9s cubic-bezier(.25,.46,.45,.94) .22s forwards;
+}
+.hero-tagline .ht-right {
+  animation: slideFromRight .9s cubic-bezier(.25,.46,.45,.94) .45s forwards;
+}
+.hero-tagline strong {
+  font-weight: 800;
+  color: #fff;
+}
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 .hero-sub {
   font-size: 16px; font-weight: 400; line-height: 1.7; letter-spacing: -0.01em;
@@ -274,6 +296,7 @@ body {
 
 /* ── Split Layout ── */
 .biz-split {
+  position: relative;
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 40px;
@@ -337,7 +360,7 @@ body {
 .biz-panels {
   position: relative;
   min-height: 400px;
-  overflow: hidden;
+  overflow: visible;
 }
 .biz-panel {
   display: none;
@@ -419,6 +442,7 @@ body {
 }
 
 /* ── Biz Arrows ── */
+.biz-panel-card { position: relative; overflow: hidden; }
 .biz-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   z-index: 4;
@@ -534,57 +558,6 @@ body {
 .news-card:hover .news-card-plus {
   transform: rotate(90deg) scale(1.15);
   background: var(--accent); color: var(--navy);
-}
-
-/* ────────────────────────────────
-   FOOTER
-──────────────────────────────── */
-.main-footer {
-  background: var(--navy); color: rgba(255,255,255,.65);
-  padding: 56px 32px 32px;
-}
-.footer-inner {
-  max-width: var(--max-w); margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-.footer-brand {
-  display: flex; flex-direction: column; gap: 20px;
-}
-.footer-logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none;
-}
-.footer-logo img {
-  height: 28px; filter: brightness(0) invert(1);
-}
-.footer-logo span {
-  font: 700 16px/1 var(--font); color: var(--white);
-  letter-spacing: -0.02em;
-}
-.footer-info {
-  display: flex; flex-direction: column; gap: 6px;
-  font-size: 13px; line-height: 1.65;
-}
-.footer-info strong {
-  color: rgba(255,255,255,.85); font-weight: 600;
-}
-.footer-links-col {
-  display: flex; flex-direction: column; gap: 10px;
-  justify-content: flex-start; align-items: flex-end;
-}
-.footer-links-col a {
-  font-size: 14px; color: rgba(255,255,255,.65);
-  text-decoration: none;
-  transition: color .2s;
-}
-.footer-links-col a:hover { color: var(--white); }
-.footer-bottom {
-  max-width: var(--max-w); margin: 0 auto;
-  border-top: 1px solid rgba(255,255,255,.1);
-  margin-top: 40px; padding-top: 20px;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 12px; color: rgba(255,255,255,.35);
 }
 
 /* ── 페이지 공통 reveal ── */
@@ -709,7 +682,6 @@ body {
 
   .hero-h1 { font-size: clamp(32px, 9vw, 50px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
-  .hero-tagline .mobile-br::before { content: '\A'; white-space: pre; }
   .hero-sub { font-size: 14px; }
 
   /* ── S2 BUSINESS 모바일 ── */
@@ -739,12 +711,6 @@ body {
   .news-head { margin-bottom: 32px; }
   .news-grid { grid-template-columns: 1fr; gap: 16px; }
   .news-card-body { padding: 20px; }
-
-  /* ── FOOTER 모바일 ── */
-  .main-footer { padding: 40px 20px 24px; }
-  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-  .footer-links-col { align-items: flex-start; }
-  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 
   /* ── 공통 ── */
   .progress-dots { display: none; }
@@ -788,7 +754,10 @@ body {
     <div class="hero-overlay"></div>
     <div class="hero-body">
       <h1 class="hero-h1">GENIECELLBIO</h1>
-      <p class="hero-tagline">당신의 연구가 멈추지 않도록,<span class="mobile-br"></span> 전문성의 길을 엽니다</p>
+      <p class="hero-tagline">
+        <span class="ht-line ht-left">당신의 <strong>연구</strong>가 멈추지 않도록,</span>
+        <span class="ht-line ht-right"><strong>전문성</strong>의 길을 엽니다</span>
+      </p>
       <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여,<br>귀사의 시간과 비용을 성공으로 치환합니다.</p>
     </div>
     <!-- 프로그레스 바 -->
@@ -807,18 +776,18 @@ body {
   <!-- S2: BUSINESS — 서비스 카드 -->
   <section class="snap-sec" id="s2">
     <div class="biz-inner">
-      <button type="button" class="biz-arrow biz-arrow--prev" id="biz-prev" aria-label="이전 서비스">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button type="button" class="biz-arrow biz-arrow--next" id="biz-next" aria-label="다음 서비스">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
       <div class="biz-head" data-reveal>
         <h2><span>BUSINESS</span></h2>
         <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
       </div>
 
       <div class="biz-split" data-reveal data-delay="0.15">
+        <button type="button" class="biz-arrow biz-arrow--prev" id="biz-prev" aria-label="이전 서비스">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="biz-arrow biz-arrow--next" id="biz-next" aria-label="다음 서비스">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
         <!-- 왼쪽: 타이틀 탭 -->
         <div class="biz-titles">
           <div class="biz-tabs-group">
@@ -833,7 +802,7 @@ body {
             </button>
           </div>
           <div class="biz-next-preview" id="biz-next-preview">
-            <img src="geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340637.jpg" alt="다음 서비스" loading="lazy">
+            <img src="geniecell_imge/main ex5.jpg" alt="다음 서비스" loading="lazy">
           </div>
         </div>
 
@@ -859,7 +828,7 @@ body {
           <!-- Panel 2: 인체세포등 관리업 -->
           <div class="biz-panel" data-biz-panel="1">
             <div class="biz-panel-card">
-              <img src="geniecell_imge/stock-photo-japanese-scientist-working-at-a-research-facility-2591340637.jpg" alt="인체세포등 관리업" loading="lazy">
+              <img src="geniecell_imge/main%20ex5.jpg" alt="인체세포등 관리업" loading="lazy">
               <div class="biz-panel-overlay">
                 <h3>인체세포등 관리업</h3>
                 <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지, 세포 자원의 안전한 관리와 품질 보증을 지원합니다.</p>
@@ -876,7 +845,7 @@ body {
           <!-- Panel 3: 세포처리시설 -->
           <div class="biz-panel" data-biz-panel="2">
             <div class="biz-panel-card">
-              <img src="geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg" alt="세포처리시설" loading="lazy">
+              <img src="geniecell_imge/main%20ex4.jpg" alt="세포처리시설" loading="lazy">
               <div class="biz-panel-overlay">
                 <h3>세포처리시설</h3>
                 <p>재생의료기관 파트너로서 안전한 시술과 연구 계획 수립, 투여용 인체세포 공급을 지원합니다.</p>
@@ -899,7 +868,7 @@ body {
   <section id="s3">
     <div class="news-inner">
       <div class="news-head" data-reveal>
-        <h2>지니셀바이오 <span>소식</span></h2>
+        <h2>GENIECELL <span>NEWS</span></h2>
         <p>최신 뉴스와 업계 동향을 전합니다</p>
       </div>
 
@@ -949,30 +918,7 @@ body {
 </div><!-- #snap -->
 </main>
 
-<!-- FOOTER -->
-<footer class="main-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="footer-logo">
-        <img src="geniecell_imge/%EC%A7%80%EB%8B%88%EC%85%80%EB%B0%94%EC%9D%B4%EC%98%A4%20%EB%A1%9C%EA%B3%A0.png" alt="지니셀바이오">
-        <span>GenicellBio</span>
-      </a>
-      <div class="footer-info">
-        <div><strong>대표이사</strong> 이 준</div>
-        <div><strong>TEL</strong> 02-000-0000</div>
-        <div><strong>E-mail</strong> contact@genicellbio.com</div>
-        <div><strong>본사</strong> 경기도 성남시 중원구 갈마치로 314, 3층 301~306호 (성남 센트럴비즈타워 1)</div>
-      </div>
-    </div>
-    <div class="footer-links-col">
-      <a href="about.html#location">오시는 길</a>
-      <a href="privacy.html">개인정보처리방침</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 GenicellBio. All rights reserved.</span>
-  </div>
-</footer>
+<script src="footer.js"></script>
 
 <script>
 /* ── 스크롤 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
