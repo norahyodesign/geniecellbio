@@ -58,6 +58,11 @@
   --ease: cubic-bezier(.25,.46,.45,.94);
 }
 
+/* 대형 모니터 (1600px 이상) — max-w 확장 */
+@media (min-width: 1600px) {
+  :root { --max-w: 1440px; }
+}
+
 /* ══════════════════════════════════
    BASE
 ══════════════════════════════════ */
@@ -97,6 +102,16 @@ body { background: var(--white); color: var(--text); }
   border-bottom: 1px solid rgba(0,0,0,0.07);
   transition: background .35s, border-color .35s;
 }
+#gcb-nav.nav-solid {
+  background: var(--navy);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+#gcb-nav.nav-solid .nav-link { color: rgba(255,255,255,.75); }
+#gcb-nav.nav-solid .nav-link:hover,
+#gcb-nav.nav-solid .nav-item:hover > .nav-link,
+#gcb-nav.nav-solid .nav-item.open > .nav-link { color: var(--white); background: rgba(255,255,255,.1); }
+#gcb-nav.nav-solid .nav-item.is-active > .nav-link { color: var(--accent); background: rgba(152,214,250,.12); }
+#gcb-nav.nav-solid .nav-ham svg { stroke: var(--white); }
 .nav-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 20px;
   height: 100%; display: flex; align-items: center; justify-content: space-between;
@@ -252,7 +267,7 @@ body { background: var(--white); color: var(--text); }
 /* Nav CTA */
 .nav-cta {
   display: inline-flex; align-items: center;
-  font-size: 13px; font-weight: 600; color: var(--white);
+  font-size: 13px; font-weight: 600; color: var(--navy);
   background: var(--accent); border: none; border-radius: 50px;
   padding: 9px 20px; cursor: pointer; font-family: var(--font);
   text-decoration: none;

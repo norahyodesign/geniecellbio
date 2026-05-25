@@ -624,7 +624,7 @@
 
   // 뒤로가기 버튼
   document.querySelectorAll('.sde-back-btn').forEach(function(btn) {
-    btn.addEventListener('click', showDefault);
+    btn.addEventListener('click', function() { showDefault(); history.replaceState(null, '', location.pathname); });
   });
 
   // 탭 클릭
@@ -661,6 +661,16 @@
       window.scrollTo(0, 0);
     });
   });
+
+  // URL 해시로 탭 자동 활성화
+  function activateByHash() {
+    var hash = location.hash.replace('#', '');
+    if (!hash) return;
+    var tab = document.querySelector('#cdmo-tabs .tab-item[data-svc="' + hash + '"]');
+    if (tab) tab.click();
+  }
+  activateByHash();
+  window.addEventListener('hashchange', activateByHash);
 })();
 </script>
 </body>
