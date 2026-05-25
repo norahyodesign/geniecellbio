@@ -188,6 +188,19 @@ body {
   max-width: 520px; margin-bottom: 40px;
   animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .34s both;
 }
+.hero-mobile-cta {
+  display: none;
+  align-items: center; gap: 7px;
+  padding: 14px 36px; border-radius: 50px;
+  font: 600 15px/1 var(--font); letter-spacing: -0.01em;
+  color: var(--navy); background: var(--accent);
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(46,124,246,0.4);
+  margin-top: 24px;
+  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .5s both;
+  transition: background .2s, transform .2s;
+}
+.hero-mobile-cta:hover { background: #7CC4E8; transform: translateY(-1px); }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 7px;
@@ -734,6 +747,7 @@ body {
     text-align: center;
   }
   .hero-sub { max-width: 100%; display: none; }
+  .hero-mobile-cta { display: inline-flex; }
 
   .hero-h1 { font-size: clamp(32px, 9vw, 50px); }
   .hero-tagline { font-size: clamp(16px, 5vw, 22px); }
@@ -808,6 +822,7 @@ body {
         <span class="ht-line ht-right"><strong>전문성</strong>의 길을 엽니다</span>
       </p>
       <p class="hero-sub">검증된 전문 시설과 숙련된 인력이 변수들을 사전에 완벽히 통제하여,<br>귀사의 시간과 비용을 성공으로 치환합니다.</p>
+      <a href="support.html#contact" class="hero-mobile-cta">상담 신청</a>
     </div>
     <!-- 프로그레스 바 -->
     <div class="hero-progress" id="hero-progress">
