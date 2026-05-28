@@ -43,7 +43,7 @@
 #greeting.greeting-full::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(14,32,64,0.85) 0%, rgba(14,32,64,0.5) 60%, rgba(14,32,64,0.2) 100%);
+  background: linear-gradient(to right, rgba(250,252,255,0.92) 0%, rgba(250,252,255,0.68) 60%, rgba(250,252,255,0.28) 100%);
 }
 .greeting-overlay {
   position: relative; z-index: 1;
@@ -62,13 +62,13 @@
   font-size: clamp(17px, 2vw, 22px);
   font-weight: 400;
   line-height: 1.85;
-  color: #fff;
+  color: var(--navy);
   letter-spacing: -0.01em;
   margin: 0;
   font-style: italic;
 }
 .greeting-overlay blockquote span {
-  color: var(--accent);
+  color: #1f5fbf;
   font-weight: 600;
   font-style: normal;
 }
@@ -76,15 +76,15 @@
   text-align: right;
   margin-top: 32px;
 }
-.greeting-sig-name { font-size: 17px; font-weight: 700; color: #fff; }
-.greeting-sig-role { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+.greeting-sig-name { font-size: 17px; font-weight: 700; color: var(--navy); }
+.greeting-sig-role { font-size: 13px; color: rgba(14,32,64,0.72); margin-top: 4px; }
 @media (max-width: 768px) {
   .tab-section.section { padding: 64px 0; }
   .tab-section:first-of-type { padding-top: 64px; }
   .tab-section:last-of-type  { padding-bottom: 64px; }
   #greeting.greeting-full { min-height: 420px; }
   #greeting.greeting-full::after {
-    background: linear-gradient(to top, rgba(14,32,64,0.92) 0%, rgba(14,32,64,0.4) 100%);
+    background: linear-gradient(to top, rgba(250,252,255,0.94) 0%, rgba(250,252,255,0.42) 100%);
   }
   .greeting-overlay {
     padding: 48px 20px;
@@ -370,7 +370,7 @@
        S1. 인사말
   ──────────────────────────── -->
   <section id="greeting" class="tab-section tab-offset greeting-full">
-    <img src="geniecell_imge/인사말1.jpg" alt="지니셀바이오 인사말">
+    <img src="geniecell_imge/%EC%9D%B8%EC%82%AC%EB%A7%904.jpg" alt="지니셀바이오 인사말">
     <div class="greeting-overlay">
       <blockquote>
         "첨단바이오의약품은 더 이상 미래의 이야기가 아닙니다.
