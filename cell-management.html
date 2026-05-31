@@ -182,6 +182,12 @@
   .proc-row { grid-template-columns: 36px 1fr; grid-template-rows: auto auto; }
   .proc-row::before { left: -21px; top: 30px; }
   .proc-desc { grid-column: 2; margin-top: 6px; }
+  .img-section { grid-template-columns: 1fr; }
+  .img-section.reverse { direction: ltr; }
+  .img-box { display: none; }
+  .section { padding: 40px 0; }
+  #default-sections > .section:first-child { padding-top: 80px; }
+  #default-sections > .section:last-child  { padding-bottom: 80px; }
 }
 @media (max-width: 480px) {
   .proc-row { grid-template-columns: 1fr; gap: 8px; }
