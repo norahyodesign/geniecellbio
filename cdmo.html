@@ -155,10 +155,7 @@
 @media (max-width: 768px) {
   .img-section { grid-template-columns: 1fr; }
   .img-section.reverse { direction: ltr; }
-  .img-box { display: none; }
-  .section { padding: 40px 0; }
-  #default-sections > .section:first-child { padding-top: 80px; }
-  #default-sections > .section:last-child  { padding-bottom: 80px; }
+  .img-box { aspect-ratio: 3/2; }
 }
 
 /* ── Service Slider ── */
@@ -235,6 +232,9 @@
         <div class="svc-slide-img"><img src="geniecell_imge/main%20ex1.jpg" alt="지니셀바이오 GMP 생산 시설"></div>
       </div>
       <div class="svc-slide">
+        <div class="svc-slide-img"><img src="geniecell_imge/main%20ex3.jpg" alt="CDMO 세포 처리 환경"></div>
+      </div>
+      <div class="svc-slide">
         <div class="svc-slide-img"><img src="geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg" alt="현대식 과학 실험실 장비"></div>
       </div>
     </div>
@@ -247,6 +247,7 @@
     <div class="svc-dots">
       <button type="button" class="svc-dot is-active" aria-label="슬라이드 1"></button>
       <button type="button" class="svc-dot" aria-label="슬라이드 2"></button>
+      <button type="button" class="svc-dot" aria-label="슬라이드 3"></button>
     </div>
   </div>
 
@@ -266,7 +267,7 @@
     <div class="inner">
       <div class="img-section">
         <div class="img-box">
-          <img src="geniecell_imge/stock-photo-modern-empty-science-laboratory-with-microscopes-test-tubes-and-other-laboratory-equipments-2657786469.jpg" alt="지니셀바이오 CDMO GMP 시설">
+          <img src="geniecell_imge/main%20ex3.jpg" alt="지니셀바이오 CDMO GMP 시설">
         </div>
         <div class="img-content">
           <span class="img-tag">CDMO</span>
