@@ -5,12 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>지니셀바이오 | 첨단바이오의약품 CDMO</title>
   <meta name="description" content="첨단바이오의약품 CDMO, 인체세포등 관리업, 세포처리시설 전문기업 지니셀바이오. GMP 기준 세포치료제 위탁개발·생산·인허가 서비스를 제공합니다.">
+  <meta name="keywords" content="지니셀바이오, CDMO, 세포치료제, 첨단바이오의약품, 위탁생산, GMP, 인체세포등 관리업, 세포처리시설, 유전자치료제, 인허가">
   <meta property="og:title" content="지니셀바이오 | 첨단바이오의약품 CDMO">
   <meta property="og:description" content="첨단바이오의약품 CDMO, 인체세포등 관리업, 세포처리시설 전문기업. GMP 기준 세포치료제 위탁개발·생산·인허가 원스톱 서비스.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://norahyodesign.github.io/geniecellbio/index.html">
+  <meta property="og:image" content="https://norahyodesign.github.io/geniecellbio/geniecell_imge/main%20ex1.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="지니셀바이오 | 첨단바이오의약품 CDMO">
+  <meta name="twitter:description" content="첨단바이오의약품 CDMO, 인체세포등 관리업, 세포처리시설 전문기업. GMP 기준 세포치료제 위탁개발·생산·인허가 원스톱 서비스.">
+  <meta name="twitter:image" content="https://norahyodesign.github.io/geniecellbio/geniecell_imge/main%20ex1.jpg">
   <link rel="canonical" href="https://norahyodesign.github.io/geniecellbio/index.html">
   <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "지니셀바이오",
+    "alternateName": "GenicellBio",
+    "url": "https://norahyodesign.github.io/geniecellbio/",
+    "logo": "https://norahyodesign.github.io/geniecellbio/geniecell_imge/%EC%A7%80%EB%8B%88%EC%85%80%EB%B0%94%EC%9D%B4%EC%98%A4%20%EB%A1%9C%EA%B3%A0.png",
+    "description": "첨단바이오의약품 CDMO, 인체세포등 관리업, 세포처리시설 전문기업. GMP 기준 세포치료제 위탁개발·생산·인허가 원스톱 서비스.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "contact@genicellbio.com",
+      "availableLanguage": "Korean"
+    },
+    "sameAs": []
+  }
+  </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -278,18 +305,13 @@ body {
 }
 
 /* ────────────────────────────────
-   S2 BUSINESS — 서비스 카드 섹션
+   S2 BUSINESS — 캐러셀 섹션
 ──────────────────────────────── */
 #s2 {
   background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  padding: 120px 0;
+  padding: 80px 0 90px;
+  overflow: hidden;
   position: relative; z-index: 1;
-}
-.biz-inner {
-  width: 100%; max-width: var(--max-w);
-  margin: 0 auto; padding: 0 32px;
-  position: relative;
 }
 .biz-head {
   text-align: center;
@@ -306,235 +328,130 @@ body {
 .biz-head p {
   font-size: 16px; color: var(--text2); line-height: 1.65;
 }
-
-/* ── S2 Desktop: Split Layout ── */
-.biz-split {
+/* ── 캐러셀 컨테이너 ── */
+.biz-carousel {
   position: relative;
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 40px;
-  align-items: stretch;
+  display: flex; align-items: center; justify-content: center;
+  height: 380px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
-.biz-titles {
-  display: flex; flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
-}
-.biz-tabs-group {
-  display: flex; flex-direction: column; gap: 8px;
-}
-.biz-tab {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 0;
-  font: 600 14px/1.3 var(--font);
-  color: var(--text);
-  opacity: 0.5;
-  letter-spacing: -0.01em;
-  border: none;
-  border-radius: 0;
-  background: none;
-  cursor: pointer;
-  transition: opacity .25s;
-  text-align: left;
-}
-.biz-tab:hover {
-  opacity: 0.75;
-}
-.biz-tab.is-active {
-  opacity: 1;
-}
-.biz-tab-num {
-  font: 600 11px/1 var(--mono);
-  min-width: 20px;
-  transition: opacity .25s;
-}
-.biz-tab.is-active .biz-tab-num {
-  color: var(--accent-text);
-}
-.biz-next-preview {
-  border-radius: var(--radius);
-  overflow: hidden;
-  opacity: 0.3;
-  transition: opacity .4s ease;
-  cursor: pointer;
-}
-.biz-next-preview:hover {
-  opacity: 0.5;
-}
-.biz-next-preview img {
-  width: 100%; display: block;
-  object-fit: cover;
-  aspect-ratio: 4 / 3;
-}
-.biz-panels {
+.biz-track {
   position: relative;
-  min-height: 400px;
-  overflow: visible;
-}
-.biz-panel {
-  display: none;
-  flex-direction: column;
-  gap: 0;
-  animation: bizFadeIn .4s ease;
-}
-.biz-panel.is-active {
-  display: flex;
-}
-@keyframes bizFadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.biz-panel-card {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-}
-.biz-panel-card img {
   width: 100%; height: 100%;
-  object-fit: cover; display: block;
+  display: flex; align-items: center; justify-content: center;
+  perspective: 1200px;
 }
-.biz-panel-card::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(14,32,64,.85) 0%, rgba(14,32,64,.4) 50%, transparent 100%);
-}
-.biz-panel-overlay {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: clamp(24px, 3vw, 40px);
-  z-index: 2;
-  display: flex; flex-direction: column; gap: 14px;
-}
-.biz-panel-overlay h3 {
-  font-size: clamp(20px, 2.2vw, 28px); font-weight: 700;
-  color: var(--white); letter-spacing: -0.03em; line-height: 1.3;
-}
-.biz-panel-overlay p {
-  font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.8);
-  max-width: 540px;
-}
-.biz-panel-items {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  list-style: none; padding: 0; margin: 0;
-}
-.biz-panel-items li {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 13px; font-weight: 500; color: var(--white);
-  background: rgba(255,255,255,.15);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,.2);
-  padding: 7px 14px;
-  border-radius: 50px;
-}
-.biz-panel-items li svg {
-  width: 13px; height: 13px; color: var(--accent); flex-shrink: 0;
-}
-.biz-panel-link {
-  position: absolute; top: clamp(16px, 2vw, 24px); right: clamp(16px, 2vw, 24px);
-  z-index: 3;
-  display: inline-flex; align-items: center; gap: 8px;
-  font: 600 14px/1 var(--font); letter-spacing: -0.01em;
-  color: var(--white);
-  text-decoration: none;
-  padding: 12px 24px;
-  border: 1.5px solid rgba(255,255,255,.35);
-  border-radius: 50px;
-  background: rgba(255,255,255,.1);
-  backdrop-filter: blur(6px);
-  width: fit-content;
-  transition: background .22s, color .22s, border-color .22s, gap .22s;
-}
-.biz-panel-link:hover {
-  background: rgba(255,255,255,.2); color: var(--white);
-  border-color: rgba(255,255,255,.5); gap: 12px;
-}
-
-/* ── Service Image Cards (모바일 1열) ── */
-.biz-cards {
-  display: none;
-  flex-direction: column;
-  gap: 16px;
-}
+/* ── 카드 공통 ── */
 .biz-card {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  border-radius: var(--radius);
+  position: absolute;
+  border-radius: 22px;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
-  text-decoration: none;
-  color: var(--white);
+  cursor: pointer;
+  transition: all 0.48s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity, width, height;
 }
-.biz-card-bg {
-  position: absolute; inset: 0;
-  z-index: 0;
-}
-.biz-card-bg img {
+.biz-card img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
+  pointer-events: none;
 }
-.biz-card::after {
-  content: '';
+.biz-card .card-gradient {
   position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(14,32,64,.82) 0%, rgba(14,32,64,.3) 55%, transparent 100%);
-  z-index: 1;
+  background: linear-gradient(to top,
+    rgba(0,0,0,.78) 0%,
+    rgba(0,0,0,.25) 50%,
+    rgba(0,0,0,.05) 100%);
+  transition: opacity 0.4s;
 }
-.biz-card-body {
-  position: relative;
+.biz-card .card-text {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 28px 30px;
+  color: #fff;
+  transition: opacity 0.35s;
+}
+.biz-card .card-text h3 {
+  font-size: 22px; font-weight: 700;
+  margin: 0 0 7px; letter-spacing: -0.02em; line-height: 1.3;
+}
+.biz-card .card-text p {
+  font-size: 14px; font-weight: 400;
+  opacity: 0.88; margin: 0; line-height: 1.5;
+}
+/* 활성 카드 (가운데) */
+.biz-card.is-active {
+  width: 420px; height: 320px;
+  z-index: 3;
+  transform: translateX(0) scale(1);
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+/* 이전 카드 (왼쪽) */
+.biz-card.is-prev {
+  width: 310px; height: 250px;
   z-index: 2;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
+  transform: translateX(-400px) rotateY(-35deg) scale(0.9);
+  opacity: 0.5;
 }
-.biz-card-title {
-  font: 700 18px/1.3 var(--font);
-  letter-spacing: -0.02em;
-  color: var(--white);
+.biz-card.is-prev .card-text { opacity: 0; }
+.biz-card.is-prev .side-label { opacity: 1; }
+/* 다음 카드 (오른쪽) */
+.biz-card.is-next {
+  width: 310px; height: 250px;
+  z-index: 2;
+  transform: translateX(400px) rotateY(35deg) scale(0.9);
+  opacity: 0.5;
 }
-.biz-card-desc {
-  font-size: 13px; line-height: 1.55;
-  color: rgba(255,255,255,.75);
+.biz-card.is-next .card-text { opacity: 0; }
+.biz-card.is-next .side-label { opacity: 1; }
+/* 숨김 카드 */
+.biz-card.is-hidden {
+  width: 310px; height: 250px;
+  z-index: 0;
+  transform: translateX(0) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
 }
-.biz-card-arrow {
+/* 좌우 카드 하단 텍스트 */
+.side-label {
+  position: absolute; bottom: 14px; left: 16px; right: 16px;
+  color: #fff; opacity: 0; transition: opacity 0.3s;
+}
+.side-label.right { text-align: right; }
+.side-label h4 { font-size: 14px; font-weight: 600; margin: 0 0 3px; }
+.side-label span { font-size: 11.5px; opacity: 0.82; }
+/* 네비게이션 버튼 */
+.biz-nav {
   position: absolute;
-  top: 16px; right: 16px;
-  z-index: 2;
-  width: 32px; height: 32px;
+  top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px;
   border-radius: 50%;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.25);
+  background: var(--navy);
+  border: none; color: #fff;
   display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 10;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 18px rgba(14,32,64,.35);
+  outline: none;
 }
-.biz-card-arrow svg {
-  width: 14px; height: 14px;
-  color: var(--white);
+.biz-nav:hover { background: #1a2e52; transform: translateY(-50%) scale(1.08); }
+.biz-nav:active { transform: translateY(-50%) scale(0.95); }
+.biz-nav.prev { left: calc(50% - 228px); }
+.biz-nav.next { right: calc(50% - 228px); }
+/* 하단 도트 */
+.biz-dots {
+  display: flex; justify-content: center; align-items: center;
+  gap: 8px; margin-top: 32px;
 }
-
-/* ── Biz Arrows ── */
-.biz-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  z-index: 4;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: var(--white);
-  color: var(--text);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .22s, border-color .22s, box-shadow .22s;
+.biz-dot {
+  height: 8px; width: 8px; border-radius: 4px;
+  background: var(--border);
+  cursor: pointer; transition: all 0.3s ease;
+  border: none; padding: 0;
 }
-.biz-arrow:hover {
-  background: var(--accent-light);
-  border-color: var(--accent);
-  box-shadow: 0 4px 16px rgba(152,214,250,.25);
+.biz-dot.on {
+  width: 26px;
+  background: var(--accent);
 }
-.biz-arrow svg {
-  width: 18px; height: 18px;
-}
-.biz-arrow--prev { left: -64px; }
-.biz-arrow--next { right: -64px; }
 
 /* ────────────────────────────────
    S3 NEWS — 3열 그리드
@@ -754,13 +671,16 @@ body {
   .hero-sub { font-size: 14px; }
 
   /* ── S2 BUSINESS 모바일 ── */
-  #s2 {
-    padding: 72px 0;
-  }
-  .biz-inner { padding: 0 20px; }
-  .biz-head { margin-bottom: 36px; }
-  .biz-split { display: none; }
-  .biz-cards { display: flex; }
+  .biz-title { font-size: 24px; }
+  .biz-carousel { height: 300px; }
+  .biz-card.is-active { width: 300px; height: 240px; }
+  .biz-card.is-prev,
+  .biz-card.is-next { width: 200px; height: 170px; }
+  .biz-card.is-prev { transform: translateX(-260px); }
+  .biz-card.is-next { transform: translateX(260px); }
+  .biz-nav.prev { left: calc(50% - 155px); }
+  .biz-nav.next { right: calc(50% - 155px); }
+  .biz-card .card-text h3 { font-size: 18px; }
 
   /* ── S3 NEWS 모바일 ── */
   #s3 { padding: 72px 0; }
@@ -837,128 +757,18 @@ body {
 
   <!-- S2: BUSINESS — 서비스 카드 -->
   <section class="snap-sec" id="s2">
-    <div class="biz-inner">
-      <div class="biz-head" data-reveal>
-        <h2><span>BUSINESS</span></h2>
-        <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
-      </div>
-
-      <div class="biz-split" data-reveal data-delay="0.15">
-        <button type="button" class="biz-arrow biz-arrow--prev" id="biz-prev" aria-label="이전 서비스">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button type="button" class="biz-arrow biz-arrow--next" id="biz-next" aria-label="다음 서비스">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-        <!-- 왼쪽: 타이틀 탭 -->
-        <div class="biz-titles">
-          <div class="biz-tabs-group">
-            <button type="button" class="biz-tab is-active" data-biz="0">
-              <span class="biz-tab-num">01</span>첨단바이오의약품 CDMO
-            </button>
-            <button type="button" class="biz-tab" data-biz="1">
-              <span class="biz-tab-num">02</span>인체세포등 관리업
-            </button>
-            <button type="button" class="biz-tab" data-biz="2">
-              <span class="biz-tab-num">03</span>세포처리시설
-            </button>
-          </div>
-          <div class="biz-next-preview" id="biz-next-preview">
-            <img src="geniecell_imge/main ex5.jpg" alt="다음 서비스" loading="lazy">
-          </div>
-        </div>
-
-        <!-- 오른쪽: 패널 -->
-        <div class="biz-panels" data-reveal="right" data-delay="0.3">
-          <!-- Panel 1: CDMO -->
-          <div class="biz-panel is-active" data-biz-panel="0">
-            <div class="biz-panel-card">
-              <img src="geniecell_imge/main%20ex1.jpg" alt="CDMO 서비스" loading="lazy">
-              <div class="biz-panel-overlay">
-                <h3>첨단바이오의약품 CDMO</h3>
-                <p>위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅까지 GMP 기준의 원스톱 서비스를 제공합니다.</p>
-                <ul class="biz-panel-items">
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>위탁생산 (CMO)</li>
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>위탁품질시험 (QC)</li>
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>RA 인허가 컨설팅</li>
-                </ul>
-              </div>
-              <a href="cdmo.html" class="biz-panel-link">View more +</a>
-            </div>
-          </div>
-
-          <!-- Panel 2: 인체세포등 관리업 -->
-          <div class="biz-panel" data-biz-panel="1">
-            <div class="biz-panel-card">
-              <img src="geniecell_imge/main%20ex5.jpg" alt="인체세포등 관리업" loading="lazy">
-              <div class="biz-panel-overlay">
-                <h3>인체세포등 관리업</h3>
-                <p>원료세포 공급부터 자가세포 보관(Bio-Banking)까지, 세포 자원의 안전한 관리와 품질 보증을 지원합니다.</p>
-                <ul class="biz-panel-items">
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>원료세포 공급</li>
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가세포 보관 (Bio-Banking)</li>
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>품질 보증</li>
-                </ul>
-              </div>
-              <a href="cell-management.html" class="biz-panel-link">View more +</a>
-            </div>
-          </div>
-
-          <!-- Panel 3: 세포처리시설 -->
-          <div class="biz-panel" data-biz-panel="2">
-            <div class="biz-panel-card">
-              <img src="geniecell_imge/main%20ex4.jpg" alt="세포처리시설" loading="lazy">
-              <div class="biz-panel-overlay">
-                <h3>세포처리시설</h3>
-                <p>재생의료기관 파트너로서 안전한 시술과 연구계획 수립, 투여용 인체세포 공급을 지원합니다.</p>
-                <ul class="biz-panel-items">
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>세포처리시설 운영</li>
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>투여용 인체세포 공급</li>
-                  <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>연구계획 수립</li>
-                </ul>
-              </div>
-              <a href="cell-facility.html" class="biz-panel-link">View more +</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 모바일 이미지 카드 (데스크톱 숨김) -->
-      <div class="biz-cards">
-        <a href="cdmo.html" class="biz-card" data-reveal data-delay="0.1">
-          <div class="biz-card-bg"><img src="geniecell_imge/main%20ex1.jpg" alt="CDMO 서비스" loading="lazy"></div>
-          <div class="biz-card-body">
-            <div class="biz-card-title">첨단바이오의약품 CDMO</div>
-            <div class="biz-card-desc">CMO · QC · RA 원스톱 서비스</div>
-          </div>
-          <div class="biz-card-arrow">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </a>
-        <a href="cell-management.html" class="biz-card" data-reveal data-delay="0.2">
-          <div class="biz-card-bg"><img src="geniecell_imge/main%20ex5.jpg" alt="인체세포등 관리업" loading="lazy"></div>
-          <div class="biz-card-body">
-            <div class="biz-card-title">인체세포등 관리업</div>
-            <div class="biz-card-desc">원료세포 공급 · Bio-Banking · 품질 보증</div>
-          </div>
-          <div class="biz-card-arrow">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </a>
-        <a href="cell-facility.html" class="biz-card" data-reveal data-delay="0.3">
-          <div class="biz-card-bg"><img src="geniecell_imge/main%20ex4.jpg" alt="세포처리시설" loading="lazy"></div>
-          <div class="biz-card-body">
-            <div class="biz-card-title">세포처리시설</div>
-            <div class="biz-card-desc">세포처리시설 운영 · 투여용 인체세포 공급</div>
-          </div>
-          <div class="biz-card-arrow">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </a>
-      </div>
-
+    <div class="biz-head" data-reveal>
+      <h2><span>BUSINESS</span></h2>
+      <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
     </div>
+
+    <div class="biz-carousel" data-reveal data-delay="0.15">
+      <button class="biz-nav prev" id="bizPrev" aria-label="이전 슬라이드"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <div class="biz-track" id="bizTrack"></div>
+      <button class="biz-nav next" id="bizNext" aria-label="다음 슬라이드"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg></button>
+    </div>
+
+    <div class="biz-dots" id="bizDots"></div>
   </section>
 
   <!-- S3: NEWS — 지니셀바이오 소식 -->
@@ -1088,58 +898,132 @@ body {
 })();
 </script>
 <script>
-/* ── Biz Tab Switcher ── */
-(function(){
-  var tabs = document.querySelectorAll('.biz-tab');
-  var panels = document.querySelectorAll('.biz-panel');
-  var preview = document.getElementById('biz-next-preview');
-  var previewImg = preview ? preview.querySelector('img') : null;
-  var btnPrev = document.getElementById('biz-prev');
-  var btnNext = document.getElementById('biz-next');
-  if (!tabs.length) return;
+/* ── Biz Carousel ── */
+(function () {
+  var BIZ_SLIDES = [
+    {
+      title: '첨단바이오의약품 CDMO',
+      desc: 'GMP 기준 위탁생산·품질시험·인허가 컨설팅 원스톱 서비스',
+      img: 'geniecell_imge/main%20ex1.jpg',
+      link: 'cdmo.html'
+    },
+    {
+      title: '인체세포등 관리업',
+      desc: '원료세포 공급부터 자가세포 보관(Bio-Banking)까지 품질 보증',
+      img: 'geniecell_imge/main%20ex5.jpg',
+      link: 'cell-management.html'
+    },
+    {
+      title: '세포처리시설',
+      desc: '재생의료기관 파트너 — 투여용 인체세포 공급 및 연구계획 수립',
+      img: 'geniecell_imge/main%20ex4.jpg',
+      link: 'cell-facility.html'
+    }
+  ];
 
-  function getNextIdx(idx) { return (idx + 1) % panels.length; }
-  function getNextImage(idx) {
-    var img = panels[getNextIdx(idx)].querySelector('.biz-panel-card img');
-    return img ? img.src : '';
-  }
+  var current = 0;
+  var autoTimer = null;
+  var total = BIZ_SLIDES.length;
+  var track = document.getElementById('bizTrack');
+  var dotsEl = document.getElementById('bizDots');
+  if (!track) return;
 
-  function activate(idx) {
-    tabs.forEach(function(t){ t.classList.remove('is-active'); });
-    panels.forEach(function(p){ p.classList.remove('is-active'); });
-    tabs[idx].classList.add('is-active');
-    panels[idx].classList.add('is-active');
-    if (previewImg) previewImg.src = getNextImage(idx);
-  }
+  /* 카드 DOM을 처음 한 번만 생성 */
+  var cards = [];
+  BIZ_SLIDES.forEach(function (s, i) {
+    var card = document.createElement('div');
+    card.className = 'biz-card';
 
-  tabs.forEach(function(tab, i){
-    tab.addEventListener('click', function(){ activate(i); });
+    var img = document.createElement('img');
+    img.src = s.img;
+    img.alt = s.title;
+    img.loading = 'lazy';
+    card.appendChild(img);
+
+    var grad = document.createElement('div');
+    grad.className = 'card-gradient';
+    card.appendChild(grad);
+
+    var txt = document.createElement('div');
+    txt.className = 'card-text';
+    txt.innerHTML = '<h3>' + s.title + '</h3><p>' + s.desc + '</p>';
+    card.appendChild(txt);
+
+    var lbl = document.createElement('div');
+    lbl.className = 'side-label';
+    lbl.innerHTML = '<h4>' + s.title + '</h4><span>' + s.desc + '</span>';
+    card.appendChild(lbl);
+
+    card.addEventListener('click', function () {
+      if (i === current) {
+        window.location.href = s.link;
+      } else {
+        jumpTo(i);
+      }
+    });
+
+    track.appendChild(card);
+    cards.push(card);
   });
 
-  if (preview) {
-    preview.addEventListener('click', function(){
-      var idx = getCurrent();
-      activate(getNextIdx(idx));
+  /* 도트 생성 */
+  var dots = [];
+  BIZ_SLIDES.forEach(function (_, i) {
+    var dot = document.createElement('button');
+    dot.className = 'biz-dot';
+    dot.setAttribute('aria-label', (i + 1) + '번 슬라이드');
+    dot.addEventListener('click', function () { jumpTo(i); });
+    dotsEl.appendChild(dot);
+    dots.push(dot);
+  });
+
+  function activate(idx) {
+    current = ((idx % total) + total) % total;
+    var prevIdx = (current - 1 + total) % total;
+    var nextIdx = (current + 1) % total;
+
+    cards.forEach(function (card, i) {
+      card.className = 'biz-card';
+      card.querySelector('.side-label').className = 'side-label';
+      if (i === current) {
+        card.classList.add('is-active');
+      } else if (i === prevIdx) {
+        card.classList.add('is-prev');
+      } else if (i === nextIdx) {
+        card.classList.add('is-next');
+        card.querySelector('.side-label').classList.add('right');
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+
+    dots.forEach(function (d, i) {
+      d.className = 'biz-dot' + (i === current ? ' on' : '');
     });
   }
 
-  if (btnPrev) {
-    btnPrev.addEventListener('click', function(){
-      var idx = getCurrent();
-      activate((idx - 1 + panels.length) % panels.length);
-    });
-  }
-  if (btnNext) {
-    btnNext.addEventListener('click', function(){
-      var idx = getCurrent();
-      activate(getNextIdx(idx));
-    });
+  function goNext() { activate(current + 1); resetAuto(); }
+  function goPrev() { activate(current - 1); resetAuto(); }
+  function jumpTo(i) { activate(i); resetAuto(); }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(goNext, 4500);
   }
 
-  function getCurrent() {
-    var cur = document.querySelector('.biz-tab.is-active');
-    return cur ? Array.prototype.indexOf.call(tabs, cur) : 0;
-  }
+  document.getElementById('bizNext').addEventListener('click', goNext);
+  document.getElementById('bizPrev').addEventListener('click', goPrev);
+
+  /* 터치 스와이프 */
+  var startX = 0;
+  track.addEventListener('touchstart', function(e){ startX = e.changedTouches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) { dx < 0 ? goNext() : goPrev(); }
+  }, { passive: true });
+
+  activate(0);
+  resetAuto();
 })();
 </script>
 <script>
