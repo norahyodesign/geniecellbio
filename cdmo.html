@@ -46,40 +46,41 @@
   <link rel="stylesheet" href="tokens.css">
 <style>
 /* ── Floating CTA ── */
-#floating-cta {
-  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
-  z-index: 950;
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(14,32,64,0.92);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 50px;
-  padding: 10px 10px 10px 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(152,214,250,.15);
+/* ── 플로팅 버튼 ── */
+#btn-top {
+  position: fixed; right: 28px; bottom: 32px; z-index: 900;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--accent); color: var(--navy);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(152,214,250,.5);
   opacity: 0; visibility: hidden;
-  transition: opacity .4s, visibility .4s, transform .4s;
-  white-space: nowrap;
+  transform: translateY(12px);
+  transition: opacity .3s, visibility .3s, transform .3s, background .2s;
 }
-#floating-cta.visible {
-  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
-}
-.fcta-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: -0.01em; }
-.fcta-btn {
-  display: flex; align-items: center; gap: 7px;
-  font: 600 13px/1 var(--font); color: var(--navy);
+#btn-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+#btn-top:hover { background: #7CC4E8; }
+#btn-top svg { width: 24px; height: 24px; }
+#btn-contact {
+  position: fixed; right: 28px; bottom: 108px; z-index: 900;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--navy); color: #fff;
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(14,32,64,.35);
+  opacity: 0; visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .3s, visibility .3s, transform .3s, background .2s;
   text-decoration: none;
-  background: var(--accent);
-  padding: 10px 20px;
-  border-radius: 50px;
-  box-shadow: 0 4px 16px rgba(152,214,250,.5);
-  transition: background .2s, gap .2s;
 }
-.fcta-btn svg { width: 14px; height: 14px; transition: transform .2s; }
-.fcta-btn:hover { background: #7CC4E8; gap: 10px; }
-.fcta-btn:hover svg { transform: translateX(2px); }
-@media (max-width: 480px) {
-  #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
-  .fcta-text { font-size: 13px; }
+#btn-contact.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+#btn-contact:hover { background: #1a3560; }
+#btn-contact svg { width: 24px; height: 24px; }
+@media (max-width: 768px) {
+  #btn-top { right: 16px; bottom: 20px; width: 52px; height: 52px; }
+  #btn-top svg { width: 22px; height: 22px; }
+  #btn-contact { right: 16px; bottom: 82px; width: 52px; height: 52px; }
+  #btn-contact svg { width: 22px; height: 22px; }
 }
 
 /* ── 섹션 여백 ── */
@@ -568,18 +569,24 @@
 
 <script src="footer.js"></script>
 
-<div id="floating-cta">
-  <span class="fcta-text">전문가에게 직접 물어보세요</span>
-  <a href="support.html#contact" class="fcta-btn">상담 신청</a>
-</div>
-
+<a href="support.html#contact" id="btn-contact" aria-label="상담 문의">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</a>
+<button type="button" id="btn-top" aria-label="맨 위로">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 <script>
 (function() {
-  var el = document.getElementById('floating-cta');
-  if (!el) return;
+  var btnTop = document.getElementById('btn-top');
+  var btnContact = document.getElementById('btn-contact');
   window.addEventListener('scroll', function() {
-    el.classList.toggle('visible', window.scrollY > 120);
+    var v = window.scrollY > 200;
+    btnTop.classList.toggle('visible', v);
+    if (btnContact) btnContact.classList.toggle('visible', v);
   }, { passive: true });
+  btnTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 })();
 </script>
 
