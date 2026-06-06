@@ -73,7 +73,7 @@ body {
 .inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 clamp(48px, 6vw, 96px);
 }
 
 /* ────────────────────────────────
@@ -146,13 +146,15 @@ body {
 }
 .hero-slide {
   position: absolute; inset: 0;
-  background-size: cover;
-  background-position: center;
   opacity: 0;
   transition: opacity .9s ease;
 }
 .hero-slide.is-active {
   opacity: 1;
+}
+.hero-slide video {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -164,10 +166,8 @@ body {
   display: flex; flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: var(--max-w);
   width: 100%;
-  padding: 0 32px;
-  margin: 0 auto;
+  padding: 0 clamp(48px, 6vw, 96px);
 }
 .hero-h1 {
   font-size: clamp(28px, 4.5vw, 64px);
@@ -258,11 +258,10 @@ body {
 .hero-progress {
   position: absolute;
   bottom: 72px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: var(--max-w);
-  padding: 0 32px;
+  padding: 0 clamp(48px, 6vw, 96px);
   z-index: 3;
   display: flex;
   justify-content: flex-end;
@@ -305,245 +304,280 @@ body {
 }
 
 /* ────────────────────────────────
-   S2 BUSINESS — 캐러셀 섹션
+   S2 BUSINESS — 스크롤 스토리텔링
 ──────────────────────────────── */
 #s2 {
-  background: var(--white);
-  padding: 80px 0 90px;
-  overflow: hidden;
+  padding: 0;
   position: relative; z-index: 1;
+  overflow: visible;
 }
-.biz-head {
+.biz-scroll {
+  position: relative;
+  height: 900vh;
+}
+.biz-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--white);
+}
+/* ── 공통 페이즈 ── */
+.biz-phase {
+  position: absolute;
+  inset: 0;
+  padding-top: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .65s ease;
+}
+.biz-phase.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* ── 헤더 페이즈 ── */
+.biz-phase--head {
+  flex-direction: column;
   text-align: center;
-  margin-bottom: clamp(40px, 5vh, 60px);
+  padding: 0 clamp(48px, 6vw, 96px);
 }
-.biz-head h2 {
+.biz-phase--head h2 {
   font-size: clamp(26px, 3.2vw, 44px); font-weight: 700;
   line-height: 1.22; letter-spacing: -0.04em;
   color: var(--text); margin-bottom: 16px;
 }
-.biz-head h2 span {
+.biz-phase--head h2 span {
   color: var(--accent-text);
 }
-.biz-head p {
+.biz-phase--head p {
   font-size: 16px; color: var(--text2); line-height: 1.65;
+  max-width: 480px;
 }
-/* ── 캐러셀 컨테이너 ── */
-.biz-carousel {
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  height: 380px;
-  max-width: 1100px;
-  margin: 0 auto;
+/* ── 서비스 페이즈 ── */
+.biz-phase--item {
+  flex-direction: row;
 }
-.biz-track {
-  position: relative;
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  perspective: 1200px;
-}
-/* ── 카드 공통 ── */
-.biz-card {
-  position: absolute;
-  border-radius: 22px;
+.biz-phase__img {
+  flex: 0 0 50%;
+  height: 70%;
   overflow: hidden;
-  cursor: pointer;
-  transition: all 0.48s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, opacity, width, height;
+  border-radius: var(--radius);
+  padding: 0 clamp(48px, 6vw, 96px) 0 0;
+  align-self: center;
+  transform: translateX(100%);
+  transition: transform .8s cubic-bezier(.25,.46,.45,.94);
 }
-.biz-card img {
+.biz-phase.is-active .biz-phase__img {
+  transform: translateX(0);
+}
+.biz-phase__img img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
-  pointer-events: none;
+  border-radius: var(--radius);
 }
-.biz-card .card-gradient {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top,
-    rgba(0,0,0,.78) 0%,
-    rgba(0,0,0,.25) 50%,
-    rgba(0,0,0,.05) 100%);
-  transition: opacity 0.4s;
-}
-.biz-card .card-text {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 24px 28px 30px;
-  color: #fff;
-  transition: opacity 0.35s;
-}
-.biz-card .card-text h3 {
-  font-size: 22px; font-weight: 700;
-  margin: 0 0 7px; letter-spacing: -0.02em; line-height: 1.3;
-}
-.biz-card .card-text p {
-  font-size: 14px; font-weight: 400;
-  opacity: 0.88; margin: 0; line-height: 1.5;
-}
-/* 활성 카드 (가운데) */
-.biz-card.is-active {
-  width: 420px; height: 320px;
-  z-index: 3;
-  transform: translateX(0) scale(1);
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-/* 이전 카드 (왼쪽) */
-.biz-card.is-prev {
-  width: 310px; height: 250px;
-  z-index: 2;
-  transform: translateX(-400px) rotateY(-35deg) scale(0.9);
-  opacity: 0.5;
-}
-.biz-card.is-prev .card-text { opacity: 0; }
-.biz-card.is-prev .side-label { opacity: 1; }
-/* 다음 카드 (오른쪽) */
-.biz-card.is-next {
-  width: 310px; height: 250px;
-  z-index: 2;
-  transform: translateX(400px) rotateY(35deg) scale(0.9);
-  opacity: 0.5;
-}
-.biz-card.is-next .card-text { opacity: 0; }
-.biz-card.is-next .side-label { opacity: 1; }
-/* 숨김 카드 */
-.biz-card.is-hidden {
-  width: 310px; height: 250px;
-  z-index: 0;
-  transform: translateX(0) scale(0.6);
+.biz-phase__text {
+  flex: 0 0 50%;
+  padding: 0 clamp(48px, 6vw, 96px);
+  align-self: center;
   opacity: 0;
-  pointer-events: none;
+  transform: translateY(36px);
+  transition: opacity .55s ease .45s, transform .55s ease .45s;
 }
-/* 좌우 카드 하단 텍스트 */
-.side-label {
-  position: absolute; bottom: 14px; left: 16px; right: 16px;
-  color: #fff; opacity: 0; transition: opacity 0.3s;
+.biz-phase.is-active .biz-phase__text {
+  opacity: 1;
+  transform: translateY(0);
 }
-.side-label.right { text-align: right; }
-.side-label h4 { font-size: 14px; font-weight: 600; margin: 0 0 3px; }
-.side-label span { font-size: 11.5px; opacity: 0.82; }
-/* 네비게이션 버튼 */
-.biz-nav {
-  position: absolute;
-  top: 50%; transform: translateY(-50%);
-  width: 46px; height: 46px;
-  border-radius: 50%;
+.biz-phase__num {
+  font: 600 13px/1 var(--mono);
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.biz-phase__title {
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+.biz-phase__desc {
+  font-size: 15px; line-height: 1.75;
+  color: var(--text2);
+  margin-bottom: 24px;
+}
+.biz-phase__tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  list-style: none; padding: 0; margin: 0 0 28px;
+}
+.biz-phase__tags li {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 13px; font-weight: 500; color: var(--text);
+  background: var(--gray-bg);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 50px;
+}
+.biz-phase__tags li svg { width: 12px; height: 12px; color: var(--accent); flex-shrink: 0; }
+.biz-phase__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 14px/1 var(--font);
+  color: var(--white);
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 50px;
   background: var(--navy);
-  border: none; color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 10;
-  transition: background 0.2s, transform 0.15s;
-  box-shadow: 0 4px 18px rgba(14,32,64,.35);
-  outline: none;
+  transition: background .22s, gap .22s, box-shadow .22s;
 }
-.biz-nav:hover { background: #1a2e52; transform: translateY(-50%) scale(1.08); }
-.biz-nav:active { transform: translateY(-50%) scale(0.95); }
-.biz-nav.prev { left: calc(50% - 228px); }
-.biz-nav.next { right: calc(50% - 228px); }
-/* 하단 도트 */
+.biz-phase__link:hover {
+  background: #1a2e52;
+  gap: 12px;
+  box-shadow: 0 6px 24px rgba(14,32,64,.3);
+}
+/* ── 스크롤 도트 인디케이터 ── */
 .biz-dots {
-  display: flex; justify-content: center; align-items: center;
-  gap: 8px; margin-top: 32px;
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
 }
-.biz-dot {
-  height: 8px; width: 8px; border-radius: 4px;
+.biz-dot-item {
+  width: 10px; height: 10px;
+  border-radius: 50%;
   background: var(--border);
-  cursor: pointer; transition: all 0.3s ease;
   border: none; padding: 0;
+  cursor: pointer;
+  transition: background .3s, transform .3s;
 }
-.biz-dot.on {
-  width: 26px;
+.biz-dot-item.is-on {
   background: var(--accent);
+  transform: scale(1.3);
 }
 
 /* ────────────────────────────────
-   S3 NEWS — 3열 그리드
+   S3 NEWS — 스크롤 스토리텔링
 ──────────────────────────────── */
 #s3 {
-  background: var(--gray-bg);
-  padding: 120px 0;
+  padding: 0;
   position: relative; z-index: 1;
+  overflow: visible;
 }
-.news-inner {
-  width: 100%; max-width: var(--max-w);
-  margin: 0 auto; padding: 0 32px;
+.news-scroll {
+  position: relative;
+  height: 750vh;
 }
-.news-head {
+.news-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--gray-bg);
+}
+/* ── 공통 페이즈 ── */
+.news-phase {
+  position: absolute;
+  inset: 0;
+  padding-top: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .65s ease;
+}
+.news-phase.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* ── 헤더 페이즈 ── */
+.news-phase--head {
+  flex-direction: column;
   text-align: center;
-  margin-bottom: clamp(40px, 5vh, 64px);
+  padding: 0 clamp(48px, 6vw, 96px);
 }
-.news-head h2 {
+.news-phase--head h2 {
   font-size: clamp(26px, 3.2vw, 44px); font-weight: 700;
   line-height: 1.22; letter-spacing: -0.04em;
-  color: var(--text); margin-bottom: 12px;
+  color: var(--text); margin-bottom: 16px;
 }
-.news-head h2 span { color: var(--accent-text); }
-.news-head p {
+.news-phase--head h2 span { color: var(--accent-text); }
+.news-phase--head p {
   font-size: 16px; color: var(--text2); line-height: 1.65;
+  max-width: 480px;
+}
+/* ── 카드 페이즈 ── */
+.news-phase--cards {
+  padding: 0 clamp(48px, 6vw, 96px);
+  padding-top: var(--nav-h);
 }
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  width: 100%;
 }
+/* ── 카드 ── */
 .news-card {
   background: var(--white);
-  border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform .35s cubic-bezier(.25,.46,.45,.94),
-              box-shadow .35s, border-color .35s;
+  box-shadow: 0 2px 16px rgba(14,32,64,.06);
+  opacity: 0;
+  transform: translateY(48px) scale(.95);
+  transition: opacity .6s cubic-bezier(.25,.46,.45,.94),
+              transform .6s cubic-bezier(.25,.46,.45,.94),
+              box-shadow .3s ease;
+}
+.news-card.is-show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 .news-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(0,0,0,.10);
-  border-color: rgba(152,214,250,.20);
+  box-shadow: 0 8px 32px rgba(14,32,64,.12);
 }
-.news-card-img {
-  position: relative; overflow: hidden;
+.news-card__img {
+  width: 100%;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
-.news-card-img img {
+.news-card__img img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
-  transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+  transition: transform .5s ease;
 }
-.news-card:hover .news-card-img img {
+.news-card:hover .news-card__img img {
   transform: scale(1.04);
 }
-.news-card-body {
-  padding: 24px; display: flex;
-  flex-direction: column; gap: 10px;
+.news-card__body {
+  padding: 20px 24px 24px;
 }
-.news-card-date {
-  font-family: var(--mono); font-size: 12px; font-weight: 500;
-  color: var(--text3); letter-spacing: 0.5px;
+.news-card__date {
+  font: 600 12px/1 var(--mono);
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
-.news-card-body h3 {
+.news-card__title {
   font-size: 17px; font-weight: 700;
   color: var(--text); line-height: 1.45;
   letter-spacing: -0.02em;
+  margin-bottom: 8px;
 }
-.news-card-body p {
+.news-card__desc {
   font-size: 14px; line-height: 1.65;
   color: var(--text2);
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
 }
-.news-card-plus {
-  position: absolute; top: 16px; right: 16px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(6px);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 600; color: var(--text);
-  transition: transform .35s cubic-bezier(.25,.46,.45,.94),
-              background .3s, color .3s;
-  z-index: 2;
-  pointer-events: none;
-}
-.news-card:hover .news-card-plus {
-  transform: rotate(90deg) scale(1.15);
-  background: var(--accent); color: var(--navy);
-}
+
 
 /* ── 페이지 공통 reveal ── */
 [data-reveal] {
@@ -587,27 +621,6 @@ body {
 /* ────────────────────────────────
    FLOATING CTA BAR
 ──────────────────────────────── */
-#floating-cta {
-  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
-  z-index: 950;
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(14,32,64,0.92);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 50px;
-  padding: 10px 10px 10px 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(152,214,250,.15);
-  opacity: 0; visibility: hidden;
-  transition: opacity .4s, visibility .4s, transform .4s;
-  white-space: nowrap;
-}
-#floating-cta.visible {
-  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
-}
-.fcta-text {
-  font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75);
-  letter-spacing: -0.01em;
-}
 .fcta-btn {
   display: flex; align-items: center; gap: 7px;
   font: 600 13px/1 var(--font); color: var(--navy);
@@ -671,26 +684,31 @@ body {
   .hero-sub { font-size: 14px; }
 
   /* ── S2 BUSINESS 모바일 ── */
-  .biz-title { font-size: 24px; }
-  .biz-carousel { height: 300px; }
-  .biz-card.is-active { width: 300px; height: 240px; }
-  .biz-card.is-prev,
-  .biz-card.is-next { width: 200px; height: 170px; }
-  .biz-card.is-prev { transform: translateX(-260px); }
-  .biz-card.is-next { transform: translateX(260px); }
-  .biz-nav.prev { left: calc(50% - 155px); }
-  .biz-nav.next { right: calc(50% - 155px); }
-  .biz-card .card-text h3 { font-size: 18px; }
+  .biz-scroll { height: auto; }
+  .biz-sticky { position: relative; height: auto; }
+  .biz-phase { position: relative; opacity: 1; pointer-events: auto;
+    flex-direction: column; padding: 60px 20px; }
+  .biz-phase--item { padding: 0; }
+  .biz-phase__img { flex: none; width: 100%; height: auto; aspect-ratio: 16 / 10;
+    transform: none; border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
+  .biz-phase__text { flex: none; width: 100%; padding: 0 clamp(20px, 5vw, 40px);
+    opacity: 1; transform: none; }
+  .biz-phase__title { font-size: 20px; }
+  .biz-phase__desc { font-size: 14px; }
+  .biz-phase__tags li { font-size: 12px; padding: 6px 12px; }
+  .biz-dots { display: none; }
 
   /* ── S3 NEWS 모바일 ── */
-  #s3 { padding: 72px 0; }
-  .news-inner { padding: 0 20px; }
-  .news-head { margin-bottom: 32px; }
-  .news-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .news-card-body { padding: 16px; }
-  .news-card-body h3 { font-size: 14px; }
-  .news-card-body p { display: none; }
-
+  .news-scroll { height: auto; }
+  .news-sticky { position: relative; height: auto; }
+  .news-phase { position: relative; opacity: 1; pointer-events: auto;
+    flex-direction: column; padding: 48px clamp(20px, 5vw, 40px); }
+  .news-phase--head { padding: 48px clamp(20px, 5vw, 40px) 24px; }
+  .news-phase--head h2 { font-size: 26px; }
+  .news-grid { grid-template-columns: 1fr; gap: 20px; padding: 0; }
+  .news-card { opacity: 1; transform: none; }
+  .news-card__title { font-size: 16px; }
+  .news-card__desc { font-size: 13px; }
   /* ── Hero 모바일 ── */
   .scroll-hint { display: none; }
   .hero-progress { justify-content: center; }
@@ -713,12 +731,6 @@ body {
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<!-- 플로팅 문의 CTA -->
-<div id="floating-cta">
-  <span class="fcta-text">전문가에게 직접 물어보세요</span>
-  <a href="support.html#contact" class="fcta-btn">상담 신청</a>
-</div>
-
 <!-- 스크롤 진행 숫자 삭제 -->
 
 <!-- ────────────── SNAP CONTAINER ────────────── -->
@@ -727,11 +739,17 @@ body {
 
   <!-- S1: HERO -->
   <section class="snap-sec" id="s1">
-    <!-- 이미지 슬라이더 -->
+    <!-- 비디오 슬라이더 -->
     <div class="hero-slides" id="hero-slides">
-      <div class="hero-slide is-active" style="background-image:url('geniecell_imge/main%20ex1.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('geniecell_imge/Firefly1.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('geniecell_imge/main%20ex4.jpg')"></div>
+      <div class="hero-slide is-active">
+        <video src="geniecell_video/AdobeStock_1828517785_Video_HD_Preview.mp4" autoplay muted loop playsinline preload="auto"></video>
+      </div>
+      <div class="hero-slide">
+        <video src="geniecell_video/AdobeStock_1889784923_Video_HD_Preview.mp4" muted loop playsinline preload="none"></video>
+      </div>
+      <div class="hero-slide">
+        <video src="geniecell_video/AdobeStock_1932122771_Video_HD_Preview.mp4" muted loop playsinline preload="none"></video>
+      </div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-body">
@@ -755,69 +773,130 @@ body {
     </div>
   </section>
 
-  <!-- S2: BUSINESS — 서비스 카드 -->
-  <section class="snap-sec" id="s2">
-    <div class="biz-head" data-reveal>
-      <h2><span>BUSINESS</span></h2>
-      <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
-    </div>
+  <!-- S2: BUSINESS — 스크롤 스토리텔링 -->
+  <section id="s2">
+    <div class="biz-scroll">
+      <div class="biz-sticky">
 
-    <div class="biz-carousel" data-reveal data-delay="0.15">
-      <button class="biz-nav prev" id="bizPrev" aria-label="이전 슬라이드"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-      <div class="biz-track" id="bizTrack"></div>
-      <button class="biz-nav next" id="bizNext" aria-label="다음 슬라이드"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg></button>
-    </div>
+        <!-- Phase 0: 헤더 -->
+        <div class="biz-phase biz-phase--head is-active" data-phase="0">
+          <h2><span>BUSINESS</span></h2>
+          <p>기초 연구에서 상용화까지 전 과정을 아우르는 원스톱 솔루션</p>
+        </div>
 
-    <div class="biz-dots" id="bizDots"></div>
+        <!-- Phase 1: CDMO -->
+        <div class="biz-phase biz-phase--item" data-phase="1">
+          <div class="biz-phase__text">
+            <h3 class="biz-phase__title">첨단바이오의약품 CDMO</h3>
+            <p class="biz-phase__desc">위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅까지 GMP 기준의 원스톱 서비스를 제공합니다.</p>
+            <ul class="biz-phase__tags">
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>위탁생산 (CMO)</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>위탁품질시험 (QC)</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>RA 인허가 컨설팅</li>
+            </ul>
+            <a href="cdmo.html" class="biz-phase__link">자세히 보기 →</a>
+          </div>
+          <div class="biz-phase__img">
+            <img src="geniecell_imge/main%20ex1.jpg" alt="CDMO 서비스" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Phase 2: 인체세포등 관리업 -->
+        <div class="biz-phase biz-phase--item" data-phase="2">
+          <div class="biz-phase__text">
+            <h3 class="biz-phase__title">인체세포등 관리업</h3>
+            <p class="biz-phase__desc">원료세포 공급부터 자가세포 보관(Bio-Banking)까지, 세포 자원의 안전한 관리와 품질 보증을 지원합니다.</p>
+            <ul class="biz-phase__tags">
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>원료세포 공급</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>자가세포 보관 (Bio-Banking)</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>품질 보증</li>
+            </ul>
+            <a href="cell-management.html" class="biz-phase__link">자세히 보기 →</a>
+          </div>
+          <div class="biz-phase__img">
+            <img src="geniecell_imge/main%20ex5.jpg" alt="인체세포등 관리업" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Phase 3: 세포처리시설 -->
+        <div class="biz-phase biz-phase--item" data-phase="3">
+          <div class="biz-phase__text">
+            <h3 class="biz-phase__title">세포처리시설</h3>
+            <p class="biz-phase__desc">재생의료기관 파트너로서 안전한 시술과 연구계획 수립, 투여용 인체세포 공급을 지원합니다.</p>
+            <ul class="biz-phase__tags">
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>세포처리시설 운영</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>투여용 인체세포 공급</li>
+              <li><svg viewBox="0 0 16 16" fill="none"><path d="M13.25 4.75L6 12 2.75 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>연구계획 수립</li>
+            </ul>
+            <a href="cell-facility.html" class="biz-phase__link">자세히 보기 →</a>
+          </div>
+          <div class="biz-phase__img">
+            <img src="geniecell_imge/main%20ex4.jpg" alt="세포처리시설" loading="lazy">
+          </div>
+        </div>
+
+        <!-- 스크롤 도트 -->
+        <div class="biz-dots" id="biz-dots">
+          <button class="biz-dot-item is-on" aria-label="헤더"></button>
+          <button class="biz-dot-item" aria-label="CDMO"></button>
+          <button class="biz-dot-item" aria-label="인체세포등 관리업"></button>
+          <button class="biz-dot-item" aria-label="세포처리시설"></button>
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <!-- S3: NEWS — 지니셀바이오 소식 -->
+  <!-- S3: NEWS — 스크롤 스토리텔링 -->
   <section id="s3">
-    <div class="news-inner">
-      <div class="news-head" data-reveal>
-        <h2>GENIECELL <span>NEWS</span></h2>
-        <p>최신 뉴스와 업계 동향을 전합니다</p>
-      </div>
+    <div class="news-scroll">
+      <div class="news-sticky">
 
-      <div class="news-grid">
-        <!-- News 1 -->
-        <div class="news-card" data-reveal data-delay="0.1">
-          <div class="news-card-img">
-            <img src="geniecell_imge/main%20ex2.jpg" alt="세포유전자치료제 뉴스" loading="lazy">
-            <span class="news-card-plus">+</span>
-          </div>
-          <div class="news-card-body">
-            <span class="news-card-date">2026.05.12</span>
-            <h3>식약처, 첫 국산 세포유전자치료제 품목허가 승인</h3>
-            <p>식품의약품안전처가 국내 최초 세포유전자치료제의 품목허가를 승인하며 첨단바이오 CDMO 시장 성장에 탄력이 붙을 전망입니다.</p>
-          </div>
+        <!-- Phase 0: 타이틀 -->
+        <div class="news-phase news-phase--head is-active">
+          <h2>GENIECELL <span>NEWS</span></h2>
+          <p>최신 뉴스와 업계 동향을 전합니다</p>
         </div>
 
-        <!-- News 2 -->
-        <div class="news-card" data-reveal data-delay="0.2">
-          <div class="news-card-img">
-            <img src="geniecell_imge/main%20ex3.jpg" alt="재생의료 뉴스" loading="lazy">
-            <span class="news-card-plus">+</span>
+        <!-- Phase 1: 카드 3열 -->
+        <div class="news-phase news-phase--cards">
+        <div class="news-grid">
+          <!-- Card 1 -->
+          <div class="news-card" style="--i:0">
+            <div class="news-card__img">
+              <img src="geniecell_imge/main%20ex2.jpg" alt="세포유전자치료제 뉴스" loading="lazy">
+            </div>
+            <div class="news-card__body">
+              <div class="news-card__date">2026.05.12</div>
+              <h3 class="news-card__title">식약처, 첫 국산 세포유전자치료제 품목허가 승인</h3>
+              <p class="news-card__desc">식품의약품안전처가 국내 최초 세포유전자치료제의 품목허가를 승인하며 첨단바이오 CDMO 시장 성장에 탄력이 붙을 전망입니다.</p>
+            </div>
           </div>
-          <div class="news-card-body">
-            <span class="news-card-date">2026.04.03</span>
-            <h3>재생의료법 시행 2년, 세포치료 임상 100건 돌파</h3>
-            <p>재생의료법 시행 이후 세포치료 임상시험이 누적 100건을 넘어서며 업계 성장을 견인하고 있습니다.</p>
+          <!-- Card 2 -->
+          <div class="news-card" style="--i:1">
+            <div class="news-card__img">
+              <img src="geniecell_imge/main%20ex3.jpg" alt="재생의료 뉴스" loading="lazy">
+            </div>
+            <div class="news-card__body">
+              <div class="news-card__date">2026.04.03</div>
+              <h3 class="news-card__title">재생의료법 시행 2년, 세포치료 임상 100건 돌파</h3>
+              <p class="news-card__desc">재생의료법 시행 이후 세포치료 임상시험이 누적 100건을 넘어서며 업계 성장을 견인하고 있습니다.</p>
+            </div>
           </div>
+          <!-- Card 3 -->
+          <div class="news-card" style="--i:2">
+            <div class="news-card__img">
+              <img src="geniecell_imge/main%20ex4.jpg" alt="바이오코리아 뉴스" loading="lazy">
+            </div>
+            <div class="news-card__body">
+              <div class="news-card__date">2026.02.21</div>
+              <h3 class="news-card__title">바이오코리아 2026, CDMO 통합 솔루션 전시관 운영</h3>
+              <p class="news-card__desc">오는 6월 서울 COEX에서 개최되는 바이오코리아 2026에 CDMO 통합 솔루션 전시관을 운영합니다.</p>
+            </div>
+          </div>
+        </div>
         </div>
 
-        <!-- News 3 -->
-        <div class="news-card" data-reveal data-delay="0.3">
-          <div class="news-card-img">
-            <img src="geniecell_imge/main%20ex4.jpg" alt="바이오코리아 뉴스" loading="lazy">
-            <span class="news-card-plus">+</span>
-          </div>
-          <div class="news-card-body">
-            <span class="news-card-date">2026.02.21</span>
-            <h3>바이오코리아 2026, CDMO 통합 솔루션 전시관 운영</h3>
-            <p>오는 6월 서울 COEX에서 개최되는 바이오코리아 2026에 CDMO 통합 솔루션 전시관을 운영합니다.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -828,6 +907,72 @@ body {
 <script src="footer.js"></script>
 
 <script>
+/* ── S2 스크롤 스토리텔링 ── */
+(function(){
+  var scrollEl = document.querySelector('.biz-scroll');
+  var phases   = document.querySelectorAll('.biz-phase');
+  var dots     = document.querySelectorAll('.biz-dot-item');
+  if (!scrollEl || !phases.length) return;
+
+  var total = phases.length;
+
+  function update() {
+    var rect = scrollEl.getBoundingClientRect();
+    var scrollTop = -rect.top;
+    var scrollH   = scrollEl.offsetHeight - window.innerHeight;
+    if (scrollH <= 0) return;
+
+    var progress = Math.max(0, Math.min(1, scrollTop / scrollH));
+    var idx = Math.min(Math.floor(progress * total), total - 1);
+
+    phases.forEach(function(p, i) {
+      p.classList.toggle('is-active', i === idx);
+    });
+    dots.forEach(function(d, i) {
+      d.classList.toggle('is-on', i === idx);
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+
+/* ── S3 뉴스 스크롤 스토리텔링 ── */
+(function(){
+  var scrollEl = document.querySelector('.news-scroll');
+  var phases   = document.querySelectorAll('.news-phase');
+  var cards    = document.querySelectorAll('.news-card');
+  if (!scrollEl || !phases.length) return;
+
+  // 5 phases: 0=title, 1=card1, 2=card1+2, 3=card1+2+3, 4=hold
+  var total = 1 + cards.length + 1;
+
+  function update() {
+    var rect = scrollEl.getBoundingClientRect();
+    var scrollTop = -rect.top;
+    var scrollH   = scrollEl.offsetHeight - window.innerHeight;
+    if (scrollH <= 0) return;
+
+    var progress = Math.max(0, Math.min(1, scrollTop / scrollH));
+    var phase = Math.min(Math.floor(progress * total), total - 1);
+
+    // phase 0: title, phase 1+: cards
+    phases[0].classList.toggle('is-active', phase === 0);
+    phases[1].classList.toggle('is-active', phase >= 1);
+
+    cards.forEach(function(card, i) {
+      card.classList.toggle('is-show', i < phase);
+    });
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+</script>
+
+<script>
 /* ── 스크롤 진행 점 & 다크 섹션 감지 & 네비 상태 ── */
 (function(){
   var nav     = document.getElementById('gcb-nav');
@@ -835,7 +980,6 @@ body {
   var darkSecs = ['s1'];
   var current = 0;
   var btnTop  = document.getElementById('btn-top');
-  var fctaEl  = document.getElementById('floating-cta');
 
   function updateState(idx){
     current = idx;
@@ -855,7 +999,6 @@ body {
     }
     if(found !== current) updateState(found);
     btnTop.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
-    fctaEl.classList.toggle('visible', scrollY > window.innerHeight * 0.3);
   }, {passive: true});
 
   updateState(0);
@@ -897,151 +1040,36 @@ body {
   els.forEach(function(el) { obs.observe(el); });
 })();
 </script>
+
 <script>
-/* ── Biz Carousel ── */
-(function () {
-  var BIZ_SLIDES = [
-    {
-      title: '첨단바이오의약품 CDMO',
-      desc: 'GMP 기준 위탁생산·품질시험·인허가 컨설팅 원스톱 서비스',
-      img: 'geniecell_imge/main%20ex1.jpg',
-      link: 'cdmo.html'
-    },
-    {
-      title: '인체세포등 관리업',
-      desc: '원료세포 공급부터 자가세포 보관(Bio-Banking)까지 품질 보증',
-      img: 'geniecell_imge/main%20ex5.jpg',
-      link: 'cell-management.html'
-    },
-    {
-      title: '세포처리시설',
-      desc: '재생의료기관 파트너 — 투여용 인체세포 공급 및 연구계획 수립',
-      img: 'geniecell_imge/main%20ex4.jpg',
-      link: 'cell-facility.html'
-    }
-  ];
-
-  var current = 0;
-  var autoTimer = null;
-  var total = BIZ_SLIDES.length;
-  var track = document.getElementById('bizTrack');
-  var dotsEl = document.getElementById('bizDots');
-  if (!track) return;
-
-  /* 카드 DOM을 처음 한 번만 생성 */
-  var cards = [];
-  BIZ_SLIDES.forEach(function (s, i) {
-    var card = document.createElement('div');
-    card.className = 'biz-card';
-
-    var img = document.createElement('img');
-    img.src = s.img;
-    img.alt = s.title;
-    img.loading = 'lazy';
-    card.appendChild(img);
-
-    var grad = document.createElement('div');
-    grad.className = 'card-gradient';
-    card.appendChild(grad);
-
-    var txt = document.createElement('div');
-    txt.className = 'card-text';
-    txt.innerHTML = '<h3>' + s.title + '</h3><p>' + s.desc + '</p>';
-    card.appendChild(txt);
-
-    var lbl = document.createElement('div');
-    lbl.className = 'side-label';
-    lbl.innerHTML = '<h4>' + s.title + '</h4><span>' + s.desc + '</span>';
-    card.appendChild(lbl);
-
-    card.addEventListener('click', function () {
-      if (i === current) {
-        window.location.href = s.link;
-      } else {
-        jumpTo(i);
-      }
-    });
-
-    track.appendChild(card);
-    cards.push(card);
-  });
-
-  /* 도트 생성 */
-  var dots = [];
-  BIZ_SLIDES.forEach(function (_, i) {
-    var dot = document.createElement('button');
-    dot.className = 'biz-dot';
-    dot.setAttribute('aria-label', (i + 1) + '번 슬라이드');
-    dot.addEventListener('click', function () { jumpTo(i); });
-    dotsEl.appendChild(dot);
-    dots.push(dot);
-  });
-
-  function activate(idx) {
-    current = ((idx % total) + total) % total;
-    var prevIdx = (current - 1 + total) % total;
-    var nextIdx = (current + 1) % total;
-
-    cards.forEach(function (card, i) {
-      card.className = 'biz-card';
-      card.querySelector('.side-label').className = 'side-label';
-      if (i === current) {
-        card.classList.add('is-active');
-      } else if (i === prevIdx) {
-        card.classList.add('is-prev');
-      } else if (i === nextIdx) {
-        card.classList.add('is-next');
-        card.querySelector('.side-label').classList.add('right');
-      } else {
-        card.classList.add('is-hidden');
-      }
-    });
-
-    dots.forEach(function (d, i) {
-      d.className = 'biz-dot' + (i === current ? ' on' : '');
-    });
-  }
-
-  function goNext() { activate(current + 1); resetAuto(); }
-  function goPrev() { activate(current - 1); resetAuto(); }
-  function jumpTo(i) { activate(i); resetAuto(); }
-
-  function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(goNext, 4500);
-  }
-
-  document.getElementById('bizNext').addEventListener('click', goNext);
-  document.getElementById('bizPrev').addEventListener('click', goPrev);
-
-  /* 터치 스와이프 */
-  var startX = 0;
-  track.addEventListener('touchstart', function(e){ startX = e.changedTouches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', function(e){
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 50) { dx < 0 ? goNext() : goPrev(); }
-  }, { passive: true });
-
-  activate(0);
-  resetAuto();
-})();
-</script>
-<script>
-/* ── Hero Image Slider ── */
+/* ── Hero Video Slider ── */
 (function() {
-  var DURATION = 3000; // 3초
+  var DURATION = 8000; // 8초 (영상 재생 시간에 맞춤)
   var slides = document.querySelectorAll('#hero-slides .hero-slide');
+  var videos = document.querySelectorAll('#hero-slides .hero-slide video');
   var bars   = document.querySelectorAll('#hero-progress .hero-prog-bar');
   var fills  = document.querySelectorAll('#hero-progress .hero-prog-fill');
   if (!slides.length || !bars.length) return;
 
   var total   = slides.length;
   var current = 0;
-  var timer   = null;
   var startTs = null;
   var raf     = null;
 
+  function playVideo(idx) {
+    var v = videos[idx];
+    if (!v) return;
+    v.currentTime = 0;
+    v.play().catch(function(){});
+  }
+
+  function pauseVideo(idx) {
+    var v = videos[idx];
+    if (v) v.pause();
+  }
+
   function goTo(idx) {
+    pauseVideo(current);
     slides[current].classList.remove('is-active');
     bars[current].classList.add('is-done');
     fills[current].style.transition = 'none';
@@ -1051,32 +1079,32 @@ body {
 
     slides[current].classList.add('is-active');
     bars.forEach(function(b, i) {
+      fills[i].style.transition = 'none';
       if (i < current) {
         b.classList.add('is-done');
-        fills[i].style.transition = 'none';
         fills[i].style.width = '100%';
-      } else if (i === current) {
-        b.classList.remove('is-done');
-        fills[i].style.transition = 'none';
-        fills[i].style.width = '0%';
       } else {
         b.classList.remove('is-done');
-        fills[i].style.transition = 'none';
         fills[i].style.width = '0%';
       }
     });
+    playVideo(current);
     startProgress();
   }
 
   function startProgress() {
     cancelAnimationFrame(raf);
-    clearTimeout(timer);
     startTs = null;
 
     function tick(ts) {
       if (!startTs) startTs = ts;
       var elapsed = ts - startTs;
-      var pct = Math.min(elapsed / DURATION * 100, 100);
+      // 영상 길이에 맞춰 프로그레스 동기화
+      var vid = videos[current];
+      var dur = (vid && vid.duration && !isNaN(vid.duration))
+                ? vid.duration * 1000
+                : DURATION;
+      var pct = Math.min(elapsed / dur * 100, 100);
       fills[current].style.transition = 'none';
       fills[current].style.width = pct + '%';
       if (pct < 100) {
@@ -1094,6 +1122,7 @@ body {
   });
 
   // 초기 시작
+  playVideo(0);
   startProgress();
 })();
 </script>
