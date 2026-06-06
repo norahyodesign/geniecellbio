@@ -175,11 +175,25 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-weight: 800;
   line-height: 1.0; letter-spacing: 0.08em;
-  color: var(--white);
   margin-bottom: 40px;
   text-transform: uppercase;
-  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .1s both;
-  text-shadow: 0 2px 32px rgba(0,0,0,0.35);
+  animation: fadeUp .9s cubic-bezier(.25,.46,.45,.94) .1s both,
+             h1GradientShift 4s linear infinite;
+  background: linear-gradient(90deg,
+    #ffffff 0%,
+    #d6ecf8 25%,
+    #b8d9f5 50%,
+    #d6ecf8 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@keyframes h1GradientShift {
+  from { background-position: 0% center; }
+  to   { background-position: 200% center; }
 }
 .hero-tagline {
   font-size: clamp(18px, 2.4vw, 30px);
