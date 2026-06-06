@@ -353,7 +353,7 @@ body {
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .65s ease;
+  transition: opacity .75s cubic-bezier(.4,0,.2,1);
 }
 .biz-phase.is-active {
   opacity: 1;
@@ -367,8 +367,11 @@ body {
 }
 .biz-phase--head h2 {
   font-size: clamp(26px, 3.2vw, 44px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em;
+  line-height: 1.22; letter-spacing: 0.06em;
   color: var(--white); margin-bottom: 16px;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.25,.46,.45,.94) .1s,
+              transform .7s cubic-bezier(.25,.46,.45,.94) .1s;
 }
 .biz-phase--head h2 span {
   color: var(--accent2);
@@ -376,6 +379,13 @@ body {
 .biz-phase--head p {
   font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.65;
   max-width: 480px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s cubic-bezier(.25,.46,.45,.94) .28s,
+              transform .7s cubic-bezier(.25,.46,.45,.94) .28s;
+}
+.biz-phase--head.is-active h2,
+.biz-phase--head.is-active p {
+  opacity: 1; transform: translateY(0);
 }
 /* ── 서비스 페이즈 ── */
 .biz-phase--item {
@@ -388,35 +398,44 @@ body {
   border-radius: var(--radius);
   padding: 0 clamp(48px, 6vw, 96px) 0 0;
   align-self: center;
-  transform: translateX(100%);
-  transition: transform .8s cubic-bezier(.25,.46,.45,.94);
+  transform: translateX(60px);
+  opacity: 0;
+  transition: transform .85s cubic-bezier(.16,1,.3,1),
+              opacity .7s cubic-bezier(.4,0,.2,1);
 }
 .biz-phase.is-active .biz-phase__img {
   transform: translateX(0);
+  opacity: 1;
 }
 .biz-phase__img img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
   border-radius: var(--radius);
+  transition: transform .5s ease;
 }
+.biz-phase__img:hover img { transform: scale(1.03); }
 .biz-phase__text {
   flex: 0 0 50%;
   padding: 0 clamp(48px, 6vw, 96px);
   align-self: center;
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity .55s ease .45s, transform .55s ease .45s;
+  transform: translateY(32px);
+  transition: opacity .65s cubic-bezier(.4,0,.2,1) .18s,
+              transform .65s cubic-bezier(.16,1,.3,1) .18s;
 }
 .biz-phase.is-active .biz-phase__text {
   opacity: 1;
   transform: translateY(0);
 }
 .biz-phase__num {
-  font: 600 13px/1 var(--mono);
-  color: var(--accent);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+  font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+  font-size: clamp(64px, 8vw, 108px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--border);
+  margin-bottom: 48px;
+  display: block;
 }
 .biz-phase__title {
   font-size: clamp(22px, 2.4vw, 32px);
@@ -459,28 +478,104 @@ body {
   gap: 12px;
   box-shadow: 0 6px 24px rgba(14,32,64,.3);
 }
-/* ── 스크롤 도트 인디케이터 ── */
+/* ── 세로 타임라인 인디케이터 ── */
 .biz-dots {
   position: absolute;
-  right: 28px;
+  right: 52px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
   z-index: 10;
 }
-.biz-dot-item {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--border);
-  border: none; padding: 0;
-  cursor: pointer;
-  transition: background .3s, transform .3s;
+.biz-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
-.biz-dot-item.is-on {
+/* 노드 항목 */
+.biz-tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+/* 노드 원 */
+.biz-tl-node {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(180,200,220,0.5);
+  background: transparent;
+  transition: background .35s ease,
+              border-color .35s ease,
+              transform .35s cubic-bezier(.16,1,.3,1),
+              box-shadow .35s ease;
+  position: relative;
+  z-index: 1;
+}
+/* 활성 상태 */
+.biz-tl-item.is-on .biz-tl-node {
   background: var(--accent);
-  transform: scale(1.3);
+  border-color: var(--accent);
+  transform: scale(1.35);
+  box-shadow: 0 0 10px rgba(46,124,246,0.55);
+}
+/* 지나간 노드 */
+.biz-tl-item.is-past .biz-tl-node {
+  background: rgba(46,124,246,0.4);
+  border-color: rgba(46,124,246,0.6);
+}
+/* 더미 (JS 미적용 대비) */
+.biz-dot-item { display: none; }
+
+/* ── S3 NEWS 타임라인 인디케이터 ── */
+.news-tl {
+  position: absolute;
+  right: 52px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+}
+.news-tl-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.news-tl-node {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgba(180,200,220,0.45);
+  background: transparent;
+  transition: background .35s ease,
+              border-color .35s ease,
+              transform .35s cubic-bezier(.16,1,.3,1),
+              box-shadow .35s ease;
+}
+.news-tl-item.is-on .news-tl-node {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.35);
+  box-shadow: 0 0 10px rgba(46,124,246,0.55);
+}
+.news-tl-item.is-past .news-tl-node {
+  background: rgba(46,124,246,0.4);
+  border-color: rgba(46,124,246,0.6);
 }
 
 /* ────────────────────────────────
@@ -503,17 +598,37 @@ body {
   overflow: hidden;
   background: var(--gray-bg);
 }
+/* ── 배경 이미지 레이어 ── */
+.news-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.15s linear;
+  pointer-events: none;
+}
+.news-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.news-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(5,10,20,0.85) 0%, rgba(5,10,20,0.78) 100%);
+}
 /* ── 공통 페이즈 ── */
 .news-phase {
   position: absolute;
   inset: 0;
   padding-top: var(--nav-h);
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .65s ease;
+  transition: opacity .75s cubic-bezier(.4,0,.2,1);
 }
 .news-phase.is-active {
   opacity: 1;
@@ -527,13 +642,23 @@ body {
 }
 .news-phase--head h2 {
   font-size: clamp(26px, 3.2vw, 44px); font-weight: 700;
-  line-height: 1.22; letter-spacing: -0.04em;
-  color: var(--text); margin-bottom: 16px;
+  line-height: 1.22; letter-spacing: 0.06em;
+  color: var(--white); margin-bottom: 16px;
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.25,.46,.45,.94) .1s,
+              transform .7s cubic-bezier(.25,.46,.45,.94) .1s;
 }
-.news-phase--head h2 span { color: var(--accent-text); }
+.news-phase--head h2 span { color: var(--accent2); }
 .news-phase--head p {
-  font-size: 16px; color: var(--text2); line-height: 1.65;
+  font-size: 16px; color: rgba(255,255,255,0.78); line-height: 1.65;
   max-width: 480px;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s cubic-bezier(.25,.46,.45,.94) .28s,
+              transform .7s cubic-bezier(.25,.46,.45,.94) .28s;
+}
+.news-phase--head.is-active h2,
+.news-phase--head.is-active p {
+  opacity: 1; transform: translateY(0);
 }
 /* ── 카드 페이즈 ── */
 .news-phase--cards {
@@ -553,11 +678,14 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 16px rgba(14,32,64,.06);
   opacity: 0;
-  transform: translateY(48px) scale(.95);
-  transition: opacity .6s cubic-bezier(.25,.46,.45,.94),
-              transform .6s cubic-bezier(.25,.46,.45,.94),
+  transform: translateY(40px) scale(.97);
+  transition: opacity .65s cubic-bezier(.16,1,.3,1),
+              transform .65s cubic-bezier(.16,1,.3,1),
               box-shadow .3s ease;
 }
+.news-card:nth-child(1) { transition-delay: 0s; }
+.news-card:nth-child(2) { transition-delay: .12s; }
+.news-card:nth-child(3) { transition-delay: .24s; }
 .news-card.is-show {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -817,6 +945,7 @@ body {
         <!-- Phase 1: CDMO -->
         <div class="biz-phase biz-phase--item" data-phase="1">
           <div class="biz-phase__text">
+            <span class="biz-phase__num">01</span>
             <h3 class="biz-phase__title">첨단바이오의약품 CDMO</h3>
             <p class="biz-phase__desc">위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅까지 GMP 기준의 원스톱 서비스를 제공합니다.</p>
             <ul class="biz-phase__tags">
@@ -834,6 +963,7 @@ body {
         <!-- Phase 2: 인체세포등 관리업 -->
         <div class="biz-phase biz-phase--item" data-phase="2">
           <div class="biz-phase__text">
+            <span class="biz-phase__num">02</span>
             <h3 class="biz-phase__title">인체세포등 관리업</h3>
             <p class="biz-phase__desc">원료세포 공급부터 자가세포 보관(Bio-Banking)까지, 세포 자원의 안전한 관리와 품질 보증을 지원합니다.</p>
             <ul class="biz-phase__tags">
@@ -851,6 +981,7 @@ body {
         <!-- Phase 3: 세포처리시설 -->
         <div class="biz-phase biz-phase--item" data-phase="3">
           <div class="biz-phase__text">
+            <span class="biz-phase__num">03</span>
             <h3 class="biz-phase__title">세포처리시설</h3>
             <p class="biz-phase__desc">재생의료기관 파트너로서 안전한 시술과 연구계획 수립, 투여용 인체세포 공급을 지원합니다.</p>
             <ul class="biz-phase__tags">
@@ -865,12 +996,14 @@ body {
           </div>
         </div>
 
-        <!-- 스크롤 도트 -->
+        <!-- 세로 타임라인 -->
         <div class="biz-dots" id="biz-dots">
-          <button class="biz-dot-item is-on" aria-label="헤더"></button>
-          <button class="biz-dot-item" aria-label="CDMO"></button>
-          <button class="biz-dot-item" aria-label="인체세포등 관리업"></button>
-          <button class="biz-dot-item" aria-label="세포처리시설"></button>
+          <div class="biz-timeline" id="biz-timeline">
+            <button class="biz-tl-item" aria-label="헤더" data-idx="0"><div class="biz-tl-node"></div></button>
+            <button class="biz-tl-item" aria-label="CDMO" data-idx="1"><div class="biz-tl-node"></div></button>
+            <button class="biz-tl-item" aria-label="인체세포등 관리업" data-idx="2"><div class="biz-tl-node"></div></button>
+            <button class="biz-tl-item" aria-label="세포처리시설" data-idx="3"><div class="biz-tl-node"></div></button>
+          </div>
         </div>
 
       </div>
@@ -881,6 +1014,11 @@ body {
   <section id="s3">
     <div class="news-scroll">
       <div class="news-sticky">
+
+        <!-- 배경 이미지 레이어 -->
+        <div class="news-bg" id="news-bg">
+          <img src="geniecell_imge/news%20main1.jpeg" alt="" aria-hidden="true" loading="eager">
+        </div>
 
         <!-- Phase 0: 타이틀 -->
         <div class="news-phase news-phase--head is-active">
@@ -927,6 +1065,14 @@ body {
         </div>
         </div>
 
+        <!-- S3 타임라인 인디케이터 -->
+        <div class="news-tl" id="news-tl">
+          <button class="news-tl-item" aria-label="타이틀"><div class="news-tl-node"></div></button>
+          <button class="news-tl-item" aria-label="뉴스 1"><div class="news-tl-node"></div></button>
+          <button class="news-tl-item" aria-label="뉴스 2"><div class="news-tl-node"></div></button>
+          <button class="news-tl-item" aria-label="뉴스 3"><div class="news-tl-node"></div></button>
+        </div>
+
       </div>
     </div>
   </section>
@@ -943,6 +1089,7 @@ body {
   var phases   = document.querySelectorAll('.biz-phase');
   var dots     = document.querySelectorAll('.biz-dot-item');
   var bizBg    = document.getElementById('biz-bg');
+  var tlItems  = document.querySelectorAll('.biz-tl-item');
   if (!scrollEl || !phases.length) return;
 
   // 모바일: 모든 페이즈 일반 표시, JS 대신 CSS만 사용
@@ -966,8 +1113,10 @@ body {
     phases.forEach(function(p, i) {
       p.classList.toggle('is-active', i === idx);
     });
-    dots.forEach(function(d, i) {
-      d.classList.toggle('is-on', i === idx);
+    // 타임라인 노드 상태
+    tlItems.forEach(function(item, i) {
+      item.classList.toggle('is-on',   i === idx);
+      item.classList.toggle('is-past', i < idx);
     });
     // 배경 이미지: Phase 0 구간 내 스크롤 진행도에 따라 서서히 fade-out
     if (bizBg) {
@@ -990,12 +1139,15 @@ body {
   var scrollEl = document.querySelector('.news-scroll');
   var phases   = document.querySelectorAll('.news-phase');
   var cards    = document.querySelectorAll('.news-card');
+  var newsBg   = document.getElementById('news-bg');
+  var newsTlItems = document.querySelectorAll('#news-tl .news-tl-item');
   if (!scrollEl || !phases.length) return;
 
   // 모바일: 모든 항목 표시, JS 스크롤 로직 전하 안함
   if (window.innerWidth <= 768) {
     phases.forEach(function(p) { p.classList.add('is-active'); });
     cards.forEach(function(c) { c.classList.add('is-show'); });
+    if (newsBg) newsBg.style.opacity = '0';
     return;
   }
 
@@ -1018,6 +1170,21 @@ body {
     cards.forEach(function(card, i) {
       card.classList.toggle('is-show', i < phase);
     });
+
+    // 타임라인 노드 (0=타이틀, 1~3=카드)
+    var tlIdx = Math.min(phase, newsTlItems.length - 1);
+    newsTlItems.forEach(function(item, i) {
+      item.classList.toggle('is-on',   i === tlIdx);
+      item.classList.toggle('is-past', i < tlIdx);
+    });
+
+    // 배경 이미지: Phase 0 구간 내 스크롤 진행도에 따라 서서히 fade-out
+    if (newsBg) {
+      var phase0End = 1 / total;
+      var fadeStart = phase0End * 0.5;
+      var bgOpacity = 1 - Math.max(0, Math.min(1, (progress - fadeStart) / (phase0End - fadeStart)));
+      newsBg.style.opacity = bgOpacity;
+    }
   }
 
   window.addEventListener('scroll', update, { passive: true });
