@@ -669,7 +669,9 @@ body {
   .hero-slide {
     background-size: cover;
     background-position: center 30%;
-    transform: scale(1.4);
+  }
+  .hero-slide video {
+    transform: none;
   }
   .hero-body {
     padding: 0 24px;
@@ -705,13 +707,16 @@ body {
     flex-direction: column; padding: 48px clamp(20px, 5vw, 40px); }
   .news-phase--head { padding: 48px clamp(20px, 5vw, 40px) 24px; }
   .news-phase--head h2 { font-size: 26px; }
-  .news-grid { grid-template-columns: 1fr; gap: 20px; padding: 0; }
+  .news-phase--cards { padding: 0 clamp(20px, 5vw, 40px) 48px; padding-top: 0; }
+  .news-grid { grid-template-columns: 1fr; gap: 20px; }
   .news-card { opacity: 1; transform: none; }
   .news-card__title { font-size: 16px; }
   .news-card__desc { font-size: 13px; }
   /* ── Hero 모바일 ── */
   .scroll-hint { display: none; }
-  .hero-progress { justify-content: center; }
+  .hero-progress { display: none; }
+  /* 모바일: 첫 번째 영상만 표시, 나머지 숨김 */
+  .hero-slide:not(:first-child) { display: none; }
 
   /* ── 공통 ── */
   .progress-dots { display: none; }
@@ -742,10 +747,10 @@ body {
     <!-- 비디오 슬라이더 -->
     <div class="hero-slides" id="hero-slides">
       <div class="hero-slide is-active">
-        <video src="geniecell_video/AdobeStock_1828517785_Video_HD_Preview.mp4" autoplay muted loop playsinline preload="auto"></video>
+        <video src="geniecell_video/main1 video.mov" autoplay muted loop playsinline preload="auto"></video>
       </div>
       <div class="hero-slide">
-        <video src="geniecell_video/AdobeStock_1889784923_Video_HD_Preview.mp4" muted loop playsinline preload="none"></video>
+        <video src="geniecell_video/main2 video.mov" muted loop playsinline preload="none"></video>
       </div>
       <div class="hero-slide">
         <video src="geniecell_video/AdobeStock_1932122771_Video_HD_Preview.mp4" muted loop playsinline preload="none"></video>
@@ -914,6 +919,12 @@ body {
   var dots     = document.querySelectorAll('.biz-dot-item');
   if (!scrollEl || !phases.length) return;
 
+  // 모바일: 모든 페이즈 일반 표시, JS 대신 CSS만 사용
+  if (window.innerWidth <= 768) {
+    phases.forEach(function(p) { p.classList.add('is-active'); });
+    return;
+  }
+
   var total = phases.length;
 
   function update() {
@@ -944,6 +955,13 @@ body {
   var phases   = document.querySelectorAll('.news-phase');
   var cards    = document.querySelectorAll('.news-card');
   if (!scrollEl || !phases.length) return;
+
+  // 모바일: 모든 항목 표시, JS 스크롤 로직 전하 안함
+  if (window.innerWidth <= 768) {
+    phases.forEach(function(p) { p.classList.add('is-active'); });
+    cards.forEach(function(c) { c.classList.add('is-show'); });
+    return;
+  }
 
   // 5 phases: 0=title, 1=card1, 2=card1+2, 3=card1+2+3, 4=hold
   var total = 1 + cards.length + 1;
@@ -1049,7 +1067,17 @@ body {
   var videos = document.querySelectorAll('#hero-slides .hero-slide video');
   var bars   = document.querySelectorAll('#hero-progress .hero-prog-bar');
   var fills  = document.querySelectorAll('#hero-progress .hero-prog-fill');
-  if (!slides.length || !bars.length) return;
+  if (!slides.length) return;
+
+  // 모바일: 첫 영상만 재생, 슬라이더 비활성
+  var isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    var v = videos[0];
+    if (v) v.play().catch(function(){});
+    return;
+  }
+
+  if (!bars.length) return;
 
   var total   = slides.length;
   var current = 0;
