@@ -44,8 +44,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" rel="stylesheet"></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,wght@1,700;1,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,700;0,9..40,800&display=block">
   <link rel="stylesheet" href="tokens.css">
 <style>
 /* ────────────────────────────────
@@ -819,12 +818,18 @@ body {
 .fcta-btn:hover { background: #7CC4E8; gap: 10px; }
 .fcta-btn:hover svg { transform: translateX(2px); }
 
+/* 모바일 플로팅 CTA — 삭제됨 */
+#mobile-float-cta { display: none !important; }
+
+/* 모바일 전용 슬라이더 — 데스크탑에서 숨김 */
+#biz-mobile-slider { display: none; }
+
 /* ────────────────────────────────
    BACK TO TOP BUTTON
 ──────────────────────────────── */
 #btn-top {
   position: fixed; right: 28px; bottom: 32px; z-index: 900;
-  width: 56px; height: 56px; border-radius: 50%;
+  width: 64px; height: 64px; border-radius: 50%;
   background: var(--accent); color: var(--navy);
   border: none; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
@@ -837,7 +842,28 @@ body {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
 #btn-top:hover { background: #7CC4E8; }
-#btn-top svg { width: 22px; height: 22px; }
+#btn-top svg { width: 24px; height: 24px; }
+
+/* ────────────────────────────────
+   FLOATING CONTACT BUTTON
+──────────────────────────────── */
+#btn-contact {
+  position: fixed; right: 28px; bottom: 108px; z-index: 900;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--navy); color: #fff;
+  border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(14,32,64,.35);
+  opacity: 0; visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .3s, visibility .3s, transform .3s, background .2s;
+  text-decoration: none;
+}
+#btn-contact.visible {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+#btn-contact:hover { background: #1a3560; }
+#btn-contact svg { width: 24px; height: 24px; }
 
 /* 2400px+ 대형 화면 대응 */
 @media (min-width: 2400px) {
@@ -880,10 +906,17 @@ body {
 @media (max-width: 768px) {
   /* ── S1 HERO ── */
   #s1 {
-    position: relative;
+    position: sticky;
+    top: 0;
     height: 100svh;
     overflow: hidden;
     align-items: center;
+    z-index: 0;
+  }
+  /* S2·S3·S4가 hero 위를 덮으며 올라오도록 */
+  #s2, #s3, #s4 {
+    position: relative;
+    z-index: 1;
   }
   .hero-slide {
     background-size: cover;
@@ -905,15 +938,161 @@ body {
   .hero-sub { font-size: 14px; }
 
   /* ── S2 BUSINESS 모바일 ── */
+  /* 데스크탑 구조 숨기기 */
   .biz-scroll { height: auto; }
-  .biz-sticky { position: relative; height: auto; }
-  .biz-phase { position: relative; opacity: 1; pointer-events: auto;
-    flex-direction: column; padding: 60px 20px; }
-  .biz-phase--item { padding: 0; }
-  .biz-phase__img { flex: none; width: 100%; height: auto; aspect-ratio: 16 / 10;
-    transform: none; border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
-  .biz-phase__text { flex: none; width: 100%; padding: 0 clamp(20px, 5vw, 40px);
-    opacity: 1; transform: none; }
+  .biz-sticky { position: relative; height: auto; overflow: hidden; }
+  .biz-bg,
+  .biz-phase--head,
+  .biz-phase--item,
+  .biz-dots { display: none !important; }
+
+  /* 모바일 전용 풀스크린 슬라이더 */
+  #biz-mobile-slider {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background: #050a14;
+  }
+  .biz-m-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .7s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+  }
+  .biz-m-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .biz-m-slide__bg {
+    position: absolute;
+    inset: 0;
+  }
+  .biz-m-slide__bg img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    object-position: center 40%;
+    transform: scale(1.08);
+    transition: transform 1.2s cubic-bezier(.25,.46,.45,.94);
+  }
+  .biz-m-slide.is-active .biz-m-slide__bg img {
+    transform: scale(1);
+  }
+  .biz-m-slide__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(5,10,20,0.92) 0%,
+      rgba(5,10,20,0.55) 45%,
+      rgba(5,10,20,0.72) 100%
+    );
+  }
+  .biz-m-slide__body {
+    position: absolute;
+    bottom: 48px; left: 0; right: 0;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #fff;
+    transform: translateY(36px);
+    transition: transform .8s cubic-bezier(.16,1,.3,1) .2s;
+  }
+  .biz-m-slide.is-active .biz-m-slide__body {
+    transform: translateY(0);
+  }
+  .biz-m-slide__num {
+    position: absolute;
+    top: calc(var(--nav-h) + 24px);
+    left: 24px;
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    font-size: clamp(72px, 22vw, 96px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(255,255,255,0.22);
+    z-index: 5;
+    pointer-events: none;
+  }
+  .biz-m-slide__title {
+    font-size: 24px; font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.02em;
+    color: #fff; margin: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    transform: translateY(22px);
+    transition: transform .75s cubic-bezier(.16,1,.3,1) .32s;
+  }
+  .biz-m-slide.is-active .biz-m-slide__title {
+    transform: translateY(0);
+  }
+  .biz-m-slide__desc {
+    font-size: 15px; font-weight: 400;
+    line-height: 1.6; letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.70); margin: 0;
+    transform: translateY(18px);
+    transition: transform .7s cubic-bezier(.16,1,.3,1) .42s;
+  }
+  .biz-m-slide.is-active .biz-m-slide__desc {
+    transform: translateY(0);
+  }
+  .biz-m-slide__tags {
+    display: flex; flex-wrap: wrap;
+    gap: 6px; list-style: none; margin: 0; padding: 0;
+    transform: translateY(14px);
+    transition: transform .65s cubic-bezier(.16,1,.3,1) .52s;
+  }
+  .biz-m-slide.is-active .biz-m-slide__tags {
+    transform: translateY(0);
+  }
+  .biz-m-slide__tags li {
+    font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 50px;
+    background: rgba(255,255,255,0.10);
+    color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .biz-m-slide__link {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; margin-top: 40px;
+    font-size: 14px; font-weight: 600;
+    color: var(--navy); text-decoration: none;
+    letter-spacing: -0.01em;
+    padding: 14px 0; border-radius: 12px;
+    background: #fff;
+    transform: translateY(12px);
+    transition: transform .6s cubic-bezier(.16,1,.3,1) .60s,
+                background .2s;
+  }
+  .biz-m-slide.is-active .biz-m-slide__link {
+    transform: translateY(0);
+  }
+  .biz-m-slide__link:active { opacity: 0.85; }
+  /* 좌우 화살표 */
+  .biz-m-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .biz-m-arrow:active { background: rgba(255,255,255,0.28); }
+  .biz-m-arrow--prev { left: 16px; }
+  .biz-m-arrow--next { right: 16px; }
+  .biz-m-arrow svg { width: 20px; height: 20px; }
+
+  /* 하단 dot 인디케이터 — 삭제 (보디 안으로 이동됨) */
+  /* BUSINESS 레이블 (상단) — 삭제됨 */
   .biz-phase__title { font-size: 20px; }
   .biz-phase__desc { font-size: 14px; }
   .biz-phase__tags li { font-size: 12px; padding: 6px 12px; }
@@ -921,16 +1100,91 @@ body {
 
   /* ── S3 NEWS 모바일 ── */
   .news-scroll { height: auto; }
-  .news-sticky { position: relative; height: auto; }
-  .news-phase { position: relative; opacity: 1; pointer-events: auto;
-    flex-direction: column; padding: 48px clamp(20px, 5vw, 40px); }
-  .news-phase--head { padding: 48px clamp(20px, 5vw, 40px) 24px; }
-  .news-phase--head h2 { font-size: 26px; }
-  .news-phase--cards { padding: 0 clamp(20px, 5vw, 40px) 48px; padding-top: 0; }
-  .news-grid { grid-template-columns: 1fr; gap: 20px; }
-  .news-card { opacity: 1; transform: none; }
-  .news-card__title { font-size: 16px; }
-  .news-card__desc { font-size: 13px; }
+  .news-sticky { position: relative; height: auto; overflow: visible; background: #fff; }
+  .news-bg, .news-tl { display: none !important; }
+
+  /* 헤드 페이즈: 심플하게 */
+  .news-phase { position: relative; opacity: 1; pointer-events: auto; }
+  .news-phase--head {
+    padding: 48px 24px 48px;
+    flex-direction: column;
+    text-align: left;
+    background: var(--navy);
+  }
+  .news-phase--head h2 {
+    font-size: 28px; opacity: 1; transform: none;
+    transition: none;
+  }
+  .news-phase--head p {
+    font-size: 14px; opacity: 1; transform: none;
+    transition: none;
+  }
+
+  /* 카드 페이즈: 일반 흐름 */
+  .news-phase--cards {
+    position: relative;
+    padding: 24px 20px 48px;
+    align-items: stretch;
+    background: #fff;
+  }
+  .news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    grid-template-columns: unset;
+  }
+
+  /* 카드: 가로 배치 */
+  .news-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    border-bottom: 1px solid var(--border);
+    /* 진입 애니메이션 초기 상태 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .6s cubic-bezier(.4,0,.2,1),
+                transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  /* 짝수 카드: 이미지 오른쪽 */
+  .news-card:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  .news-card.is-show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .news-card:nth-child(1) { transition-delay: 0s; }
+  .news-card:nth-child(2) { transition-delay: .1s; }
+  .news-card:nth-child(3) { transition-delay: .2s; }
+
+  /* 이미지 */
+  .news-card__img {
+    flex: 0 0 110px;
+    width: 110px;
+    height: 82px;
+    aspect-ratio: unset;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .news-card__img img { transition: none; }
+
+  /* 텍스트 */
+  .news-card__body {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .news-card__date { margin-bottom: 0; }
+  .news-card__title { font-size: 15px; margin-bottom: 0; }
+  .news-card__desc { display: none; }
   /* ── Hero 모바일 ── */
   .scroll-hint { display: none; }
   .hero-progress { display: none; }
@@ -940,8 +1194,10 @@ body {
   /* ── 공통 ── */
   .progress-dots { display: none; }
   .inner { padding: 0 20px; }
-  #btn-top { right: 16px; bottom: 20px; width: 44px; height: 44px; }
-  #btn-top svg { width: 18px; height: 18px; }
+  #btn-top { right: 16px; bottom: 20px; width: 52px; height: 52px; }
+  #btn-top svg { width: 22px; height: 22px; }
+  #btn-contact { right: 16px; bottom: 82px; width: 52px; height: 52px; }
+  #btn-contact svg { width: 22px; height: 22px; }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
 }
@@ -950,10 +1206,16 @@ body {
 <body>
 <script src="nav.js"></script>
 
+<!-- 상담 문의 버튼 -->
+<a href="support.html#contact" id="btn-contact" aria-label="상담 문의">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</a>
+
 <!-- Top 버튼 -->
 <button type="button" id="btn-top" aria-label="맨 위로">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
+<a href="support.html#contact" id="mobile-float-cta">상담 신청</a>
 
 <!-- 스크롤 진행 숫자 삭제 -->
 
@@ -1085,6 +1347,67 @@ body {
             <button class="biz-tl-item" aria-label="세포처리시설" data-idx="3"><div class="biz-tl-node"></div></button>
           </div>
         </div>
+
+        <!-- ── 모바일 전용 풀스크린 슬라이더 ── -->
+        <div id="biz-mobile-slider">
+
+          <!-- Slide 1: CDMO -->
+          <div class="biz-m-slide">
+            <div class="biz-m-slide__bg"><img src="geniecell_imge/business%20sub1.jpeg" alt="CDMO" loading="eager"></div>
+            <div class="biz-m-slide__overlay"></div>
+            <div class="biz-m-slide__body">
+              <h3 class="biz-m-slide__title">첨단바이오의약품<br>CDMO</h3>
+              <p class="biz-m-slide__desc">위탁생산(CMO), 위탁품질시험(QC), RA 인허가 컨설팅까지 GMP 기준의 원스톱 서비스를 제공합니다.</p>
+              <ul class="biz-m-slide__tags">
+                <li>위탁생산 (CMO)</li>
+                <li>위탁품질시험 (QC)</li>
+                <li>RA 인허가 컨설팅</li>
+              </ul>
+              <a href="cdmo.html" class="biz-m-slide__link">자세히 보기</a>
+            </div>
+          </div>
+
+          <!-- Slide 2: 인체세포등 관리업 -->
+          <div class="biz-m-slide">
+            <div class="biz-m-slide__bg"><img src="geniecell_imge/business%20sub2.jpeg" alt="인체세포등 관리업" loading="lazy"></div>
+            <div class="biz-m-slide__overlay"></div>
+            <div class="biz-m-slide__body">
+              <h3 class="biz-m-slide__title">인체세포등 관리업</h3>
+              <p class="biz-m-slide__desc">원료세포 공급부터 자가세포 보관(Bio-Banking)까지, 세포 자원의 안전한 관리와 품질 보증을 지원합니다.</p>
+              <ul class="biz-m-slide__tags">
+                <li>원료세포 공급</li>
+                <li>자가세포 보관</li>
+                <li>품질 보증</li>
+              </ul>
+              <a href="cell-management.html" class="biz-m-slide__link">자세히 보기</a>
+            </div>
+          </div>
+
+          <!-- Slide 3: 세포처리시설 -->
+          <div class="biz-m-slide">
+            <div class="biz-m-slide__bg"><img src="geniecell_imge/business%20sub3.jpeg" alt="세포처리시설" loading="lazy"></div>
+            <div class="biz-m-slide__overlay"></div>
+            <div class="biz-m-slide__body">
+              <h3 class="biz-m-slide__title">세포처리시설</h3>
+              <p class="biz-m-slide__desc">재생의료기관 파트너로서 안전한 시술과 연구계획 수립, 투여용 인체세포 공급을 지원합니다.</p>
+              <ul class="biz-m-slide__tags">
+                <li>세포처리시설 운영</li>
+                <li>투여용 인체세포 공급</li>
+                <li>연구계획 수립</li>
+              </ul>
+              <a href="cell-facility.html" class="biz-m-slide__link">자세히 보기</a>
+            </div>
+          </div>
+
+          <!-- 화살표 -->
+          <button class="biz-m-arrow biz-m-arrow--prev" id="biz-m-prev" aria-label="이전">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="biz-m-arrow biz-m-arrow--next" id="biz-m-next" aria-label="다음">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <!-- ── /모바일 슬라이더 ── -->
 
       </div>
     </div>
@@ -1223,11 +1546,23 @@ body {
   var newsTlItems = document.querySelectorAll('#news-tl .news-tl-item');
   if (!scrollEl || !phases.length) return;
 
-  // 모바일: 모든 항목 표시, JS 스크롤 로직 전하 안함
+  // 모바일: 뉴스 카드 IntersectionObserver로 진입 애니메이션
   if (window.innerWidth <= 768) {
     phases.forEach(function(p) { p.classList.add('is-active'); });
-    cards.forEach(function(c) { c.classList.add('is-show'); });
     if (newsBg) newsBg.style.opacity = '0';
+    if ('IntersectionObserver' in window) {
+      var cardIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-show');
+            cardIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      cards.forEach(function(c) { cardIO.observe(c); });
+    } else {
+      cards.forEach(function(c) { c.classList.add('is-show'); });
+    }
     return;
   }
 
@@ -1300,6 +1635,10 @@ body {
     }
     if(found !== current) updateState(found);
     btnTop.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
+    var btnContact = document.getElementById('btn-contact');
+    if(btnContact) btnContact.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
+    var mobileFloat = document.getElementById('mobile-float-cta');
+    if(mobileFloat) mobileFloat.classList.toggle('visible', scrollY > window.innerHeight * 0.8);
   }, {passive: true});
 
   updateState(0);
@@ -1435,6 +1774,75 @@ body {
   // 초기 시작
   playVideo(0);
   startProgress();
+})();
+</script>
+
+<script>
+/* ── 모바일 비즈니스 슬라이더 ── */
+(function() {
+  var slider = document.getElementById('biz-mobile-slider');
+  if (!slider) return;
+
+  var slides = slider.querySelectorAll('.biz-m-slide');
+  var cur    = 0;
+  var total  = slides.length;
+
+  function goTo(n) {
+    var prev = cur;
+    cur = (n + total) % total;
+    slides[prev].classList.remove('is-active');
+    slides[cur].classList.add('is-active');
+    /* 각 슬라이드 내부 dots 업데이트 */
+    slider.querySelectorAll('.biz-m-dot').forEach(function(d) {
+      d.classList.remove('is-active');
+    });
+    slides[cur].querySelectorAll('.biz-m-dot').forEach(function(d, i) {
+      if (i === cur) d.classList.add('is-active');
+    });
+  }
+
+  /* 모든 dot에 클릭 이벤트 — 슬라이드 인덱스로 이동 */
+  slides.forEach(function(slide, si) {
+    slide.querySelectorAll('.biz-m-dot').forEach(function(d, di) {
+      d.addEventListener('click', function() { goTo(di); });
+    });
+  });
+
+  var prevBtn = document.getElementById('biz-m-prev');
+  var nextBtn = document.getElementById('biz-m-next');
+  if (prevBtn) prevBtn.addEventListener('click', function() { goTo(cur - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { goTo(cur + 1); });
+
+  /* 터치 스와이프 */
+  var startX = 0;
+  slider.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  slider.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+  }, { passive: true });
+
+  /* 비즈니스 섹션 진입 시 첫 슬라이드 애니메이션 트리거 (모바일 전용) */
+  var s2 = document.getElementById('s2');
+  if (s2 && 'IntersectionObserver' in window) {
+    var entered = false;
+    var ioOpts = { threshold: 0.15 };
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !entered) {
+          entered = true;
+          /* 현재 슬라이드 애니메이션 재생 */
+          var s = slides[cur];
+          s.classList.remove('is-active');
+          void s.offsetWidth; /* reflow */
+          s.classList.add('is-active');
+          io.disconnect();
+        }
+      });
+    }, ioOpts);
+    io.observe(s2);
+  }
 })();
 </script>
 </body>

@@ -108,8 +108,7 @@
     '    <div class="nav-drawer-label">고객지원</div>',
     '    <a href="support.html#qna">Q&amp;A</a>',
     '    <a href="support.html#contact">Contact Us</a>',
-    '  </div>',
-    '</div>',
+    '  </div>',    '  <a href="support.html#contact" class="nav-drawer-cta">상담 신청</a>',    '</div>',
     '</header>'
   ].join('\n');
 
