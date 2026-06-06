@@ -134,6 +134,7 @@ body {
   background: #050a14;
   display: flex; align-items: center; justify-content: center;
   height: 100vh;
+  padding-top: var(--nav-h);
   position: sticky;
   top: 0;
   z-index: 0;
@@ -390,12 +391,23 @@ body {
 /* ── 서비스 페이즈 ── */
 .biz-phase--item {
   flex-direction: row;
+  align-items: center;
+}
+/* 서비스 페이즈 내 풀스크린 배경 이미지 */
+.biz-phase__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.biz-phase__bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  opacity: 0.10;
 }
 .biz-phase__img {
   flex: 0 0 50%;
   height: 70%;
-  overflow: hidden;
-  border-radius: var(--radius);
   padding: 0 clamp(48px, 6vw, 96px) 0 0;
   align-self: center;
   transform: translateX(60px);
@@ -407,17 +419,26 @@ body {
   transform: translateX(0);
   opacity: 1;
 }
+.biz-phase__img-wrap {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
 .biz-phase__img img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
-  border-radius: var(--radius);
   transition: transform .5s ease;
 }
 .biz-phase__img:hover img { transform: scale(1.03); }
 .biz-phase__text {
   flex: 0 0 50%;
+  height: 100%;
   padding: 0 clamp(48px, 6vw, 96px);
-  align-self: center;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 3vh;
   opacity: 0;
   transform: translateY(32px);
   transition: opacity .65s cubic-bezier(.4,0,.2,1) .18s,
@@ -471,6 +492,7 @@ body {
   padding: 12px 28px;
   border-radius: 50px;
   background: var(--navy);
+  align-self: flex-start;
   transition: background .22s, gap .22s, box-shadow .22s;
 }
 .biz-phase__link:hover {
@@ -803,6 +825,39 @@ body {
 #btn-top:hover { background: #7CC4E8; }
 #btn-top svg { width: 22px; height: 22px; }
 
+/* 2400px+ 대형 화면 대응 */
+@media (min-width: 2400px) {
+  .hero-body,
+  .biz-phase--head,
+  .biz-phase__text,
+  .news-phase--head,
+  .news-phase--cards {
+    padding-left: clamp(200px, 16vw, 320px);
+    padding-right: clamp(200px, 16vw, 320px);
+  }
+  .biz-phase__img {
+    padding-right: clamp(200px, 16vw, 320px);
+  }
+  .hero-progress {
+    padding: 0 clamp(200px, 16vw, 320px);
+  }
+  /* 텍스트 크기 확대 */
+  .hero-h1         { font-size: clamp(64px, 5.5vw, 96px); }
+  .hero-tagline    { font-size: clamp(28px, 2.8vw, 44px); }
+  .hero-sub        { font-size: 20px; }
+  .biz-phase--head h2,
+  .news-phase--head h2 { font-size: clamp(44px, 3.8vw, 64px); }
+  .biz-phase--head p,
+  .news-phase--head p  { font-size: 20px; }
+  .biz-phase__num      { font-size: clamp(96px, 10vw, 148px); }
+  .biz-phase__title    { font-size: clamp(32px, 2.8vw, 44px); }
+  .biz-phase__desc     { font-size: 18px; }
+  .biz-phase__tags li  { font-size: 15px; }
+  .news-card__title    { font-size: 20px; }
+  .news-card__desc     { font-size: 16px; }
+  .news-card__date     { font-size: 14px; }
+}
+
 /* ────────────────────────────────
    RESPONSIVE — MOBILE
 ──────────────────────────────── */
@@ -944,6 +999,7 @@ body {
 
         <!-- Phase 1: CDMO -->
         <div class="biz-phase biz-phase--item" data-phase="1">
+          <div class="biz-phase__bg"><img src="geniecell_imge/business%20sub1.jpeg" alt="" aria-hidden="true"></div>
           <div class="biz-phase__text">
             <span class="biz-phase__num">01</span>
             <h3 class="biz-phase__title">첨단바이오의약품 CDMO</h3>
@@ -956,12 +1012,15 @@ body {
             <a href="cdmo.html" class="biz-phase__link">자세히 보기 →</a>
           </div>
           <div class="biz-phase__img">
-            <img src="geniecell_imge/business%20sub1.jpeg" alt="CDMO 서비스" loading="lazy">
+            <div class="biz-phase__img-wrap">
+              <img src="geniecell_imge/business%20sub1.jpeg" alt="CDMO 서비스" loading="lazy">
+            </div>
           </div>
         </div>
 
         <!-- Phase 2: 인체세포등 관리업 -->
         <div class="biz-phase biz-phase--item" data-phase="2">
+          <div class="biz-phase__bg"><img src="geniecell_imge/business%20sub2.jpeg" alt="" aria-hidden="true"></div>
           <div class="biz-phase__text">
             <span class="biz-phase__num">02</span>
             <h3 class="biz-phase__title">인체세포등 관리업</h3>
@@ -974,12 +1033,15 @@ body {
             <a href="cell-management.html" class="biz-phase__link">자세히 보기 →</a>
           </div>
           <div class="biz-phase__img">
-            <img src="geniecell_imge/business%20sub2.jpeg" alt="인체세포등 관리업" loading="lazy">
+            <div class="biz-phase__img-wrap">
+              <img src="geniecell_imge/business%20sub2.jpeg" alt="인체세포등 관리업" loading="lazy">
+            </div>
           </div>
         </div>
 
         <!-- Phase 3: 세포처리시설 -->
         <div class="biz-phase biz-phase--item" data-phase="3">
+          <div class="biz-phase__bg"><img src="geniecell_imge/business%20sub3.jpeg" alt="" aria-hidden="true"></div>
           <div class="biz-phase__text">
             <span class="biz-phase__num">03</span>
             <h3 class="biz-phase__title">세포처리시설</h3>
@@ -992,7 +1054,9 @@ body {
             <a href="cell-facility.html" class="biz-phase__link">자세히 보기 →</a>
           </div>
           <div class="biz-phase__img">
-            <img src="geniecell_imge/business%20sub3.jpeg" alt="세포처리시설" loading="lazy">
+            <div class="biz-phase__img-wrap">
+              <img src="geniecell_imge/business%20sub3.jpeg" alt="세포처리시설" loading="lazy">
+            </div>
           </div>
         </div>
 

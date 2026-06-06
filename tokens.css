@@ -74,6 +74,19 @@
   :root { --max-w: 1440px; }
 }
 
+/* 초대형 모니터 (2400px 이상) — max-w 더 확장, 패딩 맞추기 */
+@media (min-width: 2400px) {
+  :root {
+    --max-w: 1920px;
+  }
+  .inner {
+    padding: 0 clamp(200px, 16vw, 320px);
+  }
+  .nav-inner {
+    padding: 0 clamp(200px, 16vw, 320px) !important;
+  }
+}
+
 /* ══════════════════════════════════
    BASE
 ══════════════════════════════════ */
