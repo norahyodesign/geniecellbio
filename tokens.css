@@ -104,7 +104,7 @@ body { background: var(--white); color: var(--text); }
 .inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 clamp(48px, 6vw, 96px);
+  padding: 0 clamp(60px, 7vw, 120px);
 }
 .page-wrap {
   padding-top: var(--nav-h);
@@ -137,7 +137,7 @@ body { background: var(--white); color: var(--text); }
 #gcb-nav.nav-solid .nav-item.is-active > .nav-link { color: var(--accent); background: rgba(152,214,250,.12); }
 #gcb-nav.nav-solid .nav-ham svg { stroke: var(--white); }
 .nav-inner {
-  max-width: none; margin: 0; padding: 0 clamp(48px, 6vw, 96px);
+  max-width: none; margin: 0; padding: 0 clamp(60px, 7vw, 120px);
   height: 100%; display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
@@ -989,10 +989,9 @@ body { background: var(--white); color: var(--text); }
 ══════════════════════════════════ */
 .main-footer {
   background: var(--navy); color: rgba(255,255,255,.65);
-  padding: 56px clamp(48px, 6vw, 96px) 32px;
+  padding: 56px clamp(60px, 7vw, 120px) 32px;
 }
 .footer-inner {
-  max-width: var(--max-w); margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
@@ -1088,6 +1087,14 @@ body { background: var(--white); color: var(--text); }
 }
 @media (max-width: 480px) {
   .tab-item { padding: 7px 13px; font-size: 12px; }
+}
+
+/* 2400px+ 푸터 여백 확대 (기본 규칙 뒤에 위치해야 cascade 적용됨) */
+@media (min-width: 2400px) {
+  .main-footer {
+    padding-left: clamp(200px, 16vw, 320px);
+    padding-right: clamp(200px, 16vw, 320px);
+  }
 }
 
 /* ══════════════════════════════════
