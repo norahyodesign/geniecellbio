@@ -1690,12 +1690,10 @@ body {
   var fills  = document.querySelectorAll('#hero-progress .hero-prog-fill');
   if (!slides.length) return;
 
-  // 모바일: 첫 영상만 재생, 슬라이더 비활성
+  // 모바일: preload="none" 영상 로드 허용 후 슬라이더 정상 실행
   var isMobile = window.innerWidth <= 768;
   if (isMobile) {
-    var v = videos[0];
-    if (v) v.play().catch(function(){});
-    return;
+    videos.forEach(function(v) { if (v) v.setAttribute('preload', 'auto'); });
   }
 
   if (!bars.length) return;
