@@ -74,16 +74,10 @@
   :root { --max-w: 1440px; }
 }
 
-/* 초대형 모니터 (2400px 이상) — max-w 더 확장, 패딩 맞추기 */
+/* 초대형 모니터 (2400px 이상) — max-w 확장 */
 @media (min-width: 2400px) {
   :root {
     --max-w: 1920px;
-  }
-  .inner {
-    padding: 0 clamp(200px, 16vw, 320px);
-  }
-  .nav-inner {
-    padding: 0 clamp(200px, 16vw, 320px) !important;
   }
 }
 
@@ -102,9 +96,7 @@ body { background: var(--white); color: var(--text); }
    LAYOUT HELPERS
 ══════════════════════════════════ */
 .inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
 }
 .page-wrap {
   padding-top: var(--nav-h);
@@ -137,7 +129,7 @@ body { background: var(--white); color: var(--text); }
 #gcb-nav.nav-solid .nav-item.is-active > .nav-link { color: var(--accent); background: rgba(152,214,250,.12); }
 #gcb-nav.nav-solid .nav-ham svg { stroke: var(--white); }
 .nav-inner {
-  max-width: none; margin: 0; padding: 0 clamp(60px, 7vw, 120px);
+  max-width: none; margin: 0; padding: 0 clamp(80px, 10vw, 160px);
   height: 100%; display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
@@ -349,7 +341,7 @@ body { background: var(--white); color: var(--text); }
 ══════════════════════════════════ */
 .page-hero {
   background: var(--navy);
-  padding: 100px 32px 80px;
+  padding: 100px clamp(80px, 10vw, 160px) 80px;
   position: relative; overflow: hidden;
   text-align: center;
 }
@@ -989,7 +981,7 @@ body { background: var(--white); color: var(--text); }
 ══════════════════════════════════ */
 .main-footer {
   background: var(--navy); color: rgba(255,255,255,.65);
-  padding: 56px clamp(60px, 7vw, 120px) 32px;
+  padding: 56px clamp(80px, 10vw, 160px) 32px;
 }
 .footer-inner {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -1089,8 +1081,18 @@ body { background: var(--white); color: var(--text); }
   .tab-item { padding: 7px 13px; font-size: 12px; }
 }
 
-/* 2400px+ 푸터 여백 확대 (기본 규칙 뒤에 위치해야 cascade 적용됨) */
+/* 2400px+ 패딩 확대 — 기본 규칙 뒤에 위치해야 cascade 적용됨 */
 @media (min-width: 2400px) {
+  .inner {
+    padding: 0 clamp(200px, 16vw, 320px);
+  }
+  .nav-inner {
+    padding: 0 clamp(200px, 16vw, 320px) !important;
+  }
+  .page-hero {
+    padding-left: clamp(200px, 16vw, 320px);
+    padding-right: clamp(200px, 16vw, 320px);
+  }
   .main-footer {
     padding-left: clamp(200px, 16vw, 320px);
     padding-right: clamp(200px, 16vw, 320px);

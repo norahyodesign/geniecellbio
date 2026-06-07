@@ -72,7 +72,7 @@ body {
 .inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
 }
 
 /* ────────────────────────────────
@@ -167,7 +167,7 @@ body {
   align-items: flex-start;
   text-align: left;
   width: 100%;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
 }
 .hero-h1 {
   font-size: clamp(28px, 4.5vw, 64px);
@@ -276,7 +276,7 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
   z-index: 3;
   display: flex;
   justify-content: flex-end;
@@ -378,7 +378,7 @@ body {
 .biz-phase--head {
   flex-direction: column;
   text-align: center;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
 }
 .biz-phase--head h2 {
   font-size: clamp(32px, 4vw, 64px); font-weight: 700;
@@ -422,7 +422,7 @@ body {
 .biz-phase__img {
   flex: 0 0 50%;
   height: 70%;
-  padding: 0 clamp(60px, 7vw, 120px) 0 0;
+  padding: 0 clamp(80px, 10vw, 160px) 0 0;
   align-self: center;
   transform: translateX(60px);
   opacity: 0;
@@ -447,7 +447,7 @@ body {
 .biz-phase__text {
   flex: 0 0 50%;
   height: 100%;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -638,7 +638,7 @@ body {
 .news-phase--head {
   flex-direction: column;
   text-align: center;
-  padding: 0 clamp(60px, 7vw, 120px);
+  padding: 0 clamp(80px, 10vw, 160px);
 }
 .news-phase--head h2 {
   font-size: clamp(32px, 4vw, 64px); font-weight: 700;
@@ -693,7 +693,7 @@ body {
   transform: translateY(100%);  /* JS 스크롤 연동 */
   will-change: transform;
   overflow: visible;            /* 카드가 위로 튀어나오도록 */
-  padding: 0 clamp(60px, 7vw, 120px) 80px;
+  padding: 0 clamp(80px, 10vw, 160px) 80px;
 }
 .news-cards-inner {
   width: 100%;
@@ -740,11 +740,12 @@ body {
 .news-card__img {
   width: 100%; flex: none;
   aspect-ratio: 4 / 3;
-  overflow: hidden;
+  padding: 12px 12px 0;
 }
 .news-card__img img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
+  border-radius: var(--radius-sm);
   transition: transform .5s ease;
 }
 .news-card:hover .news-card__img img { transform: scale(1.05); }
@@ -772,7 +773,7 @@ body {
   letter-spacing: 1px;
 }
 .news-card__title {
-  font-size: 15px; font-weight: 700;
+  font-size: 18px; font-weight: 700;
   color: var(--text); line-height: 1.45;
   letter-spacing: -0.01em;
   display: -webkit-box;
@@ -1501,8 +1502,6 @@ body {
                   <img src="geniecell_imge/main%20ex2.jpg" alt="세포유전자치료제 뉴스" loading="lazy">
                 </div>
                 <div class="news-card__body">
-                  <span class="news-card__badge">연구성과</span>
-                  <div class="news-card__date">2026.05.12</div>
                   <h3 class="news-card__title">식약처, 첫 국산 세포유전자치료제 품목허가 승인</h3>
                   <span class="news-card__cta">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </div>
@@ -1513,8 +1512,6 @@ body {
                   <img src="geniecell_imge/main%20ex3.jpg" alt="재생의료 뉴스" loading="lazy">
                 </div>
                 <div class="news-card__body">
-                  <span class="news-card__badge">업계 동향</span>
-                  <div class="news-card__date">2026.04.03</div>
                   <h3 class="news-card__title">재생의료법 시행 2년, 세포치료 임상 100건 돌파</h3>
                   <span class="news-card__cta">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </div>
@@ -1525,8 +1522,6 @@ body {
                   <img src="geniecell_imge/main%20ex4.jpg" alt="바이오코리아 뉴스" loading="lazy">
                 </div>
                 <div class="news-card__body">
-                  <span class="news-card__badge">공지사항</span>
-                  <div class="news-card__date">2026.02.21</div>
                   <h3 class="news-card__title">바이오코리아 2026, CDMO 통합 솔루션 전시관 운영</h3>
                   <span class="news-card__cta">자세히 보기 <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </div>
