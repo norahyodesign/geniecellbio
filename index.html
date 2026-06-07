@@ -720,7 +720,6 @@ body {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: #fff;
-  /* 강한 그림자로 pop-out 효과 */
   box-shadow: 0 -8px 24px rgba(14,32,64,.12), 0 20px 48px rgba(14,32,64,.18);
   cursor: pointer;
   opacity: 0;
@@ -1151,8 +1150,8 @@ body {
   .news-scroll { height: auto; }
   .news-sticky { position: relative; height: auto; overflow: visible; background: #07091a; }
   .news-tl { display: none !important; }
-  /* 배경 이미지: 고정 높이로 보여줌 */
-  .news-reveal-img { position: relative; height: 40vw; min-height: 200px; }
+  /* 배경 이미지: 모바일에서 숨김 */
+  .news-reveal-img { display: none; }
   /* 흰 패널: 일반 흐름 */
   .news-cards-panel {
     position: relative !important;
@@ -1215,10 +1214,7 @@ body {
     transition: opacity .6s cubic-bezier(.4,0,.2,1),
                 transform .6s cubic-bezier(.16,1,.3,1);
   }
-  /* 짝수 카드: 이미지 오른쪽 */
-  .news-card:nth-child(even) {
-    flex-direction: row-reverse;
-  }
+  /* 짝수 카드: 이미지 왼쪽 유지 (모두 동일) */
   .news-card.is-show {
     opacity: 1;
     transform: translateY(0);
@@ -1231,12 +1227,17 @@ body {
   .news-card__img {
     flex: 0 0 110px;
     width: 110px;
-    height: 82px;
+    height: 90px;
     aspect-ratio: unset;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
+    padding: 0;
+    border-radius: 0;
   }
-  .news-card__img img { transition: none; }
+  .news-card__img img { transition: filter .3s ease; }
+
+  /* 모바일 호버: 이미지 scale 제거 → brightness로 부드럽게 */
+  .news-card:hover { transform: none; box-shadow: none; }
+  .news-card:hover .news-card__img img { transform: none; filter: brightness(1.08); }
+  .news-card:hover .news-card__title { color: var(--accent); }
 
   /* 텍스트 */
   .news-card__body {
@@ -1494,7 +1495,6 @@ body {
         <!-- 흰 패널: 스크롤에 맞춰 아래서 올라오며 이미지 하단 30% 겹침 -->
         <div class="news-cards-panel" id="news-cards-panel">
           <div class="news-cards-inner">
-            <div class="news-cards-label">Latest News</div>
             <div class="news-cards-grid">
               <!-- Card 1 -->
               <div class="news-card" id="news-card-1">
