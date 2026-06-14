@@ -151,6 +151,18 @@
 #default-sections > .section:last-child  { padding-bottom: 140px; }
 .sde-intro { padding: 48px 0 40px; }
 
+/* ── 타이틀 컬러 통일 ── */
+.section-h2,
+.section-h2 span,
+.proc-title,
+.str-h4,
+.sde-intro-h2,
+.sde-intro-h2 span,
+.sde-items-h3,
+.sde-item-title {
+  color: #111;
+}
+
 /* ── 진행 절차 — 에디토리얼 리스트 ── */
 .proc-list {
   margin-top: 40px;
@@ -223,21 +235,8 @@
   <div class="svc-slider" id="svc-slider">
     <div class="svc-slides">
       <div class="svc-slide">
-        <div class="svc-slide-img"><img src="geniecell_imge/main%20ex5.jpg" alt="인체세포 관리 시설"></div>
+        <div class="svc-slide-img"><img src="geniecell_imge/business%20sub2.jpeg" alt="인체세포 관리 시설"></div>
       </div>
-      <div class="svc-slide">
-        <div class="svc-slide-img"><img src="geniecell_imge/main%20ex2.jpg" alt="세포 처리 및 보관 환경"></div>
-      </div>
-    </div>
-    <button type="button" class="svc-arrow prev" aria-label="이전 슬라이드">
-      <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 5l-5 5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <button type="button" class="svc-arrow next" aria-label="다음 슬라이드">
-      <svg viewBox="0 0 20 20" fill="none"><path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="svc-dots">
-      <button type="button" class="svc-dot is-active" aria-label="슬라이드 1"></button>
-      <button type="button" class="svc-dot" aria-label="슬라이드 2"></button>
     </div>
   </div>
 
@@ -495,6 +494,9 @@
   var track   = slider.querySelector('.svc-slides');
   var slides  = slider.querySelectorAll('.svc-slide');
   var dots    = slider.querySelectorAll('.svc-dot');
+  var prevBtn = slider.querySelector('.prev');
+  var nextBtn = slider.querySelector('.next');
+  if (!track || slides.length <= 1) return;
   var cur     = 0;
   var timer;
 
@@ -504,8 +506,8 @@
     dots.forEach(function(d, i) { d.classList.toggle('is-active', i === cur); });
   }
 
-  slider.querySelector('.prev').addEventListener('click', function() { go(cur - 1); resetTimer(); });
-  slider.querySelector('.next').addEventListener('click', function() { go(cur + 1); resetTimer(); });
+  if (prevBtn) prevBtn.addEventListener('click', function() { go(cur - 1); resetTimer(); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { go(cur + 1); resetTimer(); });
   dots.forEach(function(d, i) { d.addEventListener('click', function() { go(i); resetTimer(); }); });
 
   function startTimer() { timer = setInterval(function() { go(cur + 1); }, 4000); }
