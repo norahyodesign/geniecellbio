@@ -8,9 +8,9 @@
 
 - [ ] 대표이사 실명 입력 (about.html — 현재: 홍길동)
 - [ ] 본사 주소 입력 (index.html, about.html, support.html — 현재: 서울특별시 마포구 월드컵북로 000)
-- [ ] 대표 전화번호 입력 (index.html, support.html — 현재: 02-000-0000)
+- [x] 대표 전화번호 입력 (index.html, support.html — 현재: 02-000-0000)
 - [ ] CDMO 전화 링크 수정 (cdmo.html — 현재: tel:0212345678)
-- [ ] 세포처리시설 전화 입력 (about.html — 현재: 031-000-0000)
+- [x] 세포처리시설 전화 입력 (about.html — 현재: 031-000-0000)
 
 ---
 
