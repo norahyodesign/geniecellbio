@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://geniecellbio.com/sitemap.xml
+Sitemap: https://norahyodesign.github.io/geniecellbio/sitemap.xml
