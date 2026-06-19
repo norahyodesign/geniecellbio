@@ -83,29 +83,29 @@
     // 모바일 드로어
     '<div class="nav-drawer" id="gcb-drawer">',
     '  <div class="nav-drawer-section">',
-    '    <div class="nav-drawer-label">회사소개</div>',
+    '    <div class="nav-drawer-label">회사소개 <span class="nav-drawer-arrow">›</span></div>',
     '    <a href="about.html#greeting">인사말</a>',
     '    <a href="about.html#company">회사개요</a>',,
     '    <a href="about.html#location">오시는길</a>',
     '  </div>',
     '  <div class="nav-drawer-section">',
-    '    <div class="nav-drawer-label">CDMO 서비스</div>',
-    '    <a href="cdmo.html#cmo">CMO · 위탁생산</a>',
-    '    <a href="cdmo.html#qc">QC · 위탁품질시험</a>',
-    '    <a href="cdmo.html#ra">RA · 인허가 컨설팅</a>',
+    '    <a href="cdmo.html" class="nav-drawer-label nav-drawer-label-link">CDMO 서비스 <span class="nav-drawer-arrow">›</span></a>',
+    '    <a href="cdmo.html#cmo" class="nav-drawer-sub">CMO · 위탁생산</a>',
+    '    <a href="cdmo.html#qc" class="nav-drawer-sub">QC · 위탁품질시험</a>',
+    '    <a href="cdmo.html#ra" class="nav-drawer-sub">RA · 인허가 컨설팅</a>',
     '  </div>',
     '  <div class="nav-drawer-section">',
-    '    <div class="nav-drawer-label">인체세포등 관리업</div>',
-    '    <a href="cell-management.html#supply">원료세포 공급</a>',
-    '    <a href="cell-management.html#banking">자가세포 보관</a>',
+    '    <a href="cell-management.html" class="nav-drawer-label nav-drawer-label-link">인체세포등 관리업 <span class="nav-drawer-arrow">›</span></a>',
+    '    <a href="cell-management.html#supply" class="nav-drawer-sub">원료세포 공급</a>',
+    '    <a href="cell-management.html#banking" class="nav-drawer-sub">자가세포 보관</a>',
     '  </div>',
     '  <div class="nav-drawer-section">',
-    '    <div class="nav-drawer-label">세포처리시설</div>',
-    '    <a href="cell-facility.html#cmo">투여용 세포 공급</a>',
-    '    <a href="cell-facility.html#doc">치료계획서 작성 지원</a>',
+    '    <a href="cell-facility.html" class="nav-drawer-label nav-drawer-label-link">세포처리시설 <span class="nav-drawer-arrow">›</span></a>',
+    '    <a href="cell-facility.html#cmo" class="nav-drawer-sub">투여용 세포 공급</a>',
+    '    <a href="cell-facility.html#doc" class="nav-drawer-sub">치료계획서 작성 지원</a>',
     '  </div>',
     '  <div class="nav-drawer-section">',
-    '    <div class="nav-drawer-label">고객지원</div>',
+    '    <div class="nav-drawer-label">고객지원 <span class="nav-drawer-arrow">›</span></div>',
     '    <a href="support.html#qna">Q&amp;A</a>',
     '    <a href="support.html#contact">Contact Us</a>',
     '  </div>',    '  <a href="support.html#contact" class="nav-drawer-cta">상담 신청</a>',    '</div>',
@@ -153,6 +153,14 @@
         drawer.classList.remove('open');
         ham.setAttribute('aria-expanded', 'false');
       }
+    });
+
+    // 드로어 링크 클릭 시 항상 닫히도록 하여 모바일에서 탭/해시 이동 실패를 방지
+    drawer.addEventListener('click', function (e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+      drawer.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
     });
   }
 })();
