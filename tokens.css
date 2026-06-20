@@ -98,8 +98,15 @@ body { background: var(--white); color: var(--text); }
 .inner {
   padding: 0 clamp(80px, 10vw, 160px);
 }
+/* 스티키 푸터 — 콘텐츠가 짧아도(예: 탭 상세 뷰) 푸터를 항상 최하단에 고정 */
+body.subpage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .page-wrap {
   padding-top: var(--nav-h);
+  flex: 1 0 auto;
 }
 .tab-offset {
   /* 탭 네비 있는 페이지의 섹션 스크롤 여백 */
