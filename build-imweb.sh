@@ -89,7 +89,18 @@ def scope_css(css):
     return css
 
 
-TOKENS_SCOPED = scope_css(read("tokens.css"))
+# ── CSS 경량 압축 — 아임웹 코드 위젯 용량 한계 회피 (특히 index 페이지) ──
+#   보수적: 주석/여분 공백/마지막 세미콜론만 제거. calc 의 +,-,*,/ 주위 공백과
+#   후손결합자(.a .b) 공백은 보존하므로 렌더 결과는 동일하다.
+def minify_css(css):
+    css = re.sub(r'/\*.*?\*/', '', css, flags=re.S)   # 주석 제거
+    css = re.sub(r'\s+', ' ', css)                     # 연속 공백 → 1칸
+    css = re.sub(r'\s*([{};:,>])\s*', r'\1', css)      # {};:,> 주위 공백 제거
+    css = re.sub(r';}', '}', css)                      # 마지막 세미콜론 제거
+    return css.strip()
+
+
+TOKENS_SCOPED = minify_css(scope_css(read("tokens.css")))
 
 RESET = (
     "#gcb-root{position:fixed;inset:0;z-index:99990;overflow-y:auto;overflow-x:clip;"
@@ -158,7 +169,7 @@ def build_page(fname, active_key):
 
     # 페이지 전용 <style> 추출 (head 내 1개)
     m = re.search(r'<style>(.*?)</style>', src, re.S)
-    page_css = scope_css(m.group(1)) if m else ""
+    page_css = minify_css(scope_css(m.group(1))) if m else ""
 
     # body 내부 추출
     bm = re.search(r'<body[^>]*>(.*?)</body>', src, re.S)
