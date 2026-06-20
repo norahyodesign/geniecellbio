@@ -87,9 +87,11 @@ bash build-imweb.sh
 
 ```css
 --navy: #0E2040       /* 주요 진남색 */
---accent: #2E7CF6     /* 주 강조색 (파랑) */
---accent2: #5BB8F6    /* 보조 강조색 (밝은 파랑) */
---accent-light: #E8F1FE /* 강조색 배경 */
+--navy2: #1B3A6B      /* 보조 진남색 */
+--accent: #98D6FA     /* 주 강조색 (하늘색) */
+--accent-text: #1A7FAF /* 강조 텍스트(가독용 진한 하늘색) */
+--accent2: #BDE6FC    /* 보조 강조색 (밝은 하늘색) */
+--accent-light: #EDF7FE /* 강조색 배경 */
 --white: #fff
 --gray-bg: #F5F5F7    /* 기본 배경 */
 --gray-bg2: #f0f4fa   /* 섹션 alt 배경 */
@@ -100,11 +102,12 @@ bash build-imweb.sh
 --radius: 20px        /* 기본 둥근 모서리 */
 --radius-sm: 12px
 --radius-xs: 8px
---nav-h: 60px         /* Nav 높이 */
---tab-h: 48px         /* 탭 Nav 높이 */
+--nav-h: 70px         /* Nav 높이 */
+--tab-h: 60px         /* 탭 Nav 높이 */
 --max-w: 1080px       /* 최대 너비 */
---font: 'DM Sans', system-ui, sans-serif
---mono: 'IBM Plex Mono', monospace
+--font: 'Pretendard Variable', 'Pretendard', system-ui, -apple-system, sans-serif  /* 기본·모노 공통 */
+--mono: 'Pretendard Variable', 'Pretendard', system-ui, sans-serif  /* var(--mono) — IBM Plex Mono 미사용 */
+/* DM Sans: 홈 히어로(.hero-h1) 전용 보조 폰트 (800 italic). 폰트 로드는 _head-code.html 1회 */
 ```
 
 ### 버튼 클래스

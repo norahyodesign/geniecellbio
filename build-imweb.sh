@@ -83,7 +83,7 @@ def rewrite_assets(html):
 
 # ── CSS 의 html/body 셀렉터 → #gcb-root (오버레이가 스크롤 컨테이너) ──
 def scope_css(css):
-    css = re.sub(r'(^|[}\n,;])(\s*)body\.subpage\b', r'\1\2#gcb-root', css)
+    css = re.sub(r'(^|[}\n,;])(\s*)body\.subpage\b', r'\1\2#gcb-root.subpage', css)
     css = re.sub(r'(^|[}\n,;])(\s*)body\b',          r'\1\2#gcb-root', css)
     css = re.sub(r'(^|[}\n,;])(\s*)html\b',          r'\1\2#gcb-root', css)
     return css
@@ -301,11 +301,54 @@ HEAD = """<!-- ============================================================
 <noscript><link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css"></noscript>
 <link rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap">
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,700;0,9..40,800;1,9..40,700;1,9..40,800&display=swap">
 """
 with open(os.path.join(DIST, "_head-code.html"), "w", encoding="utf-8") as fh:
     fh.write(HEAD)
 print("  ✅  _head-code.html  (환경설정 > SEO > Header Code 용)")
+
+
+# ── 검증: 원본 디자인이 아티팩트에 그대로 반영되는지 점검 ──────────────
+#   (1) 스코프 잔재: scope_css 가 못 바꾼 bare html/body 셀렉터가 남았는가
+#   (2) 폰트 커버리지: 원본이 쓰는 DM Sans weight 가 _head-code.html 로드에 포함되는가
+def _dm_request_weights(text):
+    m = re.search(r'DM\+Sans[^"&]*', text)
+    return {int(w) for w in re.findall(r'\d{3}', m.group(0))} if m else set()
+
+
+def _dm_used_weights(css):
+    used = set()
+    for m in re.finditer(r"'?DM Sans'?", css):
+        i = m.start()
+        lb = css.rfind('{', 0, i)
+        rb = css.find('}', i)
+        block = css[lb + 1:rb] if (lb != -1 and rb != -1) else css[max(0, i - 200):i + 200]
+        used.update(int(w) for w in re.findall(r'font-weight:\s*(\d{3})', block))
+        used.update(int(w) for w in re.findall(r'font:\s*(?:italic\s+|normal\s+)?(\d{3})\b', block))
+    return used
+
+
+warns = 0
+
+# (1) 스코프 잔재 (공유 tokens.css 기준)
+residue = re.findall(r'(?:^|[\n,;}])\s*(html|body)\b(?![-\w])', TOKENS_SCOPED)
+if residue:
+    warns += 1
+    print("  ⚠  스코프 잔재: #gcb-root 로 안 바뀐 html/body 셀렉터 %d개" % len(residue))
+
+# (2) DM Sans weight 커버리지 (원본 전체 vs _head-code.html)
+head_w = _dm_request_weights(HEAD)
+used_w = set()
+for fname in PAGES:
+    if os.path.exists(fname):
+        used_w |= _dm_used_weights(read(fname))
+missing = sorted(used_w - head_w)
+if missing:
+    warns += 1
+    print("  ⚠  폰트 누락: 원본이 쓰는 DM Sans weight %s 가 _head-code.html(%s)에 없음"
+          % (missing, sorted(head_w)))
+
+print("  ✅  검증 완료 — 경고 %d건" % warns)
 
 
 # ── 붙여넣기 가이드 ──
