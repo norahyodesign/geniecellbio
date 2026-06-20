@@ -204,6 +204,55 @@ def build_page(fname, active_key):
     page_css = rewrite_assets(page_css)
     body     = rewrite_links(rewrite_assets(body))
 
+    # index.html 전용: window scroll → #gcb-root scroll 이벤트 폴리필 주입
+    # 아임웹에서 스크롤 컨테이너가 window 가 아니라 #gcb-root 이므로
+    # window 의 scroll 이벤트가 발생하지 않아 BUSINESS/NEWS 스크롤 스토리텔링,
+    # nav 상태, 플로팅 버튼 가시성 등이 모두 동작하지 않는 문제 수정.
+    # 폴리필: #gcb-root scroll → window 의 scroll 이벤트로 re-dispatch 하고,
+    #          window.scrollY/scrollTo 를 #gcb-root 기준으로 재정의한다.
+    if fname == "index.html":
+        SCROLL_POLYFILL = """<script>
+/* ── 아임웹 스크롤 폴리필 ──────────────────────────────────────────────
+   아임웹에서 실제 스크롤 컨테이너는 window 가 아니라 #gcb-root 입니다.
+   이 스크립트는 #gcb-root 의 scroll 이벤트를 window 로 re-dispatch 하고
+   window.scrollY / window.scrollTo 를 #gcb-root 기준으로 재정의해
+   기존 JS 코드(BUSINESS·NEWS 스토리텔링, nav 상태, 플로팅 버튼 등)가
+   수정 없이 동작하도록 합니다.
+─────────────────────────────────────────────────────────────────────── */
+(function () {
+  var root = document.getElementById('gcb-root');
+  if (!root) return;
+
+  /* scrollY 재정의 */
+  try {
+    Object.defineProperty(window, 'scrollY', {
+      get: function () { return root.scrollTop; },
+      configurable: true,
+    });
+    Object.defineProperty(window, 'pageYOffset', {
+      get: function () { return root.scrollTop; },
+      configurable: true,
+    });
+  } catch (e) {}
+
+  /* scrollTo / scroll 재정의 */
+  var origScrollTo = window.scrollTo.bind(window);
+  window.scrollTo = function (x, y) {
+    if (x && typeof x === 'object') {
+      root.scrollTo(x);
+    } else {
+      root.scrollTop = y || 0;
+    }
+  };
+
+  /* #gcb-root scroll → window 'scroll' 이벤트 re-dispatch */
+  root.addEventListener('scroll', function () {
+    window.dispatchEvent(new Event('scroll'));
+  }, { passive: true });
+})();
+</script>"""
+        body = SCROLL_POLYFILL + body
+
     out = []
     out.append("<!-- ============================================================ -->")
     out.append("<!--  지니셀바이오 — %s  (아임웹 '코드' 위젯에 통째로 붙여넣기) -->" % fname)
