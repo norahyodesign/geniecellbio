@@ -8,11 +8,54 @@
 
 | 파일 | 용도 |
 |------|------|
-| `index.html` | 메인 사이트 — 4개 scroll-snap 섹션 완전 내장, 단독 배포 가능 |
+| `index.html` | 메인 사이트 — Hero + BUSINESS 스크롤 스토리텔링 + NEWS + 푸터 |
 | `tokens.css` | **디자인 시스템** — 모든 서브페이지가 공유하는 토큰·컴포넌트 스타일시트 |
 | 서비스 페이지 | `cdmo.html` / `cell-management.html` / `cell-facility.html` — 독립 파일 |
 | 통합 페이지 | `about.html` / `support.html` — 탭 스크롤로 서브메뉴 통합 |
-| `iweb_template.html` | 아임웹 삽입 코드 — CDN의 `index.html`을 iframe으로 임베드 |
+| `nav.js` | 공통 nav HTML — `document.currentScript` 기반 안전 삽입 |
+| `footer.js` | 공통 footer HTML — `document.currentScript` 기반 안전 삽입 (document.write 사용 금지) |
+| `build-imweb.sh` | **아임웹 빌드 스크립트** — `bash build-imweb.sh` 한 번으로 `iweb-dist/` 생성 |
+| `iweb-dist/` | 빌드 산출물 (`.gitignore`에 포함) — 아임웹 코드 위젯에 붙여넣는 파일들 |
+| `iweb_template.html` | ⛔ **DEPRECATED** — iframe 방식. 사용 금지 |
+
+### 아임웹 배포 방식 (현행)
+
+> ⚠️ **iframe 방식은 폐기됨.** `iweb_template.html`을 수정하거나 iframe으로 다시 되돌리지 마세요.
+
+아임웹에 코드를 직접 서빙하는 방식으로 전환했습니다. SEO 도메인이 아임웹으로 귀속됩니다.
+
+```
+bash build-imweb.sh
+```
+
+`iweb-dist/`에 페이지별 self-contained 위젯 블롭이 생성됩니다:
+
+| iweb-dist 파일 | 붙여넣을 아임웹 페이지 슬러그 |
+|---|---|
+| `index.html` | `/home` |
+| `about.html` | `/about` |
+| `cdmo.html` | `/cdmo` |
+| `cell-management.html` | `/cell-management` |
+| `cell-facility.html` | `/cell-facility` |
+| `support.html` | `/support` |
+| `privacy.html` | `/privacy` |
+
+슬러그가 실제 아임웹 페이지와 다를 경우 `build-imweb.sh` 상단 `PAGES` 딕셔너리만 수정 후 재빌드.
+
+#### 빌드가 수행하는 변환
+1. `tokens.css` + 페이지 CSS → `#gcb-root`로 스코프 인라인 (아임웹 전역 스타일 차단)
+2. nav/footer HTML 정적 펼침 (스크립트 실행 의존 제거)
+3. `geniecell_imge/`, `geniecell_video/` → jsDelivr CDN 절대 URL
+4. `*.html` 내부 링크 → 아임웹 슬러그 (`/about` 등)
+5. `position:fixed` 풀화면 오버레이(`#gcb-root`)로 아임웹 헤더/푸터 덮음
+6. **index.html 전용**: 스크롤 폴리필 주입 — `#gcb-root` scroll 이벤트를 `window`로 re-dispatch,
+   `window.scrollY`·`window.scrollTo`를 `#gcb-root` 기준으로 재정의
+   (BUSINESS/NEWS 스크롤 스토리텔링, nav 상태, 플로팅 버튼이 아임웹에서 정상 동작)
+
+#### 원본 파일 수정 원칙
+- `index.html`, `about.html` 등 원본 파일은 **GitHub Pages 단독 서빙도 계속 유지**
+- 아임웹 전용 변환은 빌드 시 자동 적용 — 원본에 직접 아임웹 특화 코드 넣지 말 것
+- `nav.js` / `footer.js`는 `document.currentScript` 삽입 방식 유지 (document.write 절대 금지)
 
 ---
 
@@ -406,7 +449,8 @@ HTML 또는 CSS 파일을 변경한 이후에만 필요합니다.
 | `cell-facility.html` | 세포처리시설 상세 페이지 |
 | `about.html` | 회사소개 통합 페이지 (인사말/회사소개/오시는길) |
 | `support.html` | 고객지원 통합 페이지 (Q&A/Contact Us) |
-| `iweb_template.html` | 아임웹 삽입 코드 (index.html CDN iframe) |
+| `build-imweb.sh` | 아임웹 코드 위젯 빌드 스크립트 (재빌드: `bash build-imweb.sh`) |
+| `iweb_template.html` | ⛔ DEPRECATED — iframe 방식. 사용 금지 |
 | `test-cdn.html` | CDN 로드 테스트 |
 | `serve.sh` | 로컬 서버 실행 |
 | `purge-cdn.sh` | CDN 캐시 퍼지 |

@@ -31,7 +31,7 @@ CDN  = "https://cdn.jsdelivr.net/gh/norahyodesign/geniecellbio@main/"
 
 # ── 페이지 → (아임웹 슬러그, nav 활성 키) ──
 PAGES = {
-    "index.html":           ("/",                None),
+    "index.html":           ("/home",             None),
     "about.html":           ("/about",           "about"),
     "cdmo.html":            ("/cdmo",            "cdmo"),
     "cell-management.html": ("/cell-management", "cell-management"),
@@ -68,8 +68,6 @@ def rewrite_links(html):
         slug = SLUG.get(base)
         if slug is None:
             return m.group(0)
-        if slug == "/" and frag:
-            return 'href="/%s"' % frag
         return 'href="%s%s"' % (slug, frag)
     return re.sub(r'href="([a-z][a-z0-9-]*)\.html(#[^"]*)?"', repl, html)
 
@@ -258,6 +256,7 @@ def build_page(fname, active_key):
     out.append("<!--  지니셀바이오 — %s  (아임웹 '코드' 위젯에 통째로 붙여넣기) -->" % fname)
     out.append("<!--  자동 생성: build-imweb.sh — 직접 수정 금지 -->")
     out.append("<!-- ============================================================ -->")
+    out.append('<meta charset="utf-8">')
     out.append("<style>")
     out.append(RESET)
     out.append("/* ── tokens.css (스코프 인라인) ── */")
@@ -329,7 +328,7 @@ GUIDE = """# 아임웹 코드 위젯 붙여넣기 가이드
 
 | 이 파일 | 아임웹 페이지 슬러그 |
 |---|---|
-| `index.html`           | `/` (홈) |
+| `index.html`           | `/home` |
 | `about.html`           | `/about` |
 | `cdmo.html`            | `/cdmo` |
 | `cell-management.html` | `/cell-management` |
