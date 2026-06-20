@@ -18,6 +18,9 @@ echo "① HTML 유효성 (html-validate)"
 cd "$ROOT"
 if ! command -v npx &>/dev/null; then
   echo "   ⚠️  npx 미설치 — HTML 유효성 검사 건너뜀 (Node.js 설치 필요)"
+elif ! npm ls --depth=0 --global html-validate &>/dev/null 2>&1 && \
+     ! npm ls --depth=0 html-validate &>/dev/null 2>&1; then
+  echo "   ⚠️  html-validate 미설치 — 검사 건너뜀 (npm i -g html-validate 로 설치)"
 elif npx --no html-validate "${HTML_FILES[@]}" 2>&1; then
   echo "   ✅ HTML 유효성 통과"
 else

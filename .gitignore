@@ -7,3 +7,6 @@
 # Editor
 .vscode/
 *.swp
+
+# 아임웹 배포 번들 (로컬 빌드 산출물)
+iweb-dist/

@@ -32,5 +32,12 @@
     '</footer>'
   ].join('\n');
 
-  document.write(html);
+  /* document.write 대신 currentScript 위치에 삽입 —
+     아임웹 코드 위젯 등 로드 완료 후 실행되는 환경에서도 안전하게 동작 */
+  var script = document.currentScript;
+  var wrapper = document.createElement('div');
+  wrapper.innerHTML = html;
+  while (wrapper.firstChild) {
+    script.parentNode.insertBefore(wrapper.firstChild, script);
+  }
 })();
