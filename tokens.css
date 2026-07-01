@@ -1179,8 +1179,6 @@ body.subpage .privacy-wrap li {
   .card-h3,
   .card-desc,
   .card-badge,
-  .str-h4,
-  .str-desc,
   .ov-num,
   .ov-label,
   .proc-title,
@@ -1196,8 +1194,9 @@ body.subpage .privacy-wrap li {
   .cta-btns,
   .hero-svc-btns { justify-content: center; }
 
-  .str-card { align-items: center; text-align: center; }
-  .str-card > div:last-child { text-align: center; }
+  /* 강점 카드: 모바일에서 텍스트 왼쪽 정렬 (아이콘은 좌측 유지) */
+  .str-card { align-items: center; text-align: left; }
+  .str-card > div:last-child { text-align: left; }
 
   .card { align-items: center; text-align: center; }
   .card-list { align-items: flex-start; }
