@@ -343,11 +343,9 @@
   .mv-content h3 { font-size: 18px; }
   .mv-items { gap: 20px; margin-top: 0; }
   .values-grid { grid-template-columns: repeat(2,1fr); gap: 0; }
-  .loc-info-grid { grid-template-columns: repeat(2, 1fr); }
-  .loc-item:nth-child(odd) { border-right: 1px solid var(--border); }
-  .loc-item:nth-child(even) { border-right: none; }
-  .loc-item { border-bottom: 1px solid var(--border); }
-  .loc-item:nth-last-child(-n+2) { border-bottom: none; }
+  .loc-info-grid { grid-template-columns: 1fr; }
+  .loc-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .loc-item:last-child { border-bottom: none; }
   .transport-list { flex-direction: column; }
   .transport-list li { border-right: none; border-bottom: 1px solid var(--border); }
   .transport-list li:last-child { border-bottom: none; }
