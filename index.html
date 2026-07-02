@@ -922,8 +922,6 @@ body {
   #btn-top svg { width: 22px; height: 22px; }
   #btn-contact { right: 16px; bottom: calc(82px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   #btn-contact svg { width: 22px; height: 22px; }
-  /* 모바일: 스크롤 감지 JS 없이도 항상 표시 (iframe(iOS)에서 window.scrollY 미갱신 → .visible 미부착 대응) */
-  #btn-top, #btn-contact { opacity: 1; visibility: visible; transform: translateY(0); }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
 }
@@ -1216,16 +1214,16 @@ body {
   }
 
   window.addEventListener('scroll', function(){
-    var scrollY = window.scrollY || document.documentElement.scrollTop;
+    var scrollY = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
     var found = 0;
     for(var i = 0; i < secs.length; i++){
       var el = document.getElementById(secs[i]);
       if(el && el.getBoundingClientRect().top <= 80) found = i;
     }
     if(found !== current) updateState(found);
-    btnTop.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
+    btnTop.classList.toggle('visible', scrollY > 50);
     var btnContact = document.getElementById('btn-contact');
-    if(btnContact) btnContact.classList.toggle('visible', scrollY > window.innerHeight * 0.5);
+    if(btnContact) btnContact.classList.toggle('visible', scrollY > 50);
     var mobileFloat = document.getElementById('mobile-float-cta');
     if(mobileFloat) mobileFloat.classList.toggle('visible', scrollY > window.innerHeight * 0.8);
   }, {passive: true});
