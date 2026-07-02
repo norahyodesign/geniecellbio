@@ -918,9 +918,9 @@ body {
   /* ── 공통 ── */
   .progress-dots { display: none; }
   .inner { padding: 0 20px; }
-  #btn-top { right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
+  #btn-top { right: 16px; bottom: calc(20px + env(safe-area-inset-bottom) + var(--vvb, 0px)); width: 52px; height: 52px; }
   #btn-top svg { width: 22px; height: 22px; }
-  #btn-contact { right: 16px; bottom: calc(82px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
+  #btn-contact { right: 16px; bottom: calc(82px + env(safe-area-inset-bottom) + var(--vvb, 0px)); width: 52px; height: 52px; }
   #btn-contact svg { width: 22px; height: 22px; }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
@@ -1245,6 +1245,24 @@ body {
       if(target){ e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+})();
+
+/* 모바일 브라우저 하단 툴바가 플로팅 버튼을 가리지 않도록 —
+   visualViewport로 툴바가 가리는 하단 높이를 계산해 버튼을 그만큼 올림(--vvb).
+   툴바가 접히면 0 → 원위치, 맨 아래에서 툴바가 펼쳐지면 그만큼 위로 이동 */
+(function(){
+  var vv = window.visualViewport;
+  if (!vv) return;
+  var root = document.documentElement;
+  function updateInset(){
+    var inset = window.innerHeight - vv.height - vv.offsetTop;
+    if (inset < 0 || isNaN(inset)) inset = 0;
+    root.style.setProperty('--vvb', inset + 'px');
+  }
+  vv.addEventListener('resize', updateInset, { passive: true });
+  vv.addEventListener('scroll', updateInset, { passive: true });
+  window.addEventListener('scroll', updateInset, { passive: true });
+  updateInset();
 })();
 
 // 드로어 토글 + aria-expanded + 바깥 탭 닫기
