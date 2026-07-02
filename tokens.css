@@ -203,6 +203,8 @@ body.subpage {
 /* 모바일 드로어 */
 .nav-drawer {
   display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+  max-height: calc(100dvh - var(--nav-h));
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
   background: rgba(255,255,255,0.97); backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
