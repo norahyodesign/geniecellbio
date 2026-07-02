@@ -454,9 +454,9 @@
 #btn-contact:hover { background: #1a3560; }
 #btn-contact svg { width: 24px; height: 24px; }
 @media (max-width: 768px) {
-  #btn-top { right: 16px; bottom: 20px; width: 52px; height: 52px; }
+  #btn-top { right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   #btn-top svg { width: 22px; height: 22px; }
-  #btn-contact { right: 16px; bottom: 82px; width: 52px; height: 52px; }
+  #btn-contact { right: 16px; bottom: calc(82px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   #btn-contact svg { width: 22px; height: 22px; }
 }
 

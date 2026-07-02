@@ -732,7 +732,8 @@ body {
     align-items: center;
     text-align: center;
     position: absolute;
-    top: calc(50% + var(--nav-h) / 2);
+    /* 화면 세로 정중앙 정렬 (기기 무관) — 이전엔 nav 높이 절반만큼 아래로 치우쳤음 */
+    top: 50%;
     left: 0;
     right: 0;
     transform: translateY(-50%);
@@ -917,9 +918,9 @@ body {
   /* ── 공통 ── */
   .progress-dots { display: none; }
   .inner { padding: 0 20px; }
-  #btn-top { right: 16px; bottom: 20px; width: 52px; height: 52px; }
+  #btn-top { right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   #btn-top svg { width: 22px; height: 22px; }
-  #btn-contact { right: 16px; bottom: 82px; width: 52px; height: 52px; }
+  #btn-contact { right: 16px; bottom: calc(82px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   #btn-contact svg { width: 22px; height: 22px; }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
