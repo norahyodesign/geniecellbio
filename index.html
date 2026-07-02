@@ -1431,21 +1431,24 @@ body {
     if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
   }, { passive: true });
 
-  /* 비즈니스 섹션 진입 시 첫 슬라이드 애니메이션 트리거 (모바일 전용) */
-  var s2 = document.getElementById('s2');
+  /* 비즈니스 섹션이 화면에 충분히 자리잡았을 때 첫 슬라이드 애니메이션 트리거 (모바일 전용)
+     — 스크롤 도중이 아니라 섹션이 절반 이상 보인 뒤 재생해 버벅임 없이 부드럽게 */
+  var s2 = document.getElementById('biz-mobile-slider') || document.getElementById('s2');
   if (s2 && 'IntersectionObserver' in window) {
     var entered = false;
-    var ioOpts = { threshold: 0.15 };
+    var ioOpts = { threshold: 0.5 };
     var io = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting && !entered) {
           entered = true;
-          /* 현재 슬라이드 애니메이션 재생 */
-          var s = slides[cur];
-          s.classList.remove('is-active');
-          void s.offsetWidth; /* reflow */
-          s.classList.add('is-active');
           io.disconnect();
+          /* 다음 프레임에 재생 → 스크롤 프레임과 분리해 끊김 방지 */
+          requestAnimationFrame(function() {
+            var s = slides[cur];
+            s.classList.remove('is-active');
+            void s.offsetWidth; /* reflow */
+            s.classList.add('is-active');
+          });
         }
       });
     }, ioOpts);
