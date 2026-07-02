@@ -1223,7 +1223,7 @@ body.subpage .privacy-wrap li {
 
   .page-hero { padding: 70px 20px 60px; }
   .tab-nav-inner { padding: 0 16px; gap: 6px; }
-  .tab-item { padding: 8px 16px; font-size: 13px; }
+  .tab-item { padding: 9px 18px; font-size: 15px; }
   .ov-grid { grid-template-columns: 1fr; }
   .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
@@ -1267,7 +1267,7 @@ body.subpage .privacy-wrap li {
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
 @media (max-width: 480px) {
-  .tab-item { padding: 7px 13px; font-size: 12px; }
+  .tab-item { padding: 8px 15px; font-size: 15px; }
 }
 
 /* 2400px+ 패딩 확대 — 기본 규칙 뒤에 위치해야 cascade 적용됨 */
