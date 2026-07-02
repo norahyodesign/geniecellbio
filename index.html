@@ -922,6 +922,8 @@ body {
   #btn-top svg { width: 22px; height: 22px; }
   #btn-contact { right: 16px; bottom: calc(82px + env(safe-area-inset-bottom)); width: 52px; height: 52px; }
   #btn-contact svg { width: 22px; height: 22px; }
+  /* 모바일: 스크롤 감지 JS 없이도 항상 표시 (iframe(iOS)에서 window.scrollY 미갱신 → .visible 미부착 대응) */
+  #btn-top, #btn-contact { opacity: 1; visibility: visible; transform: translateY(0); }
   #floating-cta { bottom: 16px; padding: 8px 8px 8px 16px; }
   .fcta-text { font-size: 13px; }
 }
