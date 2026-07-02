@@ -783,11 +783,6 @@ body {
     width: 100%; height: 100%;
     object-fit: cover; display: block;
     object-position: center 40%;
-    transform: scale(1.08);
-    transition: transform 1.2s cubic-bezier(.25,.46,.45,.94);
-  }
-  .biz-m-slide.is-active .biz-m-slide__bg img {
-    transform: scale(1);
   }
   /* ── 진입 애니메이션 GPU 가속 (스크롤 시 렉 완화) ── */
   .biz-m-slide { will-change: opacity; }
@@ -800,7 +795,6 @@ body {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  .biz-m-slide.is-active .biz-m-slide__bg img { will-change: transform; }
   .biz-m-slide__overlay {
     position: absolute;
     inset: 0;
@@ -903,9 +897,8 @@ body {
     z-index: 10;
     width: 44px; height: 44px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    border: 1.5px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(8px);
+    background: rgba(30,45,70,0.42);
+    border: 1.5px solid rgba(255,255,255,0.28);
     color: #fff;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
