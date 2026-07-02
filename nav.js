@@ -28,50 +28,46 @@
     '      <img src="geniecell_imge/%EC%A7%80%EB%8B%88%EC%85%80%EB%B0%94%EC%9D%B4%EC%98%A4%20%EB%A1%9C%EA%B3%A0.png" alt="지니셀바이오" class="nav-logo-img">',
     '    </a>',
 
+    '    <div class="nav-menu-wrap">',
     '    <ul class="nav-menu">',
-    // 회사소개
-    '      <li class="nav-item" data-nav="about">',
-    '        <button type="button" class="nav-link">회사소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>',
-    '        <div class="nav-drop">',
+    '      <li class="nav-item" data-nav="about"><button type="button" class="nav-link">회사소개 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button></li>',
+    '      <li class="nav-item" data-nav="cdmo"><a href="cdmo.html" class="nav-link">CDMO 서비스 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a></li>',
+    '      <li class="nav-item" data-nav="cell-management"><a href="cell-management.html" class="nav-link">인체세포등 관리업 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a></li>',
+    '      <li class="nav-item" data-nav="cell-facility"><a href="cell-facility.html" class="nav-link">세포처리시설 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a></li>',
+    '      <li class="nav-item" data-nav="support"><button type="button" class="nav-link">고객지원 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button></li>',
+    '    </ul>',
+    '    <div class="nav-mega">',
+    '      <div class="nav-mega-inner">',
+    '        <div class="nav-mega-col">',
+    '          <div class="nav-mega-col-title">회사소개</div>',
     '          <a href="about.html#greeting">인사말</a>',
     '          <a href="about.html#company">회사개요</a>',
     '          <a href="about.html#location">오시는길</a>',
     '        </div>',
-    '      </li>',
-    // CDMO 서비스
-    '      <li class="nav-item" data-nav="cdmo">',
-    '        <a href="cdmo.html" class="nav-link">CDMO 서비스 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a>',
-    '        <div class="nav-drop">',
+    '        <div class="nav-mega-col">',
+    '          <div class="nav-mega-col-title">CDMO 서비스</div>',
     '          <a href="cdmo.html#cmo">CMO · 위탁생산</a>',
     '          <a href="cdmo.html#qc">QC · 위탁품질시험</a>',
     '          <a href="cdmo.html#ra">RA · 인허가 컨설팅</a>',
     '        </div>',
-    '      </li>',
-    // 인체세포등 관리업
-    '      <li class="nav-item" data-nav="cell-management">',
-    '        <a href="cell-management.html" class="nav-link">인체세포등 관리업 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a>',
-    '        <div class="nav-drop">',
+    '        <div class="nav-mega-col">',
+    '          <div class="nav-mega-col-title">인체세포등 관리업</div>',
     '          <a href="cell-management.html#supply">원료세포 공급</a>',
     '          <a href="cell-management.html#banking">자가세포 보관</a>',
     '        </div>',
-    '      </li>',
-    // 세포처리시설
-    '      <li class="nav-item" data-nav="cell-facility">',
-    '        <a href="cell-facility.html" class="nav-link">세포처리시설 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></a>',
-    '        <div class="nav-drop">',
+    '        <div class="nav-mega-col">',
+    '          <div class="nav-mega-col-title">세포처리시설</div>',
     '          <a href="cell-facility.html#cmo">투여용 세포 공급</a>',
     '          <a href="cell-facility.html#doc">치료계획서 작성 지원</a>',
     '        </div>',
-    '      </li>',
-    // 고객지원
-    '      <li class="nav-item" data-nav="support">',
-    '        <button type="button" class="nav-link">고객지원 <svg aria-hidden="true" focusable="false" width="16" height="16"><use href="#ico-chevron-down"/></svg></button>',
-    '        <div class="nav-drop">',
+    '        <div class="nav-mega-col">',
+    '          <div class="nav-mega-col-title">고객지원</div>',
     '          <a href="support.html#qna">Q&amp;A</a>',
     '          <a href="support.html#contact">Contact Us</a>',
     '        </div>',
-    '      </li>',
-    '    </ul>',
+    '      </div>',
+    '    </div>',
+    '    </div>',
 
     '    <a href="support.html#contact" class="nav-cta">상담 신청</a>',
     '    <button type="button" class="nav-ham" id="gcb-ham" aria-label="메뉴" aria-expanded="false" aria-controls="gcb-drawer">',
@@ -172,5 +168,29 @@
       drawer.classList.remove('open');
       ham.setAttribute('aria-expanded', 'false');
     });
+  }
+
+  /* ── 5. 데스크탑 메가메뉴: 약간의 유예시간을 둬서 대각선 이동 중 사라짐 방지 ── */
+  var megaWrap = document.querySelector('.nav-menu-wrap');
+  if (megaWrap) {
+    var megaCloseTimer;
+    megaWrap.addEventListener('mouseenter', function () {
+      clearTimeout(megaCloseTimer);
+      megaWrap.classList.add('mega-open');
+    });
+    megaWrap.addEventListener('mouseleave', function () {
+      megaCloseTimer = setTimeout(function () {
+        megaWrap.classList.remove('mega-open');
+      }, 300);
+    });
+
+    // 링크가 없는 대메뉴(회사소개/고객지원)는 클릭해도 아무 동작도 하지 않도록 확실히 차단
+    var nonLinkTriggers = megaWrap.querySelectorAll('button.nav-link');
+    for (var i = 0; i < nonLinkTriggers.length; i++) {
+      nonLinkTriggers[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    }
   }
 })();
