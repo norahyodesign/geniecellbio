@@ -789,6 +789,18 @@ body {
   .biz-m-slide.is-active .biz-m-slide__bg img {
     transform: scale(1);
   }
+  /* ── 진입 애니메이션 GPU 가속 (스크롤 시 렉 완화) ── */
+  .biz-m-slide { will-change: opacity; }
+  .biz-m-slide__body,
+  .biz-m-slide__title,
+  .biz-m-slide__desc,
+  .biz-m-slide__tags,
+  .biz-m-slide__link {
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  .biz-m-slide.is-active .biz-m-slide__bg img { will-change: transform; }
   .biz-m-slide__overlay {
     position: absolute;
     inset: 0;
